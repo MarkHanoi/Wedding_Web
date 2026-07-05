@@ -1,0 +1,22 @@
+ya estan los 8 productos de los modulos del advanced:
+
+Imagining the World 
+WORLD BRIEF. Interactive document combining AI-generated imaginery, systems diagram, research question, needed data infrastructure, and authorial statement that together answer: what world do you want to model, and why does that world matter.
+
+Seeing the World
+WORLD DATABASE PIPELINE: Full data pipeline (from sensor capture and database querying to algorithmic interpretation) and data management setup, producing a spatial knowledge artefact that reveals a pattern, dynamic or condition of the world invisible to unassisted observation.
+
+Structuring the World
+WORLD RULES-BASED ENGINE: Programmed rule-based system (from the definition of laws, constraints and generative logic to their computational implementation) producing a structured world model whose form, behaviour and organisation emerges entirely from the rules that govern it.
+
+Modelling the World
+WORLD SPATIAL FRAME: Advanced mathematical and computational geometry system (from associative geometry and constraint-based modelling to simulation-aware procedural generation) producing a continuously evolving spatial world model where geometry, behaviour and performance remain dynamically linked
+
+Simulating + Acting in the World
+WORLD PREDICTIVE SIMULATOR: Predictive simulation and autonomous decision-making system (from spatial dynamics, behavioural modelling and synthetic environments to real-time forecasting, planning and adaptive control) producing operational world models capable of anticipating, evaluating and acting upon complex environmental scenarios.
+
+Communicating the World
+WORLD ANALYTICS INTERFACE: World representation and data visualisation environment (from multi-layered simulation results and project information to visual narratives, documentation, performance comparisons and AI-assisted reporting) producing communicable insights across design, analysis and operation workflows.
+[27/5, 21:41] Sergio MIAU: LOS llalamos productos o como crees que deberiamos llamar a los resultados que buscamos hacer
+[27/5, 21:55] Sergio MIAU: sobre los productos del foundations los estan haciendo manu y antia
+[27/5, 21:55] Sergio MIAU: aunque puedes poner los que consideres tu tambien la cosa es que se vea claro que se va a hacer en cada modulo

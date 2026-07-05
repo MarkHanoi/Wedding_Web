@@ -1,0 +1,18 @@
+{
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
+  "packageManager": "pnpm@10.26.1",
+  "scripts": {
+    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock'",
+    "build": "pnpm --filter @workspace/miaw run build",
+    "build:full": "pnpm run typecheck && pnpm --filter @workspace/scripts run generate-og && pnpm --filter @workspace/scripts run seo-inject && pnpm --filter @workspace/scripts run generate-seo-pages && pnpm -r --filter \"!@workspace/mockup-sandbox\" --if-present run build",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
+  },
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.8.3",
+    "typescript": "~5.9.3"
+  }
+}

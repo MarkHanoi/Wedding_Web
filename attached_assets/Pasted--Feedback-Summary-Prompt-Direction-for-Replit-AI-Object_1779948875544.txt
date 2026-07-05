@@ -1,0 +1,195 @@
+# Feedback Summary + Prompt Direction for Replit AI
+
+## Objective
+
+Update and refine the master/course platform UI and structure based on Sergio’s feedback from the WhatsApp conversation.
+
+## Key Changes Requested
+
+### 1. Explain the Program Structure Before “Foundations”
+
+Before the “Foundations” section, add a clear introductory block explaining the structure of the master program.
+
+The program should be presented as having **three acts / three parts**:
+
+1. Foundations specialization course
+2. Advanced specialization course
+3. Final project
+
+The wording should feel professional and clear.
+
+---
+
+### 2. Add Delivery Format + Institution Information
+
+Clearly state that:
+
+* The program takes place at **UPM ETSAM**
+* The format is **hybrid**
+* Classes are:
+
+  * online
+  * streamed live
+  * accessible asynchronously outside schedule hours
+
+This should appear near the top/introduction section.
+
+---
+
+### 3. Rename “Chat” → “Assistant”
+
+Anywhere in the interface where it currently says:
+
+* “Chat”
+
+Replace with:
+
+* “Assistant”
+
+The tone should feel more professional and educational.
+
+---
+
+### 4. Rename Workshop Categories
+
+Use a clearer naming system for modules.
+
+Examples:
+
+* Advanced workshops:
+
+  * A01
+  * A02
+  * etc.
+
+* Foundations:
+
+  * F01
+  * F02
+  * etc.
+
+Ensure the naming appears consistently across cards/modules/UI.
+
+---
+
+### 5. Improve Workshop Cards Visual Hierarchy
+
+The workshop cards (“fichas”) need stronger visual emphasis.
+
+Requested improvements:
+
+* More visible borders/windows
+* Better separation between cards
+* Stronger framing
+* Slightly more contrast/shadow
+* More premium editorial/course-catalog feeling
+
+Goal:
+Improve readability and make modules feel more structured.
+
+---
+
+### 6. Replace the Concept “Goal”
+
+Sergio does not like the label:
+
+* “Goal”
+
+Replace it with something more professional/product-oriented.
+
+Suggested alternatives:
+
+* Deliverable
+* Milestone
+* Outcome
+* Result
+* Product
+
+Preferred direction:
+Use terminology that sounds more professional and industry-oriented.
+
+Recommendation:
+“Deliverable” is probably the strongest option.
+
+---
+
+### 7. Review Schedule Wording
+
+There is uncertainty around wording like:
+
+* “de lunes a miércoles”
+
+Review and potentially improve how schedule/time information is displayed.
+
+Make it cleaner and more professional.
+
+---
+
+### 8. Use Exact Texts from the Draw.io File
+
+For product/workshop descriptions:
+
+* Copy the exact texts from the Draw.io document
+* Do not rewrite or summarize unless necessary
+
+Maintain consistency with existing planning materials.
+
+---
+
+### 9. General Design Direction
+
+Overall direction should feel:
+
+* more professional
+* more architectural/editorial
+* premium academic
+* structured
+* less “startup/chat app”
+* more institutional + advanced education
+
+Avoid overly playful UX language.
+
+---
+
+## Suggested Replit AI Prompt
+
+Update the master program platform UI and content structure with a more professional academic/editorial direction.
+
+Main tasks:
+
+* Add a top introduction explaining the 3-part structure of the program:
+
+  1. Foundations specialization
+  2. Advanced specialization
+  3. Final project
+
+* Clearly mention:
+
+  * UPM ETSAM
+  * Hybrid format
+  * Online + live streaming
+  * Async access outside class hours
+
+* Replace all references to “Chat” with “Assistant”.
+
+* Rename workshop systems:
+
+  * Foundations → F01, F02, etc.
+  * Advanced → A01, A02, etc.
+
+* Improve workshop card visual hierarchy:
+
+  * stronger borders
+  * cleaner framing
+  * more premium spacing
+  * clearer separation between modules
+
+* Replace the label “Goal” with a more professional term.
+  Preferred option: “Deliverable”.
+
+* Review schedule wording and improve clarity/professional tone.
+
+* Use exact workshop/product description texts from the Draw.io source material.
+
+Design direction:
+premium academic, architectural, editorial, institutional, structured, high-end education platform aesthetic.

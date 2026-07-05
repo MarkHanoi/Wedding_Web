@@ -1,0 +1,8 @@
+# security.txt for miaw.ai
+# https://securitytxt.org/
+
+Contact: mailto:security@miaw.ai
+Expires: 2027-05-17T20:41:33.231Z
+Preferred-Languages: en
+Canonical: https://miaw.ai/.well-known/security.txt
+Policy: https://miaw.ai/.well-known/security.txt

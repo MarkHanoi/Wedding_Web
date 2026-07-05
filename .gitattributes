@@ -1,0 +1,5 @@
+docs/A01[[:space:]]TERRITORY.mp4 filter=lfs diff=lfs merge=lfs -text
+docs/F06[[:space:]]-[[:space:]]AI[[:space:]]COMMUNICATION.mp4 filter=lfs diff=lfs merge=lfs -text
+artifacts/miaw/public/images/a01-territory.mp4 filter=lfs diff=lfs merge=lfs -text
+artifacts/miaw/public/images/f06-ai-communication.mp4 filter=lfs diff=lfs merge=lfs -text
+docs/A04[[:space:]]MODELLING[[:space:]]THE[[:space:]]WORLD[[:space:]](1).mp4 filter=lfs diff=lfs merge=lfs -text

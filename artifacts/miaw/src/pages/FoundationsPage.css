@@ -1,0 +1,334 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   FoundationsPage — scoped styles
+   Handles: hover transitions, responsive layout breakpoints.
+   All static colour / typography stays co-located in the TSX as inline style
+   or Tailwind class so values stay close to the markup.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Nav container — display managed here, never via inline style ───────── */
+
+.fp-nav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Nav links ──────────────────────────────────────────────────────────── */
+
+.fp-nav-link {
+  font-family: Inter, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  padding: 6px 13px;
+  border-radius: 100px;
+  background: transparent;
+  transition: background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+
+.fp-nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ── Module image wrapper ───────────────────────────────────────────────── */
+
+.fp-img-wrap {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  min-height: 480px;
+}
+
+@media (max-width: 900px) {
+  .fp-img-wrap {
+    min-height: 320px;
+  }
+}
+
+.fp-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0.78;
+  filter: saturate(0.85);
+  transition: opacity 0.4s ease, transform 0.5s ease;
+}
+
+@media (hover: hover) {
+  .fp-img-wrap:hover img {
+    opacity: 0.93;
+    transform: scale(1.04);
+  }
+}
+
+/* ── CTA button ─────────────────────────────────────────────────────────── */
+
+.fp-cta-btn {
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-family: Inter, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.80);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.fp-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.17);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ── Module article — desktop 3-col grid ───────────────────────────────── */
+
+.fp-module-article {
+  display: grid;
+  grid-template-areas: "num content image";
+  grid-template-columns: 72px 1fr 520px;
+  gap: 48px;
+  align-items: start;
+  padding: 52px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fp-module-num    { grid-area: num; }
+.fp-module-content { grid-area: content; }
+.fp-module-image  { grid-area: image; }
+
+/* ── Premise grid — desktop 3-col ───────────────────────────────────────── */
+
+.fp-premise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 0;
+}
+
+.fp-premise-col {
+  padding: 28px 32px 28px 0;
+}
+
+.fp-premise-col + .fp-premise-col {
+  padding-left: 32px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Footer grid ────────────────────────────────────────────────────────── */
+
+.fp-footer-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+}
+
+/* ── Main page scroll container — hide scrollbar ───────────────────────── */
+
+.gradient-canvas {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gradient-canvas::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Timeline scroll container ──────────────────────────────────────────── */
+
+.fp-timeline-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.fp-timeline-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.fp-timeline-inner {
+  min-width: 680px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE — tablet / mobile
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet: ≤ 900px */
+@media (max-width: 900px) {
+  .fp-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* Module article: tighter on tablet */
+  .fp-module-article {
+    grid-template-columns: 56px 1fr 380px;
+    gap: 28px;
+  }
+}
+
+/* ── Tablet + mobile shared adjustments (≤ 768px) ── */
+@media (max-width: 768px) {
+  /* Module article: drop to 2-col (num hidden, image moves to top) */
+  .fp-module-article {
+    grid-template-areas:
+      "image"
+      "content";
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 36px 0;
+  }
+
+  .fp-module-num {
+    display: none;
+  }
+
+  /* Module image: landscape on tablet, override desktop min-height */
+  .fp-module-image .fp-img-wrap {
+    aspect-ratio: 16 / 7;
+    min-height: 0;
+  }
+
+  /* Stats row: wrap tighter */
+  .fp-hero-stats {
+    gap: 20px !important;
+  }
+}
+
+/* Mobile: ≤ 640px */
+@media (max-width: 640px) {
+  /* Topbar: hide secondary nav, keep brand + language selector */
+  .fp-nav-links {
+    display: none;
+  }
+
+  /* Hero: tighter padding and vertical rhythm */
+  .fp-hero {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 40px !important;
+    padding-bottom: 36px !important;
+  }
+
+  /* Hero meta: reduce breathing room */
+  .fp-hero-meta {
+    margin-bottom: 28px !important;
+  }
+
+  /* Stats + CTA row: stack vertically, full-width CTA */
+  .fp-hero-bottom {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 28px !important;
+    margin-top: 36px !important;
+    padding-top: 28px !important;
+  }
+
+  /* Stats: 3-col mini grid so all 5 stats read clearly */
+  .fp-hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px 16px !important;
+  }
+
+  /* CTA: full width pill */
+  .fp-hero-cta {
+    width: 100% !important;
+    padding: 16px 24px !important;
+    text-align: center !important;
+  }
+
+  /* Premise grid → single column */
+  .fp-premise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fp-premise-col {
+    padding: 20px 0;
+    border-left: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .fp-premise-col:first-child {
+    border-top: none;
+    padding-top: 20px;
+  }
+
+  /* Module article → fully stacked */
+  .fp-module-article {
+    grid-template-areas:
+      "image"
+      "content";
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 32px 0;
+  }
+
+  .fp-module-num {
+    display: none;
+  }
+
+  /* Module image: landscape banner, remove desktop min-height */
+  .fp-module-image .fp-img-wrap {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+
+  /* Sections: tighter horizontal padding */
+  .fp-section-pad {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+
+  /* Timeline: reduce vertical padding */
+  #timeline.fp-section-pad {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Footer → single column */
+  .fp-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .fp-footer-inner {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* CTA button in footer: larger tap target */
+  .fp-cta-btn {
+    width: 100%;
+    padding: 14px 22px;
+    min-height: 48px;
+  }
+
+  /* Nav link tap targets */
+  .fp-nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Extra small: ≤ 380px */
+@media (max-width: 380px) {
+  /* Stats: 2-col on tiny screens */
+  .fp-hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

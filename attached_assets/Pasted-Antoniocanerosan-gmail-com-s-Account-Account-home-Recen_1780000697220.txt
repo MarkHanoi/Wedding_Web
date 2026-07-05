@@ -1,0 +1,236 @@
+Antoniocanerosan@gmail.com's Account
+Account home
+
+Recents
+
+
+
+
+
+Domains
+Observe
+
+Investigate
+
+Analytics
+Build
+
+Compute
+Workers & Pages
+Observability
+Workers for Platforms
+Containers
+Durable Objects
+Queues
+Workflows
+Browser Run
+VPC
+Beta
+
+Email Service
+Workers plans
+Flagship
+Beta
+
+AI
+
+Storage & databases
+
+Media
+Protect & Connect
+
+Application security
+Zero Trust
+
+Networking
+
+Delivery & performance
+
+Manage account
+← nwmiaw-master
+Production
+Deployment details
+Deployment ID: a3a28e4e-7848-4cdf-aa87-e118e2fd9d23
+
+Deployment URL: https://a3a28e4e.nwmiaw-master.pages.dev
+
+Repository:
+MarkHanoi/Miaw_Master
+Branch:
+main
+c21e3ce
+Published your App Replit-Commit-Author: Deployment Replit-Commit-Session-Id: a8b167cd-7caf-4981-8d72-7921a31149f6 Replit-Commit-Checkpoint-Type: full_checkpoint Replit-Commit-Event-Id: 37daea9a-ad8c-4d76-aa6e-425eafb30f9f Replit-Commit-Screenshot-Url: https://storage.googleapis.com/screenshot-production-us-central1/bddd77f6-d626-4d3d-bf89-3f29f3d9398c/a8b167cd-7caf-4981-8d72-7921a31149f6/TOUVNM9 Replit-Commit-Deployment-Build-Id: c1c6471a-221f-4d99-8422-1fa7691f6bd4 Replit-Helium-Checkpoint-Created: true
+Status:
+failure
+10:28PM May 28, 2026
+Duration:
+1m 27s
+›
+Build settings
+1
+Build log
+Functions
+Redirects
+Headers
+Build log
+initialize
+7s
+clone repo
+44s
+build
+37s
+deploy
+—
+2026-05-28T20:27:06.096693Z	Cloning repository...
+2026-05-28T20:27:33.307538Z	From https://github.com/MarkHanoi/Miaw_Master
+2026-05-28T20:27:33.311031Z	 * branch            c21e3cebcc0132648eade0cab1ed39468d74fabe -> FETCH_HEAD
+2026-05-28T20:27:33.31129Z	
+2026-05-28T20:27:49.46396Z	HEAD is now at c21e3ce Published your App
+2026-05-28T20:27:49.464437Z	
+2026-05-28T20:27:49.555241Z	
+2026-05-28T20:27:49.555856Z	Using v2 root directory strategy
+2026-05-28T20:27:49.585902Z	Success: Finished cloning repository files
+2026-05-28T20:27:51.809547Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-05-28T20:27:51.810133Z	
+2026-05-28T20:27:52.06897Z	No Wrangler configuration file found. Continuing.
+2026-05-28T20:27:52.649179Z	Detected the following tools from environment: pnpm@10.26.1, nodejs@22.16.0, npm@10.9.2
+2026-05-28T20:27:53.975937Z	Preparing pnpm@10.26.1 for immediate activation...
+2026-05-28T20:27:59.292762Z	Installing project dependencies: pnpm install
+2026-05-28T20:27:59.957987Z	Scope: all 10 workspace projects
+2026-05-28T20:28:00.097532Z	../..                                    | Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-05-28T20:28:00.189466Z	../..                                    | +572 ++++++++++++++++++++++++++++++++
+2026-05-28T20:28:01.099774Z	../..                                    | Progress: resolved 572, reused 0, downloaded 51, added 19
+2026-05-28T20:28:02.112783Z	../..                                    | Progress: resolved 572, reused 0, downloaded 171, added 89
+2026-05-28T20:28:03.125974Z	../..                                    | Progress: resolved 572, reused 0, downloaded 249, added 154
+2026-05-28T20:28:04.12859Z	../..                                    | Progress: resolved 572, reused 0, downloaded 361, added 219
+2026-05-28T20:28:05.130655Z	../..                                    | Progress: resolved 572, reused 0, downloaded 377, added 231
+2026-05-28T20:28:06.131401Z	../..                                    | Progress: resolved 572, reused 0, downloaded 408, added 244
+2026-05-28T20:28:07.133646Z	../..                                    | Progress: resolved 572, reused 0, downloaded 438, added 254
+2026-05-28T20:28:08.134494Z	../..                                    | Progress: resolved 572, reused 0, downloaded 475, added 270
+2026-05-28T20:28:09.135107Z	../..                                    | Progress: resolved 572, reused 0, downloaded 552, added 302
+2026-05-28T20:28:10.137417Z	../..                                    | Progress: resolved 572, reused 0, downloaded 572, added 433
+2026-05-28T20:28:10.691314Z	../..                                    | Progress: resolved 572, reused 0, downloaded 572, added 572, done
+2026-05-28T20:28:11.617323Z	.../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+2026-05-28T20:28:11.814821Z	.../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+2026-05-28T20:28:12.815176Z	
+2026-05-28T20:28:12.815566Z	dependencies:
+2026-05-28T20:28:12.815688Z	+ posthog-js 1.373.4
+2026-05-28T20:28:12.815758Z	
+2026-05-28T20:28:12.81585Z	devDependencies:
+2026-05-28T20:28:12.815929Z	+ @hookform/resolvers 3.10.0
+2026-05-28T20:28:12.816001Z	+ @radix-ui/react-accordion 1.2.12
+2026-05-28T20:28:12.816058Z	+ @radix-ui/react-alert-dialog 1.1.15
+2026-05-28T20:28:12.816268Z	+ @radix-ui/react-aspect-ratio 1.1.8
+2026-05-28T20:28:12.816409Z	+ @radix-ui/react-avatar 1.1.11
+2026-05-28T20:28:12.816548Z	+ @radix-ui/react-checkbox 1.3.3
+2026-05-28T20:28:12.816745Z	+ @radix-ui/react-collapsible 1.1.12
+2026-05-28T20:28:12.816819Z	+ @radix-ui/react-context-menu 2.2.16
+2026-05-28T20:28:12.816888Z	+ @radix-ui/react-dialog 1.1.15
+2026-05-28T20:28:12.818055Z	+ @radix-ui/react-dropdown-menu 2.1.16
+2026-05-28T20:28:12.818325Z	+ @radix-ui/react-hover-card 1.1.15
+2026-05-28T20:28:12.818726Z	+ @radix-ui/react-label 2.1.8
+2026-05-28T20:28:12.818978Z	+ @radix-ui/react-menubar 1.1.16
+2026-05-28T20:28:12.819294Z	+ @radix-ui/react-navigation-menu 1.2.14
+2026-05-28T20:28:12.819381Z	+ @radix-ui/react-popover 1.1.15
+2026-05-28T20:28:12.819429Z	+ @radix-ui/react-progress 1.1.8
+2026-05-28T20:28:12.819474Z	+ @radix-ui/react-radio-group 1.3.8
+2026-05-28T20:28:12.819517Z	+ @radix-ui/react-scroll-area 1.2.10
+2026-05-28T20:28:12.819558Z	+ @radix-ui/react-select 2.2.6
+2026-05-28T20:28:12.819797Z	+ @radix-ui/react-separator 1.1.8
+2026-05-28T20:28:12.819879Z	+ @radix-ui/react-slider 1.3.6
+2026-05-28T20:28:12.820028Z	+ @radix-ui/react-slot 1.2.4
+2026-05-28T20:28:12.820219Z	+ @radix-ui/react-switch 1.2.6
+2026-05-28T20:28:12.820289Z	+ @radix-ui/react-tabs 1.1.13
+2026-05-28T20:28:12.820479Z	+ @radix-ui/react-toast 1.2.15
+2026-05-28T20:28:12.820539Z	+ @radix-ui/react-toggle 1.1.10
+2026-05-28T20:28:12.820731Z	+ @radix-ui/react-toggle-group 1.1.11
+2026-05-28T20:28:12.820819Z	+ @radix-ui/react-tooltip 1.2.8
+2026-05-28T20:28:12.820882Z	+ @replit/vite-plugin-cartographer 0.5.5
+2026-05-28T20:28:12.820947Z	+ @replit/vite-plugin-dev-banner 0.1.2
+2026-05-28T20:28:12.821949Z	+ @replit/vite-plugin-runtime-error-modal 0.0.6
+2026-05-28T20:28:12.822027Z	+ @tailwindcss/typography 0.5.19
+2026-05-28T20:28:12.82208Z	+ @tailwindcss/vite 4.3.0
+2026-05-28T20:28:12.822142Z	+ @tanstack/react-query 5.100.9
+2026-05-28T20:28:12.822263Z	+ @types/node 25.6.2
+2026-05-28T20:28:12.822624Z	+ @types/react 19.2.14
+2026-05-28T20:28:12.822743Z	+ @types/react-dom 19.2.3
+2026-05-28T20:28:12.822804Z	+ @vitejs/plugin-react 5.2.0
+2026-05-28T20:28:12.822846Z	+ @workspace/api-client-react 0.0.0 <- ../../lib/api-client-react
+2026-05-28T20:28:12.822898Z	+ class-variance-authority 0.7.1
+2026-05-28T20:28:12.822991Z	+ clsx 2.1.1
+2026-05-28T20:28:12.82305Z	+ cmdk 1.1.1
+2026-05-28T20:28:12.823172Z	+ date-fns 3.6.0
+2026-05-28T20:28:12.823822Z	+ embla-carousel-react 8.6.0
+2026-05-28T20:28:12.823931Z	+ framer-motion 12.38.0
+2026-05-28T20:28:12.824124Z	+ input-otp 1.4.2
+2026-05-28T20:28:12.824222Z	+ lucide-react 0.545.0
+2026-05-28T20:28:12.824584Z	+ next-themes 0.4.6
+2026-05-28T20:28:12.824664Z	+ react 19.1.0
+2026-05-28T20:28:12.825214Z	+ react-day-picker 9.14.0
+2026-05-28T20:28:12.825363Z	+ react-dom 19.1.0
+2026-05-28T20:28:12.82549Z	+ react-hook-form 7.75.0
+2026-05-28T20:28:12.825786Z	+ react-icons 5.6.0
+2026-05-28T20:28:12.826073Z	+ react-resizable-panels 2.1.9
+2026-05-28T20:28:12.826191Z	+ recharts 2.15.4
+2026-05-28T20:28:12.82659Z	+ sonner 2.0.7
+2026-05-28T20:28:12.826699Z	+ tailwind-merge 3.5.0
+2026-05-28T20:28:12.826917Z	+ tailwindcss 4.3.0
+2026-05-28T20:28:12.827031Z	+ tw-animate-css 1.4.0
+2026-05-28T20:28:12.827117Z	+ vaul 1.1.2
+2026-05-28T20:28:12.827184Z	+ vite 7.3.3
+2026-05-28T20:28:12.827273Z	+ wouter 3.9.0
+2026-05-28T20:28:12.827365Z	+ zod 3.25.76
+2026-05-28T20:28:12.827461Z	
+2026-05-28T20:28:12.909192Z	../.. preinstall$ sh -c 'rm -f package-lock.json yarn.lock'
+2026-05-28T20:28:12.92827Z	../.. preinstall: Done
+2026-05-28T20:28:13.24418Z	╭ Warning ─────────────────────────────────────────────────────────────────────╮
+2026-05-28T20:28:13.244925Z	│                                                                              │
+2026-05-28T20:28:13.245199Z	│   Ignored build scripts: core-js@3.49.0, protobufjs@7.5.8.                   │
+2026-05-28T20:28:13.245333Z	│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+2026-05-28T20:28:13.245428Z	│   to run scripts.                                                            │
+2026-05-28T20:28:13.245498Z	│                                                                              │
+2026-05-28T20:28:13.245586Z	╰──────────────────────────────────────────────────────────────────────────────╯
+2026-05-28T20:28:13.422886Z	Done in 13.8s using pnpm v10.26.1
+2026-05-28T20:28:13.503574Z	Executing user command: npm run build
+2026-05-28T20:28:14.406676Z	
+2026-05-28T20:28:14.407077Z	> @workspace/miaw@0.0.0 build
+2026-05-28T20:28:14.407207Z	> vite build --config vite.config.ts
+2026-05-28T20:28:14.407277Z	
+2026-05-28T20:28:15.125035Z	[36mvite v7.3.3 [32mbuilding client environment for production...[36m[39m
+2026-05-28T20:28:15.299301Z	transforming...
+2026-05-28T20:28:18.46657Z	[32m✓[39m 467 modules transformed.
+2026-05-28T20:28:19.695518Z	rendering chunks...
+2026-05-28T20:28:21.491914Z	[33mGenerated an empty chunk: "vendor-zod".[39m
+2026-05-28T20:28:21.567494Z	computing gzip size...
+2026-05-28T20:28:21.615576Z	[2mdist/public/[22m[32mindex.html                        [39m[1m[2m 29.15 kB[22m[1m[22m[2m │ gzip:   7.45 kB[22m
+2026-05-28T20:28:21.616287Z	[2mdist/public/[22m[2massets/[22m[35mindex-ahWXZGuH.css         [39m[1m[2m106.84 kB[22m[1m[22m[2m │ gzip:  18.72 kB[22m
+2026-05-28T20:28:21.617079Z	[2mdist/public/[22m[2massets/[22m[36mvendor-zod-l0sNRNKZ.js     [39m[1m[2m  0.00 kB[22m[1m[22m[2m │ gzip:   0.02 kB[22m
+2026-05-28T20:28:21.619763Z	[2mdist/public/[22m[2massets/[22m[36mvendor-react-BlEvvFOR.js   [39m[1m[2m  3.66 kB[22m[1m[22m[2m │ gzip:   1.39 kB[22m
+2026-05-28T20:28:21.620067Z	[2mdist/public/[22m[2massets/[22m[36mvendor-framer-D7ZTtN5a.js  [39m[1m[2m135.37 kB[22m[1m[22m[2m │ gzip:  44.67 kB[22m
+2026-05-28T20:28:21.620166Z	[2mdist/public/[22m[2massets/[22m[36mindex-C4SOkZ2i.js          [39m[1m[2m662.15 kB[22m[1m[22m[2m │ gzip: 201.64 kB[22m
+2026-05-28T20:28:21.620265Z	[32m✓ built in 6.42s[39m
+2026-05-28T20:28:21.740647Z	Finished
+2026-05-28T20:28:22.650893Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-05-28T20:28:22.651538Z	
+2026-05-28T20:28:22.849585Z	No Wrangler configuration file found. Continuing.
+2026-05-28T20:28:22.851092Z	Note: No functions dir at /functions found. Skipping.
+2026-05-28T20:28:22.851949Z	Validating asset output directory
+2026-05-28T20:28:24.356106Z	
+2026-05-28T20:28:24.509059Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mError: Pages only supports files up to 25 MiB in size[0m
+2026-05-28T20:28:24.509545Z	
+2026-05-28T20:28:24.509645Z	  images/a01-territory.mp4 is 80.9 MiB in size
+2026-05-28T20:28:24.509728Z	
+2026-05-28T20:28:24.509782Z	
+2026-05-28T20:28:25.914189Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2026-05-28_20-28-23_635.log"
+2026-05-28T20:28:25.992092Z	Failed to validate assets in the output directory with code: 1
+2026-05-28T20:28:26.902045Z	Failed: error occurred while validating assets in your output directory. Check the logs above for more information.
+Support
+System status
+Careers
+Terms of Use
+Report Security Issues
+Privacy Policy
+A blue and white pill with a checkmark and an x, representing privacy choicesCookie Preferences
+© 2026 Cloudflare, Inc.
+Enable Agent Lee access
+Agent Lee needs a read-only API token to access your account.

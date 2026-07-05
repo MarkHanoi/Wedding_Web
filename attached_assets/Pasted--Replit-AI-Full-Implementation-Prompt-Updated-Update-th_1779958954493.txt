@@ -1,0 +1,322 @@
+# Replit AI — Full Implementation Prompt (Updated)
+
+Update the master platform/course experience with a more professional academic + architectural editorial direction.
+
+The platform should feel:
+
+* institutional
+* advanced
+* premium academic
+* architectural
+* structured
+* less startup/app-like
+* more like a high-end postgraduate program
+
+---
+
+# GLOBAL STRUCTURE
+
+At the top of the experience, before the modules, add a clear introduction explaining the 3-part structure of the master:
+
+## Structure
+
+1. Course 1: Foundations
+2. Course 2: Advanced
+3. Final Thesis / Final Project
+
+Add clear explanatory copy describing that:
+
+* both courses are specialization tracks
+* the third stage is the final project/thesis
+
+Also clearly state:
+
+* Program delivered at UPM ETSAM
+* Hybrid format
+* Online + live streaming
+* Sessions accessible asynchronously outside class hours
+
+---
+
+# TERMINOLOGY CHANGES
+
+Replace:
+
+* “Chat” → “Assistant”
+* “Goal” → “Deliverable”
+
+Use more professional language everywhere.
+
+---
+
+# COURSE TITLES
+
+Use these exact titles:
+
+## Course 1: Foundations
+
+## Course 2: Advanced
+
+Optional:
+Add short editorial/tagline phrases under each course title if they improve the atmosphere and visual identity.
+
+---
+
+# FOUNDATIONS MODULES
+
+Use this exact structure and text.
+
+---
+
+## F01 — ESSENTIAL WORKFLOWS OVERVIEW
+
+This is the shared introductory module with the MCH.
+
+Important:
+Rename the first module to:
+“Essential Workflows Overview”
+
+Reason:
+Avoid confusion with “Fundamentals”.
+
+---
+
+## F02 — FUNDAMENTALS
+
+Subtitle:
+All about data structures and basic programming
+
+DELIVERABLE:
+SETUP AI WORKFLOWS
+
+Description:
+General setup for AI tools. Basic understanding of data structures and file types to consume in an AI environment. Possibilities for connections between AI tools and existing programs.
+
+---
+
+## F03 — AI TERRITORY
+
+Subtitle:
+Topography / Landscape / Territory based AI uses
+
+DELIVERABLE:
+TERRAIN GENERATION TOOLKIT
+
+Description:
+Procedural and bespoke system for generating and modifying digital terrain using computational rules, geospatial data and simulation feedback loops, enabling controllable landscape formation and iterative spatial design.
+
+---
+
+## F04 — AI MODELING
+
+Subtitle:
+From concept to usable model
+Fast AI-assisted prototyping
+
+DELIVERABLE:
+AI ASSISTED MODELING AGENT AND PIPELINE
+
+Description:
+End-to-end AI-assisted architectural modeling workflow that transforms multimodal conceptual inputs (text, sketches, references or spatial constraints) into usable 3D models through generative AI.
+
+---
+
+## F05 — AI PROTOTYPING
+
+Subtitle:
+AI-assisted Prototyping with Visual programming
+
+DELIVERABLE:
+ADAPTIVE RULE-BASED TYPOLOGY GENERATOR
+
+Description:
+Computational design system for generating adaptive architectural typologies based on rule-based logic, where spatial configurations emerge from encoded constraints, behavioural rules and environmental parameters, enabling continuous generation, variation and optimisation of building typologies in response to changing contextual and performance conditions.
+
+---
+
+## F06 — AI SIMULATION
+
+Subtitle:
+AI-based simulation use and limitations
+
+DELIVERABLE:
+PREDICTIVE PERFORMANCE BUILDING MODEL
+
+Description:
+Integrated computational building system that combines simulation, AI-based prediction and real-time performance analysis to anticipate structural, environmental and operational behaviour, enabling the design of buildings whose geometry and systems are continuously evaluated.
+
+---
+
+## F07 — AI COMMUNICATION
+
+Subtitle:
+AI-assisted Multimedia Production and Model-based digital Inmersion
+
+DELIVERABLE:
+AI IMMERSIVE APPLICATION
+
+Description:
+AI-assisted multimedia production and digital immersion framework that transforms architectural models and simulation outputs into coherent visual narratives, combining image, video and real-time 3D environments to communicate design, performance data and spatial experience through immersive and interactive interfaces.
+
+---
+
+## F08 — AI DOCUMENTATION
+
+Subtitle:
+Automated BIM, documentation and Document Management
+
+DELIVERABLE:
+CLOUD AI-BIM DOCUMENTATION PLATFORM
+
+Description:
+Cloud-based openBIM system for automated architectural documentation and project information management, enabling real-time generation, coordination and versioning of documentation directly from BIM models, integrating interoperable openBIM standards, AI-assisted content generation and collaborative data workflows across design, engineering and construction environments.
+
+---
+
+## F09 — AI DIGITAL FABRICATION
+
+Subtitle:
+AI in Robotics and Complex Digital Manufacturing
+
+DELIVERABLE:
+AI DIGITAL FABRICATION ALGORITHM SCRIPTING FOR COMPLEX GEOMETRY
+
+Description:
+AI-driven computational fabrication framework for the design and production of singular architectural components, where algorithmic geometry generation, material constraints and robotic manufacturing processes converge to produce unique, non-repetitive building elements optimized through simulation, fabrication feedback and construction-aware design logic.
+
+---
+
+## F10 — AI INTEGRATION
+
+DELIVERABLE:
+GLOBAL AI INTERACTIVE INTERFACE
+
+---
+
+# ADVANCED MODULES
+
+Use these exact titles and descriptions.
+
+---
+
+## A01 — Imagining the World
+
+Subtitle:
+Set the basis of the system and its reaches
+
+DELIVERABLE:
+WORLD BRIEF
+
+Description:
+Interactive document combining AI-generated imagery, systems diagram, research question, needed data infrastructure, and authorial statement that together answer: what world do you want to model, and why does that world matter.
+
+---
+
+## A02 — Seeing the World
+
+Subtitle:
+Create the bare basics, gather and generate data to sustain the interpretation of the world
+
+DELIVERABLE:
+WORLD DATABASE PIPELINE
+
+Description:
+Full data pipeline (from sensor capture and database querying to algorithmic interpretation) and data management setup, producing a spatial knowledge artefact that reveals a pattern, dynamic or condition of the world invisible to unassisted observation.
+
+---
+
+## A03 — Structuring the World
+
+Subtitle:
+Define relations between information systems and their hierarchy to get laws and rules as tools
+
+DELIVERABLE:
+WORLD RULES-BASED ENGINE
+
+Description:
+Programmed rule-based system (from the definition of laws, constraints and generative logic to their computational implementation) producing a structured world model whose form, behaviour and organisation emerges entirely from the rules that govern it.
+
+---
+
+## A04 — Modelling the World
+
+Subtitle:
+Algorithms to Construct the Geometrical Context
+
+DELIVERABLE:
+WORLD SPATIAL FRAME
+
+Description:
+Advanced mathematical and computational geometry system (from associative geometry and constraint-based modelling to simulation-aware procedural generation) producing a continuously evolving spatial world model where geometry, behaviour and performance remain dynamically linked.
+
+---
+
+## A05 — Simulating + Acting in the World
+
+Subtitle:
+Simulate and act inside interrelated systems. Record interactions between systems, model and situations.
+
+DELIVERABLE:
+WORLD PREDICTIVE SIMULATOR
+
+Description:
+Predictive simulation and autonomous decision-making system (from spatial dynamics, behavioural modelling and synthetic environments to real-time forecasting, planning and adaptive control) producing operational world models capable of anticipating, evaluating and acting upon complex environmental scenarios.
+
+---
+
+## A06 — Communicating the World
+
+Subtitle:
+Re-evaluate world system thinking and apply criticism to them.
+
+DELIVERABLE:
+WORLD ANALYTICS INTERFACE
+
+Description:
+World representation and data visualisation environment (from multi-layered simulation results and project information to visual narratives, documentation, performance comparisons and AI-assisted reporting) producing communicable insights across design, analysis and operation workflows.
+
+---
+
+# UI + VISUAL DIRECTION
+
+Improve the visual hierarchy of all workshop/module cards.
+
+Requirements:
+
+* stronger borders
+* more visible framing
+* clearer separation between modules
+* premium editorial spacing
+* cleaner typography
+* architectural publication aesthetic
+* modular grid layout
+* stronger contrast between sections
+
+The cards should feel:
+
+* like architectural research dossiers
+* postgraduate studio modules
+* computational design catalogue entries
+
+Avoid:
+
+* startup dashboard aesthetics
+* playful app UI
+* overly rounded consumer-product styling
+
+Use:
+
+* restrained typography
+* structured spacing
+* sophisticated hierarchy
+* subtle but strong framing
+
+---
+
+# IMPLEMENTATION NOTES
+
+* Preserve all text exactly as provided.
+* Improve readability and hierarchy.
+* Ensure responsive layout.
+* Maintain consistency across Foundations and Advanced.
+* Treat Deliverables as major visual elements within each module card.

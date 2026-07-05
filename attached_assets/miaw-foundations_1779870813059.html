@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIAW Foundations — Master in Intelligent Artificial Worlds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #161310;
+    --paper: #F4EFE6;
+    --paper-2: #ECE5D8;
+    --rule: #2A2520;
+    --accent: #D34A2A;
+    --accent-soft: #E89074;
+    --mute: #6B6258;
+    --shadow: rgba(22, 19, 16, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Subtle paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(211, 74, 42, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(22, 19, 16, 0.025) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; }
+
+  /* ========== TYPOGRAPHY ========== */
+  .display {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30, 'WONK' 0;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* ========== TOP BAR ========== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    position: relative;
+  }
+  .logo::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .topbar-nav {
+    display: flex;
+    gap: 28px;
+  }
+
+  .topbar-nav a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .topbar-nav a:hover { color: var(--accent); }
+
+  /* ========== HERO ========== */
+  .hero {
+    padding: 96px 32px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+    color: var(--mute);
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 9vw, 8.5rem);
+    margin-bottom: 32px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero-sub-block .mono { color: var(--mute); margin-bottom: 8px; display: block; }
+  .hero-sub-block p { font-size: 0.95rem; line-height: 1.55; }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .stat .num {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  .stat .label {
+    color: var(--mute);
+    margin-top: 8px;
+  }
+
+  /* ========== TIMELINE ========== */
+  .timeline-section {
+    padding: 64px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+  }
+
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 4px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 0;
+  }
+
+  .tl-cell {
+    padding: 12px 10px;
+    border-right: 1px dashed rgba(22, 19, 16, 0.15);
+    min-height: 80px;
+  }
+  .tl-cell:last-child { border-right: none; }
+
+  .tl-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .tl-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .tl-hrs {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--mute);
+  }
+
+  .tl-month-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tl-month {
+    padding: 8px 12px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--rule);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tl-month:last-child { border-right: none; }
+
+  /* ========== MODULES ========== */
+  .modules {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .modules-intro {
+    padding: 96px 0 64px;
+    max-width: 720px;
+  }
+
+  .modules-intro h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144;
+    font-size: 3.5rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  .modules-intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--mute);
+  }
+
+  .module {
+    border-top: 1px solid var(--rule);
+    padding: 72px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 48px;
+  }
+
+  .module:last-child { border-bottom: 1px solid var(--rule); }
+
+  .mod-num {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    font-size: 4.5rem;
+    line-height: 0.9;
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  .mod-num .small {
+    font-size: 0.8rem;
+    color: var(--mute);
+    display: block;
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .mod-text { padding-right: 24px; }
+
+  .mod-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .mod-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-size: 2.6rem;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .mod-subtitle {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--mute);
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+
+  .mod-desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  .mod-content-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mod-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .topic {
+    font-size: 0.82rem;
+    padding: 6px 12px;
+    background: var(--paper-2);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .topic:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .mod-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed rgba(22, 19, 16, 0.2);
+  }
+
+  .meta-item .mono { color: var(--mute); display: block; margin-bottom: 4px; }
+  .meta-item .val { font-size: 0.95rem; }
+
+  /* IMAGE PLACEHOLDER */
+  .mod-image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+  }
+
+  .mod-image:hover { transform: translateY(-4px); }
+
+  .mod-image-inner {
+    position: absolute;
+    inset: 16px;
+    border: 1px dashed rgba(22, 19, 16, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .mod-image-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(22, 19, 16, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 19, 16, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .mod-image-icon {
+    width: 48px;
+    height: 48px;
+    border: 1.5px solid var(--mute);
+    position: relative;
+    z-index: 1;
+  }
+  .mod-image-icon::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--mute);
+    border-radius: 50%;
+    top: 8px;
+    left: 8px;
+  }
+  .mod-image-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    height: 60%;
+    background: linear-gradient(135deg, transparent 30%, var(--mute) 30%, var(--mute) 35%, transparent 35%, transparent 50%, var(--mute) 50%, var(--mute) 55%, transparent 55%);
+    clip-path: polygon(0 100%, 100% 100%, 100% 40%, 70% 70%, 40% 30%, 20% 60%, 0 80%);
+  }
+
+  .mod-image-label {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+    text-align: center;
+  }
+  .mod-image-label small {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.6rem;
+    opacity: 0.7;
+  }
+
+  /* ========== WORKSHOPS ========== */
+  .workshops {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 96px 32px;
+    margin-top: 96px;
+  }
+
+  .workshops-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .workshops h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .workshops h2 em {
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+    color: var(--accent-soft);
+  }
+
+  .workshops-lead {
+    font-size: 1.1rem;
+    color: rgba(244, 239, 230, 0.7);
+    max-width: 640px;
+    line-height: 1.6;
+    margin-bottom: 64px;
+  }
+
+  .ws-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .ws-card {
+    border: 1px solid rgba(244, 239, 230, 0.2);
+    padding: 32px;
+    transition: border-color 0.3s;
+  }
+
+  .ws-card:hover {
+    border-color: var(--accent-soft);
+  }
+
+  .ws-num {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    color: var(--accent-soft);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .ws-card h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .ws-modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .ws-mod-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border: 1px solid rgba(244, 239, 230, 0.3);
+    border-radius: 100px;
+    color: var(--paper);
+  }
+
+  .ws-schedule {
+    display: grid;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(244, 239, 230, 0.15);
+  }
+
+  .ws-week {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: rgba(244, 239, 230, 0.75);
+  }
+
+  .ws-week .wk {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-soft);
+    letter-spacing: 0.08em;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 64px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    border-top: 1px solid var(--rule);
+  }
+
+  footer .mono { color: var(--mute); }
+
+  footer h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  footer p { color: var(--mute); font-size: 0.95rem; line-height: 1.55; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 24px; }
+    .hero-stats { flex-wrap: wrap; gap: 32px; }
+    .module { grid-template-columns: 1fr; gap: 24px; }
+    .mod-text { padding-right: 0; }
+    .ws-grid { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: repeat(3, 1fr); }
+    .tl-month-row { grid-template-columns: repeat(2, 1fr); }
+    footer { grid-template-columns: 1fr; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="logo"></div>
+    <span class="mono">MIAW · Foundations</span>
+  </div>
+  <nav class="topbar-nav mono">
+    <a href="#timeline">Timeline</a>
+    <a href="#modules">Modules</a>
+    <a href="#workshops">Workshops</a>
+  </nav>
+  <span class="mono">2025 / 2026</span>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-meta">
+    <span class="mono">Master in Intelligent Artificial Worlds</span>
+    <span class="mono">Program 01 — Foundations</span>
+  </div>
+
+  <h1 class="display hero-title">
+    Foundations of <em>intelligent</em><br>
+    artificial worlds.
+  </h1>
+
+  <div class="hero-sub">
+    <div class="hero-sub-block">
+      <span class="mono">Premisa</span>
+      <p>Construir las herramientas, los datos y las maneras de pensar que necesita un proyecto que opera con IA en el medio construido. De la programación básica al gemelo digital, sin saltarse los cimientos.</p>
+    </div>
+    <div class="hero-sub-block">
+      <span class="mono">Quién</span>
+      <p>Arquitectos, urbanistas, ingenieros y diseñadores que quieren llegar a MIAW Advanced o al Proyecto Final con base técnica real, no con vocabulario suelto.</p>
+    </div>
+    <div class="hero-sub-block">
+      <span class="mono">Salida</span>
+      <p>Un cuerpo de workflows propios, defendidos en tres workshops y un proyecto de curso. Listos para entrar en Advanced o aplicarse en estudio.</p>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="num">30</div>
+      <div class="label mono">ECTS</div>
+    </div>
+    <div class="stat">
+      <div class="num">750h</div>
+      <div class="label mono">Carga total</div>
+    </div>
+    <div class="stat">
+      <div class="num">9</div>
+      <div class="label mono">Módulos</div>
+    </div>
+    <div class="stat">
+      <div class="num">3</div>
+      <div class="label mono">Workshops</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="label mono">Meses</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TIMELINE ========== -->
+<section class="timeline-section" id="timeline">
+  <div class="section-header">
+    <h2>Timeline</h2>
+    <span class="mono">9 módulos · 8 quincenas</span>
+  </div>
+
+  <div class="tl-month-row">
+    <div class="tl-month">Mes 1</div>
+    <div class="tl-month">Mes 2</div>
+    <div class="tl-month">Mes 3</div>
+    <div class="tl-month">Mes 4</div>
+    <div class="tl-month">Mes 5 + extra</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-cell">
+      <div class="tl-num">00</div>
+      <div class="tl-name">Fundamental Workshops Overview</div>
+      <div class="tl-hrs">40h / 0h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">01</div>
+      <div class="tl-name">Fundamentals</div>
+      <div class="tl-hrs">40h / 40h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">02</div>
+      <div class="tl-name">AI Territory</div>
+      <div class="tl-hrs">40h / 80h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">03</div>
+      <div class="tl-name">AI Modeling</div>
+      <div class="tl-hrs">40h / 120h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">04</div>
+      <div class="tl-name">AI Prototyping</div>
+      <div class="tl-hrs">40h / 160h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">05</div>
+      <div class="tl-name">AI Simulation</div>
+      <div class="tl-hrs">40h / 240h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">06</div>
+      <div class="tl-name">AI Communication</div>
+      <div class="tl-hrs">40h / 280h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">07</div>
+      <div class="tl-name">AI Documentation</div>
+      <div class="tl-hrs">40h / 320h in</div>
+    </div>
+    <div class="tl-cell">
+      <div class="tl-num">08</div>
+      <div class="tl-name">AI Digital Fabrication + Integration</div>
+      <div class="tl-hrs">40h / 200h in</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MODULES ========== -->
+<section class="modules" id="modules">
+
+  <div class="modules-intro">
+    <h2>Los nueve <em style="font-family:'Fraunces',serif; font-variation-settings:'opsz' 144,'SOFT' 100,'WONK' 1; font-style:italic; color:var(--accent);">módulos</em>.</h2>
+    <p>Cada módulo es una quincena de trabajo: 40 horas, una masterclass de un experto, contenidos prácticos y un encaje claro con uno de los tres workshops del programa. La progresión va de los cimientos (datos, programación, GIS) al modelado, la simulación, la fabricación y, al final, la integración en un ecosistema bespoke.</p>
+  </div>
+
+  <!-- ===== MODULE 00 ===== -->
+  <article class="module">
+    <div class="mod-num">00<span class="small">Fortnight 0</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Onboarding</span>
+      <h3 class="mod-title">Fundamental Workshops Overview</h3>
+      <p class="mod-subtitle">Mapa del territorio antes de pisarlo.</p>
+      <p class="mod-desc">Quincena de arranque. Recorre la estructura del programa, sitúa los tres workshops y plantea el proyecto de curso para que cada estudiante llegue al primer módulo con su pregunta ya formulada. No es introductorio en el sentido suave: es donde se decide qué se va a defender en julio.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Estructura del máster</span>
+        <span class="topic">Workflows transversales</span>
+        <span class="topic">Final Course Project — samples</span>
+        <span class="topic">Asignación de mentores</span>
+        <span class="topic">Statement de intereses</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 0h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Workshop</span><span class="val">Previa a Workshop 1</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 00<small>Diagrama de programa</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 01 ===== -->
+  <article class="module">
+    <div class="mod-num">01<span class="small">Fortnight 1</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 1 · AI Parametricism &amp; Systems</span>
+      <h3 class="mod-title">Fundamentals <span style="color:var(--accent);">/</span> AI Setups</h3>
+      <p class="mod-subtitle">Todo lo que aguanta el resto del programa.</p>
+      <p class="mod-desc">Programación básica, estructuras de datos y montaje del entorno de IA. Aquí no se hacen demos vistosas: se monta la base con la que cada estudiante va a trabajar durante los cinco meses. Quien salta este módulo paga interés compuesto el resto del curso.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Programming 1</span>
+        <span class="topic">Estructuras de datos</span>
+        <span class="topic">Bases de datos</span>
+        <span class="topic">Data scrapping</span>
+        <span class="topic">AI Concepts</span>
+        <span class="topic">AI Environment Setup</span>
+        <span class="topic">MCPs</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 40h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Sesiones</span><span class="val">Masterclass + Kickstart + Follow-up + Final</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 01<small>Setup / código / entorno</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 02 ===== -->
+  <article class="module">
+    <div class="mod-num">02<span class="small">Fortnight 2</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 1 · AI Parametricism &amp; Systems</span>
+      <h3 class="mod-title">AI Territory</h3>
+      <p class="mod-subtitle">Estrategias para el territorio con IA.</p>
+      <p class="mod-desc">El territorio entendido como dato: topografía, paisaje, ciudad. El módulo enseña a leer y producir información geográfica con notebooks y modelos, no a comprar layers. La meta es que cada estudiante pueda construir su capa territorial sin depender del visor que le pasen.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">GIS</span>
+        <span class="topic">Geolocated data display</span>
+        <span class="topic">LM Notebooks</span>
+        <span class="topic">Programming 2</span>
+        <span class="topic">Topography scrapping</span>
+        <span class="topic">Landscape modeling</span>
+        <span class="topic">Smart city modelling</span>
+        <span class="topic">MCPs 2</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 80h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Expert talk</span><span class="val">1 sesión · 2.5h + Q&amp;A</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 02<small>GIS / territorio / smart city</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 03 ===== -->
+  <article class="module">
+    <div class="mod-num">03<span class="small">Fortnight 3</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 1 · AI Parametricism &amp; Systems</span>
+      <h3 class="mod-title">AI Modeling</h3>
+      <p class="mod-subtitle">Del concepto al modelo usable.</p>
+      <p class="mod-desc">Crear, modificar, capturar y controlar geometría con IA. El módulo cruza mallas, NURBS y SubDs con LoRAs y BIM, e introduce la ingeniería inversa para pasar de fotografía o nube de puntos a un modelo que se puede editar.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Meshes / NURBS / SubDs</span>
+        <span class="topic">2D to 3D — LoRAs</span>
+        <span class="topic">AI Driven BIM / OpenBIM</span>
+        <span class="topic">Reverse Engineering</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 120h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Expert talk</span><span class="val">1 sesión · 2.5h + Q&amp;A</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 03<small>Modelado / LoRA / BIM</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 04 ===== -->
+  <article class="module">
+    <div class="mod-num">04<span class="small">Fortnight 4</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 2 · AI Powered Design &amp; Simulations</span>
+      <h3 class="mod-title">AI Prototyping</h3>
+      <p class="mod-subtitle">Programación visual asistida por IA.</p>
+      <p class="mod-desc">Aquí se decide cómo se va a prototipar el resto del programa. Programación visual, scripting asistido, paramétrico contra código. El módulo obliga a elegir herramienta y método para cada situación, en lugar de defender por inercia la que ya se conoce.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Visual Programming</span>
+        <span class="topic">Advanced Prototypes</span>
+        <span class="topic">AI assisted scripting</span>
+        <span class="topic">Parametric vs Code</span>
+        <span class="topic">Topologies vs typologies</span>
+        <span class="topic">Procedural Modelling</span>
+        <span class="topic">Deterministic vs Stochastic</span>
+        <span class="topic">Rules as Tools</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 160h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Inicio</span><span class="val">Workshop 2 — Masterclass</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 04<small>Grasshopper / scripting / paramétrico</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 05 ===== -->
+  <article class="module">
+    <div class="mod-num">05<span class="small">Fortnight 5</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 2 · AI Powered Design &amp; Simulations</span>
+      <h3 class="mod-title">AI Simulation</h3>
+      <p class="mod-subtitle">Simular mundos sin engañarse.</p>
+      <p class="mod-desc">Simulación multidisciplinar con IA: estructura, ambiente, flujos, optimización. El énfasis está en los límites — qué simula bien la red, qué hace mejor un FEM clásico, cuándo conviene un sistema multiagente. Aprender a validar resultados es la mitad del módulo.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Simulation types &amp; computational cost</span>
+        <span class="topic">Smart workflows toward fabrication</span>
+        <span class="topic">Optimization algorithms</span>
+        <span class="topic">AI result accuracy validation</span>
+        <span class="topic">Alternative simulations</span>
+        <span class="topic">Finite Element Models</span>
+        <span class="topic">Finite Element Analysis</span>
+        <span class="topic">ML / EVO / EMO / AI</span>
+        <span class="topic">Multiagent systems</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 240h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Expert talk</span><span class="val">1 sesión · 2.5h + Q&amp;A</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 05<small>Simulación / FEM / optimización</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 06 ===== -->
+  <article class="module">
+    <div class="mod-num">06<span class="small">Fortnight 7</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 3 · Bespoke AI</span>
+      <h3 class="mod-title">AI Communication</h3>
+      <p class="mod-subtitle">Imagen, vídeo y inmersión.</p>
+      <p class="mod-desc">Producción de imagen y vídeo con modelos generativos, vuelta del audiovisual al modelo 3D, ambientes inmersivos. La pregunta del módulo no es cómo generar render bonito, sino cómo construir un lenguaje visual coherente para un proyecto de IA aplicada al medio construido.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">AI image tooling</span>
+        <span class="topic">AI image models</span>
+        <span class="topic">Model to Image</span>
+        <span class="topic">Image to Video</span>
+        <span class="topic">Video + image to model</span>
+        <span class="topic">Image to World — contexto</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 280h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Inicio</span><span class="val">Workshop 3 — Masterclass</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 06<small>Diffusion / video / inmersión</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 07 ===== -->
+  <article class="module">
+    <div class="mod-num">07<span class="small">Fortnight 8</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 3 · Bespoke AI</span>
+      <h3 class="mod-title">AI Documentation</h3>
+      <p class="mod-subtitle">BIM, datos y gestión de la información.</p>
+      <p class="mod-desc">Lo que no se documenta no existe en obra. El módulo trabaja BIM avanzado, entidades, formatos de intercambio y drafting asistido por IA. Cubre también gestión documental y la frontera con robótica y construcción, donde la documentación deja de ser papel y se convierte en input de máquina.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Advanced BIM entities to Documents</span>
+        <span class="topic">Data management &amp; formats</span>
+        <span class="topic">Details, Materials, Articulations</span>
+        <span class="topic">Construction, Constraints &amp; Robotics 101</span>
+        <span class="topic">BIM Super-Integrations</span>
+        <span class="topic">AI Driven Drafting</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 320h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Expert talk</span><span class="val">1 sesión · 2.5h + Q&amp;A</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 07<small>BIM / IFC / drafting</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 08 ===== -->
+  <article class="module">
+    <div class="mod-num">08<span class="small">Fortnight 5+</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Workshop 3 · Bespoke AI</span>
+      <h3 class="mod-title">AI Digital Fabrication</h3>
+      <p class="mod-subtitle">Del modelo a la pieza física.</p>
+      <p class="mod-desc">Fabricación digital avanzada, robótica y piezas complejas. El módulo cierra el circuito digital — físico — digital: el modelo se construye, se mide y vuelve al sistema corregido. Robótica 101, gcode y workflows de optimización pensados para el taller, no para la diapositiva.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">From Digital to Physical and back</span>
+        <span class="topic">Smart workflows toward fabrication</span>
+        <span class="topic">Optimization algorithms for DIGFAB</span>
+        <span class="topic">Robotics 101</span>
+        <span class="topic">3D printing, GCodes &amp; paths</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">40h / 200h acumuladas</span></div>
+        <div class="meta-item"><span class="mono">Expert talk</span><span class="val">1 sesión · 2.5h + Q&amp;A</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 08<small>Robot brazo / impresión / taller</small></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== MODULE 09 ===== -->
+  <article class="module">
+    <div class="mod-num">09<span class="small">Extra time</span></div>
+    <div class="mod-text">
+      <span class="mod-tag">Final Project Preparation · Final Jury</span>
+      <h3 class="mod-title">AI Integration</h3>
+      <p class="mod-subtitle">Ecosistema multimodal a medida.</p>
+      <p class="mod-desc">El módulo de cierre no añade temas nuevos: los conecta. Cada estudiante integra herramientas, datos, modelos y workflows de los ocho módulos anteriores en un ecosistema propio que defenderá ante el jurado final. Es el puente con MIAW Advanced y con el Proyecto Final de Máster.</p>
+      <div class="mod-content-label">Contenidos</div>
+      <div class="mod-topics">
+        <span class="topic">Integración multimodal</span>
+        <span class="topic">Bespoke pipelines</span>
+        <span class="topic">Preparación Final Course Project</span>
+        <span class="topic">Final Jury</span>
+      </div>
+      <div class="mod-meta-grid">
+        <div class="meta-item"><span class="mono">Carga</span><span class="val">Tiempo extra · 40h</span></div>
+        <div class="meta-item"><span class="mono">Salida</span><span class="val">Defensa ante jurado final</span></div>
+      </div>
+    </div>
+    <div class="mod-image">
+      <div class="mod-image-inner">
+        <div class="mod-image-icon"></div>
+        <div class="mod-image-label">Imagen 09<small>Sistema integrado / ecosistema</small></div>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ========== WORKSHOPS ========== -->
+<section class="workshops" id="workshops">
+  <div class="workshops-inner">
+    <h2>Tres <em>workshops</em> verticales.</h2>
+    <p class="workshops-lead">Los nueve módulos se agrupan en tres workshops de cuatro semanas cada uno. Cada workshop sigue la misma cadencia: masterclass de apertura, kickstart, sesión de seguimiento y presentación final.</p>
+
+    <div class="ws-grid">
+
+      <article class="ws-card">
+        <div class="ws-num">01</div>
+        <h3>AI Parametricism &amp; Systems</h3>
+        <div class="ws-modules">
+          <span class="ws-mod-pill">01 · Fundamentals</span>
+          <span class="ws-mod-pill">02 · Territory</span>
+          <span class="ws-mod-pill">03 · Modeling</span>
+        </div>
+        <div class="ws-schedule">
+          <div class="ws-week"><span class="wk">SEM 1</span><span>Masterclass</span></div>
+          <div class="ws-week"><span class="wk">SEM 2</span><span>Kickstart session</span></div>
+          <div class="ws-week"><span class="wk">SEM 3</span><span>Follow-up session</span></div>
+          <div class="ws-week"><span class="wk">SEM 4</span><span>Final presentation</span></div>
+        </div>
+      </article>
+
+      <article class="ws-card">
+        <div class="ws-num">02</div>
+        <h3>AI Powered Design &amp; Simulations</h3>
+        <div class="ws-modules">
+          <span class="ws-mod-pill">04 · Prototyping</span>
+          <span class="ws-mod-pill">05 · Simulation</span>
+        </div>
+        <div class="ws-schedule">
+          <div class="ws-week"><span class="wk">SEM 1</span><span>Masterclass</span></div>
+          <div class="ws-week"><span class="wk">SEM 2</span><span>Kickstart session</span></div>
+          <div class="ws-week"><span class="wk">SEM 3</span><span>Follow-up session</span></div>
+          <div class="ws-week"><span class="wk">SEM 4</span><span>Final presentation</span></div>
+        </div>
+      </article>
+
+      <article class="ws-card">
+        <div class="ws-num">03</div>
+        <h3>Bespoke AI</h3>
+        <div class="ws-modules">
+          <span class="ws-mod-pill">06 · Communication</span>
+          <span class="ws-mod-pill">07 · Documentation</span>
+          <span class="ws-mod-pill">08 · Digital Fabrication</span>
+        </div>
+        <div class="ws-schedule">
+          <div class="ws-week"><span class="wk">SEM 1</span><span>Masterclass</span></div>
+          <div class="ws-week"><span class="wk">SEM 2</span><span>Kickstart session</span></div>
+          <div class="ws-week"><span class="wk">SEM 3</span><span>Follow-up session</span></div>
+          <div class="ws-week"><span class="wk">SEM 4</span><span>Final presentation</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div>
+    <h4>MIAW Foundations</h4>
+    <p>Programa de cinco meses que sienta la base técnica del Master in Intelligent Artificial Worlds. Da paso a MIAW Advanced (30 ECTS) y al Proyecto Final de Máster (12 ECTS).</p>
+  </div>
+  <div>
+    <span class="mono">Carga lectiva</span>
+    <h4 style="margin-top:8px;">30 ECTS</h4>
+    <p>750 horas · 9 módulos · 3 workshops · 8 quincenas</p>
+  </div>
+  <div>
+    <span class="mono">Salidas del programa</span>
+    <h4 style="margin-top:8px;">2</h4>
+    <p>MIAW Advanced — Phase 0 a 5<br>Final Master&apos;s Project — 12 ECTS</p>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
