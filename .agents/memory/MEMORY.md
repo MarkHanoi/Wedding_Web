@@ -1,0 +1,1 @@
+- [Wedding site conversion](wedding-conversion.md) — MIAW academic site was fully converted to a Clémence & Antonio wedding website; all wedding content lives in `artifacts/api-server/knowledge/wedding.md` as placeholders to fill in.

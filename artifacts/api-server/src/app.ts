@@ -80,18 +80,7 @@ app.use(
   }),
 );
 
-// IMPORTANT: The `verify` callback saves the raw request body as req.rawBody.
-// This is required by the Stripe webhook handler (routes/stripe.ts) which must
-// verify the Stripe-Signature header against the unmodified raw bytes.
-// express.json() would otherwise parse and discard the buffer before the handler runs.
-app.use(
-  express.json({
-    limit: "64kb",
-    verify: (req, _res, buf) => {
-      (req as import("express").Request & { rawBody?: Buffer }).rawBody = buf;
-    },
-  }),
-);
+app.use(express.json({ limit: "64kb" }));
 app.use(express.urlencoded({ extended: true, limit: "64kb" }));
 
 // ---------------------------------------------------------------------------
