@@ -1,29 +1,18 @@
 {
-  "name": "MIAW — Master In Intelligent Artificial Worlds",
-  "short_name": "MIAW",
-  "description": "Postgraduate program for architects and AI engineers — AI meets spatial design.",
+  "name": "Clémence & Antonio — Wedding",
+  "short_name": "C & A",
+  "description": "Wedding website for Clémence and Antonio.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d1a",
-  "theme_color": "#8e72d5",
-  "lang": "en",
+  "background_color": "#c4b4ee",
+  "theme_color": "#0a0a0a",
+  "lang": "fr",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/og.png",
-      "sizes": "1200x630",
-      "type": "image/png"
     }
-  ],
-  "categories": [
-    "education",
-    "productivity"
-  ],
-  "related_applications": [],
-  "prefer_related_applications": false
+  ]
 }

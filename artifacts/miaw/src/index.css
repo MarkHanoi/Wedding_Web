@@ -1,56 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@font-face {
-  font-family: 'EXEPixelPerfect';
-  src: url('/fonts/EXEPixelPerfect.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-/*
- * DePixelBreit is the "miaw" logo font — preloaded in index.html.
- * font-display: block hides text for up to 3s while the font loads (invisible
- * placeholder) instead of swapping in a fallback (which causes visible FOUT).
- * Because the font is preloaded, it arrives in <100ms — the invisible period
- * is imperceptibly short in practice.
- */
+/* DePixelBreit — pixel font for the C & A logo in the chat panel */
 @font-face {
   font-family: 'DePixelBreit';
   src: url('/fonts/DePixelBreit.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'DePixelBreitFett';
-  src: url('/fonts/DePixelBreitFett.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'DePixelHalbfett';
-  src: url('/fonts/DePixelHalbfett.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'DePixelSchmal';
-  src: url('/fonts/DePixelSchmal.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'DePixelKlein';
-  src: url('/fonts/DePixelKlein.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -79,8 +33,7 @@ html, body, #root {
 
 /* ── Mesh gradient — blob position properties ──────────────────────────────
    @property with syntax:'<percentage>' enables CSS to interpolate these as
-   numeric values inside @keyframes. inherits:false is required — without it
-   the browser treats them as plain strings and cannot animate between values.
+   numeric values inside @keyframes. inherits:false is required.
 */
 @property --b1x { syntax: '<percentage>'; initial-value: 5%;  inherits: false; }
 @property --b1y { syntax: '<percentage>'; initial-value: 55%; inherits: false; }
@@ -91,29 +44,6 @@ html, body, #root {
 @property --b4x { syntax: '<percentage>'; initial-value: 40%; inherits: false; }
 @property --b4y { syntax: '<percentage>'; initial-value: 5%;  inherits: false; }
 
-/* ── Mesh gradient — blob color properties (P2-C: Dynamic Gradient Evolution)
-   @property with syntax:'<color>' enables CSS transitions on these custom
-   properties. JavaScript can call element.style.setProperty('--c1', newColor)
-   and the browser will interpolate the change over the transition duration
-   defined on .gradient-canvas.
-
-   Initial values match the Phase 0 design palette:
-     --c1  blue left  #a8bef7   (architect of spatial worlds — pastel)
-     --c2  pink right #f4a8d8   (signal, warmth, invitation — pastel)
-     --c3  pink base  #f7b8e2   (continuation of --c2 — pastel)
-     --c4  light blue #b8d8fd   (openness, sky, research — pastel)
-
-   Profile-driven evolution (applied by ConversationCanvas.tsx useEffect):
-     Architect/Designer  → --c2 #f5b090, --c3 #f0a878 (pastel terracotta)
-     Engineer/Developer  → --c1 #90a8ef, --c3 #98acea (pastel electric blue)
-     Researcher          → --c4 #c0d8ff, --c1 #a0b8f8 (pastel academic blue)
-     Application mode    → animation-duration: 90s (meditative pace)
-     Application ack'd   → all blobs converge toward #c4b4ee (pastel lavender)
-
-   inherits:false is required for per-element transitions. Setting these vars
-   on the element itself (not :root) is what triggers the CSS transition.
-   Browser support: Chrome 85+, Firefox 128+, Safari 16.4+ (same as @property).
-*/
 @property --c1 { syntax: '<color>'; initial-value: #a8bef7; inherits: false; }
 @property --c2 { syntax: '<color>'; initial-value: #f4a8d8; inherits: false; }
 @property --c3 { syntax: '<color>'; initial-value: #f7b8e2; inherits: false; }
@@ -184,16 +114,6 @@ html, body, #root {
     radial-gradient(ellipse 55% 45% at var(--b4x) var(--b4y), var(--c4) 0%, transparent 50%),
     #c4b4ee;
   animation: meshFlow 45s ease-in-out infinite;
-  /*
-   * Transition the color properties over 8 seconds — imperceptibly slow,
-   * ambient rather than jarring. Only fires when JavaScript updates --c1..--c4
-   * via element.style.setProperty(). The @property syntax:'<color>' declaration
-   * is what enables the browser to interpolate these as colors rather than
-   * treating them as opaque strings.
-   *
-   * Transition does NOT apply to blob positions (--b1x etc.) — those are
-   * animated by @keyframes meshFlow, not by CSS transitions.
-   */
   transition:
     --c1 8s ease,
     --c2 8s ease,
@@ -201,12 +121,6 @@ html, body, #root {
     --c4 8s ease;
 }
 
-/*
- * Accessibility: pause the gradient animation AND disable color transitions
- * for users who prefer reduced motion (vestibular disorders, motion sensitivity).
- * WCAG 2.1 SC 2.3.3 (AAA) and good practice.
- * The gradient remains static at its initial colors — fully visible, not hidden.
- */
 @media (prefers-reduced-motion: reduce) {
   .gradient-canvas {
     animation: none;
@@ -222,32 +136,6 @@ html, body, #root {
 
 .message-enter {
   animation: messageFadeIn 0.3s ease forwards;
-}
-
-/* Logo entrance */
-@keyframes logoFadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.logo-enter {
-  animation: logoFadeUp 0.7s ease 0.2s forwards;
-  opacity: 0;
-}
-
-.subtitle-enter {
-  animation: logoFadeUp 0.7s ease 0.65s forwards;
-  opacity: 0;
-}
-
-.howtoapply-enter {
-  animation: logoFadeUp 0.7s ease 0.9s forwards;
-  opacity: 0;
-}
-
-.cursor-enter {
-  animation: logoFadeUp 0.7s ease 1.1s forwards;
-  opacity: 0;
 }
 
 /* Cursor blink */
@@ -282,165 +170,23 @@ html, body, #root {
   );
 }
 
-/* Scrollbar for message list */
-/* Message list scrollbar — thin, white, transparent track, no arrow buttons */
+/* Message list scrollbar */
 .message-list::-webkit-scrollbar        { width: 3px; }
 .message-list::-webkit-scrollbar-track  { background: transparent; }
 .message-list::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.20); border-radius: 99px; }
 .message-list::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.42); }
 .message-list::-webkit-scrollbar-button { display: none; height: 0; }
-/* Firefox */
 .message-list { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.20) transparent; }
 
-/* P4-C: Mic button pulse — visual feedback while Web Speech API is listening.
-   Matches the 1.4s rhythm of the typing indicator dots (.dot-1/.dot-2/.dot-3).
-   Color is applied via the Tailwind text-pink-300 class on the button element. */
-@keyframes micPulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-
-.mic-active {
-  animation: micPulse 1.4s ease-in-out infinite;
-}
-
-/* ── P5-A: Contextual floating image ─────────────────────────────────────────
-   Positioned fixed in the right half of the viewport, z-index 1 (above the
-   gradient mesh, below message bubbles at z-10+). The image covers the full
-   height of the canvas and blends into the gradient through the vignette layer.
-
-   imageFloat @keyframes: slow organic drift via transform — compositor-only,
-   no layout thrash. Same design language as the meshFlow gradient blob animation
-   but with a shorter 32s period and subtle scale pulse for "breathing" feel.
-
-   prefers-reduced-motion: the --animated modifier class is NOT applied by
-   FloatingImage.tsx when the media query fires, so the image sits static.
-*/
-/*
-  P5 Floating Image — centered elliptical portal
-
-  Architecture:
-  ┌ .floating-image-container ─────────────────────────────────────────────┐
-  │  • Fixed, centered via CSS `translate` property (independent of Framer  │
-  │    Motion's transform so they compose without conflict)                  │
-  │  • mix-blend-mode: screen — image tones blend with the gradient mesh.   │
-  │    Brights glow luminously; near-black areas become fully transparent.   │
-  │  • Framer animates opacity + scale (enter/exit). Per the CSS compositing │
-  │    spec the blend happens after the element's opacity is resolved, so    │
-  │    a fading screen-blended image looks correct throughout the transition.│
-  └─────────────────────────────────────────────────────────────────────────┘
-  ┌ .floating-image ────────────────────────────────────────────────────────┐
-  │  • mask-image radial-gradient: solid elliptical core fading smoothly to  │
-  │    transparent at ~88% radius — no hard edge, no vignette div needed.   │
-  │  • imageFloat @keyframes: slow compositor-only drift, same vocabulary   │
-  │    as the gradient mesh blobs.                                           │
-  └─────────────────────────────────────────────────────────────────────────┘
-*/
-
-.floating-image-container {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  /* CSS `translate` property is independent of `transform`; Framer's scale
-     uses `transform` — they compose correctly without overriding each other. */
-  translate: -50% -50%;
-  width: clamp(460px, 66vw, 860px);
-  height: clamp(340px, 58vh, 660px);
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-
-.floating-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.62;
-  display: block;
-  will-change: transform;
-  user-select: none;
-
-  /* Elliptical radial dissolve — image bleeds into gradient with no hard crop.
-     Solid core → smooth multi-stop falloff → fully transparent at 88%.        */
-  mask-image: radial-gradient(
-    ellipse 50% 54% at 50% 50%,
-    black                  0%,
-    black                 26%,
-    rgba(0, 0, 0, 0.88)   42%,
-    rgba(0, 0, 0, 0.52)   58%,
-    rgba(0, 0, 0, 0.14)   74%,
-    transparent           88%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 50% 54% at 50% 50%,
-    black                  0%,
-    black                 26%,
-    rgba(0, 0, 0, 0.88)   42%,
-    rgba(0, 0, 0, 0.52)   58%,
-    rgba(0, 0, 0, 0.14)   74%,
-    transparent           88%
-  );
-}
-
-.floating-image--animated {
-  animation: imageFloat 36s ease-in-out infinite;
-}
-
-@keyframes imageFloat {
-  0%   { transform: translate(0%,     0%)    scale(1.000); }
-  12%  { transform: translate(1.4%,  -0.9%)  scale(1.024); }
-  25%  { transform: translate(-0.9%,  1.6%)  scale(1.011); }
-  38%  { transform: translate(2.0%,   0.5%)  scale(1.029); }
-  50%  { transform: translate(-1.3%, -1.4%)  scale(1.016); }
-  62%  { transform: translate(0.7%,   2.2%)  scale(1.027); }
-  75%  { transform: translate(-2.0%,  0.3%)  scale(1.013); }
-  88%  { transform: translate(0.5%,  -1.8%)  scale(1.021); }
-  100% { transform: translate(0%,     0%)    scale(1.000); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-image--animated {
-    animation: none;
-  }
-}
-
-/* P5-C Mobile — on narrow viewports the portal shrinks and sits slightly
-   higher so it doesn't compete with the input bar. Same blend + mask logic. */
-@media (max-width: 640px) {
-  .floating-image-container {
-    width: min(92vw, 420px);
-    height: min(52vh, 360px);
-    top: 44%;
-  }
-
-  .floating-image {
-    opacity: 0.44;
-  }
-}
-
 /* ── Floating glass panels ──────────────────────────────────────────────────
-   Used by FloatingPanel.tsx for the chat window and image reference windows.
-
-   Design principles:
-   • Dark-glass for the chat panel (better contrast for white text on pastels).
-   • Light-glass for image panels (more ethereal, "reference" feel).
-   • backdrop-filter: blur provides the frosted look without obscuring the
-     gradient. Both panel types keep the animated background visible.
-   • border-radius: 16px matches the design language of the CTA overlays.
-   • Box shadow adds subtle depth without heavy drop-shadow.
-──────────────────────────────────────────────────────────────────────────── */
+   Used by FloatingPanel.tsx for chat, schedule, venue, and RSVP panels.
+── */
 
 .floating-panel {
-  /* position:absolute is set by Framer Motion via inline style.
-     That makes this element a containing block for position:absolute children
-     (the resize handle). No additional position:relative needed. */
   display: flex;
   flex-direction: column;
   border-radius: 16px;
   overflow: hidden;
-  /* Dark glass — slightly lighter unified style across all windows */
   background: rgba(20, 12, 42, 0.42);
   backdrop-filter: blur(32px) saturate(150%);
   -webkit-backdrop-filter: blur(32px) saturate(150%);
@@ -448,17 +194,9 @@ html, body, #root {
   box-shadow:
     0 16px 56px rgba(0, 0, 0, 0.22),
     0 1px 0 rgba(255, 255, 255, 0.14) inset;
-  /* Prevent text selection while dragging */
   touch-action: none;
 }
 
-/* ── Mobile panel overrides (≤ 767px) ───────────────────────────────────────
-   On phones, floating panels fill nearly the full screen via getMobilePanelSlot().
-   • touch-action: pan-y  — lets users scroll vertically inside panel content
-     (the default "none" is set for desktop drag; on mobile panels don't drag).
-   • border-radius reduced — aligns with native bottom-sheet / modal patterns.
-   • resize handle hidden — not useful on touch.
-────────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 767px) {
   .floating-panel {
     touch-action: pan-y;
@@ -475,7 +213,6 @@ html, body, #root {
   }
 }
 
-/* Chat panel: same dark glass as all other panels */
 .floating-panel--chat {
   background: rgba(12, 6, 28, 0.58);
   backdrop-filter: blur(32px) saturate(150%);
@@ -484,11 +221,6 @@ html, body, #root {
   box-shadow:
     0 16px 56px rgba(0, 0, 0, 0.28),
     0 1px 0 rgba(255, 255, 255, 0.10) inset;
-}
-
-/* Apply panel: same dark glass — unified with all other panels */
-.floating-panel--apply {
-  background: rgba(12, 6, 28, 0.58);
 }
 
 .floating-panel__titlebar {
@@ -500,96 +232,6 @@ html, body, #root {
   padding: 12px 16px 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   user-select: none;
-}
-
-/* Image panels: no gap above image, very small titlebar */
-.floating-panel--image .floating-panel__titlebar {
-  padding: 6px 8px;
-  border-bottom: none;
-  justify-content: flex-end;
-}
-
-/* Mind map panel: compact titlebar — only the close button is shown,
-   keeping the chrome minimal so the SVG fills the panel cleanly.
-   Cursor on the titlebar is "grab" (handled by FloatingPanel when
-   dragFromEverywhere is false, which is the mind map's config). */
-.floating-panel--mindmap .floating-panel__titlebar {
-  padding: 5px 8px;
-  border-bottom: none;
-  justify-content: flex-end;
-  min-height: 0;
-}
-
-.floating-panel--mindmap .floating-panel__body {
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-/* ── Mind map zoom controls ──────────────────────────────────────────────────
-   Overlaid in the bottom-right of the SVG body. The parent
-   .floating-panel__body has position:relative (set above), so these sit
-   exactly inside the panel at z-index 1 (above the SVG, below everything else).
-   The buttons are semi-transparent glass pills — consistent with the panel
-   aesthetic but small enough not to obscure modules.
-────────────────────────────────────────────────────────────────────────────── */
-.mindmap-zoom-controls {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  pointer-events: all;
-}
-
-.mindmap-zoom-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.55);
-  font-family: Inter, sans-serif;
-  font-size: 11px;
-  line-height: 1;
-  padding: 3px 7px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
-  min-width: 22px;
-  text-align: center;
-  user-select: none;
-}
-
-.mindmap-zoom-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.mindmap-zoom-btn--reset {
-  min-width: 36px;
-  font-size: 9px;
-  letter-spacing: 0.3px;
-}
-
-/* "≡ list" toggle — bottom-left of the mind map panel */
-.mindmap-list-btn {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  z-index: 1;
-  font-size: 9px;
-  letter-spacing: 0.4px;
-  min-width: 40px;
-  pointer-events: all;
-}
-
-/* Module hit areas — invisible hover highlight inside the SVG */
-.mindmap-hit {
-  fill: transparent;
-  transition: fill 0.14s ease;
-}
-.mindmap-hit:hover {
-  fill: rgba(255, 255, 255, 0.07);
 }
 
 .floating-panel__title {
@@ -623,17 +265,8 @@ html, body, #root {
   flex-direction: column;
 }
 
-/* ── Resize handle ───────────────────────────────────────────────────────────
-   Positioned absolute within the panel (Framer's position:absolute on the
-   outer div creates the containing block). Inset 5 px from the corner so it
-   stays within the 16 px border-radius clip zone. Visually subtle at rest
-   (opacity 0.28); lifts to 0.65 on panel hover.
-   The JS handler calls e.nativeEvent.stopImmediatePropagation() so Framer's
-   own pointerdown listener (which would start a drag) never fires.
-────────────────────────────────────────────────────────────────────────────── */
 .floating-panel__resize-handle {
   position: absolute;
-  /* Inset 5px from the corner to stay inside the 16px border-radius clip zone */
   bottom: 5px;
   right: 5px;
   width: 14px;
@@ -642,7 +275,6 @@ html, body, #root {
   pointer-events: all;
   opacity: 0.28;
   transition: opacity 0.15s ease;
-  /* Three diagonal lines — classic resize grip */
   background-image:
     linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.5) 40%, transparent 40%),
     linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5) 60%, transparent 60%),
@@ -651,121 +283,6 @@ html, body, #root {
 
 .floating-panel:hover .floating-panel__resize-handle {
   opacity: 0.65;
-}
-
-/* ── Image synthesis animation ───────────────────────────────────────────────
-   Simulates AI image generation / diffusion denoising as the panel appears.
-   Technique: filter:blur + filter:contrast at high values creates blocky
-   colour patches (identical to early diffusion steps). Stepping down through
-   blur/contrast progressively resolves the image to full clarity.
-   Three layers in sync:
-     1. img          — blur+contrast+saturation keyframes (diffusion denoise)
-     2. ::before     — dot-grain overlay that fades + shifts (pixel noise)
-     3. ::after      — translucent light sweep from top to bottom (scan line)
-────────────────────────────────────────────────────────────────────────────── */
-
-@keyframes img-synthesize {
-  0%   { filter: blur(22px) contrast(4.2) saturate(0)    brightness(1.55); opacity: 0.40; }
-  12%  { filter: blur(17px) contrast(3.4) saturate(0.08) brightness(1.38); opacity: 0.58; }
-  26%  { filter: blur(11px) contrast(2.6) saturate(0.20) brightness(1.22); opacity: 0.72; }
-  42%  { filter: blur(6.5px) contrast(1.9) saturate(0.42) brightness(1.12); opacity: 0.83; }
-  58%  { filter: blur(3.2px) contrast(1.45) saturate(0.65) brightness(1.05); opacity: 0.91; }
-  74%  { filter: blur(1.2px) contrast(1.16) saturate(0.84) brightness(1.01); opacity: 0.96; }
-  88%  { filter: blur(0.3px) contrast(1.04) saturate(0.95) brightness(1.00); opacity: 0.98; }
-  100% { filter: blur(0)     contrast(1)   saturate(1)    brightness(1);    opacity: 0.88; }
-}
-
-/* Dot-grain noise overlay — shifts slightly each frame to feel "live" */
-@keyframes img-grain-fade {
-  0%   { opacity: 0.80; background-position:  0px  0px; }
-  14%  { opacity: 0.72; background-position:  2px  1px; }
-  28%  { opacity: 0.58; background-position: -1px  3px; }
-  42%  { opacity: 0.42; background-position:  3px -1px; }
-  56%  { opacity: 0.26; background-position: -2px  2px; }
-  70%  { opacity: 0.14; background-position:  1px -2px; }
-  85%  { opacity: 0.05; background-position:  0px  1px; }
-  100% { opacity: 0;    background-position:  0px  0px; }
-}
-
-/* Scan-line: a soft light band sweeps top → bottom once */
-@keyframes img-scanline {
-  0%   { transform: translateY(-100%); opacity: 0; }
-  8%   { opacity: 0.20; }
-  80%  { opacity: 0.14; }
-  100% { transform: translateY(220%);  opacity: 0; }
-}
-
-/* Image inside an image panel — always fully visible, correct aspect ratio */
-.floating-panel--image .floating-panel__body {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* position:relative creates the containing block for ::before / ::after */
-  position: relative;
-}
-
-/* Layer 2 — dot grain that shifts and fades as the image "resolves" */
-.floating-panel--image .floating-panel__body::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 0 0 14px 14px;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.24) 1px, transparent 1px);
-  background-size: 3px 3px;
-  mix-blend-mode: overlay;
-  animation: img-grain-fade 2.2s ease-out forwards;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Layer 3 — single scan-line sweep */
-.floating-panel--image .floating-panel__body::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 35%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.00) 0%,
-    rgba(255,255,255,0.09) 40%,
-    rgba(255,255,255,0.14) 55%,
-    rgba(255,255,255,0.09) 70%,
-    rgba(255,255,255,0.00) 100%
-  );
-  animation: img-scanline 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.floating-panel--image .floating-panel__body img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  /* contain keeps the full image visible at any panel size/ratio */
-  object-fit: contain;
-  object-position: center;
-  user-select: none;
-  border-radius: 0 0 14px 14px;
-  /* Soft vignette inside the panel frame */
-  mask-image: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
-    black 0%,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 72%,
-    transparent 96%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
-    black 0%,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 72%,
-    transparent 96%
-  );
-  /* Layer 1 — diffusion denoise: blur+contrast blobs → clear image */
-  animation: img-synthesize 2.2s ease-out forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -779,22 +296,7 @@ html, body, #root {
   }
 }
 
-/* ── ZoomableBody ────────────────────────────────────────────────────────────
-   Shared zoom + pan container used by Faculty and image panels.
-   Uses overflow:hidden to clip zoomed-out content; inner div gets the CSS
-   transform. The mindmap-zoom-controls overlay reuses the existing button
-   styles and sits at z-index:10 (above image synthesis ::before/::after).
-────────────────────────────────────────────────────────────────────────────── */
-.zoomable-body {
-  position: relative;
-  overflow: hidden;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Screen-reader-only utility — visually hidden but accessible */
+/* Screen-reader-only utility */
 .sr-only {
   position: absolute;
   width: 1px;
