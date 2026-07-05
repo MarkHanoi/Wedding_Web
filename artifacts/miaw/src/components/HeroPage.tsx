@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { getTodaysPalette } from "../lib/dailyPalette";
+import beachPhoto from "@assets/Gemini_Generated_Image_d4d3xcd4d3xcd4d3_1783284816056.png";
 
 // ── To add the actual hero photo when ready ────────────────────────────────
 // 1. Copy the couple's photo to artifacts/miaw/public/hero.jpg
@@ -159,14 +160,14 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           }}
         />
 
-        {/* Hero text — centered, staggered entrance */}
+        {/* Hero text — upper section */}
         <motion.div
           variants={stagger}
           initial="hidden"
           animate="show"
           style={{
             position: "absolute",
-            top: "38%",
+            top: "28%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             textAlign: "center",
@@ -199,7 +200,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
             variants={fadeUp}
             style={{
               fontFamily: "Cormorant Garamond, Georgia, serif",
-              fontSize: "clamp(46px, 9vw, 110px)",
+              fontSize: "clamp(40px, 8vw, 100px)",
               fontWeight: 400,
               color: "rgba(255,255,255,0.96)",
               letterSpacing: "0.01em",
@@ -228,7 +229,38 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           </motion.p>
         </motion.div>
 
-        {/* Bottom CTA — click anywhere hint */}
+        {/* Venue photo — lower section */}
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.7 }}
+          style={{
+            position: "absolute",
+            bottom: 80,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "min(620px, 88vw)",
+            borderRadius: 12,
+            overflow: "hidden",
+            boxShadow: "0 8px 48px rgba(0,0,0,0.38), 0 2px 12px rgba(0,0,0,0.22)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            aspectRatio: "16 / 7",
+          }}
+        >
+          <img
+            src={beachPhoto}
+            alt="Wedding venue — beach"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </motion.div>
+
+        {/* Bottom CTA */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -236,7 +268,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           transition={{ delay: 1.2 }}
           style={{
             position: "absolute",
-            bottom: 36,
+            bottom: 22,
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
