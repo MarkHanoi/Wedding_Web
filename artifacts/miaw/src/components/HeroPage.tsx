@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
-import { getTodaysPalette } from "../lib/dailyPalette";
 import beachPhoto from "@assets/Gemini_Generated_Image_d4d3xcd4d3xcd4d3_1783284816056.png";
+
+const BEACH_PALETTE = {
+  c1: "#7ecfcb",
+  c2: "#ecd9a2",
+  c3: "#e8d49a",
+  c4: "#b4dcef",
+  base: "#b8d8d4",
+};
 
 // ── To add the actual hero photo when ready ────────────────────────────────
 // 1. Copy the couple's photo to artifacts/miaw/public/hero.jpg
@@ -31,7 +38,7 @@ const fadeIn = {
 };
 
 export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOpenVenue }: HeroPageProps) {
-  const palette = getTodaysPalette();
+  const palette = BEACH_PALETTE;
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -240,12 +247,13 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
             bottom: 80,
             left: "50%",
             transform: "translateX(-50%)",
-            width: "min(620px, 88vw)",
+            width: "min(1160px, 92vw)",
             borderRadius: 12,
             overflow: "hidden",
             boxShadow: "0 8px 48px rgba(0,0,0,0.38), 0 2px 12px rgba(0,0,0,0.22)",
             border: "1px solid rgba(255,255,255,0.18)",
             aspectRatio: "16 / 7",
+            maxHeight: "38vh",
           }}
         >
           <img
