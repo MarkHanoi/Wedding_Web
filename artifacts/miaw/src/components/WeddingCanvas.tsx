@@ -20,7 +20,7 @@ function makeId() {
 
 const BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
-// ── RSVP Form ─────────────────────────────────────────────────────────────────
+// ── RSVP Form Panel ───────────────────────────────────────────────────────────
 
 function RSVPPanel({ onClose, initialX, initialY }: {
   onClose: () => void;
@@ -46,7 +46,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), attending, guests: guestCount, dietary, message }),
       });
-      if (!res.ok) throw new Error("Failed to submit");
+      if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again.");
@@ -109,13 +109,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>
               <label style={labelStyle}>Your name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Full name"
-                style={inputStyle}
-              />
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" style={inputStyle} />
             </div>
 
             <div>
@@ -126,17 +120,12 @@ function RSVPPanel({ onClose, initialX, initialY }: {
                     key={opt}
                     onClick={() => setAttending(opt)}
                     style={{
-                      flex: 1,
-                      padding: "8px 0",
-                      borderRadius: 8,
+                      flex: 1, padding: "8px 0", borderRadius: 8,
                       border: "1px solid rgba(30,15,50,0.18)",
                       background: attending === opt ? "rgba(30,15,50,0.12)" : "rgba(255,255,255,0.55)",
-                      fontFamily: "Inter, sans-serif",
-                      fontSize: "0.85rem",
-                      color: "rgba(30,15,50,0.80)",
-                      cursor: "pointer",
-                      fontWeight: attending === opt ? 500 : 400,
-                      transition: "all 0.15s",
+                      fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
+                      color: "rgba(30,15,50,0.80)", cursor: "pointer",
+                      fontWeight: attending === opt ? 500 : 400, transition: "all 0.15s",
                     }}
                   >
                     {opt === "yes" ? "✓ Attending" : "✗ Can't make it"}
@@ -154,15 +143,11 @@ function RSVPPanel({ onClose, initialX, initialY }: {
                       key={n}
                       onClick={() => setGuestCount(n)}
                       style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 8,
+                        width: 36, height: 36, borderRadius: 8,
                         border: "1px solid rgba(30,15,50,0.18)",
                         background: guestCount === n ? "rgba(30,15,50,0.12)" : "rgba(255,255,255,0.55)",
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "0.85rem",
-                        color: "rgba(30,15,50,0.80)",
-                        cursor: "pointer",
+                        fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
+                        color: "rgba(30,15,50,0.80)", cursor: "pointer",
                         fontWeight: guestCount === n ? 600 : 400,
                       }}
                     >
@@ -175,13 +160,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
 
             <div>
               <label style={labelStyle}>Dietary requirements</label>
-              <input
-                type="text"
-                value={dietary}
-                onChange={(e) => setDietary(e.target.value)}
-                placeholder="Vegetarian, allergies, etc."
-                style={inputStyle}
-              />
+              <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Vegetarian, allergies, etc." style={inputStyle} />
             </div>
 
             <div>
@@ -189,34 +168,23 @@ function RSVPPanel({ onClose, initialX, initialY }: {
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="A little note for Clémence & Antonio..."
+                placeholder="A little note for Clémence & Antonio…"
                 rows={3}
                 style={{ ...inputStyle, resize: "vertical", minHeight: 72 }}
               />
             </div>
 
-            {error && (
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(180,60,60,0.85)" }}>
-                {error}
-              </p>
-            )}
+            {error && <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(180,60,60,0.85)" }}>{error}</p>}
 
             <button
               onClick={handleSubmit}
               disabled={!name.trim() || !attending || submitting}
               style={{
-                width: "100%",
-                padding: "10px 0",
-                borderRadius: 10,
-                border: "none",
-                background: "rgba(30,15,50,0.18)",
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.85rem",
-                fontWeight: 500,
-                color: "rgba(30,15,50,0.80)",
+                width: "100%", padding: "10px 0", borderRadius: 10, border: "none",
+                background: "rgba(30,15,50,0.18)", fontFamily: "Inter, sans-serif",
+                fontSize: "0.85rem", fontWeight: 500, color: "rgba(30,15,50,0.80)",
                 cursor: !name.trim() || !attending || submitting ? "not-allowed" : "pointer",
-                opacity: !name.trim() || !attending ? 0.45 : 1,
-                transition: "all 0.15s",
+                opacity: !name.trim() || !attending ? 0.45 : 1, transition: "all 0.15s",
               }}
             >
               {submitting ? "Sending…" : "Send RSVP"}
@@ -228,7 +196,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
   );
 }
 
-// ── Schedule Panel ──────────────────────────────────────────────────────────
+// ── Schedule Panel ────────────────────────────────────────────────────────────
 
 const SCHEDULE = [
   { time: "3:45 PM", label: "Guests arrive", icon: "🌿" },
@@ -239,18 +207,10 @@ const SCHEDULE = [
   { time: "12:00 AM", label: "Evening ends", icon: "✨" },
 ];
 
-function SchedulePanel({ onClose, initialX, initialY }: {
-  onClose: () => void;
-  initialX: number;
-  initialY: number;
-}) {
+function SchedulePanel({ onClose, initialX, initialY }: { onClose: () => void; initialX: number; initialY: number }) {
   return (
     <FloatingPanel
-      title={
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
-          The Day
-        </span>
-      }
+      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>The Day</span>}
       onClose={onClose}
       initialX={initialX}
       initialY={initialY}
@@ -266,12 +226,8 @@ function SchedulePanel({ onClose, initialX, initialY }: {
             <div key={item.time} style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <span style={{ fontSize: "1.1rem", width: 24, textAlign: "center" }}>{item.icon}</span>
               <div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.45)", letterSpacing: "0.06em" }}>
-                  {item.time}
-                </div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.88rem", color: "rgba(30,15,50,0.78)", fontWeight: 400 }}>
-                  {item.label}
-                </div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.45)", letterSpacing: "0.06em" }}>{item.time}</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.88rem", color: "rgba(30,15,50,0.78)", fontWeight: 400 }}>{item.label}</div>
               </div>
             </div>
           ))}
@@ -281,20 +237,12 @@ function SchedulePanel({ onClose, initialX, initialY }: {
   );
 }
 
-// ── Venue Panel ──────────────────────────────────────────────────────────────
+// ── Venue Panel ───────────────────────────────────────────────────────────────
 
-function VenuePanel({ onClose, initialX, initialY }: {
-  onClose: () => void;
-  initialX: number;
-  initialY: number;
-}) {
+function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; initialX: number; initialY: number }) {
   return (
     <FloatingPanel
-      title={
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
-          Venue
-        </span>
-      }
+      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>Venue</span>}
       onClose={onClose}
       initialX={initialX}
       initialY={initialY}
@@ -303,46 +251,19 @@ function VenuePanel({ onClose, initialX, initialY }: {
     >
       <div style={{ padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 16 }}>
         <div>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>
-            Ceremony &amp; Reception
-          </p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.92rem", fontWeight: 500, color: "rgba(30,15,50,0.80)", marginBottom: 4 }}>
-            [Venue Name]
-          </p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.55)", lineHeight: 1.5 }}>
-            [Full Address]<br />
-            [City, Country]
-          </p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Ceremony &amp; Reception</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.92rem", fontWeight: 500, color: "rgba(30,15,50,0.80)", marginBottom: 4 }}>[Venue Name]</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.55)", lineHeight: 1.5 }}>[Full Address]<br />[City, Country]</p>
         </div>
-
         <div>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>
-            Getting there
-          </p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.60)", lineHeight: 1.6 }}>
-            🚗 Parking available on site<br />
-            🚂 [Nearest station] → taxi 15 min<br />
-            ✈️ [Nearest airport] → car 45 min
-          </p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Getting there</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.60)", lineHeight: 1.6 }}>🚗 Parking available on site<br />🚂 [Nearest station] → taxi 15 min<br />✈️ [Nearest airport] → car 45 min</p>
         </div>
-
         <a
-          href={`https://maps.google.com/?q=[Venue+Address]`}
+          href="https://maps.google.com/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            display: "block",
-            textAlign: "center",
-            padding: "8px 0",
-            borderRadius: 8,
-            border: "1px solid rgba(30,15,50,0.18)",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "0.80rem",
-            color: "rgba(30,15,50,0.60)",
-            textDecoration: "none",
-            background: "rgba(255,255,255,0.40)",
-            transition: "all 0.15s",
-          }}
+          style={{ display: "block", textAlign: "center", padding: "8px 0", borderRadius: 8, border: "1px solid rgba(30,15,50,0.18)", fontFamily: "Inter, sans-serif", fontSize: "0.80rem", color: "rgba(30,15,50,0.60)", textDecoration: "none", background: "rgba(255,255,255,0.40)" }}
         >
           Open in Maps →
         </a>
@@ -353,17 +274,7 @@ function VenuePanel({ onClose, initialX, initialY }: {
 
 // ── Quick Picks ───────────────────────────────────────────────────────────────
 
-function QuickPicks({ onSchedule, onVenue, onRSVP }: {
-  onSchedule: () => void;
-  onVenue: () => void;
-  onRSVP: () => void;
-}) {
-  const picks = [
-    { label: "📅 Schedule", action: onSchedule },
-    { label: "📍 Venue", action: onVenue },
-    { label: "✉️ RSVP", action: onRSVP },
-  ];
-
+function QuickPicks({ onSchedule, onVenue, onRSVP }: { onSchedule: () => void; onVenue: () => void; onRSVP: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -372,29 +283,24 @@ function QuickPicks({ onSchedule, onVenue, onRSVP }: {
       transition={{ duration: 0.3 }}
       style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 4 }}
     >
-      {picks.map((p) => (
+      {[
+        { label: "📅 Schedule", action: onSchedule },
+        { label: "📍 Venue", action: onVenue },
+        { label: "✉️ RSVP", action: onRSVP },
+      ].map((p) => (
         <button
           key={p.label}
           onClick={p.action}
           style={{
-            padding: "6px 14px",
-            borderRadius: 100,
+            padding: "6px 14px", borderRadius: 100,
             border: "1px solid rgba(255,255,255,0.28)",
             background: "rgba(255,255,255,0.14)",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "0.78rem",
-            fontWeight: 300,
-            color: "rgba(255,255,255,0.80)",
-            cursor: "pointer",
-            transition: "all 0.15s",
-            letterSpacing: "0.04em",
+            fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 300,
+            color: "rgba(255,255,255,0.80)", cursor: "pointer",
+            transition: "all 0.15s", letterSpacing: "0.04em",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.24)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)";
-          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.24)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)"; }}
         >
           {p.label}
         </button>
@@ -405,7 +311,12 @@ function QuickPicks({ onSchedule, onVenue, onRSVP }: {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
-export default function WeddingCanvas() {
+interface WeddingCanvasProps {
+  initialPanel?: "rsvp" | "schedule" | "venue" | null;
+  onGoToHero?: () => void;
+}
+
+export default function WeddingCanvas({ initialPanel, onGoToHero }: WeddingCanvasProps) {
   const palette = getTodaysPalette();
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -415,9 +326,9 @@ export default function WeddingCanvas() {
   const [turnCount, setTurnCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
-  const [showSchedule, setShowSchedule] = useState(false);
-  const [showVenue, setShowVenue] = useState(false);
-  const [showRSVP, setShowRSVP] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(initialPanel === "schedule");
+  const [showVenue, setShowVenue] = useState(initialPanel === "venue");
+  const [showRSVP, setShowRSVP] = useState(initialPanel === "rsvp");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -427,18 +338,14 @@ export default function WeddingCanvas() {
   }, [messages, isStreaming]);
 
   useEffect(() => {
-    if (!isStreaming && conversationStarted) {
-      inputRef.current?.focus();
-    }
+    if (!isStreaming && conversationStarted) inputRef.current?.focus();
   }, [isStreaming, conversationStarted]);
 
-  // Mobile keyboard compensation
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handleResize = () => {
-      const kh = window.innerHeight - vv.height;
-      document.documentElement.style.setProperty("--keyboard-height", `${kh}px`);
+      document.documentElement.style.setProperty("--keyboard-height", `${window.innerHeight - vv.height}px`);
     };
     vv.addEventListener("resize", handleResize);
     return () => vv.removeEventListener("resize", handleResize);
@@ -449,10 +356,7 @@ export default function WeddingCanvas() {
     setError(null);
 
     const assistantId = makeId();
-    setMessages((prev) => [
-      ...prev,
-      { id: assistantId, role: "assistant", content: "", timestamp: Date.now() },
-    ]);
+    setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "", timestamp: Date.now() }]);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 40000);
@@ -461,10 +365,7 @@ export default function WeddingCanvas() {
       const res = await fetch(`${BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: userMessages.map((m) => ({ role: m.role, content: m.content })),
-          turnCount: nextTurn,
-        }),
+        body: JSON.stringify({ messages: userMessages.map((m) => ({ role: m.role, content: m.content })), turnCount: nextTurn }),
         signal: controller.signal,
       });
       clearTimeout(timeout);
@@ -474,7 +375,6 @@ export default function WeddingCanvas() {
         setMessages((prev) => prev.filter((m) => m.id !== assistantId));
         return;
       }
-
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error((data as { message?: string }).message || `Error ${res.status}`);
@@ -485,25 +385,20 @@ export default function WeddingCanvas() {
 
       const decoder = new TextDecoder();
       let accumulated = "";
-
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         accumulated += decoder.decode(value, { stream: true });
         const snap = accumulated;
-        setMessages((prev) =>
-          prev.map((m) => (m.id === assistantId ? { ...m, content: snap } : m)),
-        );
+        setMessages((prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: snap } : m)));
       }
 
       setTurnCount(nextTurn + 1);
     } catch (err) {
       clearTimeout(timeout);
-      let msg = "Something went wrong. Please try again.";
-      if (err instanceof Error && err.name === "AbortError") {
-        msg = "Connection timed out. Check your connection and try again.";
-      }
-      setError(msg);
+      setError(err instanceof Error && err.name === "AbortError"
+        ? "Connection timed out. Please try again."
+        : "Something went wrong. Please try again.");
       setMessages((prev) => prev.filter((m) => m.id !== assistantId));
     } finally {
       setIsStreaming(false);
@@ -516,38 +411,32 @@ export default function WeddingCanvas() {
     await streamMessage([], 0);
   }, [conversationStarted, streamMessage]);
 
-  const handleKeyPress = useCallback(
-    (e: KeyboardEvent) => {
-      if (!conversationStarted && e.key !== "Tab" && e.key !== "Escape") {
-        startConversation();
-      }
-    },
-    [conversationStarted, startConversation],
-  );
+  const handleKeyPress = useCallback((e: KeyboardEvent) => {
+    if (!conversationStarted && e.key !== "Tab" && e.key !== "Escape") startConversation();
+  }, [conversationStarted, startConversation]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [handleKeyPress]);
 
+  // Auto-start conversation when arriving from hero
+  useEffect(() => {
+    startConversation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const sendMessage = useCallback(async () => {
     const content = inputValue.trim();
     if (!content || isStreaming) return;
-
-    const userMessage: Message = {
-      id: makeId(),
-      role: "user",
-      content,
-      timestamp: Date.now(),
-    };
-
+    const userMessage: Message = { id: makeId(), role: "user", content, timestamp: Date.now() };
     setInputValue("");
     const updated = [...messages, userMessage];
     setMessages(updated);
     await streamMessage(updated, turnCount + 1);
   }, [inputValue, isStreaming, messages, turnCount, streamMessage]);
 
-  const isMobile = window.innerWidth < 768;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const chatX = isMobile ? 8 : 48;
   const chatY = isMobile ? 120 : 72;
   const chatW = isMobile ? "calc(100vw - 16px)" : "clamp(300px, 36vw, 480px)";
@@ -555,7 +444,9 @@ export default function WeddingCanvas() {
     ? "calc(100dvh - 134px - env(safe-area-inset-bottom,0px))"
     : "calc(100dvh - 124px)";
 
-  const panelX = isMobile ? 8 : Math.min(window.innerWidth - 380, 56 + Math.round(Math.min(Math.max(window.innerWidth * 0.36, 300), 480)) + 24);
+  const panelX = isMobile
+    ? 8
+    : Math.min(window.innerWidth - 380, 48 + Math.round(Math.min(Math.max(window.innerWidth * 0.36, 300), 480)) + 24);
 
   const showQuickPicks = turnCount === 0 && !isStreaming && messages.length >= 1 && messages.at(-1)?.role === "assistant";
 
@@ -571,22 +462,50 @@ export default function WeddingCanvas() {
         "--c4": palette.c4,
       } as React.CSSProperties}
     >
+      {/* Back to hero button */}
+      {onGoToHero && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          onClick={onGoToHero}
+          style={{
+            position: "fixed",
+            top: 18,
+            right: 20,
+            zIndex: 200,
+            background: "rgba(0,0,0,0.28)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            borderRadius: 100,
+            padding: "6px 14px",
+            fontFamily: "Inter, sans-serif",
+            fontSize: "0.72rem",
+            fontWeight: 300,
+            color: "rgba(255,255,255,0.72)",
+            cursor: "pointer",
+            letterSpacing: "0.06em",
+          }}
+        >
+          ← Home
+        </motion.button>
+      )}
+
       <AnimatePresence>
         {conversationStarted && (
           <FloatingPanel
             key="chat"
             resizable
             title={
-              <span
-                style={{
-                  fontFamily: "'DePixelBreit', monospace",
-                  fontSize: "clamp(10px, 1.2vw, 14px)",
-                  color: "rgba(255,255,255,0.88)",
-                  letterSpacing: "0.06em",
-                  imageRendering: "pixelated",
-                  userSelect: "none",
-                }}
-              >
+              <span style={{
+                fontFamily: "Cormorant Garamond, Georgia, serif",
+                fontSize: "clamp(12px, 1.4vw, 17px)",
+                fontWeight: 400,
+                color: "rgba(255,255,255,0.88)",
+                letterSpacing: "0.06em",
+                userSelect: "none",
+              }}>
                 C &amp; A
               </span>
             }
@@ -628,9 +547,7 @@ export default function WeddingCanvas() {
               </AnimatePresence>
 
               {isStreaming && messages.at(-1)?.role !== "assistant" && (
-                <div className="self-start">
-                  <TypingIndicator />
-                </div>
+                <div className="self-start"><TypingIndicator /></div>
               )}
 
               <div ref={messagesEndRef} />
@@ -660,13 +577,8 @@ export default function WeddingCanvas() {
                   ↵
                 </button>
               </div>
-
               {error && (
-                <p
-                  className="text-white/90 text-xs mt-2"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                  role="alert"
-                >
+                <p className="text-white/90 text-xs mt-2" style={{ fontFamily: "Inter, sans-serif" }} role="alert">
                   {error}
                 </p>
               )}
@@ -675,29 +587,17 @@ export default function WeddingCanvas() {
         )}
       </AnimatePresence>
 
-      {!conversationStarted && (
-        <CursorPrompt onClick={startConversation} />
-      )}
+      {!conversationStarted && <CursorPrompt onClick={startConversation} />}
 
       <AnimatePresence>
         {showSchedule && (
-          <SchedulePanel
-            key="schedule"
-            onClose={() => setShowSchedule(false)}
-            initialX={panelX}
-            initialY={isMobile ? 60 : 72}
-          />
+          <SchedulePanel key="schedule" onClose={() => setShowSchedule(false)} initialX={panelX} initialY={isMobile ? 60 : 72} />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {showVenue && (
-          <VenuePanel
-            key="venue"
-            onClose={() => setShowVenue(false)}
-            initialX={panelX + (showSchedule ? 300 : 0)}
-            initialY={isMobile ? 60 : 72}
-          />
+          <VenuePanel key="venue" onClose={() => setShowVenue(false)} initialX={panelX + (showSchedule ? 300 : 0)} initialY={isMobile ? 60 : 72} />
         )}
       </AnimatePresence>
 
