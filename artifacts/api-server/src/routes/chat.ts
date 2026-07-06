@@ -62,10 +62,8 @@ const ChatRequestSchema = z.object({
 getStaticPreamble();
 
 router.post("/chat", async (req, res) => {
-  const ip =
-    (req.headers["x-forwarded-for"] as string)?.split(",")[0].trim() ||
-    req.socket.remoteAddress ||
-    "127.0.0.1";
+  // req.ip is set correctly by Express when trust proxy is configured (see app.ts).
+  const ip = req.ip ?? req.socket.remoteAddress ?? "127.0.0.1";
 
   const { allowed } = await checkRateLimit(ip);
   if (!allowed) {

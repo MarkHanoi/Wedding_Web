@@ -17,6 +17,11 @@ const __moduleDir = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Express = express();
 
+// Trust the first proxy hop (Replit's ingress) so req.ip is set correctly.
+// Without this, Express returns the proxy IP; with trust > 1, a malicious
+// client could spoof x-forwarded-for to bypass rate limiting.
+app.set("trust proxy", 1);
+
 // Structured request logging with PII redaction
 app.use(
   pinoHttp({
