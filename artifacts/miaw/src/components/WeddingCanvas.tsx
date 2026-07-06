@@ -276,8 +276,8 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
             style={{
               position: "absolute",
               top: 0,
-              left: 0,
-              width: "112%",   /* clips ~12% off the right, hiding the YouTube watermark */
+              right: 0,
+              width: "112%",   /* clips ~12% off the left, hiding the YouTube watermark */
               height: "100%",
               border: "none",
               display: "block",
