@@ -283,7 +283,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
                 (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)";
               }}
             >
-              Chat with our assistant ↓
+              Explore ↓
             </button>
           </motion.div>
         </motion.div>
