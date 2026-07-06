@@ -46,10 +46,10 @@ html, body, #root {
 @property --b4y { syntax: '<percentage>'; initial-value: 5%;  inherits: false; }
 
 /* Beach palette initial colours (Golden Shore — day 0) */
-@property --c1 { syntax: '<color>'; initial-value: #B8CECC; inherits: false; }
+@property --c1 { syntax: '<color>'; initial-value: #F0E4CC; inherits: false; }
 @property --c2 { syntax: '<color>'; initial-value: #E8C99A; inherits: false; }
 @property --c3 { syntax: '<color>'; initial-value: #D4A574; inherits: false; }
-@property --c4 { syntax: '<color>'; initial-value: #EAD8C0; inherits: false; }
+@property --c4 { syntax: '<color>'; initial-value: #FAF6F0; inherits: false; }
 
 @keyframes meshFlow {
   0% {

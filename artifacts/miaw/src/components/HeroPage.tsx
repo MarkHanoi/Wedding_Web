@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import beachPhoto from "@assets/Gemini_Generated_Image_d4d3xcd4d3xcd4d3_1783284816056.png";
 
 const BEACH_PALETTE = {
-  c1: "#B8CECC",
+  c1: "#F0E4CC",
   c2: "#E8C99A",
   c3: "#D4A574",
-  c4: "#EAD8C0",
-  base: "#C8B898",
+  c4: "#FAF6F0",
+  base: "#D8BC90",
 };
 
 // ── To add the actual hero photo when ready ────────────────────────────────
