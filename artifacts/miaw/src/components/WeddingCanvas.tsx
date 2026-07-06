@@ -269,13 +269,11 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
 
         {/* Video */}
         <div style={{ flexShrink: 0, borderRadius: "0 0 4px 4px", overflow: "hidden", aspectRatio: "16/9", background: "rgba(0,0,0,0.30)" }}>
-          <video
-            src="https://quintaamala.com/wp-content/uploads/2025/11/Video-Website-V3.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          <iframe
+            src="https://www.youtube.com/embed/NvJ-ExpmOTc?autoplay=1&mute=1&loop=1&playlist=NvJ-ExpmOTc&controls=0&rel=0&modestbranding=1&playsinline=1"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            style={{ width: "100%", height: "100%", display: "block", border: "none" }}
           />
         </div>
 
