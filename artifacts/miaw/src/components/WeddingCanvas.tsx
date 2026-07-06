@@ -268,7 +268,7 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
       <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
 
         {/* Video — square crop of 16:9 source */}
-        <div style={{ flexShrink: 0, position: "relative", aspectRatio: "4/3", overflow: "hidden", background: "rgba(0,0,0,0.30)" }}>
+        <div style={{ flexShrink: 0, position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "rgba(0,0,0,0.30)" }}>
           <iframe
             src="https://www.youtube.com/embed/NvJ-ExpmOTc?autoplay=1&mute=1&loop=1&playlist=NvJ-ExpmOTc&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&showinfo=0&start=5&end=180"
             allow="autoplay; encrypted-media"
@@ -276,9 +276,8 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
             style={{
               position: "absolute",
               top: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "133.33%",  /* (16/9) ÷ (4/3) × 100% — fills 4:3 container from 16:9 source */
+              left: 0,
+              width: "112%",   /* clips ~12% off the right, hiding the YouTube watermark */
               height: "100%",
               border: "none",
               display: "block",
