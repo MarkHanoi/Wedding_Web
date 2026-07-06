@@ -183,40 +183,71 @@ function RSVPPanel({ onClose, initialX, initialY }: {
 
 // ── Schedule Panel ────────────────────────────────────────────────────────────
 
-const SCHEDULE = [
-  { time: "3:45 PM", label: "Guests arrive", icon: "🌿" },
-  { time: "4:00 PM", label: "Ceremony", icon: "💍" },
-  { time: "5:30 PM", label: "Cocktail hour", icon: "🥂" },
-  { time: "7:00 PM", label: "Dinner", icon: "🍽️" },
-  { time: "9:00 PM", label: "Dancing", icon: "🎶" },
-  { time: "12:00 AM", label: "Evening ends", icon: "✨" },
+const SCHEDULE_DAYS = [
+  {
+    day: "Friday, 18 June",
+    events: [
+      { time: "Evening", label: "Pre-wedding party", icon: "🎉" },
+    ],
+  },
+  {
+    day: "Saturday, 19 June",
+    events: [
+      { time: "16:30", label: "Guests arrive", icon: "🌿" },
+      { time: "17:00", label: "Ceremony", icon: "💍" },
+      { time: "18:00", label: "Cocktail hour", icon: "🥂" },
+      { time: "21:00", label: "Dinner", icon: "🍽️" },
+      { time: "00:00", label: "Dancing until 4 AM", icon: "🎶" },
+    ],
+  },
+  {
+    day: "Sunday, 20 June",
+    events: [
+      { time: "12:00", label: "Brunch", icon: "☀️" },
+    ],
+  },
 ];
 
 function SchedulePanel({ onClose, initialX, initialY }: { onClose: () => void; initialX: number; initialY: number }) {
   return (
     <FloatingPanel
-      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>The Day</span>}
+      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>The Weekend</span>}
       onClose={onClose}
       initialX={initialX}
       initialY={initialY}
-      width={280}
+      width={300}
       zIndex={28}
     >
-      <div style={{ padding: "12px 20px 20px" }}>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.45)", letterSpacing: "0.08em", marginBottom: 14, textTransform: "uppercase" }}>
-          Times are indicative
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {SCHEDULE.map((item) => (
-            <div key={item.time} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <span style={{ fontSize: "1.1rem", width: 24, textAlign: "center" }}>{item.icon}</span>
-              <div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.06em" }}>{item.time}</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.88rem", color: "rgba(255,240,218,0.88)", fontWeight: 400 }}>{item.label}</div>
-              </div>
+      <div style={{ padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 20 }}>
+        {SCHEDULE_DAYS.map((day, di) => (
+          <div key={day.day}>
+            {/* Day header */}
+            <p style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "0.68rem",
+              fontWeight: 500,
+              color: "rgba(255,240,218,0.45)",
+              letterSpacing: "0.10em",
+              textTransform: "uppercase",
+              marginBottom: 10,
+              paddingBottom: 6,
+              borderBottom: "1px solid rgba(255,255,255,0.10)",
+            }}>
+              {day.day}
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {day.events.map((item) => (
+                <div key={`${di}-${item.time}`} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ fontSize: "1.05rem", width: 22, textAlign: "center", flexShrink: 0 }}>{item.icon}</span>
+                  <div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.70rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.06em" }}>{item.time}</div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.86rem", color: "rgba(255,240,218,0.88)", fontWeight: 400 }}>{item.label}</div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </FloatingPanel>
   );

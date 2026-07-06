@@ -65,7 +65,6 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
         {/* Left links */}
         <div style={{ display: "flex", gap: 28, flex: 1 }}>
           {[
-            { label: "Our Story", action: onEnterChat },
             { label: "Schedule", action: onOpenSchedule },
             { label: "Venue", action: onOpenVenue },
           ].map(({ label, action }) => (
