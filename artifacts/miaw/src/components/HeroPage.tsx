@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import beachPhoto from "@assets/Gemini_Generated_Image_d4d3xcd4d3xcd4d3_1783284816056.png";
 
 const BEACH_PALETTE = {
   c1: "#F0E4CC",
@@ -234,38 +233,6 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           >
             [D] · [M] · [YY]
           </motion.p>
-        </motion.div>
-
-        {/* Venue photo — lower section */}
-        <motion.div
-          variants={fadeIn}
-          initial="hidden"
-          animate="show"
-          transition={{ delay: 0.7 }}
-          style={{
-            position: "absolute",
-            bottom: 80,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "min(1160px, 92vw)",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.38), 0 2px 12px rgba(0,0,0,0.22)",
-            border: "1px solid rgba(255,255,255,0.18)",
-            aspectRatio: "16 / 7",
-            maxHeight: "38vh",
-          }}
-        >
-          <img
-            src={beachPhoto}
-            alt="Wedding venue — beach"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
         </motion.div>
 
         {/* Bottom CTA */}
