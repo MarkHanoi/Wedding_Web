@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import beachPhoto from "@assets/Gemini_Generated_Image_d4d3xcd4d3xcd4d3_1783284816056.png";
 
 const BEACH_PALETTE = {
-  c1: "#7ecfcb",
-  c2: "#ecd9a2",
-  c3: "#e8d49a",
-  c4: "#b4dcef",
-  base: "#b8d8d4",
+  c1: "#B8CECC",
+  c2: "#E8C99A",
+  c3: "#D4A574",
+  c4: "#EAD8C0",
+  base: "#C8B898",
 };
 
 // ── To add the actual hero photo when ready ────────────────────────────────
@@ -53,7 +53,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           zIndex: 100,
           flexShrink: 0,
           height: 56,
-          background: "rgba(8,6,10,0.96)",
+          background: "rgba(10,7,3,0.96)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           display: "flex",

@@ -61,7 +61,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
     fontWeight: 400,
     letterSpacing: "0.12em",
     textTransform: "uppercase",
-    color: "rgba(30,15,50,0.45)",
+    color: "rgba(255,240,218,0.52)",   // warm-cream on dark glass
     marginBottom: 4,
     display: "block",
   };
@@ -69,12 +69,12 @@ function RSVPPanel({ onClose, initialX, initialY }: {
   const inputStyle: React.CSSProperties = {
     width: "100%",
     background: "rgba(255,255,255,0.55)",
-    border: "1px solid rgba(30,15,50,0.14)",
+    border: "1px solid rgba(255,255,255,0.20)",
     borderRadius: 8,
     padding: "8px 12px",
     fontFamily: "Inter, sans-serif",
     fontSize: "0.88rem",
-    color: "rgba(30,15,50,0.85)",
+    color: "rgba(42,24,8,0.85)",       // dark text on white input bg — correct
     outline: "none",
     boxSizing: "border-box",
   };
@@ -100,7 +100,7 @@ function RSVPPanel({ onClose, initialX, initialY }: {
             style={{ textAlign: "center", padding: "24px 0" }}
           >
             <div style={{ fontSize: "2rem", marginBottom: 12 }}>🎉</div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", color: "rgba(30,15,50,0.75)", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", color: "rgba(255,240,218,0.85)", lineHeight: 1.6 }}>
               Thank you, {name.split(" ")[0]}!<br />
               {attending === "yes" ? "We can't wait to celebrate with you." : "We'll miss you, but thank you for letting us know."}
             </p>
@@ -121,10 +121,10 @@ function RSVPPanel({ onClose, initialX, initialY }: {
                     onClick={() => setAttending(opt)}
                     style={{
                       flex: 1, padding: "8px 0", borderRadius: 8,
-                      border: "1px solid rgba(30,15,50,0.18)",
-                      background: attending === opt ? "rgba(30,15,50,0.12)" : "rgba(255,255,255,0.55)",
+                      border: "1px solid rgba(255,255,255,0.20)",
+                      background: attending === opt ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.55)",
                       fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
-                      color: "rgba(30,15,50,0.80)", cursor: "pointer",
+                      color: "rgba(42,24,8,0.82)", cursor: "pointer",
                       fontWeight: attending === opt ? 500 : 400, transition: "all 0.15s",
                     }}
                   >
@@ -144,10 +144,10 @@ function RSVPPanel({ onClose, initialX, initialY }: {
                       onClick={() => setGuestCount(n)}
                       style={{
                         width: 36, height: 36, borderRadius: 8,
-                        border: "1px solid rgba(30,15,50,0.18)",
-                        background: guestCount === n ? "rgba(30,15,50,0.12)" : "rgba(255,255,255,0.55)",
+                        border: "1px solid rgba(255,255,255,0.20)",
+                        background: guestCount === n ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.55)",
                         fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
-                        color: "rgba(30,15,50,0.80)", cursor: "pointer",
+                        color: "rgba(42,24,8,0.82)", cursor: "pointer",
                         fontWeight: guestCount === n ? 600 : 400,
                       }}
                     >
@@ -174,15 +174,15 @@ function RSVPPanel({ onClose, initialX, initialY }: {
               />
             </div>
 
-            {error && <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(180,60,60,0.85)" }}>{error}</p>}
+            {error && <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(255,160,140,0.90)" }}>{error}</p>}
 
             <button
               onClick={handleSubmit}
               disabled={!name.trim() || !attending || submitting}
               style={{
                 width: "100%", padding: "10px 0", borderRadius: 10, border: "none",
-                background: "rgba(30,15,50,0.18)", fontFamily: "Inter, sans-serif",
-                fontSize: "0.85rem", fontWeight: 500, color: "rgba(30,15,50,0.80)",
+                background: "rgba(255,255,255,0.16)", fontFamily: "Inter, sans-serif",
+                fontSize: "0.85rem", fontWeight: 500, color: "rgba(255,240,218,0.90)",
                 cursor: !name.trim() || !attending || submitting ? "not-allowed" : "pointer",
                 opacity: !name.trim() || !attending ? 0.45 : 1, transition: "all 0.15s",
               }}
@@ -218,7 +218,7 @@ function SchedulePanel({ onClose, initialX, initialY }: { onClose: () => void; i
       zIndex={28}
     >
       <div style={{ padding: "12px 20px 20px" }}>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.08em", marginBottom: 14, textTransform: "uppercase" }}>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.45)", letterSpacing: "0.08em", marginBottom: 14, textTransform: "uppercase" }}>
           Times are indicative
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -226,8 +226,8 @@ function SchedulePanel({ onClose, initialX, initialY }: { onClose: () => void; i
             <div key={item.time} style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <span style={{ fontSize: "1.1rem", width: 24, textAlign: "center" }}>{item.icon}</span>
               <div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.45)", letterSpacing: "0.06em" }}>{item.time}</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.88rem", color: "rgba(30,15,50,0.78)", fontWeight: 400 }}>{item.label}</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.06em" }}>{item.time}</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.88rem", color: "rgba(255,240,218,0.88)", fontWeight: 400 }}>{item.label}</div>
               </div>
             </div>
           ))}
@@ -251,19 +251,19 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
     >
       <div style={{ padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 16 }}>
         <div>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Ceremony &amp; Reception</p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.92rem", fontWeight: 500, color: "rgba(30,15,50,0.80)", marginBottom: 4 }}>[Venue Name]</p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.55)", lineHeight: 1.5 }}>[Full Address]<br />[City, Country]</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Ceremony &amp; Reception</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.92rem", fontWeight: 500, color: "rgba(255,240,218,0.92)", marginBottom: 4 }}>[Venue Name]</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(255,240,218,0.70)", lineHeight: 1.5 }}>[Full Address]<br />[City, Country]</p>
         </div>
         <div>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(30,15,50,0.40)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Getting there</p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(30,15,50,0.60)", lineHeight: 1.6 }}>🚗 Parking available on site<br />🚂 [Nearest station] → taxi 15 min<br />✈️ [Nearest airport] → car 45 min</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Getting there</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(255,240,218,0.75)", lineHeight: 1.6 }}>🚗 Parking available on site<br />🚂 [Nearest station] → taxi 15 min<br />✈️ [Nearest airport] → car 45 min</p>
         </div>
         <a
           href="https://maps.google.com/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: "block", textAlign: "center", padding: "8px 0", borderRadius: 8, border: "1px solid rgba(30,15,50,0.18)", fontFamily: "Inter, sans-serif", fontSize: "0.80rem", color: "rgba(30,15,50,0.60)", textDecoration: "none", background: "rgba(255,255,255,0.40)" }}
+          style={{ display: "block", textAlign: "center", padding: "8px 0", borderRadius: 8, border: "1px solid rgba(255,255,255,0.20)", fontFamily: "Inter, sans-serif", fontSize: "0.80rem", color: "rgba(42,24,8,0.75)", textDecoration: "none", background: "rgba(255,255,255,0.50)" }}
         >
           Open in Maps →
         </a>

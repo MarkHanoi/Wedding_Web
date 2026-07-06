@@ -20,7 +20,8 @@ html, body, #root {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: #c4b4ee;
+  /* Beach palette base: warm golden sand */
+  background: #C8B898;
 }
 
 /* Safe-area padding for iOS notch / home indicator */
@@ -44,10 +45,11 @@ html, body, #root {
 @property --b4x { syntax: '<percentage>'; initial-value: 40%; inherits: false; }
 @property --b4y { syntax: '<percentage>'; initial-value: 5%;  inherits: false; }
 
-@property --c1 { syntax: '<color>'; initial-value: #a8bef7; inherits: false; }
-@property --c2 { syntax: '<color>'; initial-value: #f4a8d8; inherits: false; }
-@property --c3 { syntax: '<color>'; initial-value: #f7b8e2; inherits: false; }
-@property --c4 { syntax: '<color>'; initial-value: #b8d8fd; inherits: false; }
+/* Beach palette initial colours (Golden Shore — day 0) */
+@property --c1 { syntax: '<color>'; initial-value: #B8CECC; inherits: false; }
+@property --c2 { syntax: '<color>'; initial-value: #E8C99A; inherits: false; }
+@property --c3 { syntax: '<color>'; initial-value: #D4A574; inherits: false; }
+@property --c4 { syntax: '<color>'; initial-value: #EAD8C0; inherits: false; }
 
 @keyframes meshFlow {
   0% {
@@ -112,7 +114,7 @@ html, body, #root {
     radial-gradient(ellipse 70% 60% at var(--b2x) var(--b2y), var(--c2) 0%, transparent 58%),
     radial-gradient(ellipse 65% 55% at var(--b3x) var(--b3y), var(--c3) 0%, transparent 55%),
     radial-gradient(ellipse 55% 45% at var(--b4x) var(--b4y), var(--c4) 0%, transparent 50%),
-    #c4b4ee;
+    #C8B898;
   animation: meshFlow 45s ease-in-out infinite;
   transition:
     --c1 8s ease,
@@ -173,13 +175,14 @@ html, body, #root {
 /* Message list scrollbar */
 .message-list::-webkit-scrollbar        { width: 3px; }
 .message-list::-webkit-scrollbar-track  { background: transparent; }
-.message-list::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.20); border-radius: 99px; }
-.message-list::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.42); }
+.message-list::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.22); border-radius: 99px; }
+.message-list::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.44); }
 .message-list::-webkit-scrollbar-button { display: none; height: 0; }
-.message-list { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.20) transparent; }
+.message-list { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.22) transparent; }
 
 /* ── Floating glass panels ──────────────────────────────────────────────────
-   Used by FloatingPanel.tsx for chat, schedule, venue, and RSVP panels.
+   Beach palette version: warm dark sand glass instead of purple glass.
+   rgba(38,22,8) = very dark warm brown (extracted from deep wet sand)
 ── */
 
 .floating-panel {
@@ -187,12 +190,12 @@ html, body, #root {
   flex-direction: column;
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(20, 12, 42, 0.42);
-  backdrop-filter: blur(32px) saturate(150%);
-  -webkit-backdrop-filter: blur(32px) saturate(150%);
+  background: rgba(38, 22, 8, 0.38);
+  backdrop-filter: blur(32px) saturate(140%);
+  -webkit-backdrop-filter: blur(32px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 16px 56px rgba(0, 0, 0, 0.22),
+    0 16px 56px rgba(0, 0, 0, 0.20),
     0 1px 0 rgba(255, 255, 255, 0.14) inset;
   touch-action: none;
 }
@@ -213,13 +216,14 @@ html, body, #root {
   }
 }
 
+/* Chat panel: slightly darker warm sand glass */
 .floating-panel--chat {
-  background: rgba(12, 6, 28, 0.58);
-  backdrop-filter: blur(32px) saturate(150%);
-  -webkit-backdrop-filter: blur(32px) saturate(150%);
+  background: rgba(28, 14, 4, 0.55);
+  backdrop-filter: blur(32px) saturate(140%);
+  -webkit-backdrop-filter: blur(32px) saturate(140%);
   border-color: rgba(255, 255, 255, 0.13);
   box-shadow:
-    0 16px 56px rgba(0, 0, 0, 0.28),
+    0 16px 56px rgba(0, 0, 0, 0.26),
     0 1px 0 rgba(255, 255, 255, 0.10) inset;
 }
 
@@ -230,7 +234,7 @@ html, body, #root {
   justify-content: space-between;
   gap: 8px;
   padding: 12px 16px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   user-select: none;
 }
 
@@ -243,7 +247,7 @@ html, body, #root {
   flex-shrink: 0;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.30);
+  color: rgba(255, 255, 255, 0.32);
   cursor: pointer;
   font-size: 10px;
   line-height: 1;
@@ -254,8 +258,8 @@ html, body, #root {
 }
 
 .floating-panel__close:hover {
-  color: rgba(255, 255, 255, 0.70);
-  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.10);
 }
 
 .floating-panel__body {
