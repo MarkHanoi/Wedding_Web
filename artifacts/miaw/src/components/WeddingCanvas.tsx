@@ -276,8 +276,8 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
             style={{
               position: "absolute",
               top: 0,
-              right: "-5%",    /* bleeds past right edge to crop the black bar */
-              width: "125%",   /* 20% left crop (logo) + 5% right crop (black bar) */
+              left: "-20%",    /* shift left so both left text and right black bar are cropped */
+              width: "140%",   /* extra width covers left overhang + right overhang */
               height: "100%",
               border: "none",
               display: "block",
