@@ -61,12 +61,39 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           fs: 0,
           cc_load_policy: 0,
           cc_lang_pref: "none",
+          vq: "hd1080",
         },
         events: {
-          onReady: (e: any) => e.target.playVideo(),
+          onReady: (e: any) => {
+            e.target.playVideo();
+            // Force highest available quality
+            e.target.setPlaybackQuality("hd1080");
+          },
+          onPlaybackQualityChange: (e: any) => {
+            // Re-assert quality if YouTube downgrades it
+            const q = e.target.getPlaybackQuality();
+            if (q !== "hd1080" && q !== "highres") {
+              e.target.setPlaybackQuality("hd1080");
+            }
+          },
         },
       });
     };
+
+    // Unmute on the very first user interaction (browsers block autoplay+audio)
+    const unmuteOnInteraction = () => {
+      if (playerRef.current?.unMute) {
+        playerRef.current.unMute();
+        playerRef.current.setVolume(80);
+        setMuted(false);
+      }
+      window.removeEventListener("click", unmuteOnInteraction);
+      window.removeEventListener("keydown", unmuteOnInteraction);
+      window.removeEventListener("touchstart", unmuteOnInteraction);
+    };
+    window.addEventListener("click", unmuteOnInteraction, { once: true });
+    window.addEventListener("keydown", unmuteOnInteraction, { once: true });
+    window.addEventListener("touchstart", unmuteOnInteraction, { once: true });
 
     if ((window as any).YT && (window as any).YT.Player) {
       // API already loaded (e.g. after hot reload) — create player immediately
