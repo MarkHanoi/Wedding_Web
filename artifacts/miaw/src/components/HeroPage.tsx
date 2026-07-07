@@ -44,11 +44,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
 
   // Load YouTube IFrame API once and create the player
   useEffect(() => {
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
-
-    (window as any).onYouTubeIframeAPIReady = () => {
+    const createPlayer = () => {
       playerRef.current = new (window as any).YT.Player("yt-bg-player", {
         videoId: "6TZ79dQm7OI",
         playerVars: {
@@ -70,8 +66,24 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
       });
     };
 
+    if ((window as any).YT && (window as any).YT.Player) {
+      // API already loaded (e.g. after hot reload) — create player immediately
+      createPlayer();
+    } else {
+      (window as any).onYouTubeIframeAPIReady = createPlayer;
+      const existing = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+      if (!existing) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+    }
+
     return () => {
-      (window as any).onYouTubeIframeAPIReady = undefined;
+      if (playerRef.current?.destroy) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
     };
   }, []);
 
