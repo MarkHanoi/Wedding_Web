@@ -232,6 +232,19 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           }}
         />
 
+        {/* Bottom mask — covers burned-in subtitles in the video footage */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "18%",
+            background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.82) 60%, rgba(0,0,0,0.95) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+
         {/* Hero text — upper section */}
         <motion.div
           variants={stagger}
