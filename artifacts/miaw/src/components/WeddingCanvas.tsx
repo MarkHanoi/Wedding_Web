@@ -298,6 +298,26 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(255,240,218,0.75)", lineHeight: 1.6 }}>🚗 Parking available on site<br />🚂 Lisboa Oriente → Grândola (1h)<br />✈️ Lisbon Airport → car 1h30</p>
           </div>
 
+          <div>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 8 }}>Nearby Hotels</p>
+            {[
+              { name: "Amarello Hotel Praia Santo André", url: "https://www.hilton.com/en/hotels/lissatw-amarello-hotel-praia-de-santo-andre/" },
+              { name: "Tapestry Collection by Hilton", url: "https://www.hilton.com/en/tapestry/" },
+              { name: "Hotel Vila Park", url: "https://www.hotelvilapark.com/" },
+            ].map(({ name, url }) => (
+              <a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "7px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", fontFamily: "Inter, sans-serif", fontSize: "0.81rem", color: "rgba(255,240,218,0.80)", textDecoration: "none" }}
+              >
+                <span>🏨 {name}</span>
+                <span style={{ color: "rgba(255,240,218,0.40)", fontSize: "0.72rem" }}>→</span>
+              </a>
+            ))}
+          </div>
+
           <div style={{ display: "flex", gap: 8 }}>
             <a
               href="https://quintaamala.com/pt/"
