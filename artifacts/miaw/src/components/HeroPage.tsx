@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const BEACH_PALETTE = {
   c1: "#F0E4CC",
@@ -38,6 +39,53 @@ const fadeIn = {
 
 export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOpenVenue }: HeroPageProps) {
   const palette = BEACH_PALETTE;
+  const playerRef = useRef<any>(null);
+  const [muted, setMuted] = useState(true);
+
+  // Load YouTube IFrame API once and create the player
+  useEffect(() => {
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+
+    (window as any).onYouTubeIframeAPIReady = () => {
+      playerRef.current = new (window as any).YT.Player("yt-bg-player", {
+        videoId: "6TZ79dQm7OI",
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          loop: 1,
+          playlist: "6TZ79dQm7OI",
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          disablekb: 1,
+          fs: 0,
+        },
+        events: {
+          onReady: (e: any) => e.target.playVideo(),
+        },
+      });
+    };
+
+    return () => {
+      (window as any).onYouTubeIframeAPIReady = undefined;
+    };
+  }, []);
+
+  const toggleMute = () => {
+    if (!playerRef.current) return;
+    if (muted) {
+      playerRef.current.unMute();
+      playerRef.current.setVolume(80);
+      setMuted(false);
+    } else {
+      playerRef.current.mute();
+      setMuted(true);
+    }
+  };
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -140,25 +188,21 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
         style={{ position: "relative", flex: 1, overflow: "hidden" }}
         onClick={onEnterChat}
       >
-        {/* ── Full-bleed YouTube video background ─────────────────────────── */}
+        {/* ── Full-bleed YouTube video background (IFrame API) ────────────── */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#000" }}>
-          <iframe
-            src="https://www.youtube.com/embed/6TZ79dQm7OI?autoplay=1&mute=1&loop=1&playlist=6TZ79dQm7OI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-            allow="autoplay; encrypted-media"
+          <div
+            id="yt-bg-player"
             style={{
               position: "absolute",
-              /* Cover technique: always fills viewport regardless of aspect ratio */
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: "100vw",
-              height: "56.25vw",   /* 16:9 */
-              minWidth: "177.78vh",/* 16:9 inverted */
+              height: "56.25vw",    /* 16:9 */
+              minWidth: "177.78vh", /* 16:9 inverted */
               minHeight: "100vh",
-              border: "none",
               pointerEvents: "none",
             }}
-            title="background"
           />
         </div>
 
@@ -242,6 +286,36 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
             [D] · [M] · [YY]
           </motion.p>
         </motion.div>
+
+        {/* ── Mute / unmute toggle ─────────────────────────────────────────── */}
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+          title={muted ? "Unmute music" : "Mute music"}
+          style={{
+            position: "absolute",
+            bottom: 22,
+            right: 22,
+            zIndex: 10,
+            background: "rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255,255,255,0.25)",
+            borderRadius: "50%",
+            width: 38,
+            height: 38,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            transition: "background 0.2s",
+            color: "rgba(255,255,255,0.80)",
+            fontSize: "1rem",
+          }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
+        >
+          {muted ? "🔇" : "🔊"}
+        </button>
 
         {/* Bottom CTA */}
         <motion.div
