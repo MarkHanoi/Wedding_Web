@@ -59,6 +59,8 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           iv_load_policy: 3,
           disablekb: 1,
           fs: 0,
+          cc_load_policy: 0,
+          cc_lang_pref: "none",
         },
         events: {
           onReady: (e: any) => e.target.playVideo(),
