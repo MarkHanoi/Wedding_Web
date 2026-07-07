@@ -283,7 +283,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
               textTransform: "uppercase",
             }}
           >
-            [D] · [M] · [YY]
+            19 · 06 · 2027
           </motion.p>
         </motion.div>
 
