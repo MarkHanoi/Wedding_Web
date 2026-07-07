@@ -140,27 +140,36 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
         style={{ position: "relative", flex: 1, overflow: "hidden" }}
         onClick={onEnterChat}
       >
-        {/* Background gradient — replace with hero photo when ready */}
-        <div
-          className="gradient-canvas"
-          style={{
-            position: "absolute",
-            inset: 0,
-            "--c1": palette.c1,
-            "--c2": palette.c2,
-            "--c3": palette.c3,
-            "--c4": palette.c4,
-          } as React.CSSProperties}
-        />
+        {/* ── Full-bleed YouTube video background ─────────────────────────── */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#000" }}>
+          <iframe
+            src="https://www.youtube.com/embed/6TZ79dQm7OI?autoplay=1&mute=1&loop=1&playlist=6TZ79dQm7OI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
+            allow="autoplay; encrypted-media"
+            style={{
+              position: "absolute",
+              /* Cover technique: always fills viewport regardless of aspect ratio */
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100vw",
+              height: "56.25vw",   /* 16:9 */
+              minWidth: "177.78vh",/* 16:9 inverted */
+              minHeight: "100vh",
+              border: "none",
+              pointerEvents: "none",
+            }}
+            title="background"
+          />
+        </div>
 
-        {/* Dark overlay for text contrast — works with both gradient and photo */}
+        {/* Dark overlay for text contrast */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background: `
-              radial-gradient(ellipse 80% 60% at 50% 42%, rgba(0,0,0,0.32) 0%, transparent 70%),
-              linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.28) 100%)
+              radial-gradient(ellipse 80% 60% at 50% 42%, rgba(0,0,0,0.28) 0%, transparent 70%),
+              linear-gradient(to bottom, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 40%, rgba(0,0,0,0.32) 100%)
             `,
           }}
         />
