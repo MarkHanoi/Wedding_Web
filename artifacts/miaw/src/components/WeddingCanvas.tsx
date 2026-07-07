@@ -270,7 +270,7 @@ function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; init
         {/* Video — square crop of 16:9 source */}
         <div style={{ flexShrink: 0, position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "rgba(0,0,0,0.30)" }}>
           <iframe
-            src="https://www.youtube.com/embed/NvJ-ExpmOTc?autoplay=1&mute=1&loop=1&playlist=NvJ-ExpmOTc&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&showinfo=0&start=5&end=180"
+            src="https://www.youtube.com/embed/6TZ79dQm7OI?autoplay=1&mute=1&loop=1&playlist=6TZ79dQm7OI&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&showinfo=0&cc_load_policy=0"
             allow="autoplay; encrypted-media"
             allowFullScreen
             style={{
