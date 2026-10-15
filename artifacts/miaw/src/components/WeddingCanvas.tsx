@@ -99,9 +99,6 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       <div className="gradient-canvas wedding-scroll__background" aria-hidden="true" />
 
       <header className="wedding-scroll__header">
-        <a className="wedding-scroll__brand" href="#top" aria-label="Clémence and Antonio, top of page" data-testid="link-to-top">
-          C <span>&amp;</span> A
-        </a>
         <nav className="wedding-scroll__section-links" aria-label="Main sections">
           {sectionLinks.map((section) => (
             <a key={section.href} href={section.href}>
@@ -115,8 +112,10 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
             onClick={onGoToHero}
             type="button"
             data-testid="button-back-to-intro"
+            aria-label="Back to intro"
+            title="Back to intro"
           >
-            Back to intro
+            <span aria-hidden="true">←</span>
           </button>
         )}
       </header>
