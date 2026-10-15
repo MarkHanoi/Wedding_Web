@@ -4,6 +4,8 @@ A full-screen, conversational wedding website. The splash shows "C & A" in a chu
 
 ## Run & Operate
 
+- On a fresh import, run `pnpm install --frozen-lockfile` before starting either service.
+- Replit artifact previews use the managed workflows `artifacts/miaw: web` and `artifacts/api-server: API Server`.
 - `pnpm --filter @workspace/api-server run dev` — API server (port 8080)
 - `pnpm --filter @workspace/miaw run dev` — frontend (port 5000)
 - `pnpm run typecheck` — full typecheck across all packages
