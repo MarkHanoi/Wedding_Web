@@ -1,5 +1,6 @@
 import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
+import couplePhoto from "../../../../attached_assets/Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
@@ -124,11 +125,9 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
         <p className="wedding-scroll__eyebrow">We're Getting Married</p>
         <h1>Clémence &amp; Antonio</h1>
         <p className="wedding-scroll__lead">19 · 06 · 2027</p>
-        <div
-          className="wedding-scroll__photo-placeholder"
-          role="img"
-          aria-label="Wedding photo will be added here"
-        />
+        <figure className="wedding-scroll__photo">
+          <img src={couplePhoto} alt="A personal photo of Clémence and Antonio together" />
+        </figure>
         <a className="wedding-scroll__down" href="#our-story" aria-label="Scroll to our story" data-testid="link-scroll-to-story">
           <span aria-hidden="true">↓</span>
         </a>
