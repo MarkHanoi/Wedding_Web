@@ -41,9 +41,9 @@ const sectionLinks = [
   { href: "#our-story", label: "Our story" },
   { href: "#weekend", label: "The weekend" },
   { href: "#location", label: "Location" },
-  { href: "#dress-code", label: "Dress code" },
   { href: "#travel", label: "Travel" },
   { href: "#faq", label: "Good to know" },
+  { href: "#dress-code", label: "Dress code" },
   { href: "#rsvp", label: "RSVP" },
 ];
 
@@ -121,11 +121,14 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </header>
 
       <div id="top" className="wedding-scroll__intro">
-        <p className="wedding-scroll__eyebrow">Clémence &amp; Antonio · 19 June 2027</p>
-        <h1>Three days of light</h1>
-        <p className="wedding-scroll__lead">
-          A weekend by the sea, with our favourite people.
-        </p>
+        <p className="wedding-scroll__eyebrow">We’re getting married</p>
+        <h1>Clémence &amp; Antonio</h1>
+        <p className="wedding-scroll__lead">19 June 2027</p>
+        <div
+          className="wedding-scroll__photo-placeholder"
+          role="img"
+          aria-label="Wedding photo will be added here"
+        />
         <a className="wedding-scroll__down" href="#our-story" aria-label="Scroll to our story" data-testid="link-scroll-to-story">
           <span aria-hidden="true">↓</span>
         </a>
@@ -204,22 +207,6 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
         </a>
       </section>
 
-      <section id="dress-code" className="wedding-section wedding-section--band">
-        <div className="wedding-section__inner wedding-section__inner--narrow">
-          <p className="wedding-section__eyebrow">Dress code</p>
-          <h2>Ivory, sand &amp; soft light</h2>
-          <p>
-            Think natural linen, airy fabrics and warm neutrals. Please leave white
-            for the bride and black at home.
-          </p>
-          <div className="wedding-swatches" aria-label="Suggested colours">
-            {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
-              <span key={color} style={{ backgroundColor: color }} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="travel" className="wedding-section">
         <p className="wedding-section__eyebrow">Travel &amp; stay</p>
         <h2>A little further south</h2>
@@ -262,6 +249,22 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
             <summary data-testid="summary-gifts">Gifts?</summary>
             <p>Your presence is the gift. A contribution to our honeymoon is welcome.</p>
           </details>
+        </div>
+      </section>
+
+      <section id="dress-code" className="wedding-section wedding-section--band">
+        <div className="wedding-section__inner wedding-section__inner--narrow">
+          <p className="wedding-section__eyebrow">Dress code</p>
+          <h2>Ivory, sand &amp; soft light</h2>
+          <p>
+            Think natural linen, airy fabrics and warm neutrals. Please leave white
+            for the bride and black at home.
+          </p>
+          <div className="wedding-swatches" aria-label="Suggested colours">
+            {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
+              <span key={color} style={{ backgroundColor: color }} />
+            ))}
+          </div>
         </div>
       </section>
 

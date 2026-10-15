@@ -129,32 +129,6 @@ export default function HeroPage({ onEnterChat }: HeroPageProps) {
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
-
-      {/* ── Navigation bar ──────────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          height: 56,
-          background: "rgba(255,255,255,0.4)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: 28,
-          paddingRight: 28,
-          borderBottom: "1px solid rgba(255,255,255,0.3)",
-          pointerEvents: "none",
-        }}
-        aria-hidden="true"
-      />
-
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div
         style={{ position: "relative", flex: 1, overflow: "hidden" }}
