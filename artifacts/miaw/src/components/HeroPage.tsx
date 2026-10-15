@@ -131,40 +131,29 @@ export default function HeroPage({ onEnterChat }: HeroPageProps) {
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
 
       {/* ── Navigation bar ──────────────────────────────────────────────── */}
-      <motion.nav
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         style={{
-          position: "relative",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
           zIndex: 100,
-          flexShrink: 0,
           height: 56,
-          background: "rgba(10,7,3,0.96)",
+          background: "rgba(255,255,255,0.4)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           display: "flex",
           alignItems: "center",
           paddingLeft: 28,
           paddingRight: 28,
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          borderBottom: "1px solid rgba(255,255,255,0.3)",
+          pointerEvents: "none",
         }}
-      >
-        {/* Couple's initials */}
-        <div
-          style={{
-            fontFamily: "Cormorant Garamond, Georgia, serif",
-            fontSize: "1rem",
-            fontWeight: 400,
-            letterSpacing: "0.12em",
-            color: "rgba(255,255,255,0.82)",
-            userSelect: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
-          C &amp; A
-        </div>
-      </motion.nav>
+        aria-hidden="true"
+      />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div

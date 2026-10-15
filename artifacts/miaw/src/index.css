@@ -326,6 +326,7 @@ html, body, #root {
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   color: var(--wedding-ink);
   font-family: Inter, sans-serif;
   font-weight: 300;
@@ -345,7 +346,7 @@ html, body, #root {
   z-index: 2;
   top: 0;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
   min-height: 64px;
@@ -370,12 +371,44 @@ html, body, #root {
   font-style: italic;
 }
 
-.wedding-scroll__header-note,
 .wedding-scroll__home {
   color: var(--wedding-muted);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.wedding-scroll__section-links {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 20px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.wedding-scroll__section-links::-webkit-scrollbar {
+  display: none;
+}
+
+.wedding-scroll__section-links a {
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+  color: var(--wedding-muted);
+  font-size: 0.61rem;
+  font-weight: 400;
+  letter-spacing: 0.11em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.wedding-scroll__section-links a:hover,
+.wedding-scroll__section-links a:focus-visible {
+  border-bottom-color: var(--wedding-terra);
+  color: var(--wedding-terra);
 }
 
 .wedding-scroll__home {
@@ -394,6 +427,7 @@ html, body, #root {
 
 .wedding-scroll__intro {
   position: relative;
+  scroll-margin-top: 80px;
   display: flex;
   min-height: min(710px, calc(88vh - 64px));
   padding: 90px 24px 120px;
@@ -477,6 +511,7 @@ html, body, #root {
 }
 
 .wedding-section {
+  scroll-margin-top: 80px;
   width: min(100% - 48px, 920px);
   margin: 0 auto;
   padding: clamp(76px, 10vw, 128px) 0;
@@ -854,13 +889,36 @@ html, body, #root {
 
 @media (max-width: 760px) {
   .wedding-scroll__header {
-    grid-template-columns: 1fr auto;
-    min-height: 58px;
-    padding-inline: 20px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand home"
+      "links links";
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    padding: 8px 16px;
   }
 
-  .wedding-scroll__header-note {
-    display: none;
+  .wedding-scroll__brand {
+    grid-area: brand;
+  }
+
+  .wedding-scroll__home {
+    grid-area: home;
+  }
+
+  .wedding-scroll__section-links {
+    grid-area: links;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2px 14px;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .wedding-scroll__section-links a {
+    padding-block: 3px;
+    font-size: 0.56rem;
+    letter-spacing: 0.07em;
   }
 
   .wedding-scroll__intro {

@@ -37,6 +37,16 @@ const weekend = [
   },
 ];
 
+const sectionLinks = [
+  { href: "#our-story", label: "Our story" },
+  { href: "#weekend", label: "The weekend" },
+  { href: "#location", label: "Location" },
+  { href: "#dress-code", label: "Dress code" },
+  { href: "#travel", label: "Travel" },
+  { href: "#faq", label: "Good to know" },
+  { href: "#rsvp", label: "RSVP" },
+];
+
 export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
   const palette = getTodaysPalette();
   const [name, setName] = useState("");
@@ -92,7 +102,13 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
         <a className="wedding-scroll__brand" href="#top" aria-label="Clémence and Antonio, top of page" data-testid="link-to-top">
           C <span>&amp;</span> A
         </a>
-        <span className="wedding-scroll__header-note">Lisbon Coast · Portugal</span>
+        <nav className="wedding-scroll__section-links" aria-label="Main sections">
+          {sectionLinks.map((section) => (
+            <a key={section.href} href={section.href}>
+              {section.label}
+            </a>
+          ))}
+        </nav>
         {onGoToHero && (
           <button
             className="wedding-scroll__home"
@@ -231,7 +247,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
         </div>
       </section>
 
-      <section className="wedding-section wedding-section--faq">
+      <section id="faq" className="wedding-section wedding-section--faq">
         <div className="wedding-section__inner wedding-section__inner--narrow">
           <p className="wedding-section__eyebrow">A few notes</p>
           <h2>Good to know</h2>

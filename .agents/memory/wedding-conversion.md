@@ -12,7 +12,7 @@ description: Architecture and content synchronization rules for Clémence & Anto
 ## Current page flow
 
 - Explore opens a single continuous scroll page with the story, weekend schedule, location, dress code, travel, FAQ and RSVP.
-- Schedule, venue and RSVP are page sections, not separate navigation links or floating panels.
+- Schedule, venue and RSVP are sections on one continuous page, reached by sticky anchor links rather than separate pages or floating panels.
 - The API's wedding knowledge and guest-facing page contain overlapping details and must be synchronized.
 
 **Why:** Event facts appear in both the visible page and the API's AI knowledge, so updating only one source can give guests conflicting details.
