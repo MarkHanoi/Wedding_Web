@@ -121,9 +121,9 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </header>
 
       <div id="top" className="wedding-scroll__intro">
-        <p className="wedding-scroll__eyebrow">We’re getting married</p>
+        <p className="wedding-scroll__eyebrow">We're Getting Married</p>
         <h1>Clémence &amp; Antonio</h1>
-        <p className="wedding-scroll__lead">19 June 2027</p>
+        <p className="wedding-scroll__lead">19 · 06 · 2027</p>
         <div
           className="wedding-scroll__photo-placeholder"
           role="img"

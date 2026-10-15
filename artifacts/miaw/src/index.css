@@ -453,6 +453,16 @@ html, body, #root {
   text-transform: uppercase;
 }
 
+.wedding-scroll__intro .wedding-scroll__eyebrow {
+  margin: 0 0 12px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(14px, 2vw, 20px);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
 .wedding-scroll__intro h1,
 .wedding-section h2 {
   margin: 0;
@@ -463,12 +473,31 @@ html, body, #root {
   line-height: 1.04;
 }
 
+.wedding-scroll__intro h1 {
+  width: 90%;
+  max-width: 700px;
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+
 .wedding-scroll__lead {
   margin: 18px 0 0;
   color: var(--wedding-muted);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.15rem, 2.4vw, 1.55rem);
   font-style: italic;
+}
+
+.wedding-scroll__intro .wedding-scroll__lead {
+  margin: 4px 0 0;
+  font-family: Inter, sans-serif;
+  font-size: clamp(11px, 1.4vw, 15px);
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 .wedding-scroll__down {
