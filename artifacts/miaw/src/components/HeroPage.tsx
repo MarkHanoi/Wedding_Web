@@ -17,9 +17,6 @@ const BEACH_PALETTE = {
 
 interface HeroPageProps {
   onEnterChat: () => void;
-  onOpenRSVP: () => void;
-  onOpenSchedule: () => void;
-  onOpenVenue: () => void;
 }
 
 const stagger = {
@@ -37,10 +34,11 @@ const fadeIn = {
   show: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
-export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOpenVenue }: HeroPageProps) {
+export default function HeroPage({ onEnterChat }: HeroPageProps) {
   const palette = BEACH_PALETTE;
   const playerRef = useRef<any>(null);
   const [muted, setMuted] = useState(true);
+  const [videoUnavailable, setVideoUnavailable] = useState(false);
 
   // Load YouTube IFrame API once and create the player
   useEffect(() => {
@@ -76,6 +74,7 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
               e.target.setPlaybackQuality("hd1080");
             }
           },
+          onError: () => setVideoUnavailable(true),
         },
       });
     };
@@ -151,41 +150,9 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}
       >
-        {/* Left links */}
-        <div style={{ display: "flex", gap: 28, flex: 1 }}>
-          {[
-            { label: "Schedule", action: onOpenSchedule },
-            { label: "Venue", action: onOpenVenue },
-          ].map(({ label, action }) => (
-            <button
-              key={label}
-              onClick={action}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.78rem",
-                fontWeight: 400,
-                letterSpacing: "0.06em",
-                color: "rgba(255,255,255,0.62)",
-                padding: 0,
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.92)")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.62)")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-        {/* Center: initials + date placeholder */}
+        {/* Couple's initials */}
         <div
           style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
             fontFamily: "Cormorant Garamond, Georgia, serif",
             fontSize: "1rem",
             fontWeight: 400,
@@ -197,37 +164,11 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
         >
           C &amp; A
         </div>
-
-        {/* Right: RSVP button */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-          <button
-            onClick={onOpenRSVP}
-            style={{
-              background: "rgba(255,255,255,0.94)",
-              color: "#0a0a0a",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.72rem",
-              fontWeight: 500,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              padding: "7px 18px",
-              borderRadius: 3,
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.80)")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.94)")}
-          >
-            RSVP
-          </button>
-        </div>
       </motion.nav>
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div
         style={{ position: "relative", flex: 1, overflow: "hidden" }}
-        onClick={onEnterChat}
       >
         {/* ── Full-bleed YouTube video background (IFrame API) ────────────── */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#000" }}>
@@ -245,6 +186,21 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
               pointerEvents: "none",
             }}
           />
+          {videoUnavailable && (
+            <img
+              src="/hero-video-poster.jpg"
+              alt=""
+              aria-hidden="true"
+              data-testid="img-video-fallback"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          )}
         </div>
 
         {/* Dark overlay for text contrast */}
@@ -342,34 +298,38 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
         </motion.div>
 
         {/* ── Mute / unmute toggle ─────────────────────────────────────────── */}
-        <button
-          onClick={(e) => { e.stopPropagation(); toggleMute(); }}
-          title={muted ? "Unmute music" : "Mute music"}
-          style={{
-            position: "absolute",
-            bottom: 22,
-            right: 22,
-            zIndex: 10,
-            background: "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.25)",
-            borderRadius: "50%",
-            width: 38,
-            height: 38,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            transition: "background 0.2s",
-            color: "rgba(255,255,255,0.80)",
-            fontSize: "1rem",
-          }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
-        >
-          {muted ? "🔇" : "🔊"}
-        </button>
+        {!videoUnavailable && (
+          <button
+            onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+            title={muted ? "Unmute music" : "Mute music"}
+            aria-label={muted ? "Unmute music" : "Mute music"}
+            data-testid="button-toggle-music"
+            style={{
+              position: "absolute",
+              bottom: 22,
+              right: 22,
+              zIndex: 10,
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.25)",
+              borderRadius: "50%",
+              width: 38,
+              height: 38,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              transition: "background 0.2s",
+              color: "rgba(255,255,255,0.80)",
+              fontSize: "1rem",
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
+          >
+            {muted ? "🔇" : "🔊"}
+          </button>
+        )}
 
         {/* Bottom CTA */}
         <motion.div
@@ -396,6 +356,8 @@ export default function HeroPage({ onEnterChat, onOpenRSVP, onOpenSchedule, onOp
           >
             <button
               onClick={(e) => { e.stopPropagation(); onEnterChat(); }}
+              aria-label="Explore the wedding information"
+              data-testid="button-explore"
               style={{
                 background: "rgba(255,255,255,0.14)",
                 border: "1px solid rgba(255,255,255,0.28)",

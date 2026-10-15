@@ -312,3 +312,609 @@ html, body, #root {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Continuous wedding information page */
+.wedding-scroll {
+  --wedding-ink: #493b2e;
+  --wedding-muted: #786b5d;
+  --wedding-terra: #a96142;
+  --wedding-line: rgba(101, 77, 50, 0.2);
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  color: var(--wedding-ink);
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  isolation: isolate;
+}
+
+.wedding-scroll__background {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wedding-scroll__header {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 8px max(24px, calc((100vw - 1120px) / 2));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(248, 241, 228, 0.38);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.wedding-scroll__brand {
+  width: fit-content;
+  color: var(--wedding-ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.wedding-scroll__brand span {
+  color: var(--wedding-terra);
+  font-style: italic;
+}
+
+.wedding-scroll__header-note,
+.wedding-scroll__home {
+  color: var(--wedding-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.wedding-scroll__home {
+  justify-self: end;
+  padding: 8px 0 8px 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wedding-scroll__home:hover,
+.wedding-scroll__home:focus-visible {
+  color: var(--wedding-terra);
+}
+
+.wedding-scroll__intro {
+  position: relative;
+  display: flex;
+  min-height: min(710px, calc(88vh - 64px));
+  padding: 90px 24px 120px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.wedding-scroll__intro::before,
+.wedding-scroll__intro::after {
+  position: absolute;
+  width: min(260px, 42vw);
+  height: min(340px, 56vw);
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 50% 50% 0 0;
+  content: "";
+  pointer-events: none;
+}
+
+.wedding-scroll__intro::before {
+  transform: translateX(-6px);
+}
+
+.wedding-scroll__intro::after {
+  width: min(236px, 38vw);
+  height: min(316px, 52vw);
+  border-color: rgba(140, 103, 65, 0.19);
+}
+
+.wedding-scroll__intro > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wedding-scroll__eyebrow,
+.wedding-section__eyebrow {
+  margin: 0 0 14px;
+  color: var(--wedding-terra);
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.wedding-scroll__intro h1,
+.wedding-section h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.7rem, 7.5vw, 5.6rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+}
+
+.wedding-scroll__lead {
+  margin: 18px 0 0;
+  color: var(--wedding-muted);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-style: italic;
+}
+
+.wedding-scroll__down {
+  position: absolute;
+  bottom: 38px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(101, 77, 50, 0.28);
+  border-radius: 50%;
+  color: var(--wedding-ink);
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.wedding-scroll__down:hover {
+  transform: translateY(3px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.wedding-section {
+  width: min(100% - 48px, 920px);
+  margin: 0 auto;
+  padding: clamp(76px, 10vw, 128px) 0;
+  text-align: center;
+  scroll-margin-top: 76px;
+}
+
+.wedding-section > p:not(.wedding-section__eyebrow),
+.wedding-section__description {
+  max-width: 620px;
+  margin: 22px auto 0;
+  color: var(--wedding-muted);
+  font-size: 0.94rem;
+}
+
+.wedding-section h2 {
+  font-size: clamp(2.15rem, 5vw, 3.7rem);
+}
+
+.wedding-section--band {
+  width: 100%;
+  max-width: none;
+  padding: clamp(76px, 10vw, 120px) 24px;
+  border-block: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 250, 241, 0.22);
+}
+
+.wedding-section__inner {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.wedding-section__inner--narrow {
+  max-width: 700px;
+}
+
+.weekend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 44px;
+  text-align: left;
+}
+
+.weekend-card {
+  display: flex;
+  min-height: 330px;
+  padding: 26px 23px 24px;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(255, 252, 246, 0.48);
+  box-shadow: 0 16px 48px rgba(94, 69, 39, 0.06);
+}
+
+.weekend-card__date {
+  margin: 0 0 12px;
+  color: var(--wedding-terra);
+  font-size: 0.63rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.weekend-card h3,
+.travel-grid h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.7rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.weekend-card__description {
+  margin: 11px 0 20px;
+  color: var(--wedding-muted);
+  font-size: 0.84rem;
+}
+
+.weekend-card__events {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--wedding-line);
+}
+
+.weekend-card__event {
+  display: flex;
+  gap: 12px;
+  color: var(--wedding-muted);
+  font-size: 0.77rem;
+}
+
+.weekend-card__event span {
+  min-width: 54px;
+  color: var(--wedding-terra);
+  font-variant-numeric: tabular-nums;
+}
+
+.weekend-card__event strong {
+  color: var(--wedding-ink);
+  font-weight: 400;
+}
+
+.weekend-card__location {
+  margin: auto 0 0;
+  padding-top: 20px;
+  color: var(--wedding-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.text-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+  color: var(--wedding-terra);
+  font-size: 0.73rem;
+  letter-spacing: 0.1em;
+  text-decoration-color: rgba(169, 97, 66, 0.38);
+  text-underline-offset: 4px;
+}
+
+.text-link:hover {
+  text-decoration-color: currentColor;
+}
+
+.wedding-section--location {
+  max-width: 730px;
+}
+
+.wedding-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.wedding-swatches span {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(73, 59, 46, 0.13);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(62, 45, 24, 0.08);
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+.travel-grid article {
+  padding-top: 18px;
+  border-top: 1px solid var(--wedding-line);
+}
+
+.travel-grid article > span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--wedding-terra);
+  font-size: 0.65rem;
+  letter-spacing: 0.17em;
+}
+
+.travel-grid h3 {
+  font-size: 1.48rem;
+}
+
+.travel-grid p {
+  margin: 10px 0 0;
+  color: var(--wedding-muted);
+  font-size: 0.83rem;
+}
+
+.wedding-section--faq details {
+  padding: 16px 4px;
+  border-top: 1px solid var(--wedding-line);
+  text-align: left;
+}
+
+.wedding-section--faq details:first-of-type {
+  margin-top: 36px;
+}
+
+.wedding-section--faq details:last-of-type {
+  border-bottom: 1px solid var(--wedding-line);
+}
+
+.wedding-section--faq summary {
+  cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.wedding-section--faq details p {
+  margin: 8px 0 0;
+  color: var(--wedding-muted);
+  font-size: 0.87rem;
+}
+
+.wedding-section--rsvp {
+  width: 100%;
+  max-width: none;
+  padding: clamp(80px, 11vw, 132px) 24px;
+  background: rgba(68, 48, 29, 0.84);
+  color: #fbf3e7;
+}
+
+.wedding-section--rsvp .wedding-section__inner {
+  max-width: 700px;
+}
+
+.wedding-section--rsvp .wedding-section__eyebrow {
+  color: #e4b397;
+}
+
+.wedding-section--rsvp .wedding-section__description {
+  color: rgba(251, 243, 231, 0.72);
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 22px;
+  margin-top: 42px;
+  text-align: left;
+}
+
+.rsvp-field {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.rsvp-field > span,
+.rsvp-field legend {
+  padding: 0;
+  color: rgba(251, 243, 231, 0.76);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rsvp-field em {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.rsvp-field input,
+.rsvp-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 2px;
+  outline: none;
+  background: rgba(255, 250, 241, 0.94);
+  color: #493b2e;
+  font: 400 0.9rem Inter, sans-serif;
+}
+
+.rsvp-field textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.rsvp-field input:focus,
+.rsvp-field textarea:focus {
+  border-color: #e4b397;
+  box-shadow: 0 0 0 3px rgba(228, 179, 151, 0.2);
+}
+
+.rsvp-choice-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.rsvp-choice,
+.rsvp-guest {
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 250, 241, 0.84);
+  cursor: pointer;
+  font: 300 0.78rem Inter, sans-serif;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.rsvp-choice:hover,
+.rsvp-guest:hover,
+.rsvp-choice.is-selected,
+.rsvp-guest.is-selected {
+  border-color: #e4b397;
+  background: rgba(228, 179, 151, 0.2);
+  color: #fffaf1;
+}
+
+.rsvp-guests {
+  display: flex;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.rsvp-guest {
+  width: 44px;
+  min-height: 42px;
+}
+
+.rsvp-submit {
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  background: #fbf3e7;
+  color: #493b2e;
+  cursor: pointer;
+  font: 400 0.68rem Inter, sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 150ms ease, opacity 150ms ease;
+}
+
+.rsvp-submit:hover:not(:disabled) {
+  background: #e8d8b8;
+}
+
+.rsvp-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.rsvp-error {
+  margin: 0;
+  color: #ffd0ba;
+  font-size: 0.84rem;
+}
+
+.rsvp-success {
+  margin-top: 40px;
+  padding: 36px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rsvp-success > span {
+  color: #e4b397;
+  font-size: 1.7rem;
+}
+
+.rsvp-success h3 {
+  margin: 12px 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.rsvp-success p {
+  margin: 8px 0 0;
+  color: rgba(251, 243, 231, 0.76);
+}
+
+.wedding-scroll__footer {
+  padding: 28px 24px 38px;
+  color: var(--wedding-muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .wedding-scroll__header {
+    grid-template-columns: 1fr auto;
+    min-height: 58px;
+    padding-inline: 20px;
+  }
+
+  .wedding-scroll__header-note {
+    display: none;
+  }
+
+  .wedding-scroll__intro {
+    min-height: min(650px, calc(85vh - 58px));
+  }
+
+  .weekend-grid,
+  .travel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weekend-card {
+    min-height: 0;
+  }
+
+  .weekend-card__location {
+    margin-top: 20px;
+  }
+
+  .travel-grid {
+    gap: 22px;
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 440px) {
+  .wedding-section {
+    width: calc(100% - 36px);
+  }
+
+  .wedding-section--band,
+  .wedding-section--rsvp {
+    width: 100%;
+    padding-inline: 18px;
+  }
+
+  .wedding-scroll__intro {
+    padding-inline: 18px;
+  }
+
+  .rsvp-choice-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-scroll {
+    scroll-behavior: auto;
+  }
+
+  .wedding-scroll__down,
+  .rsvp-choice,
+  .rsvp-guest,
+  .rsvp-submit {
+    transition: none;
+  }
+}

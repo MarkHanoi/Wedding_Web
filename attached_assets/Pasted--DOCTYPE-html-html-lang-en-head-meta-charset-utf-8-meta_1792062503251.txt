@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A & B — Wedding in Portugal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F4EC;--sand:#EDE3D3;--ink:#3B342C;--soft:#7A6F62;--terra:#C46F47;--sage:#8E9B84;--line:#D9CDB9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1B17;--sand:#2A251F;--ink:#F1EADD;--soft:#B3A895;--terra:#E08A60;--sage:#A5B39B;--line:#40382E}}
+:root[data-theme="dark"]{--bg:#1E1B17;--sand:#2A251F;--ink:#F1EADD;--soft:#B3A895;--terra:#E08A60;--sage:#A5B39B;--line:#40382E}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;font-weight:300;line-height:1.7}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;margin:0}
+nav{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;padding:1.2rem;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase}
+nav a{color:var(--soft);text-decoration:none}nav a:hover{color:var(--terra)}
+section{max-width:960px;margin:0 auto;padding:5rem 1.5rem;text-align:center}
+.hero{padding-top:2rem}
+.arch{width:min(320px,80%);aspect-ratio:3/4;margin:0 auto 2.5rem;border-radius:999px 999px 0 0;background:linear-gradient(180deg,var(--sand),#E3D3BB 60%,var(--terra) 160%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:2rem;position:relative}
+.arch::after{content:"";position:absolute;inset:14px;border:1px solid var(--line);border-radius:999px 999px 0 0;pointer-events:none}
+.arch span{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+h1{font-size:clamp(3rem,10vw,6rem);line-height:1}
+h1 em{color:var(--terra);font-size:.6em;padding:0 .2em}
+.meta{letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--soft);margin-top:1.2rem}
+h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:1.5rem}
+.eyebrow{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem}
+p{max-width:560px;margin:0 auto 1rem;color:var(--soft)}
+.band{background:var(--sand);max-width:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2.5rem;margin-top:2.5rem;text-align:center}
+.grid h3{font-size:1.6rem;font-style:italic}
+.grid small{display:block;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);margin-bottom:.4rem}
+.swatches{display:flex;gap:1rem;justify-content:center;margin:2rem 0}
+.swatches i{width:54px;height:54px;border-radius:50%;border:1px solid var(--line)}
+.btn{display:inline-block;margin-top:1.5rem;padding:.9rem 2.4rem;border:1px solid var(--ink);color:var(--ink);text-decoration:none;letter-spacing:.25em;text-transform:uppercase;font-size:.75rem;border-radius:999px;transition:.3s}
+.btn:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+.faq{text-align:left;max-width:560px;margin:2rem auto 0}
+.faq details{border-top:1px solid var(--line);padding:1rem 0}
+.faq summary{cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.3rem}
+.faq p{margin:.6rem 0 0}
+footer{padding:3rem 1rem;text-align:center;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+</style>
+</head>
+<body>
+<nav><a href="#story">Our story</a><a href="#weekend">The weekend</a><a href="#dress">Dress code</a><a href="#stay">Travel</a><a href="#rsvp">RSVP</a></nav>
+
+<section class="hero">
+  <div class="arch"><span>Lisbon Coast · Portugal</span></div>
+  <h1>Name <em>&amp;</em> Name</h1>
+  <div class="meta">DD · MM · 2027 &nbsp;—&nbsp; Lisbon, Portugal</div>
+  <p style="margin-top:1.5rem;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.4rem">Ten years, two countries, one long summer. Un amor sin fronteras · Un amour sans frontières.</p>
+</section>
+
+<section id="story" class="band">
+  <div class="eyebrow">Our story</div>
+  <h2>From Paris to Madrid, and everywhere between</h2>
+  <p>She is French, he is Spanish, and for ten years the world has been our home: slow mornings in Formentera, sunsets in Comporta, rooftops in Mallorca, buildings that stop us in the street.</p>
+  <p>Now we're choosing Portugal, light, sea and stone, to celebrate with the people we love most.</p>
+</section>
+
+<section id="weekend">
+  <div class="eyebrow">The weekend</div>
+  <h2>Three days of light</h2>
+  <div class="grid">
+    <div><small>Friday · Evening</small><h3>Welcome drinks</h3><p>Barefoot, linen, sunset terrace.</p></div>
+    <div><small>Saturday · 5 pm</small><h3>Ceremony &amp; dinner</h3><p>Under open sky, followed by a long table and dancing.</p></div>
+    <div><small>Sunday · Midday</small><h3>Beach brunch</h3><p>Slow goodbyes by the water.</p></div>
+  </div>
+</section>
+
+<section id="dress" class="band">
+  <div class="eyebrow">Dress code</div>
+  <h2>Ivory, sand &amp; soft light</h2>
+  <p>Think natural linen, airy fabrics and warm neutrals. Please keep white for the bride, and leave the black at home.</p>
+  <div class="swatches"><i style="background:#F8F4EC"></i><i style="background:#E8DCC8"></i><i style="background:#CDB594"></i><i style="background:#8E9B84"></i><i style="background:#C46F47"></i></div>
+</section>
+
+<section id="stay">
+  <div class="eyebrow">Travel &amp; stay</div>
+  <h2>Getting to Lisbon</h2>
+  <p>Fly into Lisbon (LIS). We'll share a selection of boutique stays near the venue and a shuttle schedule for the weekend.</p>
+  <div class="grid">
+    <div><h3>Stay</h3><p>Hand-picked hotels &amp; villas</p></div>
+    <div><h3>Getting around</h3><p>Shuttles from Lisbon</p></div>
+    <div><h3>Explore</h3><p>Our favourite spots in Portugal</p></div>
+  </div>
+</section>
+
+<section id="rsvp" class="band">
+  <div class="eyebrow">RSVP</div>
+  <h2>Will you join us?</h2>
+  <p>Kindly reply before DD MM 2027 · Merci de répondre avant · Por favor confirma antes del.</p>
+  <a class="btn" href="mailto:hello@example.com?subject=RSVP">Reply</a>
+  <div class="faq">
+    <details><summary>Are children welcome?</summary><p>Yes, we'd love to see them.</p></details>
+    <details><summary>What if it's windy or rainy?</summary><p>We have a covered plan so the day stays beautiful.</p></details>
+    <details><summary>Gifts?</summary><p>Your presence is the gift. A contribution to our honeymoon is welcome.</p></details>
+  </div>
+</section>
+
+<footer>Name &amp; Name · Portugal 2027</footer>
+</body>
+</html>

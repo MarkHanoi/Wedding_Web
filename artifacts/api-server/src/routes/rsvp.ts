@@ -7,6 +7,7 @@ const RSVPSchema = z.object({
   name: z.string().min(1).max(200),
   attending: z.enum(["yes", "no"]),
   guests: z.number().int().min(0).max(10).optional().default(0),
+  shuttle: z.boolean().optional().default(false),
   dietary: z.string().max(500).optional().default(""),
   message: z.string().max(1000).optional().default(""),
 });

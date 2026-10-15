@@ -1,34 +1,20 @@
 ---
-name: Wedding site conversion
-description: Architecture decisions made when converting MIAW master's programme site to a wedding website for Clémence & Antonio
+name: Wedding site flow
+description: Architecture and content synchronization rules for Clémence & Antonio's wedding website
 ---
 
-The project was converted from a postgraduate programme site (MIAW) to a wedding website.
-
 ## What was kept
-- Animated pastel gradient background (`dailyPalette.ts` + CSS @property in `index.css`)
-- Streaming chat architecture (Claude via Replit AI Integrations, plain text stream)
-- FloatingPanel glass UI component
-- MessageBubble, TypingIndicator, CursorPrompt, ErrorBoundary
-- Express API server structure, rate limiting, alerting
 
-## What was replaced / removed
-- All MIAW academic content (curriculum, faculty, institutions, workshops, modules)
-- ConversationCanvas (3000 lines) → WeddingCanvas (~500 lines, clean)
-- All MIAW-specific routes (admin, apply, metrics, sessions, stripe, waitlist, og)
-- All email templates
-- All data files (faculty, guests, institutions, workshops)
-- i18n, analytics, layout, topicImages libs
-- FoundationsPage, AdvancedPage, TimelinePage
+- Animated pastel gradient background, including behind the information page.
+- Full-screen video hero with the couple's names, date, audio control and Explore button.
+- Express API server and RSVP route.
 
-## Key decisions
-- All wedding facts live in ONE file: `artifacts/api-server/knowledge/wedding.md` with `[PLACEHOLDER]` markers for unconfirmed details.
-- RSVP is in-memory only (needs a database for production persistence).
-- WeddingCanvas has three floating panels: Schedule (static `SCHEDULE` array in component), Venue, RSVP form.
-- Quick-pick buttons appear after the AI's first message: Schedule | Venue | RSVP.
-- System prompt uses warm/personal concierge voice, bilingual (French+English), with honesty instruction for placeholders.
-- Splash shows "C & A" in DePixelBreit pixel font, "Clémence & Antonio" subtitle.
+## Current page flow
 
-**Why:** Clean separation — all content is in the knowledge file (no code changes needed to update wedding info), architecture is minimal for a personal site.
+- Explore opens a single continuous scroll page with the story, weekend schedule, location, dress code, travel, FAQ and RSVP.
+- Schedule, venue and RSVP are page sections, not separate navigation links or floating panels.
+- The API's wedding knowledge and guest-facing page contain overlapping details and must be synchronized.
 
-**How to apply:** To update wedding details, edit `artifacts/api-server/knowledge/wedding.md` and restart the API Server. To update the static schedule timeline, also update the `SCHEDULE` array in `WeddingCanvas.tsx`.
+**Why:** Event facts appear in both the visible page and the API's AI knowledge, so updating only one source can give guests conflicting details.
+
+**How to apply:** When wedding information changes, update `artifacts/api-server/knowledge/wedding.md` and the corresponding content in `artifacts/miaw/src/components/WeddingCanvas.tsx`. RSVP submissions are currently in-memory and are lost when the API restarts.

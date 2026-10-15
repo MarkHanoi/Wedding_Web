@@ -1,2 +1,2 @@
-- [Wedding site conversion](wedding-conversion.md) — MIAW academic site was fully converted to a Clémence & Antonio wedding website; all wedding content lives in `artifacts/api-server/knowledge/wedding.md` as placeholders to fill in.
+- [Wedding site flow](wedding-conversion.md) — Explore opens a continuous scroll page; keep confirmed event details synchronized between the visible page and AI knowledge.
 - [Beach palette system](beach-palette.md) — full visual system from Comporta beach photo; gradient colours, glass panel tints, surface-aware text contrast rules, and design contract at `docs/contract/design-contract.md`.

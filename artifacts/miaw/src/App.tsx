@@ -6,7 +6,6 @@ import HeroPage from "./components/HeroPage";
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
 
 type View = "hero" | "canvas";
-type InitialPanel = "rsvp" | "schedule" | "venue" | null;
 
 const canvasVariants = {
   initial: { opacity: 0 },
@@ -22,10 +21,8 @@ const heroVariants = {
 
 export default function App() {
   const [view, setView] = useState<View>("hero");
-  const [initialPanel, setInitialPanel] = useState<InitialPanel>(null);
 
-  const goToCanvas = useCallback((panel: InitialPanel = null) => {
-    setInitialPanel(panel);
+  const goToCanvas = useCallback(() => {
     setView("canvas");
   }, []);
 
@@ -43,12 +40,7 @@ export default function App() {
               exit="exit"
               style={{ width: "100%", height: "100%" }}
             >
-              <HeroPage
-                onEnterChat={() => goToCanvas(null)}
-                onOpenRSVP={() => goToCanvas("rsvp")}
-                onOpenSchedule={() => goToCanvas("schedule")}
-                onOpenVenue={() => goToCanvas("venue")}
-              />
+              <HeroPage onEnterChat={goToCanvas} />
             </motion.div>
           )}
 
@@ -61,10 +53,7 @@ export default function App() {
               exit="exit"
               style={{ width: "100%", height: "100%" }}
             >
-              <WeddingCanvas
-                initialPanel={initialPanel}
-                onGoToHero={() => setView("hero")}
-              />
+              <WeddingCanvas onGoToHero={() => setView("hero")} />
             </motion.div>
           )}
 

@@ -1,6 +1,6 @@
 # Clémence & Antonio — Wedding Website
 
-A full-screen, conversational wedding website. The splash shows "C & A" in a chunky pixel font on a flowing pastel gradient — click anywhere or press a key and an AI concierge (powered by Claude) greets your guests, answers their questions, and lets them RSVP.
+A wedding website for Clémence & Antonio. The video landing page leads into one continuous, scrollable information page with the weekend schedule, location, travel notes, dress code and RSVP form.
 
 ## Run & Operate
 
@@ -21,7 +21,7 @@ A full-screen, conversational wedding website. The splash shows "C & A" in a chu
 ## Where things live
 
 - `artifacts/miaw/src/App.tsx` — splash screen → WeddingCanvas
-- `artifacts/miaw/src/components/WeddingCanvas.tsx` — main UI: chat, RSVP panel, schedule panel, venue panel
+- `artifacts/miaw/src/components/WeddingCanvas.tsx` — continuous wedding information page and RSVP form
 - `artifacts/miaw/src/components/` — MessageBubble, TypingIndicator, CursorPrompt, FloatingPanel, ErrorBoundary
 - `artifacts/miaw/src/lib/dailyPalette.ts` — 11 rotating pastel palettes (one per day)
 - `artifacts/api-server/src/routes/chat.ts` — Claude streaming endpoint (POST /api/chat) with rate limiting
@@ -32,14 +32,7 @@ A full-screen, conversational wedding website. The splash shows "C & A" in a chu
 
 ## Filling in wedding details
 
-Everything the AI knows about the wedding is in **`artifacts/api-server/knowledge/wedding.md`**.
-Search for `[` to find all placeholders. Key things to fill in:
-- Date, ceremony time, reception time
-- Venue name and full address
-- Hotel recommendations
-- Dress code
-- RSVP deadline and contact email
-- Schedule times (also update the static times in `WeddingCanvas.tsx` → `SCHEDULE` array)
+Wedding facts for the API live in **`artifacts/api-server/knowledge/wedding.md`**. Update both that file and the matching visible information in `artifacts/miaw/src/components/WeddingCanvas.tsx` when event details are confirmed. Do not restore the previous Quinta Amala venue.
 
 After editing the knowledge file, restart the API Server workflow for changes to take effect.
 
@@ -54,7 +47,7 @@ After editing the knowledge file, restart the API Server workflow for changes to
 ## Design
 
 - Font: DePixelBreit (pixel font) for "C & A" logo — chunky visible pixel blocks
-- Gradient: 4 radial blobs (pastel), 11-palette daily rotation defined in `dailyPalette.ts`
+- Gradient: 4 radial blobs (pastel), 11-palette daily rotation defined in `dailyPalette.ts`; the scroll page keeps the gradient fixed behind its content
 - Body text: Inter weight 300–400
 
 ## Optional environment variables

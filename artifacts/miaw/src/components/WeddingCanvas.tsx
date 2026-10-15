@@ -1,19 +1,47 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import FloatingPanel from "./FloatingPanel";
+import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
 
-// ── RSVP Form Panel ───────────────────────────────────────────────────────────
+const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
-const BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
+interface WeddingCanvasProps {
+  onGoToHero?: () => void;
+}
 
-function RSVPPanel({ onClose, initialX, initialY }: {
-  onClose: () => void;
-  initialX: number;
-  initialY: number;
-}) {
+const weekend = [
+  {
+    date: "Friday · 18 June 2027",
+    title: "Pre-wedding gathering",
+    description: "An evening together by the water before the wedding.",
+    location: "Aroeira Beach · Fonte da Telha",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal",
+    events: [{ time: "Evening", name: "Pre-wedding celebration" }],
+  },
+  {
+    date: "Saturday · 19 June 2027",
+    title: "The wedding",
+    description: "A ceremony beneath the open sky, followed by dinner and dancing.",
+    location: "South Lisbon · full venue details to follow",
+    events: [
+      { time: "17:00", name: "Ceremony" },
+      { time: "18:00", name: "Cocktails" },
+      { time: "21:00", name: "Dinner" },
+      { time: "Late", name: "Dancing" },
+    ],
+  },
+  {
+    date: "Sunday · 20 June 2027",
+    title: "Beach brunch",
+    description: "A slow, sunny goodbye by the water.",
+    location: "Details to follow",
+    events: [{ time: "Midday", name: "Brunch" }],
+  },
+];
+
+export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
+  const palette = getTodaysPalette();
   const [name, setName] = useState("");
   const [attending, setAttending] = useState<"yes" | "no" | "">("");
+  const [needsShuttle, setNeedsShuttle] = useState<"yes" | "no" | "">("");
   const [guestCount, setGuestCount] = useState(0);
   const [dietary, setDietary] = useState("");
   const [message, setMessage] = useState("");
@@ -21,467 +49,345 @@ function RSVPPanel({ onClose, initialX, initialY }: {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async () => {
-    if (!name.trim() || !attending) return;
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!name.trim() || !attending || (attending === "yes" && !needsShuttle)) return;
+
     setSubmitting(true);
     setError("");
     try {
-      const res = await fetch(`${BASE}/api/rsvp`, {
+      const response = await fetch(`${API_BASE}/api/rsvp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), attending, guests: guestCount, dietary, message }),
+        body: JSON.stringify({
+          name: name.trim(),
+          attending,
+          guests: attending === "yes" ? guestCount : 0,
+          shuttle: attending === "yes" && needsShuttle === "yes",
+          dietary: dietary.trim(),
+          message: message.trim(),
+        }),
       });
-      if (!res.ok) throw new Error("Failed");
+      if (!response.ok) throw new Error("RSVP request failed");
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError("We couldn't send your reply just now. Please try again in a moment.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  const labelStyle: React.CSSProperties = {
-    fontFamily: "Inter, sans-serif",
-    fontSize: "0.68rem",
-    fontWeight: 400,
-    letterSpacing: "0.12em",
-    textTransform: "uppercase",
-    color: "rgba(255,240,218,0.52)",
-    marginBottom: 4,
-    display: "block",
-  };
-
-  const inputStyle: React.CSSProperties = {
-    width: "100%",
-    background: "rgba(255,255,255,0.55)",
-    border: "1px solid rgba(255,255,255,0.20)",
-    borderRadius: 8,
-    padding: "8px 12px",
-    fontFamily: "Inter, sans-serif",
-    fontSize: "0.88rem",
-    color: "rgba(42,24,8,0.85)",
-    outline: "none",
-    boxSizing: "border-box",
-  };
+  const scrollStyle = {
+    "--c1": palette.c1,
+    "--c2": palette.c2,
+    "--c3": palette.c3,
+    "--c4": palette.c4,
+  } as CSSProperties;
 
   return (
-    <FloatingPanel
-      title={
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>
-          RSVP
-        </span>
-      }
-      onClose={onClose}
-      initialX={initialX}
-      initialY={initialY}
-      width={360}
-      zIndex={30}
-    >
-      <div style={{ padding: "16px 20px 20px", overflowY: "auto", maxHeight: "calc(100% - 48px)" }}>
-        {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{ textAlign: "center", padding: "24px 0" }}
+    <main className="wedding-scroll" style={scrollStyle} data-testid="page-wedding-information">
+      <div className="gradient-canvas wedding-scroll__background" aria-hidden="true" />
+
+      <header className="wedding-scroll__header">
+        <a className="wedding-scroll__brand" href="#top" aria-label="Clémence and Antonio, top of page" data-testid="link-to-top">
+          C <span>&amp;</span> A
+        </a>
+        <span className="wedding-scroll__header-note">Lisbon Coast · Portugal</span>
+        {onGoToHero && (
+          <button
+            className="wedding-scroll__home"
+            onClick={onGoToHero}
+            type="button"
+            data-testid="button-back-to-intro"
           >
-            <div style={{ fontSize: "2rem", marginBottom: 12 }}>🎉</div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", color: "rgba(255,240,218,0.85)", lineHeight: 1.6 }}>
-              Thank you, {name.split(" ")[0]}!<br />
-              {attending === "yes" ? "We can't wait to celebrate with you." : "We'll miss you, but thank you for letting us know."}
-            </p>
-          </motion.div>
-        ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div>
-              <label style={labelStyle}>Your name</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" style={inputStyle} />
-            </div>
+            Back to intro
+          </button>
+        )}
+      </header>
 
-            <div>
-              <label style={labelStyle}>Will you attend?</label>
-              <div style={{ display: "flex", gap: 8 }}>
-                {(["yes", "no"] as const).map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setAttending(opt)}
-                    style={{
-                      flex: 1, padding: "8px 0", borderRadius: 8,
-                      border: "1px solid rgba(255,255,255,0.20)",
-                      background: attending === opt ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.55)",
-                      fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
-                      color: "rgba(42,24,8,0.82)", cursor: "pointer",
-                      fontWeight: attending === opt ? 500 : 400, transition: "all 0.15s",
-                    }}
-                  >
-                    {opt === "yes" ? "✓ Attending" : "✗ Can't make it"}
-                  </button>
-                ))}
-              </div>
-            </div>
+      <div id="top" className="wedding-scroll__intro">
+        <p className="wedding-scroll__eyebrow">Clémence &amp; Antonio · 19 June 2027</p>
+        <h1>Three days of light</h1>
+        <p className="wedding-scroll__lead">
+          A weekend by the sea, with our favourite people.
+        </p>
+        <a className="wedding-scroll__down" href="#our-story" aria-label="Scroll to our story" data-testid="link-scroll-to-story">
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
 
-            {attending === "yes" && (
-              <div>
-                <label style={labelStyle}>Additional guests (excl. yourself)</label>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  {[0, 1, 2, 3].map((n) => (
-                    <button
-                      key={n}
-                      onClick={() => setGuestCount(n)}
-                      style={{
-                        width: 36, height: 36, borderRadius: 8,
-                        border: "1px solid rgba(255,255,255,0.20)",
-                        background: guestCount === n ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.55)",
-                        fontFamily: "Inter, sans-serif", fontSize: "0.85rem",
-                        color: "rgba(42,24,8,0.82)", cursor: "pointer",
-                        fontWeight: guestCount === n ? 600 : 400,
-                      }}
-                    >
-                      {n}
-                    </button>
+      <section id="our-story" className="wedding-section wedding-section--story">
+        <p className="wedding-section__eyebrow">Our story</p>
+        <h2>From Paris to Madrid, and everywhere between</h2>
+        <p>
+          She is French, he is Spanish, and for ten years the world has been our home:
+          slow mornings in Formentera, sunsets in Comporta, rooftops in Mallorca, and
+          buildings that stop us in the street.
+        </p>
+        <p>
+          Now we’re choosing Portugal, light, sea and stone, to celebrate with the
+          people we love most.
+        </p>
+      </section>
+
+      <section id="weekend" className="wedding-section wedding-section--band">
+        <div className="wedding-section__inner">
+          <p className="wedding-section__eyebrow">The weekend</p>
+          <h2>Meet us in South Lisbon</h2>
+          <p className="wedding-section__description">
+            Three days together on the Lisbon coast. More practical details will be
+            added here as they’re confirmed.
+          </p>
+          <div className="weekend-grid">
+            {weekend.map((day, index) => (
+              <article className="weekend-card" key={day.date} data-testid={`card-weekend-${index}`}>
+                <p className="weekend-card__date">{day.date}</p>
+                <h3>{day.title}</h3>
+                <p className="weekend-card__description">{day.description}</p>
+                <div className="weekend-card__events">
+                  {day.events.map((item) => (
+                    <div className="weekend-card__event" key={`${item.time}-${item.name}`}>
+                      <span data-testid={`text-event-time-${index}-${item.time}`}>{item.time}</span>
+                      <strong data-testid={`text-event-name-${index}-${item.time}`}>{item.name}</strong>
+                    </div>
                   ))}
                 </div>
-              </div>
-            )}
-
-            <div>
-              <label style={labelStyle}>Dietary requirements</label>
-              <input type="text" value={dietary} onChange={(e) => setDietary(e.target.value)} placeholder="Vegetarian, allergies, etc." style={inputStyle} />
-            </div>
-
-            <div>
-              <label style={labelStyle}>Message to the couple (optional)</label>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="A little note for Clémence & Antonio…"
-                rows={3}
-                style={{ ...inputStyle, resize: "vertical", minHeight: 72 }}
-              />
-            </div>
-
-            {error && <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(255,160,140,0.90)" }}>{error}</p>}
-
-            <button
-              onClick={handleSubmit}
-              disabled={!name.trim() || !attending || submitting}
-              style={{
-                width: "100%", padding: "10px 0", borderRadius: 10, border: "none",
-                background: "rgba(255,255,255,0.16)", fontFamily: "Inter, sans-serif",
-                fontSize: "0.85rem", fontWeight: 500, color: "rgba(255,240,218,0.90)",
-                cursor: !name.trim() || !attending || submitting ? "not-allowed" : "pointer",
-                opacity: !name.trim() || !attending ? 0.45 : 1, transition: "all 0.15s",
-              }}
-            >
-              {submitting ? "Sending…" : "Send RSVP"}
-            </button>
-          </div>
-        )}
-      </div>
-    </FloatingPanel>
-  );
-}
-
-// ── Schedule Panel ────────────────────────────────────────────────────────────
-
-const SCHEDULE_DAYS = [
-  {
-    day: "Friday, 18 June",
-    events: [
-      { time: "Evening", label: "Pre-wedding party", icon: "🎉" },
-    ],
-  },
-  {
-    day: "Saturday, 19 June",
-    events: [
-      { time: "16:30", label: "Guests arrive", icon: "🌿" },
-      { time: "17:00", label: "Ceremony", icon: "💍" },
-      { time: "18:00", label: "Cocktail hour", icon: "🥂" },
-      { time: "21:00", label: "Dinner", icon: "🍽️" },
-      { time: "00:00", label: "Dancing until 4 AM", icon: "🎶" },
-    ],
-  },
-  {
-    day: "Sunday, 20 June",
-    events: [
-      { time: "12:00", label: "Brunch", icon: "☀️" },
-    ],
-  },
-];
-
-function SchedulePanel({ onClose, initialX, initialY }: { onClose: () => void; initialX: number; initialY: number }) {
-  return (
-    <FloatingPanel
-      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>The Weekend</span>}
-      onClose={onClose}
-      initialX={initialX}
-      initialY={initialY}
-      width={300}
-      zIndex={28}
-    >
-      <div style={{ padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 20 }}>
-        {SCHEDULE_DAYS.map((day, di) => (
-          <div key={day.day}>
-            {/* Day header */}
-            <p style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.68rem",
-              fontWeight: 500,
-              color: "rgba(255,240,218,0.45)",
-              letterSpacing: "0.10em",
-              textTransform: "uppercase",
-              marginBottom: 10,
-              paddingBottom: 6,
-              borderBottom: "1px solid rgba(255,255,255,0.10)",
-            }}>
-              {day.day}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {day.events.map((item) => (
-                <div key={`${di}-${item.time}`} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <span style={{ fontSize: "1.05rem", width: 22, textAlign: "center", flexShrink: 0 }}>{item.icon}</span>
-                  <div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.70rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.06em" }}>{item.time}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.86rem", color: "rgba(255,240,218,0.88)", fontWeight: 400 }}>{item.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </FloatingPanel>
-  );
-}
-
-// ── Venue Panel ───────────────────────────────────────────────────────────────
-
-function VenuePanel({ onClose, initialX, initialY }: { onClose: () => void; initialX: number; initialY: number }) {
-  return (
-    <FloatingPanel
-      title={<span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>Venue</span>}
-      onClose={onClose}
-      initialX={initialX}
-      initialY={initialY}
-      width={340}
-      zIndex={26}
-    >
-      <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-
-        {/* Video — square crop of 16:9 source */}
-        <div style={{ flexShrink: 0, position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "rgba(0,0,0,0.30)" }}>
-          <iframe
-            src="https://www.youtube.com/embed/6TZ79dQm7OI?autoplay=1&mute=1&loop=1&playlist=6TZ79dQm7OI&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&showinfo=0&cc_load_policy=0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              top: 0,
-              left: "-20%",    /* shift left so both left text and right black bar are cropped */
-              width: "140%",   /* extra width covers left overhang + right overhang */
-              height: "100%",
-              border: "none",
-              display: "block",
-            }}
-          />
-        </div>
-
-        {/* Details */}
-        <div style={{ padding: "14px 20px 20px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto" }}>
-          <div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Ceremony &amp; Reception</p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.92rem", fontWeight: 500, color: "rgba(255,240,218,0.92)", marginBottom: 2 }}>Quinta Amala</p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(255,240,218,0.70)", lineHeight: 1.5 }}>Melides, Grândola<br />Alentejo, Portugal</p>
-          </div>
-
-          <div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 6 }}>Getting there</p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: "rgba(255,240,218,0.75)", lineHeight: 1.6 }}>🚗 Parking available on site<br />🚂 Lisboa Oriente → Grândola (1h)<br />✈️ Lisbon Airport → car 1h30</p>
-          </div>
-
-          <div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,240,218,0.50)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 8 }}>Nearby Hotels</p>
-            {[
-              { name: "Amarello Hotel Praia Santo André", url: "https://www.hilton.com/en/hotels/lissatw-amarello-hotel-praia-de-santo-andre/" },
-              { name: "Tapestry Collection by Hilton", url: "https://www.hilton.com/en/tapestry/" },
-              { name: "Hotel Vila Park", url: "https://www.hotelvilapark.com/" },
-            ].map(({ name, url }) => (
-              <a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "7px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", fontFamily: "Inter, sans-serif", fontSize: "0.81rem", color: "rgba(255,240,218,0.80)", textDecoration: "none" }}
-              >
-                <span>🏨 {name}</span>
-                <span style={{ color: "rgba(255,240,218,0.40)", fontSize: "0.72rem" }}>→</span>
-              </a>
+                <p className="weekend-card__location">{day.location}</p>
+                {day.mapUrl && (
+                  <a
+                    className="text-link"
+                    href={day.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-prewedding-map"
+                  >
+                    View the beach on a map <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </article>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div style={{ display: "flex", gap: 8 }}>
-            <a
-              href="https://quintaamala.com/pt/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ flex: 1, display: "block", textAlign: "center", padding: "8px 0", borderRadius: 8, border: "1px solid rgba(255,255,255,0.20)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(42,24,8,0.75)", textDecoration: "none", background: "rgba(255,255,255,0.50)" }}
-            >
-              Website →
-            </a>
-            <a
-              href="https://www.google.com/maps/search/Quinta+Amala,+Melides,+Portugal"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ flex: 1, display: "block", textAlign: "center", padding: "8px 0", borderRadius: 8, border: "1px solid rgba(255,255,255,0.20)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(42,24,8,0.75)", textDecoration: "none", background: "rgba(255,255,255,0.50)" }}
-            >
-              Maps →
-            </a>
+      <section id="location" className="wedding-section wedding-section--location">
+        <p className="wedding-section__eyebrow">The place</p>
+        <h2>South Lisbon, close to the sea</h2>
+        <p>
+          Our pre-wedding gathering is at Aroeira Beach in Fonte da Telha. The
+          wedding celebration will be in South Lisbon; we’ll share the exact venue
+          and address as soon as they’re confirmed.
+        </p>
+        <a
+          className="text-link"
+          href="https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="link-location-map"
+        >
+          Aroeira Beach · Fonte da Telha <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <section id="dress-code" className="wedding-section wedding-section--band">
+        <div className="wedding-section__inner wedding-section__inner--narrow">
+          <p className="wedding-section__eyebrow">Dress code</p>
+          <h2>Ivory, sand &amp; soft light</h2>
+          <p>
+            Think natural linen, airy fabrics and warm neutrals. Please leave white
+            for the bride and black at home.
+          </p>
+          <div className="wedding-swatches" aria-label="Suggested colours">
+            {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
+              <span key={color} style={{ backgroundColor: color }} />
+            ))}
           </div>
         </div>
-      </div>
-    </FloatingPanel>
-  );
-}
+      </section>
 
-// ── Main Component ────────────────────────────────────────────────────────────
+      <section id="travel" className="wedding-section">
+        <p className="wedding-section__eyebrow">Travel &amp; stay</p>
+        <h2>A little further south</h2>
+        <p>
+          Fly into Lisbon Airport (LIS). We’ll share accommodation suggestions and
+          local transport details when they’re ready.
+        </p>
+        <div className="travel-grid">
+          <article>
+            <span>01</span>
+            <h3>Getting here</h3>
+            <p>Lisbon Airport is the closest international airport.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Where to stay</h3>
+            <p>Stay recommendations will be added soon.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Getting around</h3>
+            <p>We’ll share local transport and shuttle information closer to the day.</p>
+          </article>
+        </div>
+      </section>
 
-interface WeddingCanvasProps {
-  initialPanel?: "rsvp" | "schedule" | "venue" | null;
-  onGoToHero?: () => void;
-}
+      <section className="wedding-section wedding-section--faq">
+        <div className="wedding-section__inner wedding-section__inner--narrow">
+          <p className="wedding-section__eyebrow">A few notes</p>
+          <h2>Good to know</h2>
+          <details>
+            <summary data-testid="summary-children">Are children welcome?</summary>
+            <p>Yes, we’d love to see them.</p>
+          </details>
+          <details>
+            <summary data-testid="summary-weather">What if it’s windy or rainy?</summary>
+            <p>We have a covered plan so the day stays beautiful.</p>
+          </details>
+          <details>
+            <summary data-testid="summary-gifts">Gifts?</summary>
+            <p>Your presence is the gift. A contribution to our honeymoon is welcome.</p>
+          </details>
+        </div>
+      </section>
 
-export default function WeddingCanvas({ initialPanel, onGoToHero }: WeddingCanvasProps) {
-  const palette = getTodaysPalette();
+      <section id="rsvp" className="wedding-section wedding-section--rsvp">
+        <div className="wedding-section__inner wedding-section__inner--narrow">
+          <p className="wedding-section__eyebrow">RSVP</p>
+          <h2>Will you join us?</h2>
+          <p className="wedding-section__description">
+            Please reply for the wedding weekend. We’ll add the response deadline soon.
+          </p>
 
-  const [showSchedule, setShowSchedule] = useState(initialPanel === "schedule");
-  const [showVenue, setShowVenue] = useState(initialPanel === "venue");
-  const [showRSVP, setShowRSVP] = useState(initialPanel === "rsvp");
+          {submitted ? (
+            <div className="rsvp-success" role="status" data-testid="status-rsvp-success">
+              <span aria-hidden="true">✳</span>
+              <h3>Thank you, {name.split(" ")[0]}.</h3>
+              <p>
+                {attending === "yes"
+                  ? "We can’t wait to celebrate with you."
+                  : "We’ll miss you, but thank you for letting us know."}
+              </p>
+            </div>
+          ) : (
+            <form className="rsvp-form" onSubmit={handleSubmit}>
+              <label className="rsvp-field">
+                <span>Your name</span>
+                <input
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Full name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                  data-testid="input-rsvp-name"
+                />
+              </label>
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+              <fieldset className="rsvp-field">
+                <legend>Will you attend?</legend>
+                <div className="rsvp-choice-row">
+                  <button
+                    className={`rsvp-choice${attending === "yes" ? " is-selected" : ""}`}
+                    type="button"
+                    aria-pressed={attending === "yes"}
+                    onClick={() => setAttending("yes")}
+                    data-testid="button-rsvp-attending"
+                  >
+                    Joyfully accepts
+                  </button>
+                  <button
+                    className={`rsvp-choice${attending === "no" ? " is-selected" : ""}`}
+                    type="button"
+                    aria-pressed={attending === "no"}
+                    onClick={() => setAttending("no")}
+                    data-testid="button-rsvp-decline"
+                  >
+                    Regretfully declines
+                  </button>
+                </div>
+              </fieldset>
 
-  const panelX = isMobile ? 8 : 64;
-  const panelY = isMobile ? 60 : 72;
+              {attending === "yes" && (
+                <>
+                  <fieldset className="rsvp-field">
+                    <legend>Additional guests, excluding yourself</legend>
+                    <div className="rsvp-guests">
+                      {[0, 1, 2, 3].map((count) => (
+                        <button
+                          key={count}
+                          className={`rsvp-guest${guestCount === count ? " is-selected" : ""}`}
+                          type="button"
+                          aria-pressed={guestCount === count}
+                          onClick={() => setGuestCount(count)}
+                          data-testid={`button-rsvp-guests-${count}`}
+                        >
+                          {count}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <fieldset className="rsvp-field">
+                    <legend>Will you need a shuttle?</legend>
+                    <div className="rsvp-choice-row">
+                      {(["yes", "no"] as const).map((answer) => (
+                        <button
+                          key={answer}
+                          className={`rsvp-choice${needsShuttle === answer ? " is-selected" : ""}`}
+                          type="button"
+                          aria-pressed={needsShuttle === answer}
+                          onClick={() => setNeedsShuttle(answer)}
+                          data-testid={`button-rsvp-shuttle-${answer}`}
+                        >
+                          {answer === "yes" ? "Yes, please" : "No, thank you"}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                </>
+              )}
 
-  const pillStyle: React.CSSProperties = {
-    padding: "8px 20px",
-    borderRadius: 100,
-    border: "1px solid rgba(255,255,255,0.28)",
-    background: "rgba(255,255,255,0.12)",
-    backdropFilter: "blur(8px)",
-    WebkitBackdropFilter: "blur(8px)",
-    fontFamily: "Inter, sans-serif",
-    fontSize: "0.80rem",
-    fontWeight: 300,
-    letterSpacing: "0.05em",
-    color: "rgba(255,255,255,0.82)",
-    cursor: "pointer",
-    transition: "background 0.15s",
-  };
+              <label className="rsvp-field">
+                <span>Dietary requirements</span>
+                <input
+                  type="text"
+                  name="dietary"
+                  placeholder="Allergies or preferences"
+                  value={dietary}
+                  onChange={(event) => setDietary(event.target.value)}
+                  data-testid="input-rsvp-dietary"
+                />
+              </label>
 
-  return (
-    <main
-      className="gradient-canvas"
-      style={{
-        position: "fixed",
-        inset: 0,
-        "--c1": palette.c1,
-        "--c2": palette.c2,
-        "--c3": palette.c3,
-        "--c4": palette.c4,
-      } as React.CSSProperties}
-    >
-      {/* ← Home */}
-      {onGoToHero && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          onClick={onGoToHero}
-          style={{
-            position: "fixed",
-            top: 18,
-            right: 20,
-            zIndex: 200,
-            background: "rgba(0,0,0,0.28)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.18)",
-            borderRadius: 100,
-            padding: "6px 14px",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "0.72rem",
-            fontWeight: 300,
-            color: "rgba(255,255,255,0.72)",
-            cursor: "pointer",
-            letterSpacing: "0.06em",
-          }}
-        >
-          ← Home
-        </motion.button>
-      )}
+              <label className="rsvp-field">
+                <span>A note for the couple <em>(optional)</em></span>
+                <textarea
+                  name="message"
+                  rows={3}
+                  placeholder="Write a little note…"
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  data-testid="input-rsvp-message"
+                />
+              </label>
 
-      {/* Bottom pill nav */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        style={{
-          position: "fixed",
-          bottom: 28,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 100,
-          display: "flex",
-          gap: 10,
-        }}
-      >
-        <button
-          style={pillStyle}
-          onClick={() => setShowSchedule(true)}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
-        >
-          📅 Schedule
-        </button>
-        <button
-          style={pillStyle}
-          onClick={() => setShowVenue(true)}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
-        >
-          📍 Venue
-        </button>
-        <button
-          style={pillStyle}
-          onClick={() => setShowRSVP(true)}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.22)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.12)")}
-        >
-          ✉️ RSVP
-        </button>
-      </motion.div>
+              {error && <p className="rsvp-error" role="alert" data-testid="status-rsvp-error">{error}</p>}
+              <button
+                className="rsvp-submit"
+                type="submit"
+                disabled={!name.trim() || !attending || (attending === "yes" && !needsShuttle) || submitting}
+                data-testid="button-submit-rsvp"
+              >
+                {submitting ? "Sending…" : "Send your reply"}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
 
-      <AnimatePresence>
-        {showSchedule && (
-          <SchedulePanel key="schedule" onClose={() => setShowSchedule(false)} initialX={panelX} initialY={panelY} />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {showVenue && (
-          <VenuePanel key="venue" onClose={() => setShowVenue(false)} initialX={panelX + (showSchedule ? 300 : 0)} initialY={panelY} />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {showRSVP && (
-          <RSVPPanel
-            key="rsvp"
-            onClose={() => setShowRSVP(false)}
-            initialX={isMobile ? 8 : Math.round((window.innerWidth - 360) / 2)}
-            initialY={isMobile ? 60 : 90}
-          />
-        )}
-      </AnimatePresence>
+      <footer className="wedding-scroll__footer">
+        Clémence &amp; Antonio · Lisbon Coast · 2027
+      </footer>
     </main>
   );
 }
