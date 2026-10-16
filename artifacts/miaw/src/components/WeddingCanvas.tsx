@@ -1,5 +1,7 @@
 import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { translations, type GalleryKey, type Language } from "../lib/i18n";
 import couplePhoto from "../../../../attached_assets/Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg";
 import aerialFonteDaTelha from "../../../../attached_assets/Fonte_da_Telha_1_-_Copy_1792139804228.jpg";
 import dunePath from "../../../../attached_assets/92658_-_Copy_1792139804226.jpg";
@@ -13,11 +15,14 @@ import weddingEntrance from "../../../../attached_assets/dsc7090_1792142246824.w
 import weddingCourtyardNight from "../../../../attached_assets/dsc7696_1792142246825.webp";
 import weddingGardenSeating from "../../../../attached_assets/dsc7805_1792142246825.webp";
 import weddingGate from "../../../../attached_assets/vh2-4698_6_176483-176823242177654_1792142246826.webp";
+import brunchTable from "../../../../attached_assets/but-first-brunch-outdoor-brunch-party-ideas-165228_1296x_1792142942629.webp";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
 interface WeddingCanvasProps {
   onGoToHero?: () => void;
+  language: Language;
+  onLanguageChange: (language: Language) => void;
 }
 
 interface GalleryPhoto {
@@ -25,38 +30,46 @@ interface GalleryPhoto {
   alt: string;
 }
 
-const preWeddingPhotos: GalleryPhoto[] = [
-  { src: aerialFonteDaTelha, alt: "Aerial view of Fonte da Telha beach and coastline" },
-  { src: dunePath, alt: "A sandy path winding through the dunes toward the beach" },
-  { src: coastalView, alt: "View of the Atlantic coastline from the cliffs above the beach" },
-  { src: beachRestaurant, alt: "Shaded tables on a beachside restaurant terrace" },
-  { src: atlanticWaves, alt: "Atlantic waves rolling onto the shore, seen from above" },
-  { src: beachLounge, alt: "Relaxed lounge seating overlooking Fonte da Telha beach" },
+const preWeddingPhotoSources = [
+  aerialFonteDaTelha,
+  dunePath,
+  coastalView,
+  beachRestaurant,
+  atlanticWaves,
+  beachLounge,
 ];
 
-const weddingVenuePhotos: GalleryPhoto[] = [
-  { src: weddingAerial, alt: "Aerial view of the wedding venue among the wooded grounds" },
-  { src: weddingGarden, alt: "Garden terrace beneath the shade of a large oak tree" },
-  { src: weddingEntrance, alt: "Coral-pink venue entrance framed by cypress trees" },
-  { src: weddingCourtyardNight, alt: "The venue courtyard warmly lit after dark" },
-  { src: weddingGardenSeating, alt: "A shaded garden seating area with blue benches" },
-  { src: weddingGate, alt: "The coral-pink garden wall and entrance gate" },
+const weddingVenuePhotoSources = [
+  weddingAerial,
+  weddingGarden,
+  weddingEntrance,
+  weddingCourtyardNight,
+  weddingGardenSeating,
+  weddingGate,
 ];
+
+const BEACH_MAP_URL =
+  "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal";
 
 interface PhotoGallery {
   photos: GalleryPhoto[];
   label: string;
-  landscape?: boolean;
 }
 
 function PhotoCarousel({
   photos,
   label,
-  landscape = false,
+  carouselRole,
+  previousLabel,
+  nextLabel,
+  chooseLabel,
 }: {
   photos: GalleryPhoto[];
   label: string;
-  landscape?: boolean;
+  carouselRole: string;
+  previousLabel: string;
+  nextLabel: string;
+  chooseLabel: string;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const photo = photos[currentIndex];
@@ -68,106 +81,110 @@ function PhotoCarousel({
 
   return (
     <div
-      className={`weekend-gallery${landscape ? " weekend-gallery--landscape" : ""}`}
+      className="weekend-gallery"
       role="region"
-      aria-roledescription="carousel"
+      aria-roledescription={photoCount > 1 ? carouselRole : undefined}
       aria-label={label}
     >
       <figure className="weekend-gallery__figure">
         <div className="weekend-gallery__frame">
           <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
-          <button
-            className="weekend-gallery__arrow weekend-gallery__arrow--previous"
-            type="button"
-            aria-label="Show previous photo"
-            onClick={() => moveBy(-1)}
-          >
-            <span aria-hidden="true">‹</span>
-          </button>
-          <button
-            className="weekend-gallery__arrow weekend-gallery__arrow--next"
-            type="button"
-            aria-label="Show next photo"
-            onClick={() => moveBy(1)}
-          >
-            <span aria-hidden="true">›</span>
-          </button>
+          {photoCount > 1 && (
+            <>
+              <button
+                className="weekend-gallery__arrow weekend-gallery__arrow--previous"
+                type="button"
+                aria-label={previousLabel}
+                onClick={() => moveBy(-1)}
+              >
+                <span aria-hidden="true">‹</span>
+              </button>
+              <button
+                className="weekend-gallery__arrow weekend-gallery__arrow--next"
+                type="button"
+                aria-label={nextLabel}
+                onClick={() => moveBy(1)}
+              >
+                <span aria-hidden="true">›</span>
+              </button>
+            </>
+          )}
         </div>
-        <figcaption className="weekend-gallery__caption" aria-live="polite" aria-atomic="true">
+        <figcaption
+          className="weekend-gallery__caption"
+          aria-live={photoCount > 1 ? "polite" : undefined}
+          aria-atomic={photoCount > 1 ? "true" : undefined}
+        >
           <span>{photo.alt}</span>
-          <span>{currentIndex + 1} / {photoCount}</span>
+          {photoCount > 1 && <span>{currentIndex + 1} / {photoCount}</span>}
         </figcaption>
       </figure>
-      <div className="weekend-gallery__indicators" role="group" aria-label="Choose a photo">
-        {photos.map((item, index) => (
-          <button
-            className="weekend-gallery__indicator"
-            key={item.src}
-            type="button"
-            aria-label={`Show photo ${index + 1} of ${photoCount}: ${item.alt}`}
-            aria-pressed={currentIndex === index}
-            onClick={() => setCurrentIndex(index)}
-          />
-        ))}
-      </div>
+      {photoCount > 1 && (
+        <div className="weekend-gallery__indicators" role="group" aria-label={chooseLabel}>
+          {photos.map((item, index) => (
+            <button
+              className="weekend-gallery__indicator"
+              key={item.src}
+              type="button"
+              aria-label={`${chooseLabel} ${index + 1} / ${photoCount}: ${item.alt}`}
+              aria-pressed={currentIndex === index}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-interface WeekendDay {
-  date: string;
-  title: string;
-  description: string;
-  location: string;
-  mapUrl?: string;
-  events: { time: string; name: string }[];
-  gallery?: PhotoGallery;
-}
-
-const weekend: WeekendDay[] = [
-  {
-    date: "Friday · 18 June 2027",
-    title: "Pre-wedding gathering",
-    description: "An evening together by the water before the wedding.",
-    location: "Aroeira Beach · Fonte da Telha",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal",
-    events: [{ time: "Evening", name: "Pre-wedding celebration" }],
-    gallery: { photos: preWeddingPhotos, label: "Pre-wedding photos" },
-  },
-  {
-    date: "Saturday · 19 June 2027",
-    title: "The wedding",
-    description: "A ceremony beneath the open sky, followed by dinner and dancing.",
-    location: "South Lisbon · full venue details to follow",
-    events: [
-      { time: "17:00", name: "Ceremony" },
-      { time: "18:00", name: "Cocktails" },
-      { time: "21:00", name: "Dinner" },
-      { time: "Late", name: "Dancing" },
-    ],
-    gallery: { photos: weddingVenuePhotos, label: "Wedding venue photos", landscape: true },
-  },
-  {
-    date: "Sunday · 20 June 2027",
-    title: "Beach brunch",
-    description: "A slow, sunny goodbye by the water.",
-    location: "Details to follow",
-    events: [{ time: "Midday", name: "Brunch" }],
-  },
+const sectionHrefs = [
+  "#our-story",
+  "#weekend",
+  "#location",
+  "#travel",
+  "#faq",
+  "#dress-code",
+  "#rsvp",
 ];
+const faqTestIds = ["children", "weather", "gifts"] as const;
 
-const sectionLinks = [
-  { href: "#our-story", label: "Our story" },
-  { href: "#weekend", label: "The weekend" },
-  { href: "#location", label: "Location" },
-  { href: "#travel", label: "Travel" },
-  { href: "#faq", label: "Good to know" },
-  { href: "#dress-code", label: "Dress code" },
-  { href: "#rsvp", label: "RSVP" },
-];
-
-export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
+export default function WeddingCanvas({
+  onGoToHero,
+  language,
+  onLanguageChange,
+}: WeddingCanvasProps) {
   const palette = getTodaysPalette();
+  const copy = translations[language];
+  const galleries: Record<GalleryKey, PhotoGallery> = {
+    preWedding: {
+      photos: preWeddingPhotoSources.map((src, index) => ({
+        src,
+        alt: copy.galleries.preWeddingAlts[index],
+      })),
+      label: copy.galleries.preWeddingLabel,
+    },
+    venue: {
+      photos: weddingVenuePhotoSources.map((src, index) => ({
+        src,
+        alt: copy.galleries.venueAlts[index],
+      })),
+      label: copy.galleries.venueLabel,
+    },
+    brunch: {
+      photos: [{ src: brunchTable, alt: copy.galleries.brunchAlt }],
+      label: copy.galleries.brunchLabel,
+    },
+  };
+  const weekend = copy.weekend.days.map((day, index) => ({
+    ...day,
+    galleryId: day.gallery,
+    mapUrl: index === 0 ? BEACH_MAP_URL : undefined,
+    gallery: galleries[day.gallery],
+  }));
+  const sectionLinks = sectionHrefs.map((href, index) => ({
+    href,
+    label: copy.navigation.sections[index],
+  }));
   const [name, setName] = useState("");
   const [attending, setAttending] = useState<"yes" | "no" | "">("");
   const [needsShuttle, setNeedsShuttle] = useState<"yes" | "no" | "">("");
@@ -200,7 +217,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       if (!response.ok) throw new Error("RSVP request failed");
       setSubmitted(true);
     } catch {
-      setError("We couldn't send your reply just now. Please try again in a moment.");
+      setError(copy.rsvp.error);
     } finally {
       setSubmitting(false);
     }
@@ -218,21 +235,30 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       <div className="gradient-canvas wedding-scroll__background" aria-hidden="true" />
 
       <header className="wedding-scroll__header">
-        <nav className="wedding-scroll__section-links" aria-label="Main sections">
+        <nav
+          className="wedding-scroll__section-links"
+          aria-label={copy.navigation.mainSections}
+        >
           {sectionLinks.map((section) => (
             <a key={section.href} href={section.href}>
               {section.label}
             </a>
           ))}
         </nav>
+        <LanguageSwitcher
+          language={language}
+          label={copy.languageLabel}
+          variant="explore"
+          onChange={onLanguageChange}
+        />
         {onGoToHero && (
           <button
             className="wedding-scroll__home"
             onClick={onGoToHero}
             type="button"
             data-testid="button-back-to-intro"
-            aria-label="Back to intro"
-            title="Back to intro"
+            aria-label={copy.navigation.backToIntro}
+            title={copy.navigation.backToIntro}
           >
             <span aria-hidden="true">←</span>
           </button>
@@ -241,53 +267,36 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
 
       <div id="top" className="wedding-scroll__intro">
         <div className="wedding-scroll__heading">
-          <p className="wedding-scroll__eyebrow">We're Getting Married</p>
+          <p className="wedding-scroll__eyebrow">{copy.intro.eyebrow}</p>
           <h1>Clémence &amp; Antonio</h1>
           <p className="wedding-scroll__lead">19 · 06 · 2027</p>
         </div>
         <figure className="wedding-scroll__photo">
-          <img src={couplePhoto} alt="A personal photo of Clémence and Antonio together" />
+          <img src={couplePhoto} alt={copy.intro.couplePhotoAlt} />
         </figure>
-        <a className="wedding-scroll__down" href="#our-story" aria-label="Scroll to our story" data-testid="link-scroll-to-story">
+        <a
+          className="wedding-scroll__down"
+          href="#our-story"
+          aria-label={copy.intro.scrollToStory}
+          data-testid="link-scroll-to-story"
+        >
           <span aria-hidden="true">↓</span>
         </a>
       </div>
 
       <section id="our-story" className="wedding-section wedding-section--story">
-        <h2>Our Story</h2>
-        <p>
-          Clemence, from Jouy-en-Josas, France, and Antonio, from Córdoba, Spain, met
-          in London in 2016. What began there soon became a shared adventure, taking
-          them across countries and continents.
-        </p>
-        <p>
-          After two years in London, they moved to Sydney in 2018, then to Brisbane
-          in 2019. In 2022, they took another leap and made Portugal their home,
-          settling just north of Lisbon, where they began building a house together.
-        </p>
-        <p>
-          Along the way, they travelled around the world, collecting memories,
-          discovering new places, and making every adventure part of their story.
-        </p>
-        <p>
-          Today, they are back on Lisbon’s South Bank, a place they call home and
-          where they are excited to celebrate the next chapter of their journey —
-          surrounded by the people they love most.
-        </p>
-        <p>And so, their story continues…</p>
+        <h2>{copy.story.title}</h2>
+        {copy.story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       </section>
 
       <section id="weekend" className="wedding-section wedding-section--band">
         <div className="wedding-section__inner">
-          <p className="wedding-section__eyebrow">The weekend</p>
-          <h2>Meet us in South Lisbon</h2>
-          <p className="wedding-section__description">
-            Three days together on the Lisbon coast. More practical details will be
-            added here as they’re confirmed.
-          </p>
+          <p className="wedding-section__eyebrow">{copy.weekend.eyebrow}</p>
+          <h2>{copy.weekend.title}</h2>
+          <p className="wedding-section__description">{copy.weekend.description}</p>
           <div className="weekend-grid">
             {weekend.map((day, index) => (
-              <article className="weekend-card" key={day.date} data-testid={`card-weekend-${index}`}>
+              <article className="weekend-card" key={day.galleryId} data-testid={`card-weekend-${index}`}>
                 <p className="weekend-card__date">{day.date}</p>
                 <h3>{day.title}</h3>
                 <p className="weekend-card__description">{day.description}</p>
@@ -295,7 +304,10 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                   <PhotoCarousel
                     photos={day.gallery.photos}
                     label={day.gallery.label}
-                    landscape={day.gallery.landscape}
+                    carouselRole={copy.galleries.carouselRole}
+                    previousLabel={copy.galleries.previous}
+                    nextLabel={copy.galleries.next}
+                    chooseLabel={copy.galleries.choose}
                   />
                 )}
                 <div className="weekend-card__events">
@@ -315,7 +327,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                     rel="noopener noreferrer"
                     data-testid="link-prewedding-map"
                   >
-                    View the beach on a map <span aria-hidden="true">↗</span>
+                    {copy.weekend.mapLink} <span aria-hidden="true">↗</span>
                   </a>
                 )}
               </article>
@@ -325,78 +337,54 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </section>
 
       <section id="location" className="wedding-section wedding-section--location">
-        <p className="wedding-section__eyebrow">The place</p>
-        <h2>South Lisbon, close to the sea</h2>
-        <p>
-          Our pre-wedding gathering is at Aroeira Beach in Fonte da Telha. The
-          wedding celebration will be in South Lisbon; we’ll share the exact venue
-          and address as soon as they’re confirmed.
-        </p>
+        <p className="wedding-section__eyebrow">{copy.location.eyebrow}</p>
+        <h2>{copy.location.title}</h2>
+        <p>{copy.location.description}</p>
         <a
           className="text-link"
-          href="https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal"
+          href={BEACH_MAP_URL}
           target="_blank"
           rel="noopener noreferrer"
           data-testid="link-location-map"
         >
-          Aroeira Beach · Fonte da Telha <span aria-hidden="true">↗</span>
+          {copy.location.mapLink} <span aria-hidden="true">↗</span>
         </a>
       </section>
 
       <section id="travel" className="wedding-section">
-        <p className="wedding-section__eyebrow">Travel &amp; stay</p>
-        <h2>A little further south</h2>
-        <p>
-          Fly into Lisbon Airport (LIS). We’ll share accommodation suggestions and
-          local transport details when they’re ready.
-        </p>
+        <p className="wedding-section__eyebrow">{copy.travel.eyebrow}</p>
+        <h2>{copy.travel.title}</h2>
+        <p>{copy.travel.description}</p>
         <div className="travel-grid">
-          <article>
-            <span>01</span>
-            <h3>Getting here</h3>
-            <p>Lisbon Airport is the closest international airport.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Where to stay</h3>
-            <p>Stay recommendations will be added soon.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Getting around</h3>
-            <p>We’ll share local transport and shuttle information closer to the day.</p>
-          </article>
+          {copy.travel.items.map((item, index) => (
+            <article key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
       <section id="faq" className="wedding-section wedding-section--faq">
         <div className="wedding-section__inner wedding-section__inner--narrow">
-          <p className="wedding-section__eyebrow">A few notes</p>
-          <h2>Good to know</h2>
-          <details>
-            <summary data-testid="summary-children">Are children welcome?</summary>
-            <p>Yes, we’d love to see them.</p>
-          </details>
-          <details>
-            <summary data-testid="summary-weather">What if it’s windy or rainy?</summary>
-            <p>We have a covered plan so the day stays beautiful.</p>
-          </details>
-          <details>
-            <summary data-testid="summary-gifts">Gifts?</summary>
-            <p>Your presence is the gift. A contribution to our honeymoon is welcome.</p>
-          </details>
+          <p className="wedding-section__eyebrow">{copy.faq.eyebrow}</p>
+          <h2>{copy.faq.title}</h2>
+          {copy.faq.items.map((item, index) => (
+            <details key={item.question}>
+              <summary data-testid={`summary-${faqTestIds[index]}`}>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
         </div>
       </section>
 
       <section id="dress-code" className="wedding-section wedding-section--band">
         <div className="wedding-section__inner wedding-section__inner--narrow">
-          <p className="wedding-section__eyebrow">Dress code</p>
-          <h2>Ivory, sand &amp; soft light</h2>
-          <p>
-            Think natural linen, airy fabrics and warm neutrals. Please leave white
-            for the bride and black at home.
-          </p>
-          <div className="wedding-swatches" aria-label="Suggested colours">
+          <p className="wedding-section__eyebrow">{copy.dressCode.eyebrow}</p>
+          <h2>{copy.dressCode.title}</h2>
+          <p>{copy.dressCode.description}</p>
+          <div className="wedding-swatches" aria-label={copy.dressCode.swatchesLabel}>
             {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
               <span key={color} style={{ backgroundColor: color }} />
             ))}
@@ -406,31 +394,29 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
 
       <section id="rsvp" className="wedding-section wedding-section--rsvp">
         <div className="wedding-section__inner wedding-section__inner--narrow">
-          <p className="wedding-section__eyebrow">RSVP</p>
-          <h2>Will you join us?</h2>
-          <p className="wedding-section__description">
-            Please reply for the wedding weekend. We’ll add the response deadline soon.
-          </p>
+          <p className="wedding-section__eyebrow">{copy.rsvp.eyebrow}</p>
+          <h2>{copy.rsvp.title}</h2>
+          <p className="wedding-section__description">{copy.rsvp.description}</p>
 
           {submitted ? (
             <div className="rsvp-success" role="status" data-testid="status-rsvp-success">
               <span aria-hidden="true">✳</span>
-              <h3>Thank you, {name.split(" ")[0]}.</h3>
+              <h3>{copy.rsvp.thankYou.replace("{name}", name.split(" ")[0])}</h3>
               <p>
                 {attending === "yes"
-                  ? "We can’t wait to celebrate with you."
-                  : "We’ll miss you, but thank you for letting us know."}
+                  ? copy.rsvp.accepted
+                  : copy.rsvp.declined}
               </p>
             </div>
           ) : (
             <form className="rsvp-form" onSubmit={handleSubmit}>
               <label className="rsvp-field">
-                <span>Your name</span>
+                <span>{copy.rsvp.nameLabel}</span>
                 <input
                   type="text"
                   name="name"
                   autoComplete="name"
-                  placeholder="Full name"
+                  placeholder={copy.rsvp.namePlaceholder}
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   required
@@ -439,7 +425,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
               </label>
 
               <fieldset className="rsvp-field">
-                <legend>Will you attend?</legend>
+                <legend>{copy.rsvp.attendanceLegend}</legend>
                 <div className="rsvp-choice-row">
                   <button
                     className={`rsvp-choice${attending === "yes" ? " is-selected" : ""}`}
@@ -448,7 +434,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                     onClick={() => setAttending("yes")}
                     data-testid="button-rsvp-attending"
                   >
-                    Joyfully accepts
+                    {copy.rsvp.accept}
                   </button>
                   <button
                     className={`rsvp-choice${attending === "no" ? " is-selected" : ""}`}
@@ -457,7 +443,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                     onClick={() => setAttending("no")}
                     data-testid="button-rsvp-decline"
                   >
-                    Regretfully declines
+                    {copy.rsvp.decline}
                   </button>
                 </div>
               </fieldset>
@@ -465,7 +451,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
               {attending === "yes" && (
                 <>
                   <fieldset className="rsvp-field">
-                    <legend>Additional guests, excluding yourself</legend>
+                    <legend>{copy.rsvp.additionalGuests}</legend>
                     <div className="rsvp-guests">
                       {[0, 1, 2, 3].map((count) => (
                         <button
@@ -482,7 +468,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                     </div>
                   </fieldset>
                   <fieldset className="rsvp-field">
-                    <legend>Will you need a shuttle?</legend>
+                    <legend>{copy.rsvp.shuttleLegend}</legend>
                     <div className="rsvp-choice-row">
                       {(["yes", "no"] as const).map((answer) => (
                         <button
@@ -493,7 +479,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                           onClick={() => setNeedsShuttle(answer)}
                           data-testid={`button-rsvp-shuttle-${answer}`}
                         >
-                          {answer === "yes" ? "Yes, please" : "No, thank you"}
+                          {answer === "yes" ? copy.rsvp.shuttleYes : copy.rsvp.shuttleNo}
                         </button>
                       ))}
                     </div>
@@ -502,11 +488,11 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
               )}
 
               <label className="rsvp-field">
-                <span>Dietary requirements</span>
+                <span>{copy.rsvp.dietaryLabel}</span>
                 <input
                   type="text"
                   name="dietary"
-                  placeholder="Allergies or preferences"
+                  placeholder={copy.rsvp.dietaryPlaceholder}
                   value={dietary}
                   onChange={(event) => setDietary(event.target.value)}
                   data-testid="input-rsvp-dietary"
@@ -514,11 +500,13 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
               </label>
 
               <label className="rsvp-field">
-                <span>A note for the couple <em>(optional)</em></span>
+                <span>
+                  {copy.rsvp.noteLabel} <em>{copy.rsvp.optional}</em>
+                </span>
                 <textarea
                   name="message"
                   rows={3}
-                  placeholder="Write a little note…"
+                  placeholder={copy.rsvp.notePlaceholder}
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   data-testid="input-rsvp-message"
@@ -532,7 +520,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                 disabled={!name.trim() || !attending || (attending === "yes" && !needsShuttle) || submitting}
                 data-testid="button-submit-rsvp"
               >
-                {submitting ? "Sending…" : "Send your reply"}
+                {submitting ? copy.rsvp.sending : copy.rsvp.send}
               </button>
             </form>
           )}
@@ -540,7 +528,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </section>
 
       <footer className="wedding-scroll__footer">
-        Clémence &amp; Antonio · Lisbon Coast · 2027
+        {copy.footer}
       </footer>
     </main>
   );

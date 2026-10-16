@@ -139,6 +139,61 @@ html, body, #root {
   border-width: 0;
 }
 
+.language-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.language-switcher select {
+  min-width: 108px;
+  max-width: 132px;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid rgba(101, 77, 50, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.72);
+  color: #493b2e;
+  font: 400 0.68rem/1.2 Inter, sans-serif;
+  cursor: pointer;
+}
+
+.language-switcher select:focus-visible {
+  outline: 2px solid #a96142;
+  outline-offset: 3px;
+}
+
+.language-switcher option {
+  background: #faf6f0;
+  color: #493b2e;
+}
+
+.language-switcher--hero {
+  position: absolute;
+  z-index: 20;
+  top: 18px;
+  right: 18px;
+}
+
+.language-switcher--hero select {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(33, 27, 21, 0.46);
+  color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.language-switcher--hero select:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.9);
+}
+
+.language-switcher--hero option {
+  color: #493b2e;
+}
+
+.language-switcher--explore {
+  justify-self: end;
+}
+
 /* Continuous wedding information page */
 .wedding-scroll {
   --wedding-ink: #493b2e;
@@ -171,8 +226,11 @@ html, body, #root {
   position: sticky;
   z-index: 2;
   top: 0;
+  left: 0;
+  right: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 16px;
   height: var(--wedding-scroll-header-height);
@@ -186,16 +244,21 @@ html, body, #root {
 
 .wedding-scroll__home {
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   place-items: center;
   border: 1px solid var(--wedding-line);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.18);
   color: var(--wedding-muted);
   cursor: pointer;
-  font: 400 1.35rem/1 Inter, sans-serif;
+  font: 400 0.95rem/1 Inter, sans-serif;
   transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.wedding-scroll__home span {
+  display: block;
+  line-height: 1;
 }
 
 .wedding-scroll__section-links {
@@ -408,16 +471,18 @@ html, body, #root {
 .weekend-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-rows: repeat(7, auto);
+  column-gap: 16px;
   margin-top: 44px;
   text-align: left;
 }
 
 .weekend-card {
-  display: flex;
+  display: grid;
+  grid-row: span 7;
+  grid-template-rows: subgrid;
   min-height: 330px;
   padding: 26px 23px 24px;
-  flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.48);
   background: rgba(255, 252, 246, 0.48);
   box-shadow: 0 16px 48px rgba(94, 69, 39, 0.06);
@@ -452,10 +517,6 @@ html, body, #root {
   margin: 0 auto 18px;
 }
 
-.weekend-gallery--landscape {
-  width: min(100%, 440px);
-}
-
 .weekend-gallery__figure {
   margin: 0;
 }
@@ -469,10 +530,6 @@ html, body, #root {
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: rgba(232, 216, 184, 0.55);
   box-shadow: 0 12px 30px rgba(73, 59, 46, 0.12);
-}
-
-.weekend-gallery--landscape .weekend-gallery__frame {
-  aspect-ratio: 3 / 2;
 }
 
 .weekend-gallery__frame img {
@@ -865,7 +922,7 @@ html, body, #root {
 
 @media (max-width: 760px) {
   .wedding-scroll__header {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 8px;
     padding: 3px 16px;
   }
@@ -893,7 +950,15 @@ html, body, #root {
     grid-template-columns: 1fr;
   }
 
+  .weekend-grid {
+    grid-template-rows: none;
+    row-gap: 16px;
+  }
+
   .weekend-card {
+    display: flex;
+    grid-row: auto;
+    flex-direction: column;
     min-height: 0;
   }
 

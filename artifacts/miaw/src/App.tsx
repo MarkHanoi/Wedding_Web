@@ -1,11 +1,22 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { useState, useCallback, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import HeroPage from "./components/HeroPage";
+import { isLanguage, type Language } from "./lib/i18n";
 
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
 
 type View = "hero" | "explore";
+const LANGUAGE_STORAGE_KEY = "miaw-language";
+
+function getInitialLanguage(): Language {
+  try {
+    const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return isLanguage(savedLanguage) ? savedLanguage : "en";
+  } catch {
+    return "en";
+  }
+}
 
 const exploreVariants = {
   initial: { opacity: 0 },
@@ -21,9 +32,22 @@ const heroVariants = {
 
 export default function App() {
   const [view, setView] = useState<View>("hero");
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
+
+  useEffect(() => {
+    document.documentElement.lang = language === "pt" ? "pt-PT" : language;
+    try {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    } catch {
+      // Keep the selected language for this visit if browser storage is unavailable.
+    }
+  }, [language]);
 
   const goToExplore = useCallback(() => {
     setView("explore");
+  }, []);
+  const changeLanguage = useCallback((nextLanguage: Language) => {
+    setLanguage(nextLanguage);
   }, []);
 
   return (
@@ -40,7 +64,11 @@ export default function App() {
               exit="exit"
               style={{ width: "100%", height: "100%" }}
             >
-              <HeroPage onExplore={goToExplore} />
+              <HeroPage
+                onExplore={goToExplore}
+                language={language}
+                onLanguageChange={changeLanguage}
+              />
             </motion.div>
           )}
 
@@ -53,7 +81,11 @@ export default function App() {
               exit="exit"
               style={{ width: "100%", height: "100%" }}
             >
-              <WeddingCanvas onGoToHero={() => setView("hero")} />
+              <WeddingCanvas
+                onGoToHero={() => setView("hero")}
+                language={language}
+                onLanguageChange={changeLanguage}
+              />
             </motion.div>
           )}
 

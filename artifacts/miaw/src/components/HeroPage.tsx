@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { translations, type Language } from "../lib/i18n";
 
 const BEACH_PALETTE = {
   c1: "#F0E4CC",
@@ -11,6 +13,8 @@ const BEACH_PALETTE = {
 
 interface HeroPageProps {
   onExplore: () => void;
+  language: Language;
+  onLanguageChange: (language: Language) => void;
 }
 
 const stagger = {
@@ -28,8 +32,9 @@ const fadeIn = {
   show: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
-export default function HeroPage({ onExplore }: HeroPageProps) {
+export default function HeroPage({ onExplore, language, onLanguageChange }: HeroPageProps) {
   const palette = BEACH_PALETTE;
+  const copy = translations[language];
   const playerRef = useRef<any>(null);
   const [muted, setMuted] = useState(true);
   const [videoUnavailable, setVideoUnavailable] = useState(false);
@@ -74,7 +79,8 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
     };
 
     // Unmute on the very first user interaction (browsers block autoplay+audio)
-    const unmuteOnInteraction = () => {
+    const unmuteOnInteraction = (event: Event) => {
+      if (event.target instanceof Element && event.target.closest(".language-switcher")) return;
       if (playerRef.current?.unMute) {
         playerRef.current.unMute();
         playerRef.current.setVolume(80);
@@ -84,9 +90,9 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
       window.removeEventListener("keydown", unmuteOnInteraction);
       window.removeEventListener("touchstart", unmuteOnInteraction);
     };
-    window.addEventListener("click", unmuteOnInteraction, { once: true });
-    window.addEventListener("keydown", unmuteOnInteraction, { once: true });
-    window.addEventListener("touchstart", unmuteOnInteraction, { once: true });
+    window.addEventListener("click", unmuteOnInteraction);
+    window.addEventListener("keydown", unmuteOnInteraction);
+    window.addEventListener("touchstart", unmuteOnInteraction);
 
     if ((window as any).YT && (window as any).YT.Player) {
       // API already loaded (e.g. after hot reload) — create player immediately
@@ -127,6 +133,13 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
       <div
         style={{ position: "relative", flex: 1, overflow: "hidden" }}
       >
+        <LanguageSwitcher
+          language={language}
+          label={copy.languageLabel}
+          variant="hero"
+          onChange={onLanguageChange}
+        />
+
         {/* ── Full-bleed YouTube video background (IFrame API) ────────────── */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#000" }}>
           <div
@@ -217,7 +230,7 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
               margin: 0,
             }}
           >
-            We're Getting Married
+            {copy.hero.tagline}
           </motion.p>
 
           {/* Main names */}
@@ -258,8 +271,8 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
         {!videoUnavailable && (
           <button
             onClick={(e) => { e.stopPropagation(); toggleMute(); }}
-            title={muted ? "Unmute music" : "Mute music"}
-            aria-label={muted ? "Unmute music" : "Mute music"}
+            title={muted ? copy.hero.unmute : copy.hero.mute}
+            aria-label={muted ? copy.hero.unmute : copy.hero.mute}
             data-testid="button-toggle-music"
             style={{
               position: "absolute",
@@ -313,7 +326,7 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
           >
             <button
               onClick={(e) => { e.stopPropagation(); onExplore(); }}
-              aria-label="Explore the wedding information"
+            aria-label={copy.hero.exploreLabel}
               data-testid="button-explore"
               style={{
                 background: "rgba(255,255,255,0.14)",
@@ -338,7 +351,7 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
                 (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)";
               }}
             >
-              Explore ↓
+              {copy.hero.explore}
             </button>
           </motion.div>
         </motion.div>
