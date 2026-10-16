@@ -106,6 +106,8 @@ export interface SiteCopy {
     preWeddingAlts: string[];
     venueAlts: string[];
     brunchAlt: string;
+    travelLabel: string;
+    travelAlts: string[];
   };
 }
 
@@ -253,6 +255,17 @@ export const translations: Record<Language, SiteCopy> = {
         "The coral-pink garden wall and entrance gate",
       ],
       brunchAlt: "Outdoor brunch table with fresh fruit, pastries and drinks",
+      travelLabel: "Travel and stay photos",
+      travelAlts: [
+        "Turquoise cove framed by green hills on the Arrábida coast",
+        "Vineyard in Azeitão with the Serra da Arrábida mountains in the distance",
+        "Historic Portuguese rooftops and a church overlooking the water",
+        "Lisbon rooftops and church tower beneath dramatic clouds",
+        "Traditional tiled Lisbon building with a restaurant at street level",
+        "Aerial view of the wooded Arrábida coastline and its small coves",
+        "Cliffs and clear water at a beach in Arrábida",
+        "Aerial view of the sandbanks and calm sea near Setúbal",
+      ],
     },
   },
   es: {
@@ -402,6 +415,17 @@ export const translations: Record<Language, SiteCopy> = {
         "Muro rosa coral del jardín y puerta de entrada",
       ],
       brunchAlt: "Mesa de brunch al aire libre con fruta fresca, bollería y bebidas",
+      travelLabel: "Fotos de viaje y alojamiento",
+      travelAlts: [
+        "Cala de aguas turquesas rodeada de colinas verdes en la costa de Arrábida",
+        "Viñedo de Azeitão con las montañas de la Serra da Arrábida al fondo",
+        "Tejados históricos y una iglesia junto al agua en una ciudad portuguesa",
+        "Tejados de Lisboa y una torre bajo nubes dramáticas",
+        "Edificio tradicional de azulejos en Lisboa con un restaurante a pie de calle",
+        "Vista aérea de la costa boscosa de Arrábida y sus pequeñas calas",
+        "Acantilados y aguas cristalinas en una playa de Arrábida",
+        "Vista aérea de bancos de arena y aguas tranquilas cerca de Setúbal",
+      ],
     },
   },
   fr: {
@@ -551,6 +575,17 @@ export const translations: Record<Language, SiteCopy> = {
         "Mur rose corail du jardin et portail d’entrée",
       ],
       brunchAlt: "Table de brunch en plein air avec fruits frais, viennoiseries et boissons",
+      travelLabel: "Photos de voyage et de séjour",
+      travelAlts: [
+        "Anse aux eaux turquoise bordée de collines verdoyantes sur la côte d’Arrábida",
+        "Vignoble d’Azeitão avec la serra da Arrábida en arrière-plan",
+        "Toits historiques et église au bord de l’eau dans une ville portugaise",
+        "Toits de Lisbonne et clocher sous des nuages spectaculaires",
+        "Immeuble lisboète couvert d’azulejos avec un restaurant au rez-de-chaussée",
+        "Vue aérienne de la côte boisée d’Arrábida et de ses petites criques",
+        "Falaises et eau limpide sur une plage d’Arrábida",
+        "Vue aérienne des bancs de sable et des eaux calmes près de Setúbal",
+      ],
     },
   },
   pt: {
@@ -700,6 +735,17 @@ export const translations: Record<Language, SiteCopy> = {
         "Muro rosa-coral do jardim e portão de entrada",
       ],
       brunchAlt: "Mesa de brunch ao ar livre com fruta fresca, pastelaria e bebidas",
+      travelLabel: "Fotografias de viagem e estadia",
+      travelAlts: [
+        "Enseada de águas turquesa rodeada pelas colinas verdes da costa da Arrábida",
+        "Vinha em Azeitão com a Serra da Arrábida ao fundo",
+        "Telhados históricos e uma igreja junto à água numa cidade portuguesa",
+        "Telhados de Lisboa e uma torre de igreja sob nuvens dramáticas",
+        "Edifício tradicional de azulejos em Lisboa com um restaurante ao nível da rua",
+        "Vista aérea da costa arborizada da Arrábida e das suas pequenas enseadas",
+        "Falésias e águas límpidas numa praia da Arrábida",
+        "Vista aérea dos bancos de areia e das águas calmas perto de Setúbal",
+      ],
     },
   },
 };

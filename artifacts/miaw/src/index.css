@@ -842,6 +842,26 @@ html, body, #root {
   font-size: 0.83rem;
 }
 
+.travel-gallery {
+  width: min(100%, 860px);
+  margin: 48px auto 0;
+}
+
+.travel-gallery .weekend-gallery__frame {
+  aspect-ratio: 3 / 2;
+  background: rgba(32, 62, 78, 0.08);
+}
+
+.travel-gallery .weekend-gallery__frame img {
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .travel-gallery .weekend-gallery__frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 .wedding-section--faq details {
   padding: 16px 4px;
   border-top: 1px solid var(--wedding-line);

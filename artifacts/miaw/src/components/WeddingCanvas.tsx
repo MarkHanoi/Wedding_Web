@@ -15,6 +15,14 @@ import weddingCourtyardNight from "../../../../attached_assets/dsc7696_179214224
 import weddingGardenSeating from "../../../../attached_assets/dsc7805_1792142246825.webp";
 import weddingGate from "../../../../attached_assets/vh2-4698_6_176483-176823242177654_1792142246826.webp";
 import brunchTable from "../../../../attached_assets/but-first-brunch-outdoor-brunch-party-ideas-165228_1296x_1792142942629.webp";
+import arrabidaCove from "../../../../attached_assets/@rgcbatista_1792172274875.jpeg";
+import azeitaoVineyard from "../../../../attached_assets/Azeitão_1792172274877.jpeg";
+import riversideTown from "../../../../attached_assets/buildings-7490372_1280-900x600_1792172274877.jpg";
+import lisbonCloudscape from "../../../../attached_assets/caption_1792172274878.jpg";
+import tiledLisbonRestaurant from "../../../../attached_assets/HandLuggageOnly-19-1_1792172274878.jpg";
+import arrabidaCoast from "../../../../attached_assets/image_1792172274879.jpg";
+import arrabidaBeach from "../../../../attached_assets/praias-serra-da-arrabida_1792172274882.jpg";
+import setubalSandbanks from "../../../../attached_assets/visitar-serra-da-arrabida_1792172274883.jpg";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
@@ -47,6 +55,17 @@ const weddingVenuePhotoSources = [
   weddingGate,
 ];
 
+const travelPhotoSources = [
+  arrabidaCove,
+  azeitaoVineyard,
+  riversideTown,
+  lisbonCloudscape,
+  tiledLisbonRestaurant,
+  arrabidaCoast,
+  arrabidaBeach,
+  setubalSandbanks,
+];
+
 const BEACH_MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal";
 
@@ -62,6 +81,7 @@ function PhotoCarousel({
   previousLabel,
   nextLabel,
   chooseLabel,
+  className = "weekend-gallery",
 }: {
   photos: GalleryPhoto[];
   label: string;
@@ -69,6 +89,7 @@ function PhotoCarousel({
   previousLabel: string;
   nextLabel: string;
   chooseLabel: string;
+  className?: string;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const photo = photos[currentIndex];
@@ -80,7 +101,7 @@ function PhotoCarousel({
 
   return (
     <div
-      className="weekend-gallery"
+      className={className}
       role="region"
       aria-roledescription={photoCount > 1 ? carouselRole : undefined}
       aria-label={label}
@@ -179,6 +200,10 @@ export default function WeddingCanvas({
     galleryId: day.gallery,
     mapUrl: index === 0 ? BEACH_MAP_URL : undefined,
     gallery: galleries[day.gallery],
+  }));
+  const travelPhotos = travelPhotoSources.map((src, index) => ({
+    src,
+    alt: copy.galleries.travelAlts[index],
   }));
   const sectionLinks = sectionHrefs.map((href, index) => ({
     href,
@@ -386,6 +411,15 @@ export default function WeddingCanvas({
             </article>
           ))}
         </div>
+        <PhotoCarousel
+          className="weekend-gallery travel-gallery"
+          photos={travelPhotos}
+          label={copy.galleries.travelLabel}
+          carouselRole={copy.galleries.carouselRole}
+          previousLabel={copy.galleries.previous}
+          nextLabel={copy.galleries.next}
+          chooseLabel={copy.galleries.choose}
+        />
       </section>
 
       <section id="faq" className="wedding-section wedding-section--faq">
