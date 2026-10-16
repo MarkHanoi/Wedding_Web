@@ -19,13 +19,14 @@ families. Do not add sea colours to `dailyPalette.ts`.
 
 ## Sea-layer exception
 
-The Explore-page opening may use muted blue-green tones for the sea, with pale
-foam at the shoreline and a warm reflection behind the heading. The sea treatment
-is separate from the animated sand mesh and scrolls away with the opening content.
+The Explore-page opening uses the sea background implementation and aerial
+shoreline asset from `BouganVilla_01`: the four-blob Mediterranean gradient with
+grain overlay, followed by the source's rotated, masked beach-photo transition.
+Keep the existing wedding mesh fixed underneath as the moving sand layer.
 
-**Why:** The couple asked for a sea-to-sand transition inspired by the supplied beach reference while retaining the existing moving sand pattern below.
+**Why:** The user explicitly rejected an approximated wave illustration and asked to copy the repository's exact background code.
 
-**How to apply:** Keep blue-green values in the dedicated sea layer only; preserve the warm daily palette for sand. Keep the heading and sticky navigation readable over the water, and respect reduced-motion preferences.
+**How to apply:** Reuse the source gradient values, animation timings, masks, overlay and `hero-beach.jpg`; do not redraw the waves. Keep blue-green values out of `dailyPalette.ts`, preserve the moving warm sand mesh, and respect reduced-motion preferences.
 
 ## CSS initial values & HeroPage constant
 Both must match `DAILY_PALETTES[0]` (Golden Shore):

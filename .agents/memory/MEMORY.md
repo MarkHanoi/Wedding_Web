@@ -1,2 +1,2 @@
 - [Wedding site flow](wedding-conversion.md) — Explore opens a continuous scroll page with sticky section links; keep confirmed event details consistent across sections.
-- [Beach palette system](beach-palette.md) — keep the animated sand mesh warm; reserve muted blue-green for the separate sea layer and preserve contrast.
+- [Beach palette system](beach-palette.md) — keep the warm moving sand mesh; use the copied BouganVilla gradient and shoreline photo for the opening sea.

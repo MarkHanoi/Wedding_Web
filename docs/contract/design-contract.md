@@ -8,7 +8,7 @@
 
 ## 1. Source Inspiration
 
-The entire visual system is derived from a single reference photograph of **Praia da Comporta** (or equivalent Atlantic beach) showing warm golden sand meeting white sea foam and pale aqua-grey water.
+The animated Explore-page sand mesh is derived from a reference photograph of **Praia da Comporta** (or equivalent Atlantic beach). The opening sea-to-shore treatment follows the supplied BouganVilla reference.
 
 Reference file: `attached_assets/image_1783365684371.png`
 
@@ -48,9 +48,11 @@ Keep the section links sticky at the top of the continuous Explore page. The arr
 
 The Explore page keeps its 4-blob CSS mesh gradient as the animated sand layer.
 It cycles through 11 warm beach-toned palettes (one per calendar day) using
-`dailyPalette.ts`. A muted blue-green sea and layered foam transition across
-the opening scene; the sea artwork scrolls with the intro so later sections
-retain the moving sand backdrop.
+`dailyPalette.ts`. At the opening, copy the BouganVilla sea background treatment:
+its animated 4-blob Mediterranean gradient with grain, followed by the
+`hero-beach.jpg` aerial shoreline image rotated 180° in a 280px transition band
+with the source's mask and dark top blend. The sea and beach strip scroll with
+the intro; the original wedding sand mesh stays fixed behind the full page.
 
 Blob roles:
 - **c1** — cream highlight
@@ -59,13 +61,13 @@ Blob roles:
 - **c4** — top/sky (pale cream sand, `#FAF6F0` family)
 - **base** — CSS background fallback (`#C8B898`)
 
-Animation: sand mesh `meshFlow` 45s ease-in-out infinite; sea foam drifts subtly
-across the shoreline. Colour transitions: 8s ease. Keep a soft pale reflection
-behind the intro heading and the sticky header lightly tinted for contrast.
+Animation: sand mesh `meshFlow` 45s ease-in-out infinite; sea mesh uses the
+source animation timings (52s, 44s, 64s and 76s). Colour transitions: 8s ease
+for the sand palette.
 
 Daily mesh palette variants stay within the warm sand and cream range; blue-green
-tones belong only to the dedicated sea layer. Respect `prefers-reduced-motion`
-for both the sand mesh and shoreline motion.
+tones belong only to the sea layer. Respect `prefers-reduced-motion` for both
+the sand mesh and sea mesh.
 
 ---
 
@@ -121,6 +123,7 @@ for both the sand mesh and shoreline motion.
 |-------|-------|
 | `Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg` | Couple photo on the Explore introduction |
 | `image_1783365684371.png` | Palette reference (not displayed) |
+| `hero-beach.jpg` | BouganVilla aerial sea-to-sand transition image |
 
 The couple photo uses `object-fit: cover` and a soft edge mask so it blends into the animated background.
 
