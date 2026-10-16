@@ -7,6 +7,12 @@ import coastalView from "../../../../attached_assets/fonte-da-telha_-_Copy_17921
 import beachRestaurant from "../../../../attached_assets/image_1792139804229.webp";
 import atlanticWaves from "../../../../attached_assets/images_1792139804230.jpg";
 import beachLounge from "../../../../attached_assets/Screenshot_2026-10-16_074211_1792139804230.jpg";
+import weddingAerial from "../../../../attached_assets/dji_0225_1792142246805.webp";
+import weddingGarden from "../../../../attached_assets/dsc7086_1792142246824.webp";
+import weddingEntrance from "../../../../attached_assets/dsc7090_1792142246824.webp";
+import weddingCourtyardNight from "../../../../attached_assets/dsc7696_1792142246825.webp";
+import weddingGardenSeating from "../../../../attached_assets/dsc7805_1792142246825.webp";
+import weddingGate from "../../../../attached_assets/vh2-4698_6_176483-176823242177654_1792142246826.webp";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
@@ -14,7 +20,12 @@ interface WeddingCanvasProps {
   onGoToHero?: () => void;
 }
 
-const preWeddingPhotos = [
+interface GalleryPhoto {
+  src: string;
+  alt: string;
+}
+
+const preWeddingPhotos: GalleryPhoto[] = [
   { src: aerialFonteDaTelha, alt: "Aerial view of Fonte da Telha beach and coastline" },
   { src: dunePath, alt: "A sandy path winding through the dunes toward the beach" },
   { src: coastalView, alt: "View of the Atlantic coastline from the cliffs above the beach" },
@@ -23,17 +34,45 @@ const preWeddingPhotos = [
   { src: beachLounge, alt: "Relaxed lounge seating overlooking Fonte da Telha beach" },
 ];
 
-function PreWeddingPhotoSlider() {
+const weddingVenuePhotos: GalleryPhoto[] = [
+  { src: weddingAerial, alt: "Aerial view of the wedding venue among the wooded grounds" },
+  { src: weddingGarden, alt: "Garden terrace beneath the shade of a large oak tree" },
+  { src: weddingEntrance, alt: "Coral-pink venue entrance framed by cypress trees" },
+  { src: weddingCourtyardNight, alt: "The venue courtyard warmly lit after dark" },
+  { src: weddingGardenSeating, alt: "A shaded garden seating area with blue benches" },
+  { src: weddingGate, alt: "The coral-pink garden wall and entrance gate" },
+];
+
+interface PhotoGallery {
+  photos: GalleryPhoto[];
+  label: string;
+  landscape?: boolean;
+}
+
+function PhotoCarousel({
+  photos,
+  label,
+  landscape = false,
+}: {
+  photos: GalleryPhoto[];
+  label: string;
+  landscape?: boolean;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const photo = preWeddingPhotos[currentIndex];
-  const photoCount = preWeddingPhotos.length;
+  const photo = photos[currentIndex];
+  const photoCount = photos.length;
 
   const moveBy = (offset: number) => {
     setCurrentIndex((index) => (index + offset + photoCount) % photoCount);
   };
 
   return (
-    <div className="weekend-gallery" role="region" aria-roledescription="carousel" aria-label="Pre-wedding photos">
+    <div
+      className={`weekend-gallery${landscape ? " weekend-gallery--landscape" : ""}`}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={label}
+    >
       <figure className="weekend-gallery__figure">
         <div className="weekend-gallery__frame">
           <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
@@ -60,7 +99,7 @@ function PreWeddingPhotoSlider() {
         </figcaption>
       </figure>
       <div className="weekend-gallery__indicators" role="group" aria-label="Choose a photo">
-        {preWeddingPhotos.map((item, index) => (
+        {photos.map((item, index) => (
           <button
             className="weekend-gallery__indicator"
             key={item.src}
@@ -75,7 +114,17 @@ function PreWeddingPhotoSlider() {
   );
 }
 
-const weekend = [
+interface WeekendDay {
+  date: string;
+  title: string;
+  description: string;
+  location: string;
+  mapUrl?: string;
+  events: { time: string; name: string }[];
+  gallery?: PhotoGallery;
+}
+
+const weekend: WeekendDay[] = [
   {
     date: "Friday · 18 June 2027",
     title: "Pre-wedding gathering",
@@ -83,6 +132,7 @@ const weekend = [
     location: "Aroeira Beach · Fonte da Telha",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal",
     events: [{ time: "Evening", name: "Pre-wedding celebration" }],
+    gallery: { photos: preWeddingPhotos, label: "Pre-wedding photos" },
   },
   {
     date: "Saturday · 19 June 2027",
@@ -95,6 +145,7 @@ const weekend = [
       { time: "21:00", name: "Dinner" },
       { time: "Late", name: "Dancing" },
     ],
+    gallery: { photos: weddingVenuePhotos, label: "Wedding venue photos", landscape: true },
   },
   {
     date: "Sunday · 20 June 2027",
@@ -240,7 +291,13 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                 <p className="weekend-card__date">{day.date}</p>
                 <h3>{day.title}</h3>
                 <p className="weekend-card__description">{day.description}</p>
-                {day.mapUrl && <PreWeddingPhotoSlider />}
+                {day.gallery && (
+                  <PhotoCarousel
+                    photos={day.gallery.photos}
+                    label={day.gallery.label}
+                    landscape={day.gallery.landscape}
+                  />
+                )}
                 <div className="weekend-card__events">
                   {day.events.map((item) => (
                     <div className="weekend-card__event" key={`${item.time}-${item.name}`}>

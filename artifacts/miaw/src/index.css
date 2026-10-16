@@ -452,6 +452,10 @@ html, body, #root {
   margin: 0 auto 18px;
 }
 
+.weekend-gallery--landscape {
+  width: min(100%, 440px);
+}
+
 .weekend-gallery__figure {
   margin: 0;
 }
@@ -465,6 +469,10 @@ html, body, #root {
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: rgba(232, 216, 184, 0.55);
   box-shadow: 0 12px 30px rgba(73, 59, 46, 0.12);
+}
+
+.weekend-gallery--landscape .weekend-gallery__frame {
+  aspect-ratio: 3 / 2;
 }
 
 .weekend-gallery__frame img {
