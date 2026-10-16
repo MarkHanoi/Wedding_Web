@@ -1,26 +1,2 @@
 uploads = []
 generated = []
-
-[[outputs]]
-id = "4v8SnlKCMFEPS-Xdq1_um"
-uri = "file://PRODUCTION_ROADMAP.md"
-type = "text"
-title = "MIAW Production Roadmap"
-
-[[outputs]]
-id = "HLoJvr0lSy79U9WZbLCS2"
-uri = "file://docs/director-meeting-questions.md"
-type = "text"
-title = "MIAW — Director Meeting Questions & Briefing"
-
-[[outputs]]
-id = "4GlyNK5Kz5GuWqLfPTq19"
-uri = "file://docs/tech-stack.md"
-type = "text"
-title = "MIAW — Technology Stack & Decision Rationale"
-
-[[outputs]]
-id = "6vD3VtPuYVp5WugLFvzm1"
-uri = "file://attached_assets/MIAW_Platform_Phases.md"
-type = "text"
-title = "MIAW Platform Phases — Full Technical Brief"

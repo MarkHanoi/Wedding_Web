@@ -62,8 +62,7 @@ app.use(
 const allowedOriginRe =
   /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$|^https:\/\/[a-zA-Z0-9._-]+\.(replit\.dev|repl\.co|replit\.app|pages\.dev)$/;
 
-// Extra origins supplied at runtime — e.g. a custom domain on CF Pages:
-//   CORS_ALLOWED_ORIGINS=https://miaw.ai,https://www.miaw.ai
+// Extra origins supplied at runtime — e.g. a custom wedding-site domain.
 const extraOrigins: Set<string> = new Set(
   (process.env.CORS_ALLOWED_ORIGINS ?? "")
     .split(",")

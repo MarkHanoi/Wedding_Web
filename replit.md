@@ -2,6 +2,10 @@
 
 The site has a cinematic wedding landing page and an Explore page with the story, weekend schedule, location, travel, FAQ, dress code and RSVP form.
 
+## Project scope
+
+Keep this repository focused on the wedding landing page, Explore page and the RSVP service. Do not restore the unrelated MIAW AI-program materials, chat endpoint or design-preview sandbox.
+
 ## Run & operate
 
 - On a fresh import, run `pnpm install --frozen-lockfile`.

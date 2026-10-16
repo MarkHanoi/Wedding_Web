@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "MIAW — Master In Intelligent Artificial Worlds"
+title = "Clémence & Antonio — Wedding Website"
 version = "1.0.0"
 id = "artifacts/miaw"
 router = "path"

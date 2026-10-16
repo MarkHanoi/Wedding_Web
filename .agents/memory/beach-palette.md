@@ -24,9 +24,6 @@ Both must match `DAILY_PALETTES[0]` (Golden Shore):
 - `--c4` / `c4`: `#FAF6F0`
 - `base`: `#D8BC90`
 
-## Glass panel tints
-`rgba(38,22,8,0.38)` standard, `rgba(28,14,4,0.55)` chat. Warm dark brown — NOT purple/blue.
-
 ## Text contrast rule (critical — two surfaces)
 - Text ON dark glass → warm-cream: `rgba(255,240,218,0.45–0.92)`
 - Text ON white input bg → warm-dark: `rgba(42,24,8,0.75–0.85)`
