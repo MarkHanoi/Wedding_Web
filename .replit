@@ -38,3 +38,5 @@ channel = "stable-25_05"
 [userenv.shared]
 BASE_PATH = "/"
 API_PORT = "8080"
+
+[workflows]

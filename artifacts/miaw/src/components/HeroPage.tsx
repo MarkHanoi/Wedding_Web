@@ -192,7 +192,7 @@ export default function HeroPage({ onExplore }: HeroPageProps) {
           animate="show"
           style={{
             position: "absolute",
-            top: "28%",
+            top: "var(--wedding-heading-anchor-y)",
             left: "50%",
             transform: "translate(-50%, -50%)",
             textAlign: "center",

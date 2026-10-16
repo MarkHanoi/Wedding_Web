@@ -1,11 +1,78 @@
 import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
 import couplePhoto from "../../../../attached_assets/Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg";
+import aerialFonteDaTelha from "../../../../attached_assets/Fonte_da_Telha_1_-_Copy_1792139804228.jpg";
+import dunePath from "../../../../attached_assets/92658_-_Copy_1792139804226.jpg";
+import coastalView from "../../../../attached_assets/fonte-da-telha_-_Copy_1792139804229.jpg";
+import beachRestaurant from "../../../../attached_assets/image_1792139804229.webp";
+import atlanticWaves from "../../../../attached_assets/images_1792139804230.jpg";
+import beachLounge from "../../../../attached_assets/Screenshot_2026-10-16_074211_1792139804230.jpg";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
 interface WeddingCanvasProps {
   onGoToHero?: () => void;
+}
+
+const preWeddingPhotos = [
+  { src: aerialFonteDaTelha, alt: "Aerial view of Fonte da Telha beach and coastline" },
+  { src: dunePath, alt: "A sandy path winding through the dunes toward the beach" },
+  { src: coastalView, alt: "View of the Atlantic coastline from the cliffs above the beach" },
+  { src: beachRestaurant, alt: "Shaded tables on a beachside restaurant terrace" },
+  { src: atlanticWaves, alt: "Atlantic waves rolling onto the shore, seen from above" },
+  { src: beachLounge, alt: "Relaxed lounge seating overlooking Fonte da Telha beach" },
+];
+
+function PreWeddingPhotoSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const photo = preWeddingPhotos[currentIndex];
+  const photoCount = preWeddingPhotos.length;
+
+  const moveBy = (offset: number) => {
+    setCurrentIndex((index) => (index + offset + photoCount) % photoCount);
+  };
+
+  return (
+    <div className="weekend-gallery" role="region" aria-roledescription="carousel" aria-label="Pre-wedding photos">
+      <figure className="weekend-gallery__figure">
+        <div className="weekend-gallery__frame">
+          <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+          <button
+            className="weekend-gallery__arrow weekend-gallery__arrow--previous"
+            type="button"
+            aria-label="Show previous photo"
+            onClick={() => moveBy(-1)}
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <button
+            className="weekend-gallery__arrow weekend-gallery__arrow--next"
+            type="button"
+            aria-label="Show next photo"
+            onClick={() => moveBy(1)}
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+        <figcaption className="weekend-gallery__caption" aria-live="polite" aria-atomic="true">
+          <span>{photo.alt}</span>
+          <span>{currentIndex + 1} / {photoCount}</span>
+        </figcaption>
+      </figure>
+      <div className="weekend-gallery__indicators" role="group" aria-label="Choose a photo">
+        {preWeddingPhotos.map((item, index) => (
+          <button
+            className="weekend-gallery__indicator"
+            key={item.src}
+            type="button"
+            aria-label={`Show photo ${index + 1} of ${photoCount}: ${item.alt}`}
+            aria-pressed={currentIndex === index}
+            onClick={() => setCurrentIndex(index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 const weekend = [
@@ -122,9 +189,11 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </header>
 
       <div id="top" className="wedding-scroll__intro">
-        <p className="wedding-scroll__eyebrow">We're Getting Married</p>
-        <h1>Clémence &amp; Antonio</h1>
-        <p className="wedding-scroll__lead">19 · 06 · 2027</p>
+        <div className="wedding-scroll__heading">
+          <p className="wedding-scroll__eyebrow">We're Getting Married</p>
+          <h1>Clémence &amp; Antonio</h1>
+          <p className="wedding-scroll__lead">19 · 06 · 2027</p>
+        </div>
         <figure className="wedding-scroll__photo">
           <img src={couplePhoto} alt="A personal photo of Clémence and Antonio together" />
         </figure>
@@ -171,6 +240,7 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
                 <p className="weekend-card__date">{day.date}</p>
                 <h3>{day.title}</h3>
                 <p className="weekend-card__description">{day.description}</p>
+                {day.mapUrl && <PreWeddingPhotoSlider />}
                 <div className="weekend-card__events">
                   {day.events.map((item) => (
                     <div className="weekend-card__event" key={`${item.time}-${item.name}`}>
