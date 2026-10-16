@@ -212,15 +212,33 @@ html, body, #root {
 }
 
 .language-switcher {
+  position: relative;
   display: flex;
   align-items: center;
+  color: #493b2e;
+}
+
+.language-switcher::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  content: "";
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
 }
 
 .language-switcher select {
-  min-width: 108px;
-  max-width: 132px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 126px;
+  min-width: 0;
+  max-width: 126px;
   min-height: 34px;
-  padding: 6px 10px;
+  padding: 6px 30px 6px 10px;
   border: 1px solid rgba(101, 77, 50, 0.25);
   border-radius: 999px;
   background: rgba(255, 252, 246, 0.72);
@@ -252,6 +270,10 @@ html, body, #root {
   color: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.language-switcher--hero {
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .language-switcher--hero select:focus-visible {
