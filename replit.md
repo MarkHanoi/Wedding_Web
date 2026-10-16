@@ -31,7 +31,7 @@ RSVP submissions are currently held in API memory and are lost when the API proc
 
 - The main page and Explore page use the same Cormorant Garamond and Inter typography.
 - A slowly animated warm gradient continues behind the Explore content.
-- The couple’s photo is blended into the gradient on the Explore introduction.
+- The Explore introduction contains the couple’s names and wedding date over the sea background, without an inset photo.
 - The gradient respects `prefers-reduced-motion`.
 
 ## Optional environment variables

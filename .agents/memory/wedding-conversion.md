@@ -12,11 +12,11 @@ description: Architecture and content synchronization rules for Clémence & Anto
 ## Current page flow
 
 - Explore opens a single continuous scroll page in this order: story, weekend schedule, location, travel, FAQ, dress code and RSVP.
-- The information-page intro shows the marriage announcement, names, date, and the couple’s photo; match the main hero’s typography and date format, but retain dark text for the light backdrop and fade photo edges into the moving gradient.
+- The information-page intro shows the marriage announcement, names, and date over the sea background, with no inset photo.
 - Schedule, venue and RSVP are sections on one continuous page, reached by sticky anchor links rather than separate pages or floating panels.
 - The sticky information-page header contains the section links and an arrow-only return control near the right viewport edge; omit the C&A mark and return text.
 - Wedding details are presented in the Explore page; keep confirmed facts consistent across its sections.
 
-**Why:** The wedding information should stay easy to navigate without breaking the continuous-page flow. The couple requested a minimal intro with its photo and typography consistent with the main hero.
+**Why:** The wedding information should stay easy to navigate without breaking the continuous-page flow. The couple requested a minimal, photo-free intro.
 
-**How to apply:** Keep the information-page intro to the marriage announcement, the couple’s names, date and photo. Match the main hero's font, weight, sizing and date styling while maintaining contrast on the light background; use a soft mask to blend the photo with the moving gradient. Keep section links in the information-page header and the return control as an accessible arrow-only button. When wedding information changes, update the corresponding content in `artifacts/miaw/src/components/WeddingCanvas.tsx`. RSVP submissions are currently in-memory and are lost when the API restarts.
+**How to apply:** Keep the information-page intro to the marriage announcement, names, and date, without an inset photo. Match the main hero's font, weight, and date styling; preserve white text over the dark sea treatment. Keep section links in the information-page header and the return control as an accessible arrow-only button. When wedding information changes, update the corresponding content in `artifacts/miaw/src/components/WeddingCanvas.tsx`. RSVP submissions are currently in-memory and are lost when the API restarts.

@@ -99,7 +99,7 @@ the sand mesh and sea mesh.
 |-----------|-------|
 | Continuous scroll | Story, weekend, location, travel, FAQ, dress code and RSVP stay on one page |
 | Responsive width | Sections narrow on small screens and remain centered |
-| Image blending | The couple photo fades into the moving gradient |
+| Intro | Names and date sit over the sea background without an inset photo |
 | Navigation | Sticky section links; arrow-only return control |
 
 ---
@@ -121,11 +121,8 @@ the sand mesh and sea mesh.
 
 | Asset | Usage |
 |-------|-------|
-| `Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg` | Couple photo on the Explore introduction |
 | `image_1783365684371.png` | Palette reference (not displayed) |
 | `hero-beach.jpg` | BouganVilla aerial sea-to-sand transition image |
-
-The couple photo uses `object-fit: cover` and a soft edge mask so it blends into the animated background.
 
 ---
 

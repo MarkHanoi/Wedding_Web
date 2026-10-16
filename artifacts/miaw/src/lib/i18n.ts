@@ -33,7 +33,6 @@ export interface SiteCopy {
   };
   intro: {
     eyebrow: string;
-    couplePhotoAlt: string;
     scrollToStory: string;
   };
   story: {
@@ -127,7 +126,6 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "We're Getting Married",
-      couplePhotoAlt: "A personal photo of Clémence and Antonio together",
       scrollToStory: "Scroll to our story",
     },
     story: {
@@ -277,7 +275,6 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "Nos casamos",
-      couplePhotoAlt: "Una foto personal de Clémence y Antonio juntos",
       scrollToStory: "Desplazarse a nuestra historia",
     },
     story: {
@@ -427,7 +424,6 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "Nous nous marions",
-      couplePhotoAlt: "Une photo personnelle de Clémence et Antonio ensemble",
       scrollToStory: "Faire défiler jusqu’à notre histoire",
     },
     story: {
@@ -577,7 +573,6 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "Vamos casar",
-      couplePhotoAlt: "Uma fotografia pessoal de Clémence e Antonio juntos",
       scrollToStory: "Descer até à nossa história",
     },
     story: {

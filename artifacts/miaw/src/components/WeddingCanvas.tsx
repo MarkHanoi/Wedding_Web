@@ -2,7 +2,6 @@ import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { translations, type GalleryKey, type Language } from "../lib/i18n";
-import couplePhoto from "../../../../attached_assets/Gemini_Generated_Image_viph59viph59viph_1792092122504.jpg";
 import aerialFonteDaTelha from "../../../../attached_assets/Fonte_da_Telha_1_-_Copy_1792139804228.jpg";
 import dunePath from "../../../../attached_assets/92658_-_Copy_1792139804226.jpg";
 import coastalView from "../../../../attached_assets/fonte-da-telha_-_Copy_1792139804229.jpg";
@@ -297,9 +296,6 @@ export default function WeddingCanvas({
           <h1>Clémence &amp; Antonio</h1>
           <p className="wedding-scroll__lead">19 · 06 · 2027</p>
         </div>
-        <figure className="wedding-scroll__photo">
-          <img src={couplePhoto} alt={copy.intro.couplePhotoAlt} />
-        </figure>
         <a
           className="wedding-scroll__down"
           href="#our-story"
