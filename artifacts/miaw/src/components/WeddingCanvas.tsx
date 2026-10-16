@@ -134,17 +134,27 @@ export default function WeddingCanvas({ onGoToHero }: WeddingCanvasProps) {
       </div>
 
       <section id="our-story" className="wedding-section wedding-section--story">
-        <p className="wedding-section__eyebrow">Our story</p>
-        <h2>From Paris to Madrid, and everywhere between</h2>
+        <h2>Our Story</h2>
         <p>
-          She is French, he is Spanish, and for ten years the world has been our home:
-          slow mornings in Formentera, sunsets in Comporta, rooftops in Mallorca, and
-          buildings that stop us in the street.
+          Clemence, from Jouy-en-Josas, France, and Antonio, from Córdoba, Spain, met
+          in London in 2016. What began there soon became a shared adventure, taking
+          them across countries and continents.
         </p>
         <p>
-          Now we’re choosing Portugal, light, sea and stone, to celebrate with the
-          people we love most.
+          After two years in London, they moved to Sydney in 2018, then to Brisbane
+          in 2019. In 2022, they took another leap and made Portugal their home,
+          settling just north of Lisbon, where they began building a house together.
         </p>
+        <p>
+          Along the way, they travelled around the world, collecting memories,
+          discovering new places, and making every adventure part of their story.
+        </p>
+        <p>
+          Today, they are back on Lisbon’s South Bank, a place they call home and
+          where they are excited to celebrate the next chapter of their journey —
+          surrounded by the people they love most.
+        </p>
+        <p>And so, their story continues…</p>
       </section>
 
       <section id="weekend" className="wedding-section wedding-section--band">
