@@ -67,9 +67,9 @@ const travelPhotoSources = [
 ];
 
 const BEACH_MAP_URL =
-  "https://www.google.com/maps/search/?api=1&query=Fonte+da+Telha+beach+Portugal";
+  "https://www.google.com/maps/search/?api=1&query=38.569540%2C-9.195252";
 const WEDDING_MAP_URL =
-  "https://www.google.com/maps/search/?api=1&query=Casa+do+Pinheiro+Manso+Azeit%C3%A3o+Portugal";
+  "https://www.google.com/maps/search/?api=1&query=Casa+do+Pinheiro+Manso+Quinta+do+Peru+2925-206+Azeit%C3%A3o+Portugal";
 
 interface PhotoGallery {
   photos: GalleryPhoto[];
@@ -330,6 +330,9 @@ export default function WeddingCanvas({
           <p className="wedding-scroll__eyebrow">{copy.intro.eyebrow}</p>
           <h1>Clémence &amp; Antonio</h1>
           <p className="wedding-scroll__lead">19 · 06 · 2027</p>
+          <a className="wedding-scroll__lead" href="#rsvp" data-testid="link-intro-rsvp">
+            {copy.intro.rsvpLink}
+          </a>
         </div>
         <a
           className="wedding-scroll__down"

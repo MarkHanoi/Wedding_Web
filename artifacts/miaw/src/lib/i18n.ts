@@ -34,6 +34,7 @@ export interface SiteCopy {
   };
   intro: {
     eyebrow: string;
+    rsvpLink: string;
     scrollToStory: string;
   };
   story: {
@@ -135,6 +136,7 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "We're Getting Married",
+      rsvpLink: "RSVP",
       scrollToStory: "Scroll to our story",
     },
     story: {
@@ -146,7 +148,7 @@ export const translations: Record<Language, SiteCopy> = {
     weekend: {
       eyebrow: "The weekend",
       title: "Three moments, everyone welcome",
-      description: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Choose the events you’d like to attend in the RSVP.",
+      description: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Please let us know which events you’ll be attending by selecting them in the RSVP.",
       mapLink: "Open location in Maps",
       days: [
         {
@@ -161,7 +163,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Saturday · 19 June 2027",
           title: "The wedding",
           description: "An open-air ceremony, then cocktails, dinner and dancing.",
-          location: "Casa do Pinheiro Manso · Azeitão",
+          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Ceremony" },
             { time: "Time TBC", name: "Cocktails, dinner and dancing" },
@@ -181,7 +183,7 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "The place",
       title: "South Lisbon, close to the sea",
-      description: "Friday’s welcome drinks are on the beach at Fonte da Telha. Saturday’s wedding is at Casa do Pinheiro Manso in Azeitão. We’ll share the exact street addresses as soon as they’re confirmed.",
+      description: "Friday’s welcome drinks are in the beach-bar area of Fonte da Telha, Costa da Caparica, Almada, Setúbal; the exact meeting point is still to be confirmed. Saturday’s wedding is at Casa do Pinheiro Manso, Quinta do Peru, 2925-206 Azeitão.",
       beachMapLink: "Fonte da Telha beach · open in Maps",
       weddingMapLink: "Casa do Pinheiro Manso · open in Maps",
     },
@@ -192,7 +194,7 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { title: "Getting here", description: "Fly into Lisbon Airport (LIS). Fonte da Telha is south of the Tagus, around 40–60 minutes by road (longer in rush hour). If you rent a car, book early for June and ask for an electronic motorway toll device. From Córdoba, allow around six hours by road, via Badajoz and Évora or Seville and Huelva. A car or taxi is easiest between venues; shuttle details will follow." },
         { title: "Where to stay", description: "Consider Azeitão, near the wedding venue (Hotel Club d’Azeitão, guesthouses or local quintas); Setúbal (Pousada Castelo de Palmela, apartments or villas); or Aroeira/Costa da Caparica, close to Friday drinks and the beach. Please book early." },
-        { title: "Friday dinner", description: "Friday is welcome drinks and bites, not dinner, so you’re free to eat out afterwards. Nearby ideas range from a relaxed meal around Costa da Caparica to seafood at Fonte da Telha or a special evening in Lisbon. Please book ahead." },
+        { title: "Friday dinner (on your own)", description: "Friday is welcome drinks and bites only, not dinner, so you’re free to eat out afterwards. Nearby ideas range from relaxed dining around Costa da Caparica to seafood at Fonte da Telha or a special evening in Lisbon. Please book ahead." },
         { title: "Things to do if you’re staying longer", description: "In Lisbon, explore Alfama, Belém, the waterfront, LX Factory and Time Out Market; the ferry from Cacilhas is a lovely way to cross the river. Around Aroeira and Costa da Caparica, enjoy the beaches, pine-scented boardwalk and surf lessons. In Azeitão and Arrábida, discover the natural park, beaches, wine cellars, local cheese and tarts, and Palmela Castle." },
       ],
     },
@@ -304,6 +306,7 @@ export const translations: Record<Language, SiteCopy> = {
     },
     intro: {
       eyebrow: "Nos casamos",
+      rsvpLink: "Confirmar asistencia",
       scrollToStory: "Desplazarse a nuestra historia",
     },
     story: {
@@ -319,7 +322,7 @@ export const translations: Record<Language, SiteCopy> = {
     weekend: {
       eyebrow: "El fin de semana",
       title: "Tres momentos, todos bienvenidos",
-      description: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Indica en el RSVP a qué eventos te gustaría asistir.",
+      description: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Dinos a qué eventos asistirás seleccionándolos en el RSVP.",
       mapLink: "Abrir ubicación en Maps",
       days: [
         {
@@ -334,7 +337,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Sábado · 19 de junio de 2027",
           title: "La boda",
           description: "Ceremonia al aire libre, seguida de cóctel, cena y baile.",
-          location: "Casa do Pinheiro Manso · Azeitão",
+          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Ceremonia" },
             { time: "Horario por confirmar", name: "Cóctel, cena y baile" },
@@ -354,7 +357,7 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "El lugar",
       title: "Sur de Lisboa, cerca del mar",
-      description: "Las bebidas de bienvenida del viernes serán en la playa de Fonte da Telha. La boda del sábado será en Casa do Pinheiro Manso, en Azeitão. Compartiremos las direcciones exactas en cuanto estén confirmadas.",
+      description: "Las bebidas de bienvenida del viernes serán en la zona de bares de playa de Fonte da Telha, Costa da Caparica, Almada, Setúbal; confirmaremos más adelante el punto de encuentro exacto. La boda del sábado será en Casa do Pinheiro Manso, Quinta do Peru, 2925-206 Azeitão.",
       beachMapLink: "Playa de Fonte da Telha · abrir en Maps",
       weddingMapLink: "Casa do Pinheiro Manso · abrir en Maps",
     },
@@ -365,7 +368,7 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { title: "Cómo llegar", description: "Vuela al aeropuerto de Lisboa (LIS). Fonte da Telha está al sur del Tajo, a unos 40–60 minutos por carretera (más en hora punta). Si alquilas un coche, resérvalo pronto para junio y pregunta por el dispositivo electrónico de peaje. Desde Córdoba, calcula unas seis horas por carretera, pasando por Badajoz y Évora o por Sevilla y Huelva. Para desplazarse entre los lugares, lo más fácil es el coche o un taxi; compartiremos los detalles del autobús más adelante." },
         { title: "Dónde alojarse", description: "Puedes alojarte en Azeitão, cerca del lugar de la boda (Hotel Club d’Azeitão, casas rurales o quintas); en Setúbal (Pousada Castelo de Palmela, apartamentos o villas); o en Aroeira/Costa da Caparica, cerca de las bebidas del viernes y de la playa. Reserva con antelación." },
-        { title: "La cena del viernes", description: "El viernes habrá bebidas y aperitivos, no cena, así que podréis cenar por vuestra cuenta después. Cerca encontraréis desde sitios informales en Costa da Caparica hasta pescado y marisco en Fonte da Telha o una cena especial en Lisboa. Reservad con antelación." },
+        { title: "La cena del viernes (por vuestra cuenta)", description: "El viernes habrá bebidas y aperitivos, no una cena incluida, así que podréis cenar por vuestra cuenta después. Cerca encontraréis desde sitios informales en Costa da Caparica hasta pescado y marisco en Fonte da Telha o una cena especial en Lisboa. Reservad con antelación." },
         { title: "Qué hacer si os quedáis más días", description: "En Lisboa, podéis recorrer Alfama, Belém, la zona junto al río, LX Factory y Time Out Market; el ferry desde Cacilhas es una bonita forma de cruzar el río. En Aroeira y Costa da Caparica hay playas, un paseo entre pinos y clases de surf. En Azeitão y Arrábida encontraréis el parque natural, playas, bodegas, quesos y tartas locales, y el castillo de Palmela." },
       ],
     },
@@ -478,6 +481,7 @@ export const translations: Record<Language, SiteCopy> = {
     intro: {
       eyebrow: "Nous nous marions",
       scrollToStory: "Faire défiler jusqu’à notre histoire",
+      rsvpLink: "Répondre à l’invitation",
     },
     story: {
       title: "Notre histoire",
@@ -492,7 +496,7 @@ export const translations: Record<Language, SiteCopy> = {
     weekend: {
       eyebrow: "Le week-end",
       title: "Trois moments, tout le monde est bienvenu",
-      description: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez dans le RSVP les événements auxquels vous souhaitez participer.",
+      description: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez-nous les événements auxquels vous participerez en les sélectionnant dans le RSVP.",
       mapLink: "Ouvrir le lieu dans Maps",
       days: [
         {
@@ -507,7 +511,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Samedi · 19 juin 2027",
           title: "Le mariage",
           description: "Une cérémonie en plein air, suivie d’un cocktail, d’un dîner et d’une soirée dansante.",
-          location: "Casa do Pinheiro Manso · Azeitão",
+          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Cérémonie" },
             { time: "Horaire à confirmer", name: "Cocktail, dîner et danse" },
@@ -527,7 +531,7 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "Le lieu",
       title: "Au sud de Lisbonne, près de la mer",
-      description: "Le verre de bienvenue du vendredi aura lieu sur la plage de Fonte da Telha. Le mariage du samedi se tiendra à Casa do Pinheiro Manso, à Azeitão. Nous communiquerons les adresses exactes dès qu’elles seront confirmées.",
+      description: "Le verre de bienvenue du vendredi aura lieu dans la zone des bars de plage de Fonte da Telha, à Costa da Caparica, Almada, Setúbal ; le point de rendez-vous exact reste à confirmer. Le mariage du samedi aura lieu à Casa do Pinheiro Manso, Quinta do Peru, 2925-206 Azeitão.",
       beachMapLink: "Plage de Fonte da Telha · ouvrir dans Maps",
       weddingMapLink: "Casa do Pinheiro Manso · ouvrir dans Maps",
     },
@@ -538,7 +542,7 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { title: "Venir jusqu’ici", description: "Prenez un vol pour l’aéroport de Lisbonne (LIS). Fonte da Telha se trouve au sud du Tage, à environ 40–60 minutes de route (plus aux heures de pointe). Si vous louez une voiture, réservez tôt pour juin et demandez un dispositif de télépéage. Depuis Cordoue, comptez environ six heures de route, par Badajoz et Évora ou par Séville et Huelva. Une voiture ou un taxi est le plus simple entre les lieux ; les détails de la navette suivront." },
         { title: "Où séjourner", description: "Vous pouvez loger à Azeitão, près du lieu du mariage (Hotel Club d’Azeitão, maisons d’hôtes ou quintas) ; à Setúbal (Pousada Castelo de Palmela, appartements ou villas) ; ou à Aroeira/Costa da Caparica, près du verre du vendredi et de la plage. Pensez à réserver tôt." },
-        { title: "Dîner du vendredi", description: "Le vendredi, il y aura des boissons et des bouchées, pas de dîner : vous pourrez manger où vous le souhaitez ensuite. À proximité, vous trouverez des restaurants décontractés à Costa da Caparica, des fruits de mer à Fonte da Telha ou une soirée plus spéciale à Lisbonne. Pensez à réserver." },
+        { title: "Dîner du vendredi (à votre charge)", description: "Le vendredi, il y aura uniquement des boissons et des bouchées, pas de dîner ; vous pourrez manger où vous le souhaitez ensuite. À proximité, vous trouverez des restaurants décontractés à Costa da Caparica, des fruits de mer à Fonte da Telha ou une soirée plus spéciale à Lisbonne. Pensez à réserver." },
         { title: "À découvrir si vous prolongez votre séjour", description: "À Lisbonne : Alfama, Belém, les quais, LX Factory et Time Out Market ; le ferry depuis Cacilhas est une belle façon de traverser le fleuve. À Aroeira et Costa da Caparica : plages, promenade bordée de pins et cours de surf. À Azeitão et Arrábida : parc naturel, plages, caves, fromages et tartes locales, et château de Palmela." },
       ],
     },
@@ -651,6 +655,7 @@ export const translations: Record<Language, SiteCopy> = {
     intro: {
       eyebrow: "Vamos casar",
       scrollToStory: "Descer até à nossa história",
+      rsvpLink: "Confirmar presença",
     },
     story: {
       title: "A nossa história",
@@ -665,7 +670,7 @@ export const translations: Record<Language, SiteCopy> = {
     weekend: {
       eyebrow: "O fim de semana",
       title: "Três momentos, todos bem-vindos",
-      description: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique no RSVP a que eventos gostaria de assistir.",
+      description: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique-nos a que eventos vai assistir, selecionando-os no RSVP.",
       mapLink: "Abrir localização no Maps",
       days: [
         {
@@ -680,7 +685,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Sábado · 19 de junho de 2027",
           title: "O casamento",
           description: "Cerimónia ao ar livre, seguida de cocktails, jantar e dança.",
-          location: "Casa do Pinheiro Manso · Azeitão",
+          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Cerimónia" },
             { time: "Horário por confirmar", name: "Cocktails, jantar e dança" },
@@ -700,7 +705,7 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "O local",
       title: "No sul de Lisboa, perto do mar",
-      description: "As bebidas de boas-vindas de sexta-feira serão na praia da Fonte da Telha. O casamento de sábado será na Casa do Pinheiro Manso, em Azeitão. Partilharemos as moradas exatas assim que estiverem confirmadas.",
+      description: "As bebidas de boas-vindas de sexta-feira serão na zona dos bares de praia da Fonte da Telha, Costa da Caparica, Almada, Setúbal; o ponto de encontro exato será confirmado mais tarde. O casamento de sábado será na Casa do Pinheiro Manso, Quinta do Peru, 2925-206 Azeitão.",
       beachMapLink: "Praia da Fonte da Telha · abrir no Maps",
       weddingMapLink: "Casa do Pinheiro Manso · abrir no Maps",
     },
@@ -711,7 +716,7 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { title: "Como chegar", description: "Voe para o Aeroporto de Lisboa (LIS). A Fonte da Telha fica a sul do Tejo, a cerca de 40–60 minutos de carro (mais em hora de ponta). Se alugar um carro, reserve cedo para junho e peça um dispositivo eletrónico para as portagens. De Córdoba, conte com cerca de seis horas de viagem, via Badajoz e Évora ou Sevilha e Huelva. Entre os locais, o mais fácil é ir de carro ou táxi; partilharemos mais tarde os detalhes do transporte." },
         { title: "Onde ficar", description: "Considere Azeitão, perto do local do casamento (Hotel Club d’Azeitão, casas de hóspedes ou quintas); Setúbal (Pousada Castelo de Palmela, apartamentos ou villas); ou Aroeira/Costa da Caparica, perto das bebidas de sexta-feira e da praia. Reserve com antecedência." },
-        { title: "Jantar de sexta-feira", description: "Na sexta-feira haverá bebidas e petiscos, não jantar, por isso poderão jantar onde quiserem depois. Há opções informais na Costa da Caparica, peixe e marisco na Fonte da Telha ou uma noite especial em Lisboa. Reservem com antecedência." },
+        { title: "Jantar de sexta-feira (por conta própria)", description: "Na sexta-feira haverá apenas bebidas e petiscos, não jantar incluído, por isso poderão jantar onde quiserem depois. Há opções informais na Costa da Caparica, peixe e marisco na Fonte da Telha ou uma noite especial em Lisboa. Reservem com antecedência." },
         { title: "O que fazer se ficarem mais tempo", description: "Em Lisboa, explorem Alfama, Belém, a zona ribeirinha, a LX Factory e o Time Out Market; o ferry de Cacilhas é uma forma agradável de atravessar o rio. Em Aroeira e na Costa da Caparica, aproveitem as praias, o passadiço entre pinheiros e as aulas de surf. Em Azeitão e na Arrábida, descubram o parque natural, as praias, as caves, os queijos e doces locais e o Castelo de Palmela." },
       ],
     },
