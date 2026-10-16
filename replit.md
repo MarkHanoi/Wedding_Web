@@ -25,7 +25,12 @@ Keep this repository focused on the wedding landing page, Explore page and the R
 
 ## RSVP
 
-RSVP submissions are currently held in API memory and are lost when the API process restarts. Use persistent storage before relying on the form for final guest responses.
+- RSVPs are stored in the managed PostgreSQL database and remain available after API restarts.
+- `artifacts/api-server/src/db/001_rsvp_admin.sql` is the schema source. The development database has these tables; publish the app to apply the development schema to production.
+- The old in-memory RSVP list was not persistent, so submissions made before this change cannot be recovered.
+- Email notifications are sent from and to `lookwithinjourney@gmail.com` through Gmail SMTP. Set the `GMAIL_APP_PASSWORD` secret to enable delivery; use a Google App Password, not the account password.
+- The admin dashboard is at `/admin`. Sign-in is restricted to `lookwithinjourney@gmail.com` and requires a unique `ADMIN_PASSWORD` secret of at least 16 characters. Sessions are signed with `SESSION_SECRET`, which is already available to the app.
+- Site analytics count anonymous page opens only. They do not identify guests or connect visits to RSVP names.
 
 ## Design
 

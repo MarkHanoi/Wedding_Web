@@ -5,6 +5,7 @@ import HeroPage from "./components/HeroPage";
 import { getBrowserLanguage, isLanguage, type Language } from "./lib/i18n";
 
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
+const AdminPage = lazy(() => import("./components/AdminPage"));
 
 type View = "hero" | "explore";
 const LANGUAGE_STORAGE_KEY = "miaw-language";
@@ -42,6 +43,7 @@ const heroVariants = {
 export default function App() {
   const [view, setView] = useState<View>("hero");
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
+  const isAdminPage = window.location.pathname.replace(/\/+$/, "") === "/admin";
 
   useEffect(() => {
     document.documentElement.lang = language === "pt" ? "pt-PT" : language;
@@ -51,6 +53,19 @@ export default function App() {
       // Keep the selected language for this visit if browser storage is unavailable.
     }
   }, [language]);
+
+  useEffect(() => {
+    if (isAdminPage) return;
+    const eventId = window.crypto.randomUUID();
+    fetch("/api/analytics/visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ eventId, path: window.location.pathname }),
+      keepalive: true,
+    }).catch(() => {
+      // Analytics must not prevent guests from viewing or replying to the invitation.
+    });
+  }, [isAdminPage]);
 
   const goToExplore = useCallback(() => {
     setView("explore");
@@ -62,6 +77,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={null}>
+        {isAdminPage ? <AdminPage /> : (
         <AnimatePresence mode="wait">
 
           {view === "hero" && (
@@ -99,6 +115,7 @@ export default function App() {
           )}
 
         </AnimatePresence>
+        )}
       </Suspense>
     </ErrorBoundary>
   );

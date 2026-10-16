@@ -585,6 +585,7 @@ export default function WeddingCanvas({
 
       <footer className="wedding-scroll__footer">
         {copy.footer}
+        <a className="wedding-admin-link" href="/admin">Admin</a>
       </footer>
     </main>
   );
