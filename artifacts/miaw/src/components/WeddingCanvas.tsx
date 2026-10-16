@@ -233,6 +233,81 @@ export default function WeddingCanvas({
   return (
     <main className="wedding-scroll" style={scrollStyle} data-testid="page-wedding-information">
       <div className="gradient-canvas wedding-scroll__background" aria-hidden="true" />
+      <div className="wedding-scroll__shore" aria-hidden="true">
+        <svg
+          className="wedding-scroll__shore-art"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient id="explore-sea-water" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#214d5b" />
+              <stop offset="48%" stopColor="#286b77" />
+              <stop offset="82%" stopColor="#71988d" />
+              <stop offset="100%" stopColor="#d5c5a7" />
+            </linearGradient>
+            <radialGradient id="explore-sea-reflection" cx="50%" cy="40%" r="44%">
+              <stop offset="0%" stopColor="#f3e7d0" stopOpacity="0.72" />
+              <stop offset="42%" stopColor="#d7ddce" stopOpacity="0.46" />
+              <stop offset="100%" stopColor="#b7c8bd" stopOpacity="0" />
+            </radialGradient>
+            <linearGradient id="explore-shore-wash" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#fff8eb" stopOpacity="0.06" />
+              <stop offset="52%" stopColor="#fff8eb" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#fff8eb" stopOpacity="0.02" />
+            </linearGradient>
+            <filter id="explore-foam-soften" x="-10%" y="-100%" width="120%" height="300%">
+              <feGaussianBlur stdDeviation="9" />
+            </filter>
+          </defs>
+          <path
+            className="wedding-scroll__sea"
+            d="M0 0H1440V431 C1404 432 1375 449 1330 446 C1283 443 1254 427 1208 435 C1165 444 1135 465 1090 463 C1047 461 1018 443 974 449 C925 456 902 479 854 477 C809 475 773 453 729 451 C683 449 649 469 603 469 C560 469 529 451 485 453 C440 455 407 479 361 482 C317 485 284 464 240 463 C194 462 157 482 110 480 C70 478 36 463 0 466Z"
+            fill="url(#explore-sea-water)"
+          />
+          <path
+            className="wedding-scroll__sea"
+            d="M0 0H1440V431 C1404 432 1375 449 1330 446 C1283 443 1254 427 1208 435 C1165 444 1135 465 1090 463 C1047 461 1018 443 974 449 C925 456 902 479 854 477 C809 475 773 453 729 451 C683 449 649 469 603 469 C560 469 529 451 485 453 C440 455 407 479 361 482 C317 485 284 464 240 463 C194 462 157 482 110 480 C70 478 36 463 0 466Z"
+            fill="url(#explore-sea-reflection)"
+          />
+          <path
+            d="M0 454 C90 442 126 473 213 463 S354 448 440 472 S581 489 671 462 S815 445 907 466 S1061 481 1149 455 S1324 439 1440 449 L1440 546 C1334 554 1291 529 1191 541 S1011 564 914 541 S742 527 651 550 S474 567 382 544 S204 526 113 548 S34 554 0 544Z"
+            fill="url(#explore-shore-wash)"
+          />
+          <g className="wedding-scroll__shoreline-motion">
+            <path
+              d="M-30 450 C45 432 97 464 157 452 S268 440 326 461 S435 478 496 455 S611 435 672 457 S785 480 850 458 S966 436 1025 454 S1143 473 1201 448 S1358 432 1470 449"
+              fill="none"
+              stroke="#d7eee2"
+              strokeWidth="24"
+              strokeOpacity="0.28"
+              filter="url(#explore-foam-soften)"
+            />
+            <path
+              d="M-30 450 C45 432 97 464 157 452 S268 440 326 461 S435 478 496 455 S611 435 672 457 S785 480 850 458 S966 436 1025 454 S1143 473 1201 448 S1358 432 1470 449"
+              fill="none"
+              stroke="#fff8ed"
+              strokeWidth="11"
+              strokeOpacity="0.76"
+            />
+            <path
+              d="M-30 459 C40 446 100 475 163 462 S274 450 337 473 S444 488 510 465 S622 448 688 470 S800 490 864 470 S975 449 1042 467 S1151 484 1218 461 S1362 447 1470 461"
+              fill="none"
+              stroke="#fffdf5"
+              strokeWidth="4"
+              strokeOpacity="0.92"
+            />
+            <path
+              d="M0 477 C83 463 123 488 192 479 S306 464 370 488 M512 484 C574 469 623 490 689 480 S811 464 870 486 M1024 481 C1097 467 1141 489 1208 478 S1347 462 1440 478"
+              fill="none"
+              stroke="#fff8eb"
+              strokeWidth="3"
+              strokeOpacity="0.58"
+            />
+          </g>
+        </svg>
+      </div>
 
       <header className="wedding-scroll__header">
         <nav

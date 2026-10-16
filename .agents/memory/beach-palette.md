@@ -6,7 +6,7 @@ description: Full visual design system derived from Praia da Comporta beach phot
 ## Source
 Praia da Comporta beach photo: `attached_assets/image_1783365684371.png`
 
-## Three colour families (no blue, no seafoam, no grey-green)
+## Animated sand palette
 
 | Family | Range | Purpose |
 |--------|-------|---------|
@@ -14,7 +14,18 @@ Praia da Comporta beach photo: `attached_assets/image_1783365684371.png`
 | Sand light | `#EAD8C0` → `#D0B880` | c2 accent, mix |
 | Sand dark | `#D4A574` → `#B8845A` | c3 depth, terracotta |
 
-**Any value with a noticeable blue or green component is wrong.** The palette is purely warm.
+Keep the animated mesh and all 11 daily palettes within these warm sand and cream
+families. Do not add sea colours to `dailyPalette.ts`.
+
+## Sea-layer exception
+
+The Explore-page opening may use muted blue-green tones for the sea, with pale
+foam at the shoreline and a warm reflection behind the heading. The sea treatment
+is separate from the animated sand mesh and scrolls away with the opening content.
+
+**Why:** The couple asked for a sea-to-sand transition inspired by the supplied beach reference while retaining the existing moving sand pattern below.
+
+**How to apply:** Keep blue-green values in the dedicated sea layer only; preserve the warm daily palette for sand. Keep the heading and sticky navigation readable over the water, and respect reduced-motion preferences.
 
 ## CSS initial values & HeroPage constant
 Both must match `DAILY_PALETTES[0]` (Golden Shore):

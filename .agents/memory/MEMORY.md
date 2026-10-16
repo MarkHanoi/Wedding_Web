@@ -1,2 +1,2 @@
 - [Wedding site flow](wedding-conversion.md) — Explore opens a continuous scroll page with sticky section links; keep confirmed event details consistent across sections.
-- [Beach palette system](beach-palette.md) — visual system from the Comporta beach photo, warm palette, text contrast rules, and design contract at `docs/contract/design-contract.md`.
+- [Beach palette system](beach-palette.md) — keep the animated sand mesh warm; reserve muted blue-green for the separate sea layer and preserve contrast.

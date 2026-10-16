@@ -124,6 +124,7 @@ html, body, #root {
     animation: none;
     transition: none;
   }
+
 }
 
 /* Screen-reader-only utility */
@@ -217,9 +218,43 @@ html, body, #root {
 
 .wedding-scroll__background {
   position: fixed;
-  z-index: -1;
+  z-index: -2;
   inset: 0;
   pointer-events: none;
+}
+
+.wedding-scroll__shore {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: min(100vh, 920px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wedding-scroll__shore-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wedding-scroll__shoreline-motion {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: shoreline-drift 30s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-scroll__shoreline-motion {
+    animation: none;
+  }
+}
+
+@keyframes shoreline-drift {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(4px); }
 }
 
 .wedding-scroll__header {
@@ -237,9 +272,15 @@ html, body, #root {
   min-height: var(--wedding-scroll-header-height);
   padding: 3px 16px 3px max(24px, calc((100vw - 1120px) / 2));
   border-bottom: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(248, 241, 228, 0.38);
+  background: rgba(248, 241, 228, 0.76);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+@media (max-width: 600px) {
+  .wedding-scroll__shore {
+    height: min(70vh, 920px);
+  }
 }
 
 .wedding-scroll__home {

@@ -44,10 +44,13 @@ The landing page places white type over video, so preserve its legibility overla
 
 Keep the section links sticky at the top of the continuous Explore page. The arrow-only return control stays at the right edge of the navigation.
 
-### 2.4 Animated Gradient Background
+### 2.4 Beach Background
 
-The background is a 4-blob CSS mesh gradient that cycles through 11
-beach-toned palettes (one per calendar day) using `dailyPalette.ts`.
+The Explore page keeps its 4-blob CSS mesh gradient as the animated sand layer.
+It cycles through 11 warm beach-toned palettes (one per calendar day) using
+`dailyPalette.ts`. A muted blue-green sea and layered foam transition across
+the opening scene; the sea artwork scrolls with the intro so later sections
+retain the moving sand backdrop.
 
 Blob roles:
 - **c1** — cream highlight
@@ -56,9 +59,13 @@ Blob roles:
 - **c4** — top/sky (pale cream sand, `#FAF6F0` family)
 - **base** — CSS background fallback (`#C8B898`)
 
-Animation: `meshFlow` 45s ease-in-out infinite. Colour transitions: 8s ease.
+Animation: sand mesh `meshFlow` 45s ease-in-out infinite; sea foam drifts subtly
+across the shoreline. Colour transitions: 8s ease. Keep a soft pale reflection
+behind the intro heading and the sticky header lightly tinted for contrast.
 
-All palette variants stay within the warm sand and cream range. Respect `prefers-reduced-motion`.
+Daily mesh palette variants stay within the warm sand and cream range; blue-green
+tones belong only to the dedicated sea layer. Respect `prefers-reduced-motion`
+for both the sand mesh and shoreline motion.
 
 ---
 
@@ -122,7 +129,7 @@ The couple photo uses `object-fit: cover` and a soft edge mask so it blends into
 ## 7. What Is Forbidden
 
 - ❌ Unrelated AI-program branding, content or chat UI
-- ❌ Purple, blue or green tones in the Explore page's warm gradient
+- ❌ Purple, blue or green tones in the animated sand gradient (blue-green is reserved for the sea layer)
 - ❌ Bright saturated accent colours
 - ❌ Font families other than Cormorant Garamond and Inter
 
