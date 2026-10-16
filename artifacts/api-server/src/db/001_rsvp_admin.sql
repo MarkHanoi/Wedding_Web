@@ -4,6 +4,8 @@ CREATE TABLE rsvps (
   attending TEXT NOT NULL CHECK (attending IN ('yes', 'no')),
   guests INTEGER NOT NULL DEFAULT 0 CHECK (guests >= 0 AND guests <= 10),
   shuttle BOOLEAN NOT NULL DEFAULT FALSE,
+  events TEXT[] NOT NULL DEFAULT '{}'::TEXT[],
+  arrival TEXT NOT NULL DEFAULT '',
   dietary TEXT NOT NULL DEFAULT '',
   message TEXT NOT NULL DEFAULT '',
   received_at TIMESTAMPTZ NOT NULL DEFAULT NOW()

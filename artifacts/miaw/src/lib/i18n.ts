@@ -7,6 +7,7 @@ export const languageOptions = [
 
 export type Language = (typeof languageOptions)[number]["value"];
 export type GalleryKey = "preWedding" | "venue" | "brunch";
+export type RSVPEvent = "friday" | "saturday" | "sunday";
 
 interface DayCopy {
   date: string;
@@ -50,7 +51,8 @@ export interface SiteCopy {
     eyebrow: string;
     title: string;
     description: string;
-    mapLink: string;
+    beachMapLink: string;
+    weddingMapLink: string;
   };
   travel: {
     eyebrow: string;
@@ -67,6 +69,7 @@ export interface SiteCopy {
     eyebrow: string;
     title: string;
     description: string;
+    days: { title: string; description: string }[];
     swatchesLabel: string;
   };
   rsvp: {
@@ -81,7 +84,11 @@ export interface SiteCopy {
     attendanceLegend: string;
     accept: string;
     decline: string;
-    additionalGuests: string;
+    eventsLegend: string;
+    events: { id: RSVPEvent; label: string }[];
+    guestCountLabel: string;
+    arrivalLabel: string;
+    arrivalPlaceholder: string;
     shuttleLegend: string;
     shuttleYes: string;
     shuttleNo: string;
@@ -138,37 +145,35 @@ export const translations: Record<Language, SiteCopy> = {
     },
     weekend: {
       eyebrow: "The weekend",
-      title: "Meet us in South Lisbon",
-      description: "Three days together on the Lisbon coast. More practical details will be added here as they’re confirmed.",
-      mapLink: "View the beach on a map",
+      title: "Three moments, everyone welcome",
+      description: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Choose the events you’d like to attend in the RSVP.",
+      mapLink: "Open location in Maps",
       days: [
         {
           date: "Friday · 18 June 2027",
-          title: "Pre-wedding gathering",
-          description: "An evening together by the water before the wedding.",
-          location: "Aroeira Beach · Fonte da Telha",
-          events: [{ time: "Evening", name: "Pre-wedding celebration" }],
+          title: "Welcome drinks",
+          description: "Drinks and bites by the sea; dinner is on your own.",
+          location: "Beach bar, Fonte da Telha · exact spot to be confirmed",
+          events: [{ time: "Evening · TBC", name: "Welcome drinks and bites" }],
           gallery: "preWedding",
         },
         {
           date: "Saturday · 19 June 2027",
           title: "The wedding",
-          description: "A ceremony beneath the open sky, followed by dinner and dancing.",
-          location: "South Lisbon · full venue details to follow",
+          description: "An open-air ceremony, then cocktails, dinner and dancing.",
+          location: "Casa do Pinheiro Manso · Azeitão",
           events: [
-            { time: "17:00", name: "Ceremony" },
-            { time: "18:00", name: "Cocktails" },
-            { time: "21:00", name: "Dinner" },
-            { time: "Late", name: "Dancing" },
+            { time: "17:30", name: "Ceremony" },
+            { time: "Time TBC", name: "Cocktails, dinner and dancing" },
           ],
           gallery: "venue",
         },
         {
           date: "Sunday · 20 June 2027",
-          title: "Beach brunch",
-          description: "A slow, sunny goodbye by the water.",
-          location: "Details to follow",
-          events: [{ time: "Midday", name: "Brunch" }],
+          title: "Brunch",
+          description: "A slow goodbye, near the wedding venue.",
+          location: "Near the wedding venue · exact spot to be confirmed",
+          events: [{ time: "Midday · TBC", name: "Brunch" }],
           gallery: "brunch",
         },
       ],
@@ -176,38 +181,45 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "The place",
       title: "South Lisbon, close to the sea",
-      description: "Our pre-wedding gathering is at Aroeira Beach in Fonte da Telha. The wedding celebration will be in South Lisbon; we’ll share the exact venue and address as soon as they’re confirmed.",
-      mapLink: "Aroeira Beach · Fonte da Telha",
+      description: "Friday’s welcome drinks are on the beach at Fonte da Telha. Saturday’s wedding is at Casa do Pinheiro Manso in Azeitão. We’ll share the exact street addresses as soon as they’re confirmed.",
+      beachMapLink: "Fonte da Telha beach · open in Maps",
+      weddingMapLink: "Casa do Pinheiro Manso · open in Maps",
     },
     travel: {
-      eyebrow: "Travel & stay",
-      title: "A little further south",
-      description: "Fly into Lisbon Airport (LIS). We’ll share accommodation suggestions and local transport details when they’re ready.",
+      eyebrow: "Travel",
+      title: "Getting here, staying, exploring",
+      description: "A few useful pointers for your time on Lisbon’s south coast.",
       items: [
-        { title: "Getting here", description: "Lisbon Airport is the closest international airport." },
-        { title: "Where to stay", description: "Stay recommendations will be added soon." },
-        { title: "Getting around", description: "We’ll share local transport and shuttle information closer to the day." },
+        { title: "Getting here", description: "Fly into Lisbon Airport (LIS). Fonte da Telha is south of the Tagus, around 40–60 minutes by road (longer in rush hour). If you rent a car, book early for June and ask for an electronic motorway toll device. From Córdoba, allow around six hours by road, via Badajoz and Évora or Seville and Huelva. A car or taxi is easiest between venues; shuttle details will follow." },
+        { title: "Where to stay", description: "Consider Azeitão, near the wedding venue (Hotel Club d’Azeitão, guesthouses or local quintas); Setúbal (Pousada Castelo de Palmela, apartments or villas); or Aroeira/Costa da Caparica, close to Friday drinks and the beach. Please book early." },
+        { title: "Friday dinner", description: "Friday is welcome drinks and bites, not dinner, so you’re free to eat out afterwards. Nearby ideas range from a relaxed meal around Costa da Caparica to seafood at Fonte da Telha or a special evening in Lisbon. Please book ahead." },
+        { title: "Things to do if you’re staying longer", description: "In Lisbon, explore Alfama, Belém, the waterfront, LX Factory and Time Out Market; the ferry from Cacilhas is a lovely way to cross the river. Around Aroeira and Costa da Caparica, enjoy the beaches, pine-scented boardwalk and surf lessons. In Azeitão and Arrábida, discover the natural park, beaches, wine cellars, local cheese and tarts, and Palmela Castle." },
       ],
     },
     faq: {
       eyebrow: "A few notes",
       title: "Good to know",
       items: [
-        { question: "Are children welcome?", answer: "Yes, we’d love to see them." },
+        { question: "Who is invited to which events?", answer: "Everyone is welcome to all three events. Please tell us in the RSVP which ones you’ll join." },
         { question: "What if it’s windy or rainy?", answer: "We have a covered plan so the day stays beautiful." },
         { question: "Gifts?", answer: "Your presence is the gift. A contribution to our honeymoon is welcome." },
       ],
     },
     dressCode: {
-      eyebrow: "Dress code",
-      title: "Ivory, sand & soft light",
-      description: "Think natural linen, airy fabrics and warm neutrals. Please leave white for the bride and black at home.",
+      eyebrow: "What to wear",
+      title: "Just come ready to relax and enjoy!",
+      description: "",
+      days: [
+        { title: "Friday · Beach", description: "Relaxed and comfortable." },
+        { title: "Saturday · Festive", description: "Not white or black. Choose shoes that work on grass and gravel." },
+        { title: "Sunday · As you wish", description: "Come as you are." },
+      ],
       swatchesLabel: "Suggested colours",
     },
     rsvp: {
       eyebrow: "RSVP",
       title: "Will you join us?",
-      description: "Please reply for the wedding weekend. We’ll add the response deadline soon.",
+      description: "Please reply for the weekend and select every event you plan to attend.",
       thankYou: "Thank you, {name}.",
       accepted: "We can’t wait to celebrate with you.",
       declined: "We’ll miss you, but thank you for letting us know.",
@@ -216,7 +228,15 @@ export const translations: Record<Language, SiteCopy> = {
       attendanceLegend: "Will you attend?",
       accept: "Joyfully accepts",
       decline: "Regretfully declines",
-      additionalGuests: "Additional guests, excluding yourself",
+      eventsLegend: "Which events will you join?",
+      events: [
+        { id: "friday", label: "Friday drinks" },
+        { id: "saturday", label: "Saturday wedding" },
+        { id: "sunday", label: "Sunday brunch" },
+      ],
+      guestCountLabel: "Number of guests, including yourself",
+      arrivalLabel: "Coming from abroad? How do you plan to arrive?",
+      arrivalPlaceholder: "Flight, car, travelling from Córdoba…",
       shuttleLegend: "Will you need a shuttle?",
       shuttleYes: "Yes, please",
       shuttleNo: "No, thank you",
@@ -298,37 +318,35 @@ export const translations: Record<Language, SiteCopy> = {
     },
     weekend: {
       eyebrow: "El fin de semana",
-      title: "Nos vemos en el sur de Lisboa",
-      description: "Tres días juntos en la costa de Lisboa. Iremos añadiendo aquí los detalles prácticos cuando estén confirmados.",
-      mapLink: "Ver la playa en el mapa",
+      title: "Tres momentos, todos bienvenidos",
+      description: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Indica en el RSVP a qué eventos te gustaría asistir.",
+      mapLink: "Abrir ubicación en Maps",
       days: [
         {
           date: "Viernes · 18 de junio de 2027",
-          title: "Encuentro previo a la boda",
-          description: "Una velada junto al mar antes de la boda.",
-          location: "Playa de Aroeira · Fonte da Telha",
-          events: [{ time: "Por la tarde", name: "Celebración previa a la boda" }],
+          title: "Cóctel de bienvenida",
+          description: "Bebidas y aperitivos junto al mar; la cena corre por vuestra cuenta.",
+          location: "Chiringuito en Fonte da Telha · lugar exacto por confirmar",
+          events: [{ time: "Por la tarde-noche · por confirmar", name: "Bebidas y aperitivos de bienvenida" }],
           gallery: "preWedding",
         },
         {
           date: "Sábado · 19 de junio de 2027",
           title: "La boda",
-          description: "Una ceremonia al aire libre, seguida de cena y baile.",
-          location: "Sur de Lisboa · pronto compartiremos todos los detalles del lugar",
+          description: "Ceremonia al aire libre, seguida de cóctel, cena y baile.",
+          location: "Casa do Pinheiro Manso · Azeitão",
           events: [
-            { time: "17:00", name: "Ceremonia" },
-            { time: "18:00", name: "Cóctel" },
-            { time: "21:00", name: "Cena" },
-            { time: "Hasta tarde", name: "Baile" },
+            { time: "17:30", name: "Ceremonia" },
+            { time: "Horario por confirmar", name: "Cóctel, cena y baile" },
           ],
           gallery: "venue",
         },
         {
           date: "Domingo · 20 de junio de 2027",
-          title: "Brunch junto al mar",
-          description: "Una despedida tranquila y soleada junto al mar.",
-          location: "Más detalles próximamente",
-          events: [{ time: "Mediodía", name: "Brunch" }],
+          title: "Brunch",
+          description: "Una despedida tranquila cerca del lugar de la boda.",
+          location: "Cerca del lugar de la boda · punto exacto por confirmar",
+          events: [{ time: "Mediodía · por confirmar", name: "Brunch" }],
           gallery: "brunch",
         },
       ],
@@ -336,38 +354,45 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "El lugar",
       title: "Sur de Lisboa, cerca del mar",
-      description: "El encuentro previo a la boda será en la playa de Aroeira, en Fonte da Telha. La celebración de la boda será en el sur de Lisboa; compartiremos el lugar y la dirección exactos en cuanto estén confirmados.",
-      mapLink: "Playa de Aroeira · Fonte da Telha",
+      description: "Las bebidas de bienvenida del viernes serán en la playa de Fonte da Telha. La boda del sábado será en Casa do Pinheiro Manso, en Azeitão. Compartiremos las direcciones exactas en cuanto estén confirmadas.",
+      beachMapLink: "Playa de Fonte da Telha · abrir en Maps",
+      weddingMapLink: "Casa do Pinheiro Manso · abrir en Maps",
     },
     travel: {
-      eyebrow: "Viaje y alojamiento",
-      title: "Un poco más al sur",
-      description: "Vuela al aeropuerto de Lisboa (LIS). Compartiremos recomendaciones de alojamiento y detalles del transporte local cuando estén listos.",
+      eyebrow: "Viaje",
+      title: "Cómo llegar, dónde alojarse y qué descubrir",
+      description: "Algunas ideas prácticas para vuestra estancia en la costa sur de Lisboa.",
       items: [
-        { title: "Cómo llegar", description: "El aeropuerto de Lisboa es el aeropuerto internacional más cercano." },
-        { title: "Dónde alojarse", description: "Pronto añadiremos recomendaciones de alojamiento." },
-        { title: "Cómo desplazarse", description: "Compartiremos información sobre el transporte local y el servicio de autobús cuando se acerque la fecha." },
+        { title: "Cómo llegar", description: "Vuela al aeropuerto de Lisboa (LIS). Fonte da Telha está al sur del Tajo, a unos 40–60 minutos por carretera (más en hora punta). Si alquilas un coche, resérvalo pronto para junio y pregunta por el dispositivo electrónico de peaje. Desde Córdoba, calcula unas seis horas por carretera, pasando por Badajoz y Évora o por Sevilla y Huelva. Para desplazarse entre los lugares, lo más fácil es el coche o un taxi; compartiremos los detalles del autobús más adelante." },
+        { title: "Dónde alojarse", description: "Puedes alojarte en Azeitão, cerca del lugar de la boda (Hotel Club d’Azeitão, casas rurales o quintas); en Setúbal (Pousada Castelo de Palmela, apartamentos o villas); o en Aroeira/Costa da Caparica, cerca de las bebidas del viernes y de la playa. Reserva con antelación." },
+        { title: "La cena del viernes", description: "El viernes habrá bebidas y aperitivos, no cena, así que podréis cenar por vuestra cuenta después. Cerca encontraréis desde sitios informales en Costa da Caparica hasta pescado y marisco en Fonte da Telha o una cena especial en Lisboa. Reservad con antelación." },
+        { title: "Qué hacer si os quedáis más días", description: "En Lisboa, podéis recorrer Alfama, Belém, la zona junto al río, LX Factory y Time Out Market; el ferry desde Cacilhas es una bonita forma de cruzar el río. En Aroeira y Costa da Caparica hay playas, un paseo entre pinos y clases de surf. En Azeitão y Arrábida encontraréis el parque natural, playas, bodegas, quesos y tartas locales, y el castillo de Palmela." },
       ],
     },
     faq: {
       eyebrow: "Algunos detalles",
       title: "Información útil",
       items: [
-        { question: "¿Pueden venir niños?", answer: "Sí, nos encantará verlos." },
+        { question: "¿Quién está invitado a cada evento?", answer: "Todo el mundo está invitado a los tres eventos. Indica en el RSVP a cuáles te gustaría asistir." },
         { question: "¿Y si hace viento o llueve?", answer: "Tenemos un plan cubierto para que el día siga siendo especial." },
         { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Si lo deseáis, podéis contribuir a nuestra luna de miel." },
       ],
     },
     dressCode: {
-      eyebrow: "Vestimenta",
-      title: "Marfil, arena y luz suave",
-      description: "Lino natural, tejidos ligeros y tonos cálidos. Por favor, reservad el blanco para la novia y dejad el negro en casa.",
+      eyebrow: "Qué ponerse",
+      title: "¡Venid con ganas de relajaros y disfrutar!",
+      description: "",
+      days: [
+        { title: "Viernes · Playa", description: "Informal y cómodo." },
+        { title: "Sábado · Festivo", description: "Nada de blanco ni negro. Elegid zapatos adecuados para el césped y la grava." },
+        { title: "Domingo · A vuestro gusto", description: "Venid como queráis." },
+      ],
       swatchesLabel: "Colores sugeridos",
     },
     rsvp: {
       eyebrow: "Confirmación",
       title: "¿Nos acompañas?",
-      description: "Confirma si asistirás al fin de semana de la boda. Pronto añadiremos la fecha límite.",
+      description: "Confirma si asistirás y selecciona todos los eventos a los que vendrás.",
       thankYou: "Gracias, {name}.",
       accepted: "Estamos deseando celebrarlo contigo.",
       declined: "Te echaremos de menos. Gracias por avisarnos.",
@@ -376,7 +401,15 @@ export const translations: Record<Language, SiteCopy> = {
       attendanceLegend: "¿Asistirás?",
       accept: "Acepto con alegría",
       decline: "Lamentablemente, no podré asistir",
-      additionalGuests: "Acompañantes adicionales, sin contarte",
+      eventsLegend: "¿A qué eventos asistirás?",
+      events: [
+        { id: "friday", label: "Bebidas del viernes" },
+        { id: "saturday", label: "Boda del sábado" },
+        { id: "sunday", label: "Brunch del domingo" },
+      ],
+      guestCountLabel: "Número de invitados, incluyéndote",
+      arrivalLabel: "¿Vienes desde fuera? ¿Cómo tienes pensado llegar?",
+      arrivalPlaceholder: "Avión, coche, desde Córdoba…",
       shuttleLegend: "¿Necesitarás transporte?",
       shuttleYes: "Sí, por favor",
       shuttleNo: "No, gracias",
@@ -458,37 +491,35 @@ export const translations: Record<Language, SiteCopy> = {
     },
     weekend: {
       eyebrow: "Le week-end",
-      title: "Rendez-vous dans le sud de Lisbonne",
-      description: "Trois jours ensemble sur la côte lisboète. Les informations pratiques seront ajoutées ici dès qu’elles seront confirmées.",
-      mapLink: "Voir la plage sur la carte",
+      title: "Trois moments, tout le monde est bienvenu",
+      description: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez dans le RSVP les événements auxquels vous souhaitez participer.",
+      mapLink: "Ouvrir le lieu dans Maps",
       days: [
         {
           date: "Vendredi · 18 juin 2027",
-          title: "Rencontre avant le mariage",
-          description: "Une soirée au bord de l’eau avant le mariage.",
-          location: "Plage d’Aroeira · Fonte da Telha",
-          events: [{ time: "En soirée", name: "Célébration avant le mariage" }],
+          title: "Verre de bienvenue",
+          description: "Boissons et bouchées au bord de l’eau ; le dîner est libre.",
+          location: "Bar de plage, Fonte da Telha · lieu exact à confirmer",
+          events: [{ time: "En soirée · à confirmer", name: "Verre et bouchées de bienvenue" }],
           gallery: "preWedding",
         },
         {
           date: "Samedi · 19 juin 2027",
           title: "Le mariage",
-          description: "Une cérémonie en plein air, suivie d’un dîner et d’une soirée dansante.",
-          location: "Sud de Lisbonne · détails du lieu à venir",
+          description: "Une cérémonie en plein air, suivie d’un cocktail, d’un dîner et d’une soirée dansante.",
+          location: "Casa do Pinheiro Manso · Azeitão",
           events: [
-            { time: "17:00", name: "Cérémonie" },
-            { time: "18:00", name: "Cocktail" },
-            { time: "21:00", name: "Dîner" },
-            { time: "Tard", name: "Danse" },
+            { time: "17:30", name: "Cérémonie" },
+            { time: "Horaire à confirmer", name: "Cocktail, dîner et danse" },
           ],
           gallery: "venue",
         },
         {
           date: "Dimanche · 20 juin 2027",
-          title: "Brunch à la plage",
-          description: "Un au revoir tout en douceur, au soleil et au bord de l’eau.",
-          location: "Détails à venir",
-          events: [{ time: "Midi", name: "Brunch" }],
+          title: "Brunch",
+          description: "Un au revoir tout en douceur, près du lieu du mariage.",
+          location: "Près du lieu du mariage · endroit exact à confirmer",
+          events: [{ time: "Midi · à confirmer", name: "Brunch" }],
           gallery: "brunch",
         },
       ],
@@ -496,38 +527,45 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "Le lieu",
       title: "Au sud de Lisbonne, près de la mer",
-      description: "Notre rencontre avant le mariage aura lieu à la plage d’Aroeira, à Fonte da Telha. La célébration du mariage se tiendra dans le sud de Lisbonne ; nous communiquerons le lieu exact et l’adresse dès qu’ils seront confirmés.",
-      mapLink: "Plage d’Aroeira · Fonte da Telha",
+      description: "Le verre de bienvenue du vendredi aura lieu sur la plage de Fonte da Telha. Le mariage du samedi se tiendra à Casa do Pinheiro Manso, à Azeitão. Nous communiquerons les adresses exactes dès qu’elles seront confirmées.",
+      beachMapLink: "Plage de Fonte da Telha · ouvrir dans Maps",
+      weddingMapLink: "Casa do Pinheiro Manso · ouvrir dans Maps",
     },
     travel: {
-      eyebrow: "Voyage & séjour",
-      title: "Un peu plus au sud",
-      description: "Prenez un vol pour l’aéroport de Lisbonne (LIS). Nous partagerons des suggestions d’hébergement et les informations sur les transports locaux dès qu’elles seront prêtes.",
+      eyebrow: "Voyage",
+      title: "Venir, séjourner, découvrir",
+      description: "Quelques conseils pratiques pour votre séjour sur la côte sud de Lisbonne.",
       items: [
-        { title: "Venir jusqu’ici", description: "L’aéroport de Lisbonne est l’aéroport international le plus proche." },
-        { title: "Où séjourner", description: "Des suggestions d’hébergement seront bientôt ajoutées." },
-        { title: "Se déplacer", description: "Nous partagerons les informations sur les transports locaux et la navette à l’approche du jour J." },
+        { title: "Venir jusqu’ici", description: "Prenez un vol pour l’aéroport de Lisbonne (LIS). Fonte da Telha se trouve au sud du Tage, à environ 40–60 minutes de route (plus aux heures de pointe). Si vous louez une voiture, réservez tôt pour juin et demandez un dispositif de télépéage. Depuis Cordoue, comptez environ six heures de route, par Badajoz et Évora ou par Séville et Huelva. Une voiture ou un taxi est le plus simple entre les lieux ; les détails de la navette suivront." },
+        { title: "Où séjourner", description: "Vous pouvez loger à Azeitão, près du lieu du mariage (Hotel Club d’Azeitão, maisons d’hôtes ou quintas) ; à Setúbal (Pousada Castelo de Palmela, appartements ou villas) ; ou à Aroeira/Costa da Caparica, près du verre du vendredi et de la plage. Pensez à réserver tôt." },
+        { title: "Dîner du vendredi", description: "Le vendredi, il y aura des boissons et des bouchées, pas de dîner : vous pourrez manger où vous le souhaitez ensuite. À proximité, vous trouverez des restaurants décontractés à Costa da Caparica, des fruits de mer à Fonte da Telha ou une soirée plus spéciale à Lisbonne. Pensez à réserver." },
+        { title: "À découvrir si vous prolongez votre séjour", description: "À Lisbonne : Alfama, Belém, les quais, LX Factory et Time Out Market ; le ferry depuis Cacilhas est une belle façon de traverser le fleuve. À Aroeira et Costa da Caparica : plages, promenade bordée de pins et cours de surf. À Azeitão et Arrábida : parc naturel, plages, caves, fromages et tartes locales, et château de Palmela." },
       ],
     },
     faq: {
       eyebrow: "Quelques précisions",
       title: "À savoir",
       items: [
-        { question: "Les enfants sont-ils les bienvenus ?", answer: "Oui, nous serons ravis de les voir." },
+        { question: "Qui est invité à quels événements ?", answer: "Tout le monde est invité aux trois événements. Indiquez dans le RSVP ceux auxquels vous souhaitez participer." },
         { question: "Et s’il y a du vent ou de la pluie ?", answer: "Nous avons prévu une solution couverte pour que la journée reste belle." },
         { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Une contribution à notre lune de miel est la bienvenue." },
       ],
     },
     dressCode: {
-      eyebrow: "Tenue",
-      title: "Ivoire, sable & lumière douce",
-      description: "Pensez au lin naturel, aux matières légères et aux tons chauds. Merci de réserver le blanc à la mariée et de laisser le noir à la maison.",
+      eyebrow: "Comment s’habiller",
+      title: "Venez simplement pour vous détendre et profiter !",
+      description: "",
+      days: [
+        { title: "Vendredi · Plage", description: "Décontracté et confortable." },
+        { title: "Samedi · Festif", description: "Ni blanc ni noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
+        { title: "Dimanche · Comme vous voulez", description: "Venez comme vous êtes." },
+      ],
       swatchesLabel: "Couleurs suggérées",
     },
     rsvp: {
       eyebrow: "RSVP",
       title: "Serez-vous des nôtres ?",
-      description: "Merci de répondre pour le week-end du mariage. La date limite sera communiquée bientôt.",
+      description: "Merci de répondre et de sélectionner tous les événements auxquels vous participerez.",
       thankYou: "Merci, {name}.",
       accepted: "Nous avons hâte de fêter cela avec vous.",
       declined: "Vous nous manquerez. Merci de nous avoir prévenus.",
@@ -536,7 +574,15 @@ export const translations: Record<Language, SiteCopy> = {
       attendanceLegend: "Serez-vous présent(e) ?",
       accept: "Accepte avec joie",
       decline: "Décline avec regret",
-      additionalGuests: "Invités supplémentaires, sans vous compter",
+      eventsLegend: "À quels événements participerez-vous ?",
+      events: [
+        { id: "friday", label: "Verre du vendredi" },
+        { id: "saturday", label: "Mariage du samedi" },
+        { id: "sunday", label: "Brunch du dimanche" },
+      ],
+      guestCountLabel: "Nombre d’invités, vous compris",
+      arrivalLabel: "Vous venez de l’étranger ? Comment pensez-vous arriver ?",
+      arrivalPlaceholder: "Avion, voiture, depuis Cordoue…",
       shuttleLegend: "Aurez-vous besoin d’une navette ?",
       shuttleYes: "Oui, s’il vous plaît",
       shuttleNo: "Non, merci",
@@ -618,37 +664,35 @@ export const translations: Record<Language, SiteCopy> = {
     },
     weekend: {
       eyebrow: "O fim de semana",
-      title: "Encontramo-nos no sul de Lisboa",
-      description: "Três dias juntos na costa de Lisboa. Vamos acrescentando aqui os detalhes práticos assim que estiverem confirmados.",
-      mapLink: "Ver a praia no mapa",
+      title: "Três momentos, todos bem-vindos",
+      description: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique no RSVP a que eventos gostaria de assistir.",
+      mapLink: "Abrir localização no Maps",
       days: [
         {
           date: "Sexta-feira · 18 de junho de 2027",
-          title: "Encontro antes do casamento",
-          description: "Uma noite junto ao mar antes do casamento.",
-          location: "Praia da Aroeira · Fonte da Telha",
-          events: [{ time: "À noite", name: "Celebração antes do casamento" }],
+          title: "Bebidas de boas-vindas",
+          description: "Bebidas e petiscos junto ao mar; o jantar fica ao vosso critério.",
+          location: "Bar de praia na Fonte da Telha · local exato por confirmar",
+          events: [{ time: "À noite · por confirmar", name: "Bebidas e petiscos de boas-vindas" }],
           gallery: "preWedding",
         },
         {
           date: "Sábado · 19 de junho de 2027",
           title: "O casamento",
-          description: "Uma cerimónia ao ar livre, seguida de jantar e dança.",
-          location: "Sul de Lisboa · em breve partilharemos os detalhes do local",
+          description: "Cerimónia ao ar livre, seguida de cocktails, jantar e dança.",
+          location: "Casa do Pinheiro Manso · Azeitão",
           events: [
-            { time: "17:00", name: "Cerimónia" },
-            { time: "18:00", name: "Cocktails" },
-            { time: "21:00", name: "Jantar" },
-            { time: "Até tarde", name: "Dança" },
+            { time: "17:30", name: "Cerimónia" },
+            { time: "Horário por confirmar", name: "Cocktails, jantar e dança" },
           ],
           gallery: "venue",
         },
         {
           date: "Domingo · 20 de junho de 2027",
-          title: "Brunch na praia",
-          description: "Uma despedida tranquila e soalheira junto ao mar.",
-          location: "Mais detalhes em breve",
-          events: [{ time: "Meio-dia", name: "Brunch" }],
+          title: "Brunch",
+          description: "Uma despedida tranquila perto do local do casamento.",
+          location: "Perto do local do casamento · local exato por confirmar",
+          events: [{ time: "Meio-dia · por confirmar", name: "Brunch" }],
           gallery: "brunch",
         },
       ],
@@ -656,38 +700,45 @@ export const translations: Record<Language, SiteCopy> = {
     location: {
       eyebrow: "O local",
       title: "No sul de Lisboa, perto do mar",
-      description: "O nosso encontro antes do casamento será na Praia da Aroeira, na Fonte da Telha. A celebração do casamento será no sul de Lisboa; partilharemos o local e a morada exatos assim que estiverem confirmados.",
-      mapLink: "Praia da Aroeira · Fonte da Telha",
+      description: "As bebidas de boas-vindas de sexta-feira serão na praia da Fonte da Telha. O casamento de sábado será na Casa do Pinheiro Manso, em Azeitão. Partilharemos as moradas exatas assim que estiverem confirmadas.",
+      beachMapLink: "Praia da Fonte da Telha · abrir no Maps",
+      weddingMapLink: "Casa do Pinheiro Manso · abrir no Maps",
     },
     travel: {
-      eyebrow: "Viagem e estadia",
-      title: "Um pouco mais a sul",
-      description: "Voe para o Aeroporto de Lisboa (LIS). Partilharemos sugestões de alojamento e informações sobre transportes locais quando estiverem prontas.",
+      eyebrow: "Viagem",
+      title: "Como chegar, onde ficar e o que descobrir",
+      description: "Algumas sugestões práticas para a vossa estadia na costa sul de Lisboa.",
       items: [
-        { title: "Como chegar", description: "O Aeroporto de Lisboa é o aeroporto internacional mais próximo." },
-        { title: "Onde ficar", description: "Em breve partilharemos sugestões de alojamento." },
-        { title: "Como se deslocar", description: "Partilharemos informações sobre os transportes locais e o serviço de transporte mais perto da data." },
+        { title: "Como chegar", description: "Voe para o Aeroporto de Lisboa (LIS). A Fonte da Telha fica a sul do Tejo, a cerca de 40–60 minutos de carro (mais em hora de ponta). Se alugar um carro, reserve cedo para junho e peça um dispositivo eletrónico para as portagens. De Córdoba, conte com cerca de seis horas de viagem, via Badajoz e Évora ou Sevilha e Huelva. Entre os locais, o mais fácil é ir de carro ou táxi; partilharemos mais tarde os detalhes do transporte." },
+        { title: "Onde ficar", description: "Considere Azeitão, perto do local do casamento (Hotel Club d’Azeitão, casas de hóspedes ou quintas); Setúbal (Pousada Castelo de Palmela, apartamentos ou villas); ou Aroeira/Costa da Caparica, perto das bebidas de sexta-feira e da praia. Reserve com antecedência." },
+        { title: "Jantar de sexta-feira", description: "Na sexta-feira haverá bebidas e petiscos, não jantar, por isso poderão jantar onde quiserem depois. Há opções informais na Costa da Caparica, peixe e marisco na Fonte da Telha ou uma noite especial em Lisboa. Reservem com antecedência." },
+        { title: "O que fazer se ficarem mais tempo", description: "Em Lisboa, explorem Alfama, Belém, a zona ribeirinha, a LX Factory e o Time Out Market; o ferry de Cacilhas é uma forma agradável de atravessar o rio. Em Aroeira e na Costa da Caparica, aproveitem as praias, o passadiço entre pinheiros e as aulas de surf. Em Azeitão e na Arrábida, descubram o parque natural, as praias, as caves, os queijos e doces locais e o Castelo de Palmela." },
       ],
     },
     faq: {
       eyebrow: "Algumas notas",
       title: "Informações úteis",
       items: [
-        { question: "As crianças são bem-vindas?", answer: "Sim, teremos muito gosto em vê-las." },
+        { question: "Quem está convidado para cada evento?", answer: "Todos são bem-vindos aos três eventos. Indique no RSVP a quais gostaria de assistir." },
         { question: "E se estiver vento ou chover?", answer: "Temos uma alternativa coberta para que o dia continue a ser especial." },
         { question: "Presentes?", answer: "A vossa presença é o melhor presente. Uma contribuição para a nossa lua de mel é bem-vinda." },
       ],
     },
     dressCode: {
-      eyebrow: "Traje",
-      title: "Marfim, areia e luz suave",
-      description: "Pense em linho natural, tecidos leves e tons quentes. Pedimos que reservem o branco para a noiva e deixem o preto em casa.",
+      eyebrow: "O que vestir",
+      title: "Venham prontos para relaxar e aproveitar!",
+      description: "",
+      days: [
+        { title: "Sexta-feira · Praia", description: "Descontraído e confortável." },
+        { title: "Sábado · Festivo", description: "Sem branco nem preto. Escolham sapatos adequados à relva e à gravilha." },
+        { title: "Domingo · Como preferirem", description: "Venham como são." },
+      ],
       swatchesLabel: "Cores sugeridas",
     },
     rsvp: {
       eyebrow: "Confirmação",
       title: "Vão celebrar connosco?",
-      description: "Por favor, confirmem se estarão presentes no fim de semana do casamento. Partilharemos em breve a data-limite para responder.",
+      description: "Por favor, confirmem a presença e selecionem todos os eventos a que vão assistir.",
       thankYou: "Obrigado, {name}.",
       accepted: "Estamos ansiosos por celebrar convosco.",
       declined: "Vamos sentir a vossa falta. Obrigado por nos avisarem.",
@@ -696,7 +747,15 @@ export const translations: Record<Language, SiteCopy> = {
       attendanceLegend: "Vai estar presente?",
       accept: "Aceito com alegria",
       decline: "Lamento não poder estar presente",
-      additionalGuests: "Acompanhantes adicionais, sem contar consigo",
+      eventsLegend: "A que eventos vão assistir?",
+      events: [
+        { id: "friday", label: "Bebidas de sexta-feira" },
+        { id: "saturday", label: "Casamento de sábado" },
+        { id: "sunday", label: "Brunch de domingo" },
+      ],
+      guestCountLabel: "Número de convidados, incluindo você",
+      arrivalLabel: "Vem do estrangeiro? Como planeia chegar?",
+      arrivalPlaceholder: "Avião, carro, de Córdoba…",
       shuttleLegend: "Vai precisar de transporte?",
       shuttleYes: "Sim, por favor",
       shuttleNo: "Não, obrigado",

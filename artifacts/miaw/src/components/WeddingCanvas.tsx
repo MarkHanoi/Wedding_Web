@@ -1,7 +1,7 @@
 import { useState, type CSSProperties, type FormEvent } from "react";
 import { getTodaysPalette } from "../lib/dailyPalette";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { translations, type GalleryKey, type Language } from "../lib/i18n";
+import { translations, type GalleryKey, type Language, type RSVPEvent } from "../lib/i18n";
 import aerialFonteDaTelha from "../../../../attached_assets/Fonte_da_Telha_1_-_Copy_1792139804228.jpg";
 import dunePath from "../../../../attached_assets/92658_-_Copy_1792139804226.jpg";
 import coastalView from "../../../../attached_assets/fonte-da-telha_-_Copy_1792139804229.jpg";
@@ -67,7 +67,9 @@ const travelPhotoSources = [
 ];
 
 const BEACH_MAP_URL =
-  "https://www.google.com/maps/search/?api=1&query=Aroeira+Beach+Fonte+da+Telha+Portugal";
+  "https://www.google.com/maps/search/?api=1&query=Fonte+da+Telha+beach+Portugal";
+const WEDDING_MAP_URL =
+  "https://www.google.com/maps/search/?api=1&query=Casa+do+Pinheiro+Manso+Azeit%C3%A3o+Portugal";
 
 interface PhotoGallery {
   photos: GalleryPhoto[];
@@ -166,7 +168,7 @@ const sectionHrefs = [
   "#dress-code",
   "#rsvp",
 ];
-const faqTestIds = ["children", "weather", "gifts"] as const;
+const faqTestIds = ["invited", "weather", "gifts"] as const;
 
 export default function WeddingCanvas({
   onGoToHero,
@@ -198,7 +200,7 @@ export default function WeddingCanvas({
   const weekend = copy.weekend.days.map((day, index) => ({
     ...day,
     galleryId: day.gallery,
-    mapUrl: index === 0 ? BEACH_MAP_URL : undefined,
+    mapUrl: index === 0 ? BEACH_MAP_URL : index === 1 ? WEDDING_MAP_URL : undefined,
     gallery: galleries[day.gallery],
   }));
   const travelPhotos = travelPhotoSources.map((src, index) => ({
@@ -212,7 +214,9 @@ export default function WeddingCanvas({
   const [name, setName] = useState("");
   const [attending, setAttending] = useState<"yes" | "no" | "">("");
   const [needsShuttle, setNeedsShuttle] = useState<"yes" | "no" | "">("");
-  const [guestCount, setGuestCount] = useState(0);
+  const [partySize, setPartySize] = useState(1);
+  const [selectedEvents, setSelectedEvents] = useState<RSVPEvent[]>([]);
+  const [arrival, setArrival] = useState("");
   const [dietary, setDietary] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -221,7 +225,11 @@ export default function WeddingCanvas({
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!name.trim() || !attending || (attending === "yes" && !needsShuttle)) return;
+    if (
+      !name.trim() ||
+      !attending ||
+      (attending === "yes" && (!needsShuttle || selectedEvents.length === 0))
+    ) return;
 
     setSubmitting(true);
     setError("");
@@ -232,8 +240,10 @@ export default function WeddingCanvas({
         body: JSON.stringify({
           name: name.trim(),
           attending,
-          guests: attending === "yes" ? guestCount : 0,
+          guests: attending === "yes" ? partySize - 1 : 0,
           shuttle: attending === "yes" && needsShuttle === "yes",
+          events: attending === "yes" ? selectedEvents : [],
+          arrival: arrival.trim(),
           dietary: dietary.trim(),
           message: message.trim(),
         }),
@@ -394,7 +404,17 @@ export default function WeddingCanvas({
           rel="noopener noreferrer"
           data-testid="link-location-map"
         >
-          {copy.location.mapLink} <span aria-hidden="true">↗</span>
+          {copy.location.beachMapLink} <span aria-hidden="true">↗</span>
+        </a>
+        <br />
+        <a
+          className="text-link"
+          href={WEDDING_MAP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="link-wedding-map"
+        >
+          {copy.location.weddingMapLink} <span aria-hidden="true">↗</span>
         </a>
       </section>
 
@@ -439,7 +459,16 @@ export default function WeddingCanvas({
         <div className="wedding-section__inner wedding-section__inner--narrow">
           <p className="wedding-section__eyebrow">{copy.dressCode.eyebrow}</p>
           <h2>{copy.dressCode.title}</h2>
-          <p>{copy.dressCode.description}</p>
+          {copy.dressCode.description && <p>{copy.dressCode.description}</p>}
+          <div className="travel-grid">
+            {copy.dressCode.days.map((day, index) => (
+              <article key={day.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{day.title}</h3>
+                <p>{day.description}</p>
+              </article>
+            ))}
+          </div>
           <div className="wedding-swatches" aria-label={copy.dressCode.swatchesLabel}>
             {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
               <span key={color} style={{ backgroundColor: color }} />
@@ -496,7 +525,10 @@ export default function WeddingCanvas({
                     className={`rsvp-choice${attending === "no" ? " is-selected" : ""}`}
                     type="button"
                     aria-pressed={attending === "no"}
-                    onClick={() => setAttending("no")}
+                    onClick={() => {
+                      setAttending("no");
+                      setSelectedEvents([]);
+                    }}
                     data-testid="button-rsvp-decline"
                   >
                     {copy.rsvp.decline}
@@ -507,15 +539,38 @@ export default function WeddingCanvas({
               {attending === "yes" && (
                 <>
                   <fieldset className="rsvp-field">
-                    <legend>{copy.rsvp.additionalGuests}</legend>
+                    <legend>{copy.rsvp.eventsLegend}</legend>
+                    <div className="rsvp-choice-row">
+                      {copy.rsvp.events.map((item) => (
+                        <button
+                          key={item.id}
+                          className={`rsvp-choice${selectedEvents.includes(item.id) ? " is-selected" : ""}`}
+                          type="button"
+                          aria-pressed={selectedEvents.includes(item.id)}
+                          onClick={() =>
+                            setSelectedEvents((current) =>
+                              current.includes(item.id)
+                                ? current.filter((eventId) => eventId !== item.id)
+                                : [...current, item.id],
+                            )
+                          }
+                          data-testid={`button-rsvp-event-${item.id}`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <fieldset className="rsvp-field">
+                    <legend>{copy.rsvp.guestCountLabel}</legend>
                     <div className="rsvp-guests">
-                      {[0, 1, 2, 3].map((count) => (
+                      {[1, 2, 3, 4].map((count) => (
                         <button
                           key={count}
-                          className={`rsvp-guest${guestCount === count ? " is-selected" : ""}`}
+                          className={`rsvp-guest${partySize === count ? " is-selected" : ""}`}
                           type="button"
-                          aria-pressed={guestCount === count}
-                          onClick={() => setGuestCount(count)}
+                          aria-pressed={partySize === count}
+                          onClick={() => setPartySize(count)}
                           data-testid={`button-rsvp-guests-${count}`}
                         >
                           {count}
@@ -542,6 +597,18 @@ export default function WeddingCanvas({
                   </fieldset>
                 </>
               )}
+
+              <label className="rsvp-field">
+                <span>{copy.rsvp.arrivalLabel} <em>{copy.rsvp.optional}</em></span>
+                <input
+                  type="text"
+                  name="arrival"
+                  placeholder={copy.rsvp.arrivalPlaceholder}
+                  value={arrival}
+                  onChange={(event) => setArrival(event.target.value)}
+                  data-testid="input-rsvp-arrival"
+                />
+              </label>
 
               <label className="rsvp-field">
                 <span>{copy.rsvp.dietaryLabel}</span>
@@ -573,7 +640,12 @@ export default function WeddingCanvas({
               <button
                 className="rsvp-submit"
                 type="submit"
-                disabled={!name.trim() || !attending || (attending === "yes" && !needsShuttle) || submitting}
+                disabled={
+                  !name.trim() ||
+                  !attending ||
+                  (attending === "yes" && (!needsShuttle || selectedEvents.length === 0)) ||
+                  submitting
+                }
                 data-testid="button-submit-rsvp"
               >
                 {submitting ? copy.rsvp.sending : copy.rsvp.send}

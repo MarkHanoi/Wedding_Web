@@ -19,6 +19,8 @@ type Dashboard = {
     attending: "yes" | "no";
     guests: number;
     shuttle: boolean;
+    events: string[];
+    arrival: string;
     dietary: string;
     message: string;
     receivedAt: string;
@@ -303,7 +305,9 @@ export default function AdminPage() {
                           <th scope="col">Guest</th>
                           <th scope="col">Reply</th>
                           <th scope="col">Party</th>
+                          <th scope="col">Events</th>
                           <th scope="col">Shuttle</th>
+                          <th scope="col">Arrival</th>
                           <th scope="col">Dietary requirements</th>
                           <th scope="col">Note</th>
                           <th scope="col">Received</th>
@@ -319,7 +323,9 @@ export default function AdminPage() {
                               </span>
                             </td>
                             <td>{rsvp.attending === "yes" ? 1 + rsvp.guests : "—"}</td>
+                            <td>{rsvp.events.map((event) => event.replace(/^./, (letter) => letter.toUpperCase())).join(", ") || "—"}</td>
                             <td>{rsvp.attending === "yes" ? (rsvp.shuttle ? "Yes" : "No") : "—"}</td>
+                            <td>{rsvp.arrival || "—"}</td>
                             <td>{rsvp.dietary || "—"}</td>
                             <td>{rsvp.message || "—"}</td>
                             <td className="admin-date-cell">{formatDate(rsvp.receivedAt)}</td>

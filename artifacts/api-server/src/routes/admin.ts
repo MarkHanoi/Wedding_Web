@@ -133,11 +133,13 @@ router.get("/admin/dashboard", requireAdmin, async (_req, res, next) => {
         attending: "yes" | "no";
         guests: number;
         shuttle: boolean;
+        events: string[];
+        arrival: string;
         dietary: string;
         message: string;
         received_at: Date;
       }>(
-        `SELECT id, name, attending, guests, shuttle, dietary, message, received_at
+        `SELECT id, name, attending, guests, shuttle, events, arrival, dietary, message, received_at
          FROM rsvps
          ORDER BY received_at DESC`,
       ),
@@ -158,6 +160,8 @@ router.get("/admin/dashboard", requireAdmin, async (_req, res, next) => {
         attending: row.attending,
         guests: row.guests,
         shuttle: row.shuttle,
+        events: row.events,
+        arrival: row.arrival,
         dietary: row.dietary,
         message: row.message,
         receivedAt: row.received_at.toISOString(),
