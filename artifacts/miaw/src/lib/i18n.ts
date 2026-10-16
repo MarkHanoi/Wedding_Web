@@ -131,11 +131,7 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Our Story",
       paragraphs: [
-        "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out.",
-        "Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down.",
-        "In 2022, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. Somehow, we’re getting married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise.",
-        "Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other.",
-        "Lisbon, we’re ready.",
+        "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out. Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down. In 2023, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. We are still speaking so let's get married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise. Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other. Lisbon, we’re ready.",
       ],
     },
     weekend: {
@@ -280,11 +276,11 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Nuestra historia",
       paragraphs: [
-        "Clémence, de Jouy-en-Josas, Francia, y Antonio, de Córdoba, España, se conocieron en Londres en 2016. Lo que empezó allí pronto se convirtió en una aventura compartida que les llevó por países y continentes.",
-        "Tras dos años en Londres, se mudaron a Sídney en 2018 y luego a Brisbane en 2019. En 2022 dieron otro gran paso y se instalaron en Portugal, al norte de Lisboa, donde empezaron a construir juntos una casa.",
-        "Por el camino recorrieron el mundo, coleccionando recuerdos, descubriendo lugares nuevos y haciendo de cada aventura parte de su historia.",
-        "Hoy han vuelto a la orilla sur de Lisboa, el lugar al que llaman hogar y donde celebrarán con ilusión el próximo capítulo de su viaje, rodeados de las personas que más quieren.",
-        "Y así continúa su historia…",
+        "Una francesa conoce a un español en Londres, en 2016. Nos conocimos en una discoteca, con una iluminación terrible, y de alguna manera, la cosa funcionó.",
+        "Desde entonces, hemos vivido en Sídney, Brisbane y, finalmente, Portugal, acumulando unas cuantas maletas por el camino — ya fuera porque estábamos enamorados o porque se nos daba fatal asentarnos.",
+        "En 2023, empezamos a construir una casa en Portugal y después decidimos tomarnos un año para viajar juntos por el mundo. La prueba definitiva para una pareja: un año de aventuras, compañía constante y ninguna vía de escape. Seguimos hablándonos, así que vamos a casarnos — en Portugal, en algún lugar entre Francia y España, lo que nos pareció un compromiso bastante justo.",
+        "Diez años, incontables países y unas cuantas grandes aventuras después, hemos aprendido que el mejor lugar en el que hemos estado nunca es justo al lado del otro.",
+        "Lisboa, estamos listos.",
       ],
     },
     weekend: {
@@ -429,11 +425,11 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Notre histoire",
       paragraphs: [
-        "Clémence, originaire de Jouy-en-Josas en France, et Antonio, originaire de Córdoba en Espagne, se sont rencontrés à Londres en 2016. Ce qui a commencé là-bas est vite devenu une aventure à deux, qui les a menés à travers pays et continents.",
-        "Après deux ans à Londres, ils sont partis vivre à Sydney en 2018, puis à Brisbane en 2019. En 2022, ils ont fait un nouveau grand saut et se sont installés au Portugal, juste au nord de Lisbonne, où ils ont commencé à construire une maison ensemble.",
-        "Au fil du chemin, ils ont parcouru le monde, collectionné les souvenirs, découvert de nouveaux endroits et fait de chaque aventure une partie de leur histoire.",
-        "Aujourd’hui, ils sont de retour sur la rive sud de Lisbonne, leur chez-eux, où ils ont hâte de célébrer la suite de leur histoire entourés de ceux qu’ils aiment.",
-        "Et leur histoire continue…",
+        "Une Française rencontre un Espagnol à Londres, en 2016. On s’est rencontrés dans une boîte de nuit, sous un éclairage absolument catastrophique, et contre toute attente, ça a marché.",
+        "Depuis, on a vécu à Sydney, Brisbane, puis finalement au Portugal, en accumulant pas mal de valises au passage — soit parce qu’on était amoureux, soit parce qu’on avait beaucoup de mal à se poser.",
+        "En 2023, on a commencé à construire une maison au Portugal, puis on a décidé de prendre un an pour voyager autour du monde ensemble. Le test ultime pour un couple : un an d’aventures, une présence constante et aucune échappatoire. On se parle toujours, alors autant se marier — au Portugal, quelque part entre la France et l’Espagne, ce qui nous a semblé être un compromis équitable.",
+        "Dix ans, d’innombrables pays et quelques grandes aventures plus tard, on a compris que le meilleur endroit où l’on soit jamais allés, c’est juste à côté l’un de l’autre.",
+        "Lisbonne, on est prêts.",
       ],
     },
     weekend: {
@@ -578,11 +574,11 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "A nossa história",
       paragraphs: [
-        "Clémence, de Jouy-en-Josas, França, e Antonio, de Córdoba, Espanha, conheceram-se em Londres em 2016. O que começou ali depressa se tornou numa aventura a dois, que os levou por países e continentes.",
-        "Depois de dois anos em Londres, mudaram-se para Sydney em 2018 e, em 2019, para Brisbane. Em 2022, deram outro grande passo e fizeram de Portugal a sua casa, instalando-se a norte de Lisboa, onde começaram a construir uma casa juntos.",
-        "Pelo caminho, viajaram pelo mundo, colecionaram memórias, descobriram novos lugares e fizeram de cada aventura parte da sua história.",
-        "Hoje estão de volta à margem sul de Lisboa, o lugar a que chamam casa e onde estão entusiasmados por celebrar o próximo capítulo da sua viagem, rodeados pelas pessoas de quem mais gostam.",
-        "E assim continua a sua história…",
+        "Uma francesa conhece um espanhol em Londres, em 2016. Conhecemo-nos numa discoteca, com uma iluminação péssima, e, de alguma forma, a coisa resultou.",
+        "Desde então, vivemos em Sydney, Brisbane e, finalmente, em Portugal, acumulando umas quantas malas pelo caminho — ou porque estávamos apaixonados, ou porque tínhamos muita dificuldade em assentar.",
+        "Em 2023, começámos a construir uma casa em Portugal e depois decidimos tirar um ano para viajar pelo mundo juntos. O teste definitivo para uma relação: um ano de aventuras, companhia constante e sem escapatória. Ainda nos falamos, por isso vamos casar — em Portugal, algures entre França e Espanha, o que nos pareceu um compromisso bastante justo.",
+        "Dez anos, inúmeros países e algumas grandes aventuras depois, aprendemos que o melhor lugar onde alguma vez estivemos é mesmo ao lado um do outro.",
+        "Lisboa, estamos prontos.",
       ],
     },
     weekend: {
