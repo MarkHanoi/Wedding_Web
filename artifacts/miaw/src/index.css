@@ -302,11 +302,19 @@ html, body, #root {
   overscroll-behavior-y: contain;
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   color: var(--wedding-ink);
   font-family: Inter, sans-serif;
   font-weight: 300;
   line-height: 1.75;
   isolation: isolate;
+}
+
+.wedding-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .wedding-scroll__background {
