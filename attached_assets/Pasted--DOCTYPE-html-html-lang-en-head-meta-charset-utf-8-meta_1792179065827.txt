@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clémence & Antonio — 18–20 June 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F4EC;--sand:#EDE3D3;--ink:#3B342C;--soft:#6F6456;--terra:#B8603A;--line:#D9CDB9;--nav:#F8F4ECE6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1B17;--sand:#2A251F;--ink:#F1EADD;--soft:#B3A895;--terra:#E08A60;--line:#40382E;--nav:#1E1B17E6}}
+:root[data-theme="dark"]{--bg:#1E1B17;--sand:#2A251F;--ink:#F1EADD;--soft:#B3A895;--terra:#E08A60;--line:#40382E;--nav:#1E1B17E6}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;font-weight:300;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);z-index:10}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;margin:0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--nav);backdrop-filter:blur(8px);display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+a{color:inherit}nav a{color:var(--soft);text-decoration:none}nav a:hover{color:var(--terra)}
+section{max-width:980px;margin:0 auto;padding:4.5rem 1.4rem;text-align:center}
+.band{background:var(--sand);max-width:none}.band>div{max-width:980px;margin:0 auto}
+.hero{padding-top:2.5rem}
+.arch{width:min(300px,78%);aspect-ratio:3/4;margin:0 auto 2rem;border-radius:999px 999px 0 0;background:linear-gradient(180deg,var(--sand),#E3D3BB 60%,#C46F47 170%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:2rem;position:relative}
+.arch::after{content:"";position:absolute;inset:14px;border:1px solid var(--line);border-radius:999px 999px 0 0}
+.arch span,.meta,.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase}
+.arch span{color:var(--soft)}
+h1{font-size:clamp(3rem,10vw,5.8rem);line-height:1}h1 em{color:var(--terra);font-size:.6em;padding:0 .15em}
+.meta{color:var(--soft);margin-top:1.1rem;font-size:.8rem}
+.tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.45rem;color:var(--soft);max-width:560px;margin:1.4rem auto 0}
+.eyebrow{color:var(--terra);margin-bottom:.7rem}
+h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:1.2rem}h3{font-size:1.7rem;font-style:italic}
+p{max-width:580px;margin:0 auto 1rem;color:var(--soft)}
+.btn{display:inline-block;margin-top:1.2rem;padding:.85rem 2.2rem;border:1px solid var(--ink);color:var(--ink);text-decoration:none;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;border-radius:999px;background:none;font-family:inherit;cursor:pointer}
+.btn:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+.cards,.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:2rem;text-align:left}
+.card{background:var(--sand);border:1px solid var(--line);border-radius:18px;padding:1.6rem 1.5rem;display:flex;flex-direction:column}
+.band .card{background:var(--bg)}
+.card small{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
+.card h3{margin:.3rem 0 .4rem}.card p{margin:0 0 1rem;max-width:none}
+dl{margin:0 0 1.2rem;border-top:1px solid var(--line)}dl div{display:grid;grid-template-columns:4.8rem 1fr;gap:.7rem;padding:.55rem 0;border-bottom:1px solid var(--line)}
+dt{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);padding-top:.3rem}dd{margin:0;font-weight:400}
+.act{margin-top:auto;display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}.act a{color:var(--terra)}
+.chips{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0 .5rem}.chips a{border:1px solid var(--line);border-radius:999px;padding:.3rem 1rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--soft)}
+.sub{text-align:left;margin-top:3rem}.sub h3{border-bottom:1px solid var(--line);padding-bottom:.4rem;margin-bottom:1rem}
+.sub p{margin-left:0;max-width:none}.sub ul{margin:0 0 1rem;padding-left:1.1rem;color:var(--soft)}.sub li{margin:.3rem 0}.sub b{color:var(--ink);font-weight:400}
+.sw{display:flex;gap:.8rem;justify-content:center;margin:1.5rem 0}.sw i{width:46px;height:46px;border-radius:50%;border:1px solid var(--line)}
+details{border-top:1px solid var(--line);padding:.9rem 0;text-align:left;max-width:640px;margin:0 auto}details p{margin:.5rem 0 0;max-width:none}
+summary{cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.3rem}
+form{max-width:560px;margin:1.5rem auto 0;text-align:left;display:grid;gap:1rem}
+label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);display:grid;gap:.3rem}
+input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .8rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-transform:none;letter-spacing:0}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;margin:0}legend{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+fieldset label{display:flex;gap:.6rem;align-items:center;text-transform:none;letter-spacing:0;font-size:1rem;color:var(--ink);margin:.3rem 0}
+footer{padding:3rem 1rem;text-align:center;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--soft)}
+</style></head><body>
+<nav><a href="#story">Our story</a><a href="#weekend">The weekend</a><a href="#travel">Travel</a><a href="#dress">Dress code</a><a href="#know">Good to know</a><a href="#rsvp">RSVP</a></nav>
+
+<section class="hero">
+<div class="arch"><span>South of Lisbon · Portugal</span></div>
+<h1>Clémence <em>&amp;</em> Antonio</h1>
+<div class="meta">18 · 19 · 20 June 2027</div>
+<p class="tag">Ten years of going everywhere. The best place we found is each other.</p>
+<a class="btn" href="#rsvp">RSVP</a>
+</section>
+
+<section id="story" class="band"><div>
+<div class="eyebrow">Our story</div>
+<h2>French girl meets Spanish boy</h2>
+<p>London, 2016. A nightclub. Terrible lighting, perfect timing.</p>
+<p>Then Sydney, Brisbane and a lot of suitcases. In 2022 we landed in Portugal and started building a house, the ultimate relationship stress test. We're still talking, so we're getting married.</p>
+<p>Jouy-en-Josas meets Córdoba, on neutral ground, because that's good for a marriage.</p>
+</div></section>
+
+<section id="weekend">
+<div class="eyebrow">The weekend</div>
+<h2>Three moments, everyone welcome</h2>
+<p>Friday 18 to Sunday 20 June 2027, south of Lisbon. Come to all three or just the wedding, and tell us in the RSVP.</p>
+<div class="cards">
+<article class="card"><small>Friday · 18 June</small><h3>Welcome drinks</h3><p>Standing drinks and bites on the beach. Not a dinner, so you're free to eat out afterwards.</p>
+<dl><div><dt>When</dt><dd>Evening, time to be confirmed</dd></div><div><dt>Where</dt><dd>Beach bar, Fonte da Telha (exact place to be confirmed)</dd></div><div><dt>Wear</dt><dd>Beach casual, barefoot welcome</dd></div></dl>
+<div class="act"><a href="https://www.google.com/maps/search/?api=1&query=Praia+da+Fonte+da+Telha" target="_blank" rel="noopener">Map</a><a href="#dinner">Dinner ideas</a></div></article>
+<article class="card"><small>Saturday · 19 June</small><h3>The wedding</h3><p>An open-air ceremony, then cocktail, dinner and a dance floor.</p>
+<dl><div><dt>5:30 pm</dt><dd>Ceremony</dd></div><div><dt>Then</dt><dd>Cocktail, dinner, dancing (times to be confirmed)</dd></div><div><dt>Where</dt><dd>Casa do Pinheiro Manso, Azeitão</dd></div><div><dt>Wear</dt><dd>Festive, soft colours. Not white, not black.</dd></div></dl>
+<div class="act"><a href="https://www.google.com/maps/search/?api=1&query=Casa+do+Pinheiro+Manso+Azeitao" target="_blank" rel="noopener">Map</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20270619T173000/20270620T020000&ctz=Europe/Lisbon&location=Azeit%C3%A3o" target="_blank" rel="noopener">Add to calendar</a></div></article>
+<article class="card"><small>Sunday · 20 June</small><h3>Brunch</h3><p>A slow goodbye, in the area.</p>
+<dl><div><dt>When</dt><dd>Midday, to be confirmed</dd></div><div><dt>Where</dt><dd>To be confirmed, near the wedding area</dd></div><div><dt>Wear</dt><dd>Come as you want</dd></div></dl>
+<div class="act"><a href="#rsvp">Tell us if you're coming</a></div></article>
+</div></section>
+
+<section id="travel" class="band"><div>
+<div class="eyebrow">Travel</div>
+<h2>Getting here, staying, exploring</h2>
+<div class="chips"><a href="#get">Getting here</a><a href="#stay">Where to stay</a><a href="#dinner">Friday dinner</a><a href="#todo">Things to do</a></div>
+
+<div class="sub" id="get"><h3>Getting here</h3>
+<ul><li><b>By air:</b> fly into Lisbon (LIS). The beach is on the south side of the Tagus, so plan roughly 40 to 60 minutes by road, more at rush hour. Please check the exact time on your map app.</li>
+<li><b>Rental car:</b> pick up at the airport and book early, June is busy. Portuguese motorways use electronic tolls, so ask the rental company for a toll device.</li>
+<li><b>From Córdoba (and southern Spain):</b> about 6 hours by road. Option 1: via Badajoz and Évora, then towards Lisbon. Option 2: via Seville and Huelva, then the A22 along the Algarve and north. Check both on a map app before you leave.</li>
+<li><b>Between places:</b> a car or taxi is easiest. We are looking at a shuttle between hotels and the wedding venue, details to follow.</li></ul></div>
+
+<div class="sub" id="stay"><h3>Where to stay</h3>
+<p>We suggest staying in Azeitão, around Aroeira, or somewhere in between. Setúbal and Sesimbra are too far. Please book early.</p>
+<div class="cols">
+<div class="card"><small>Azeitão</small><p>Close to the wedding venue. Look at the hotel Turim Club d'Azeitão, or guesthouses and quintas in the village.</p></div>
+<div class="card"><small>In between</small><p>The Pousada Castelo de Palmela, or apartments and villas in the surrounding area.</p></div>
+<div class="card"><small>Aroeira / Fonte da Telha</small><p>Close to Friday's drinks and the beach, with villas and apartments to rent.</p></div></div></div>
+
+<div class="sub" id="dinner"><h3>Friday dinner (on your own)</h3>
+<p>Friday is drinks and bites only, so here are ideas for dinner nearby, from relaxed to special. Book ahead.</p>
+<ul><li><b>Relaxed and budget-friendly:</b> OhhhTC, an honest neighbourhood place in Costa da Caparica.</li>
+<li><b>Mid-range, on the beach:</b> Piscina in Fonte da Telha (dishes to share), or Sotavento for seafood.</li>
+<li><b>A bit more special:</b> a beach lounge such as Casablanca Beach Lounge, or a table in Lisbon.</li></ul></div>
+
+<div class="sub" id="todo"><h3>Things to do if you stay longer</h3>
+<ul><li><b>Lisbon:</b> Alfama, Belém, the viewpoints, LX Factory and the Time Out Market. A ferry from Cacilhas is a nice way in.</li>
+<li><b>Aroeira and Costa da Caparica:</b> the beaches, the seafront boardwalk, surf lessons.</li>
+<li><b>Azeitão and Arrábida:</b> the nature park and its beaches, Azeitão cheese and tarts, wine cellars, Palmela castle.</li></ul></div>
+</div></section>
+
+<section id="dress">
+<div class="eyebrow">Dress code</div>
+<h2>Soft colours, light fabrics</h2>
+<div class="cards">
+<div class="card"><small>Friday</small><h3>Beach</h3><p>Relaxed, barefoot if you like.</p></div>
+<div class="card"><small>Saturday</small><h3>Festive</h3><p>Soft, earthy colours. Ladies, please skip white and black. Choose shoes that cope with grass and gravel.</p></div>
+<div class="card"><small>Sunday</small><h3>As you wish</h3><p>Come as you want.</p></div></div>
+<div class="sw"><i style="background:#F8F4EC"></i><i style="background:#E8DCC8"></i><i style="background:#CDB594"></i><i style="background:#8E9B84"></i><i style="background:#C46F47"></i></div>
+</section>
+
+<section id="know" class="band"><div>
+<div class="eyebrow">Good to know</div>
+<h2>Questions</h2>
+<details><summary>Who is invited to what?</summary><p>Everyone is welcome to all three events. Please tell us in the RSVP which ones you'll join.</p></details>
+<details><summary>Are children welcome?</summary><p>Yes, we'd love to see them.</p></details>
+<details><summary>What if it's windy or rainy?</summary><p>We have a covered plan so the day stays beautiful.</p></details>
+<details><summary>Gifts?</summary><p>Your presence is the gift. A contribution to our honeymoon is welcome.</p></details>
+<details><summary>Who do I contact?</summary><p>Write to <a href="mailto:hello@example.com">hello@example.com</a> or send us a WhatsApp message on +00 000 000 000.</p></details>
+</div></section>
+
+<section id="rsvp">
+<div class="eyebrow">RSVP</div>
+<h2>Will you join us?</h2>
+<p>Please reply by [date]. Merci de répondre avant le [date]. Por favor, confirma antes del [date].</p>
+<form id="f">
+<label>Name(s)<input name="n" required></label>
+<label>Email<input name="e" type="email" required></label>
+<fieldset><legend>Which events?</legend>
+<label><input type="checkbox" name="ev" value="Friday drinks"> Friday drinks</label>
+<label><input type="checkbox" name="ev" value="Saturday wedding"> Saturday wedding</label>
+<label><input type="checkbox" name="ev" value="Sunday brunch"> Sunday brunch</label></fieldset>
+<label>Number of guests<select name="g"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+<label>Coming from abroad? How do you arrive?<input name="a" placeholder="Flight, car, from Córdoba..."></label>
+<label>Dietary needs<input name="d"></label>
+<label>Message<textarea name="m" rows="3"></textarea></label>
+<button class="btn" type="submit">Send by email</button>
+</form>
+</section>
+<footer>Clémence &amp; Antonio · Portugal 2027</footer>
+<script>
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();var f=e.target,v=function(n){return f.elements[n].value},ev=[].map.call(f.querySelectorAll('[name=ev]:checked'),function(x){return x.value}).join(', ')||'none';
+var b='Name: '+v('n')+'\nEmail: '+v('e')+'\nEvents: '+ev+'\nGuests: '+v('g')+'\nArrival: '+v('a')+'\nDietary: '+v('d')+'\nMessage: '+v('m');
+location.href='mailto:hello@example.com?subject='+encodeURIComponent('RSVP - '+v('n'))+'&body='+encodeURIComponent(b)});
+</script>
+</body></html>

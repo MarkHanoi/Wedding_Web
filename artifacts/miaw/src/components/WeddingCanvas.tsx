@@ -70,6 +70,8 @@ const BEACH_MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=38.569540%2C-9.195252";
 const WEDDING_MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=Casa+do+Pinheiro+Manso+Quinta+do+Peru+2925-206+Azeit%C3%A3o+Portugal";
+const WEDDING_CALENDAR_URL =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20270619T173000/20270620T020000&ctz=Europe/Lisbon&location=Azeit%C3%A3o";
 
 interface PhotoGallery {
   photos: GalleryPhoto[];
@@ -168,6 +170,7 @@ const sectionHrefs = [
   "#dress-code",
   "#rsvp",
 ];
+const travelItemHrefs = ["#travel-getting-here", "#travel-where-to-stay", "#travel-dinner", "#travel-things-to-do"];
 const faqTestIds = ["invited", "weather", "gifts", "contact"] as const;
 
 export default function WeddingCanvas({
@@ -385,9 +388,30 @@ export default function WeddingCanvas({
                     href={day.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-testid="link-prewedding-map"
+                    data-testid={`link-weekend-map-${index}`}
                   >
                     {copy.weekend.mapLink} <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+                {index === 0 && (
+                  <a className="text-link" href="#travel-dinner" data-testid="link-dinner-ideas">
+                    {copy.weekend.dinnerIdeasLink}
+                  </a>
+                )}
+                {index === 1 && (
+                  <a
+                    className="text-link"
+                    href={WEDDING_CALENDAR_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-add-to-calendar"
+                  >
+                    {copy.weekend.calendarLink}
+                  </a>
+                )}
+                {index === 2 && (
+                  <a className="text-link" href="#rsvp" data-testid="link-sunday-rsvp">
+                    {copy.weekend.rsvpLink}
                   </a>
                 )}
               </article>
@@ -425,9 +449,19 @@ export default function WeddingCanvas({
         <p className="wedding-section__eyebrow">{copy.travel.eyebrow}</p>
         <h2>{copy.travel.title}</h2>
         <p>{copy.travel.description}</p>
+        <div role="group" aria-label={copy.travel.title}>
+          {copy.travel.items.map((item, index) => (
+            <span key={item.title}>
+              {index > 0 && " · "}
+              <a className="text-link" href={travelItemHrefs[index]}>
+                {item.title}
+              </a>
+            </span>
+          ))}
+        </div>
         <div className="travel-grid">
           {copy.travel.items.map((item, index) => (
-            <article key={item.title}>
+            <article id={travelItemHrefs[index].slice(1)} key={item.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>

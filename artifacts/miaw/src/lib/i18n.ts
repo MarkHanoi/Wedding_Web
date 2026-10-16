@@ -46,6 +46,9 @@ export interface SiteCopy {
     title: string;
     description: string;
     mapLink: string;
+    dinnerIdeasLink: string;
+    calendarLink: string;
+    rsvpLink: string;
     days: DayCopy[];
   };
   location: {
@@ -140,16 +143,21 @@ export const translations: Record<Language, SiteCopy> = {
       scrollToStory: "Scroll to our story",
     },
     story: {
-      title: "Our Story",
+      title: "French girl meets Spanish boy",
       paragraphs: [
-        "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out. Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down. In 2023, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. We are still speaking so let's get married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise. Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other. Lisbon, we’re ready.",
+        "London, 2016. A nightclub. Terrible lighting, perfect timing.",
+        "Then Sydney, Brisbane and a lot of suitcases. In 2022 we landed in Portugal and started building a house, the ultimate relationship stress test. We’re still talking, so we’re getting married.",
+        "Jouy-en-Josas meets Córdoba, on neutral ground, because that’s good for a marriage.",
       ],
     },
     weekend: {
       eyebrow: "The weekend",
       title: "Three moments, everyone welcome",
       description: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Please let us know which events you’ll be attending by selecting them in the RSVP.",
-      mapLink: "Open location in Maps",
+      mapLink: "Map",
+      dinnerIdeasLink: "Dinner ideas",
+      calendarLink: "Add to calendar",
+      rsvpLink: "Tell us if you’re coming",
       days: [
         {
           date: "Friday · 18 June 2027",
@@ -162,7 +170,7 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Saturday · 19 June 2027",
           title: "The wedding",
-          description: "An open-air ceremony, then cocktails, dinner and dancing.",
+          description: "An open-air ceremony, then cocktail, dinner and a dance floor.",
           location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "5:30 PM", name: "Ceremony" },
@@ -173,8 +181,8 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Sunday · 20 June 2027",
           title: "Brunch",
-          description: "A slow goodbye, near the wedding venue.",
-          location: "Near the wedding venue · exact spot to be confirmed",
+          description: "A slow goodbye, in the area.",
+          location: "To be confirmed, near the wedding area",
           events: [{ time: "Midday, to be confirmed", name: "Brunch" }],
           gallery: "brunch",
         },
@@ -192,10 +200,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Getting here, staying, exploring",
       description: "A few useful pointers for your time on Lisbon’s south coast.",
       items: [
-        { title: "Getting here", description: "Fly into Lisbon Airport (LIS). Fonte da Telha is south of the Tagus, around 40–60 minutes by road. If you rent a car, pick it up at the airport and book early for June; ask the rental company for an electronic toll device for Portuguese motorways. From Córdoba, allow about six hours by car: via Badajoz and Évora towards Lisbon, or via Seville and Huelva, then the A22 along the Algarve and north. A car or taxi is easiest between venues; shuttle details will follow." },
-        { title: "Where to stay", description: "Consider Azeitão, near the wedding venue (Hotel Club d’Azeitão, guesthouses or local quintas); Setúbal (Pousada Castelo de Palmela, apartments or villas); or Aroeira/Costa da Caparica, close to Friday drinks and the beach. Please book early." },
-        { title: "Friday dinner (on your own)", description: "Friday is welcome drinks and bites only, not dinner, so you’re free to eat out afterwards. For mid-range seafood, try Pacífico at Fonte da Telha (book in advance); for a more special evening, consider Casablanca Beach Lounge or a restaurant in Lisbon. Please book ahead." },
-        { title: "Things to do if you’re staying longer", description: "In Lisbon, explore Alfama, Belém, the waterfront, LX Factory and Time Out Market; the ferry from Cacilhas is a lovely way to cross the river. Around Aroeira and Costa da Caparica, enjoy the beaches, pine-scented boardwalk and surf lessons. In Azeitão and Arrábida, discover the natural park, beaches, wine cellars, local cheese and tarts, and Palmela Castle." },
+        { title: "Getting here", description: "Fly into Lisbon (LIS). Fonte da Telha is south of the Tagus, around 40–60 minutes by road, more at rush hour; check the exact time in your map app. If you rent a car, pick it up at the airport and book early—June is busy. Portuguese motorways use electronic tolls, so ask the rental company for a toll device. From Córdoba and southern Spain, allow about six hours by road: via Badajoz and Évora towards Lisbon, or via Seville and Huelva, then the A22 along the Algarve and north. Check both routes in a map app before you leave. A car or taxi is easiest between venues; shuttle details will follow." },
+        { title: "Where to stay", description: "We suggest staying in Azeitão, around Aroeira, or somewhere in between; Setúbal and Sesimbra are too far. In Azeitão, look at Turim Club d’Azeitão, guesthouses or quintas in the village; in between, consider Pousada Castelo de Palmela or local apartments and villas; around Aroeira/Fonte da Telha, look for villas and apartments near Friday’s drinks and the beach. Please book early." },
+        { title: "Friday dinner (on your own)", description: "Friday is drinks and bites only, so here are ideas for dinner nearby. For a mid-range meal, try Piscina in Fonte da Telha (dishes to share), or Sotavento for seafood. For something more special, consider Casablanca Beach Lounge or a table in Lisbon. Please book ahead." },
+        { title: "Things to do if you’re staying longer", description: "In Lisbon, explore Alfama, Belém, the viewpoints, LX Factory and Time Out Market; a ferry from Cacilhas is a lovely way to get across. Around Aroeira and Costa da Caparica, enjoy the beaches, the seafront boardwalk and surf lessons. In Azeitão and Arrábida, discover the nature park and its beaches, Azeitão cheese and tarts, wine cellars and Palmela Castle." },
       ],
     },
     faq: {
@@ -215,7 +223,7 @@ export const translations: Record<Language, SiteCopy> = {
       days: [
         { title: "Friday · Beach", description: "Relaxed and comfortable." },
         { title: "Saturday · Festive", description: "Not white or black. Choose shoes that work on grass and gravel." },
-        { title: "Sunday · As you wish", description: "Come as you are." },
+        { title: "Sunday · As you wish", description: "Come as you want." },
       ],
       swatchesLabel: "Suggested colours",
     },
@@ -252,7 +260,7 @@ export const translations: Record<Language, SiteCopy> = {
       sending: "Sending…",
       error: "We couldn't send your reply just now. Please try again in a moment.",
     },
-    footer: "Clémence & Antonio · Lisbon Coast · 2027",
+    footer: "Clémence & Antonio · Portugal · 2027",
     galleries: {
       carouselRole: "carousel",
       previous: "Show previous photo",
@@ -311,20 +319,21 @@ export const translations: Record<Language, SiteCopy> = {
       scrollToStory: "Desplazarse a nuestra historia",
     },
     story: {
-      title: "Nuestra historia",
+      title: "Una francesa conoce a un español",
       paragraphs: [
-        "Una francesa conoce a un español en Londres, en 2016. Nos conocimos en una discoteca, con una iluminación terrible, y de alguna manera, la cosa funcionó.",
-        "Desde entonces, hemos vivido en Sídney, Brisbane y, finalmente, Portugal, acumulando unas cuantas maletas por el camino — ya fuera porque estábamos enamorados o porque se nos daba fatal asentarnos.",
-        "En 2023, empezamos a construir una casa en Portugal y después decidimos tomarnos un año para viajar juntos por el mundo. La prueba definitiva para una pareja: un año de aventuras, compañía constante y ninguna vía de escape. Seguimos hablándonos, así que vamos a casarnos — en Portugal, en algún lugar entre Francia y España, lo que nos pareció un compromiso bastante justo.",
-        "Diez años, incontables países y unas cuantas grandes aventuras después, hemos aprendido que el mejor lugar en el que hemos estado nunca es justo al lado del otro.",
-        "Lisboa, estamos listos.",
+        "Londres, 2016. Una discoteca. Iluminación terrible, el momento perfecto.",
+        "Después llegaron Sídney, Brisbane y un montón de maletas. En 2022 llegamos a Portugal y empezamos a construir una casa: la prueba definitiva para una relación. Seguimos hablándonos, así que vamos a casarnos.",
+        "Jouy-en-Josas se encuentra con Córdoba, en terreno neutral, porque así es mejor para un matrimonio.",
       ],
     },
     weekend: {
       eyebrow: "El fin de semana",
       title: "Tres momentos, todos bienvenidos",
       description: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Dinos a qué eventos asistirás seleccionándolos en el RSVP.",
-      mapLink: "Abrir ubicación en Maps",
+      mapLink: "Mapa",
+      dinnerIdeasLink: "Ideas para cenar",
+      calendarLink: "Añadir al calendario",
+      rsvpLink: "Dinos si vienes",
       days: [
         {
           date: "Viernes · 18 de junio de 2027",
@@ -337,7 +346,7 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Sábado · 19 de junio de 2027",
           title: "La boda",
-          description: "Ceremonia al aire libre, seguida de cóctel, cena y baile.",
+          description: "Ceremonia al aire libre, después cóctel, cena y pista de baile.",
           location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Ceremonia" },
@@ -348,8 +357,8 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Domingo · 20 de junio de 2027",
           title: "Brunch",
-          description: "Una despedida tranquila cerca del lugar de la boda.",
-          location: "Cerca del lugar de la boda · punto exacto por confirmar",
+          description: "Una despedida tranquila por la zona.",
+          location: "Por confirmar, cerca de la zona de la boda",
           events: [{ time: "Mediodía, por confirmar", name: "Brunch" }],
           gallery: "brunch",
         },
@@ -367,10 +376,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Cómo llegar, dónde alojarse y qué descubrir",
       description: "Algunas ideas prácticas para vuestra estancia en la costa sur de Lisboa.",
       items: [
-        { title: "Cómo llegar", description: "Vuela al aeropuerto de Lisboa (LIS). Fonte da Telha está al sur del Tajo, a unos 40–60 minutos por carretera. Si alquilas un coche, recógelo en el aeropuerto y resérvalo pronto para junio; pregunta a la compañía por un dispositivo electrónico de peaje para las autopistas portuguesas. Desde Córdoba, calcula unas seis horas en coche: por Badajoz y Évora hacia Lisboa, o por Sevilla y Huelva, y después por la A22 a lo largo del Algarve hacia el norte. Para desplazarse entre los lugares, lo más fácil es el coche o un taxi; compartiremos los detalles del transporte más adelante." },
-        { title: "Dónde alojarse", description: "Puedes alojarte en Azeitão, cerca del lugar de la boda (Hotel Club d’Azeitão, casas rurales o quintas); en Setúbal (Pousada Castelo de Palmela, apartamentos o villas); o en Aroeira/Costa da Caparica, cerca de las bebidas del viernes y de la playa. Reserva con antelación." },
-        { title: "La cena del viernes (por vuestra cuenta)", description: "El viernes habrá bebidas y aperitivos, no una cena, así que podéis salir a cenar después. Para pescado y marisco, probad Pacífico en Fonte da Telha (reservad con antelación); para una ocasión especial, considerad Casablanca Beach Lounge o un restaurante en Lisboa." },
-        { title: "Qué hacer si os quedáis más días", description: "En Lisboa, podéis recorrer Alfama, Belém, la zona junto al río, LX Factory y Time Out Market; el ferry desde Cacilhas es una bonita forma de cruzar el río. En Aroeira y Costa da Caparica hay playas, un paseo entre pinos y clases de surf. En Azeitão y Arrábida encontraréis el parque natural, playas, bodegas, quesos y tartas locales, y el castillo de Palmela." },
+        { title: "Cómo llegar", description: "Vuela a Lisboa (LIS). Fonte da Telha está al sur del Tajo, a unos 40–60 minutos por carretera, más en hora punta; consulta el tiempo exacto en tu aplicación de mapas. Si alquilas un coche, recógelo en el aeropuerto y resérvalo pronto: junio es temporada alta. Las autopistas portuguesas tienen peajes electrónicos, así que pide un dispositivo de peaje a la compañía. Desde Córdoba y el sur de España, calcula unas seis horas por carretera: por Badajoz y Évora hacia Lisboa, o por Sevilla y Huelva, y después por la A22 a lo largo del Algarve hacia el norte. Comprueba ambas rutas en una aplicación de mapas antes de salir. Entre los lugares, lo más fácil es ir en coche o taxi; compartiremos más adelante los detalles del transporte." },
+        { title: "Dónde alojarse", description: "Recomendamos alojarse en Azeitão, por Aroeira o en algún punto intermedio; Setúbal y Sesimbra quedan demasiado lejos. En Azeitão, podéis mirar Turim Club d’Azeitão, casas rurales o quintas del pueblo; a medio camino, la Pousada Castelo de Palmela o apartamentos y villas; por Aroeira/Fonte da Telha, villas y apartamentos cerca de las bebidas del viernes y de la playa. Reservad con antelación." },
+        { title: "La cena del viernes (por vuestra cuenta)", description: "El viernes habrá bebidas y aperitivos, pero no cena, así que podéis salir a cenar después. Para una comida de precio medio, probad Piscina en Fonte da Telha (platos para compartir) o Sotavento para pescado y marisco. Para algo más especial, considerad Casablanca Beach Lounge o un restaurante en Lisboa. Reservad con antelación." },
+        { title: "Qué hacer si os quedáis más días", description: "En Lisboa, podéis recorrer Alfama, Belém, los miradores, LX Factory y Time Out Market; el ferry desde Cacilhas es una forma agradable de cruzar. En Aroeira y Costa da Caparica, disfrutad de las playas, el paseo marítimo y las clases de surf. En Azeitão y Arrábida, descubrid el parque natural y sus playas, el queso y los dulces de Azeitão, las bodegas y el castillo de Palmela." },
       ],
     },
     faq: {
@@ -427,7 +436,7 @@ export const translations: Record<Language, SiteCopy> = {
       sending: "Enviando…",
       error: "No se pudo enviar tu respuesta. Inténtalo de nuevo dentro de un momento.",
     },
-    footer: "Clémence & Antonio · Costa de Lisboa · 2027",
+    footer: "Clémence & Antonio · Portugal · 2027",
     galleries: {
       carouselRole: "carrusel",
       previous: "Mostrar foto anterior",
@@ -486,20 +495,21 @@ export const translations: Record<Language, SiteCopy> = {
       rsvpLink: "Répondre à l’invitation",
     },
     story: {
-      title: "Notre histoire",
+      title: "Une Française rencontre un Espagnol",
       paragraphs: [
-        "Une Française rencontre un Espagnol à Londres, en 2016. On s’est rencontrés dans une boîte de nuit, sous un éclairage absolument catastrophique, et contre toute attente, ça a marché.",
-        "Depuis, on a vécu à Sydney, Brisbane, puis finalement au Portugal, en accumulant pas mal de valises au passage — soit parce qu’on était amoureux, soit parce qu’on avait beaucoup de mal à se poser.",
-        "En 2023, on a commencé à construire une maison au Portugal, puis on a décidé de prendre un an pour voyager autour du monde ensemble. Le test ultime pour un couple : un an d’aventures, une présence constante et aucune échappatoire. On se parle toujours, alors autant se marier — au Portugal, quelque part entre la France et l’Espagne, ce qui nous a semblé être un compromis équitable.",
-        "Dix ans, d’innombrables pays et quelques grandes aventures plus tard, on a compris que le meilleur endroit où l’on soit jamais allés, c’est juste à côté l’un de l’autre.",
-        "Lisbonne, on est prêts.",
+        "Londres, 2016. Une boîte de nuit. Un éclairage catastrophique, un timing parfait.",
+        "Puis Sydney, Brisbane et beaucoup de valises. En 2022, on s’est installés au Portugal et on a commencé à construire une maison, le test ultime pour un couple. On se parle toujours, alors on se marie.",
+        "Jouy-en-Josas rencontre Cordoue, en terrain neutre, parce que c’est mieux pour un mariage.",
       ],
     },
     weekend: {
       eyebrow: "Le week-end",
       title: "Trois moments, tout le monde est bienvenu",
       description: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez-nous les événements auxquels vous participerez en les sélectionnant dans le RSVP.",
-      mapLink: "Ouvrir le lieu dans Maps",
+      mapLink: "Carte",
+      dinnerIdeasLink: "Idées de dîner",
+      calendarLink: "Ajouter au calendrier",
+      rsvpLink: "Dites-nous si vous venez",
       days: [
         {
           date: "Vendredi · 18 juin 2027",
@@ -512,7 +522,7 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Samedi · 19 juin 2027",
           title: "Le mariage",
-          description: "Une cérémonie en plein air, suivie d’un cocktail, d’un dîner et d’une soirée dansante.",
+          description: "Une cérémonie en plein air, puis un cocktail, un dîner et une piste de danse.",
           location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17 h 30", name: "Cérémonie" },
@@ -523,8 +533,8 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Dimanche · 20 juin 2027",
           title: "Brunch",
-          description: "Un au revoir tout en douceur, près du lieu du mariage.",
-          location: "Près du lieu du mariage · endroit exact à confirmer",
+          description: "Un au revoir tout en douceur, dans les environs.",
+          location: "À confirmer, près du lieu du mariage",
           events: [{ time: "Midi, à confirmer", name: "Brunch" }],
           gallery: "brunch",
         },
@@ -542,10 +552,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Venir, séjourner, découvrir",
       description: "Quelques conseils pratiques pour votre séjour sur la côte sud de Lisbonne.",
       items: [
-        { title: "Venir jusqu’ici", description: "Prenez un vol pour l’aéroport de Lisbonne (LIS). Fonte da Telha se trouve au sud du Tage, à environ 40–60 minutes de route. Si vous louez une voiture, récupérez-la à l’aéroport et réservez tôt pour juin ; demandez à l’agence un dispositif de télépéage pour les autoroutes portugaises. Depuis Cordoue, comptez environ six heures de route : par Badajoz et Évora vers Lisbonne, ou par Séville et Huelva, puis l’A22 le long de l’Algarve vers le nord. Une voiture ou un taxi est le plus simple entre les lieux ; les détails de la navette suivront." },
-        { title: "Où séjourner", description: "Vous pouvez loger à Azeitão, près du lieu du mariage (Hotel Club d’Azeitão, maisons d’hôtes ou quintas) ; à Setúbal (Pousada Castelo de Palmela, appartements ou villas) ; ou à Aroeira/Costa da Caparica, près du verre du vendredi et de la plage. Pensez à réserver tôt." },
-        { title: "Dîner du vendredi (à votre charge)", description: "Le vendredi, il y aura uniquement des boissons et des bouchées, pas de dîner ; vous êtes donc libres d’aller dîner ensuite. Pour des fruits de mer, essayez Pacífico à Fonte da Telha (pensez à réserver) ; pour une soirée plus spéciale, pensez à Casablanca Beach Lounge ou à un restaurant à Lisbonne." },
-        { title: "À découvrir si vous prolongez votre séjour", description: "À Lisbonne : Alfama, Belém, les quais, LX Factory et Time Out Market ; le ferry depuis Cacilhas est une belle façon de traverser le fleuve. À Aroeira et Costa da Caparica : plages, promenade bordée de pins et cours de surf. À Azeitão et Arrábida : parc naturel, plages, caves, fromages et tartes locales, et château de Palmela." },
+        { title: "Venir jusqu’ici", description: "Prenez un vol pour Lisbonne (LIS). Fonte da Telha se trouve au sud du Tage, à environ 40–60 minutes de route, davantage aux heures de pointe ; vérifiez le trajet exact sur votre application de cartes. Si vous louez une voiture, récupérez-la à l’aéroport et réservez tôt : juin est très fréquenté. Les autoroutes portugaises utilisent le télépéage ; demandez un badge à l’agence. Depuis Cordoue et le sud de l’Espagne, comptez environ six heures de route : par Badajoz et Évora vers Lisbonne, ou par Séville et Huelva, puis l’A22 le long de l’Algarve vers le nord. Vérifiez les deux itinéraires sur une application de cartes avant de partir. Une voiture ou un taxi est le plus simple entre les lieux ; les détails de la navette suivront." },
+        { title: "Où séjourner", description: "Nous vous conseillons Azeitão, Aroeira ou un endroit entre les deux ; Setúbal et Sesimbra sont trop éloignées. À Azeitão, regardez le Turim Club d’Azeitão, les maisons d’hôtes ou les quintas du village ; entre les deux, la Pousada Castelo de Palmela, des appartements ou des villas ; vers Aroeira/Fonte da Telha, des villas et appartements près des boissons du vendredi et de la plage. Pensez à réserver tôt." },
+        { title: "Dîner du vendredi (à votre charge)", description: "Le vendredi, il y aura uniquement des boissons et des bouchées, pas de dîner ; vous pourrez donc dîner à l’extérieur ensuite. Pour un repas à prix moyen, essayez Piscina à Fonte da Telha (plats à partager) ou Sotavento pour les fruits de mer. Pour une soirée plus spéciale, pensez à Casablanca Beach Lounge ou à une table à Lisbonne. Pensez à réserver." },
+        { title: "À découvrir si vous prolongez votre séjour", description: "À Lisbonne : Alfama, Belém, les belvédères, LX Factory et Time Out Market ; le ferry depuis Cacilhas est une belle façon de traverser le fleuve. À Aroeira et Costa da Caparica : plages, promenade en bord de mer et cours de surf. À Azeitão et Arrábida : parc naturel et plages, fromage et tartes d’Azeitão, caves et château de Palmela." },
       ],
     },
     faq: {
@@ -565,7 +575,7 @@ export const translations: Record<Language, SiteCopy> = {
       days: [
         { title: "Vendredi · Plage", description: "Décontracté et confortable." },
         { title: "Samedi · Festif", description: "Ni blanc ni noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
-        { title: "Dimanche · Comme vous voulez", description: "Venez comme vous êtes." },
+        { title: "Dimanche · Comme vous voulez", description: "Venez comme vous voulez." },
       ],
       swatchesLabel: "Couleurs suggérées",
     },
@@ -602,7 +612,7 @@ export const translations: Record<Language, SiteCopy> = {
       sending: "Envoi…",
       error: "Votre réponse n’a pas pu être envoyée. Veuillez réessayer dans un instant.",
     },
-    footer: "Clémence & Antonio · Côte de Lisbonne · 2027",
+    footer: "Clémence & Antonio · Portugal · 2027",
     galleries: {
       carouselRole: "carrousel",
       previous: "Afficher la photo précédente",
@@ -661,20 +671,21 @@ export const translations: Record<Language, SiteCopy> = {
       rsvpLink: "Confirmar presença",
     },
     story: {
-      title: "A nossa história",
+      title: "Uma francesa conhece um espanhol",
       paragraphs: [
-        "Uma francesa conhece um espanhol em Londres, em 2016. Conhecemo-nos numa discoteca, com uma iluminação péssima, e, de alguma forma, a coisa resultou.",
-        "Desde então, vivemos em Sydney, Brisbane e, finalmente, em Portugal, acumulando umas quantas malas pelo caminho — ou porque estávamos apaixonados, ou porque tínhamos muita dificuldade em assentar.",
-        "Em 2023, começámos a construir uma casa em Portugal e depois decidimos tirar um ano para viajar pelo mundo juntos. O teste definitivo para uma relação: um ano de aventuras, companhia constante e sem escapatória. Ainda nos falamos, por isso vamos casar — em Portugal, algures entre França e Espanha, o que nos pareceu um compromisso bastante justo.",
-        "Dez anos, inúmeros países e algumas grandes aventuras depois, aprendemos que o melhor lugar onde alguma vez estivemos é mesmo ao lado um do outro.",
-        "Lisboa, estamos prontos.",
+        "Londres, 2016. Uma discoteca. Iluminação péssima, timing perfeito.",
+        "Depois Sydney, Brisbane e muitas malas. Em 2022 chegámos a Portugal e começámos a construir uma casa — o teste definitivo para uma relação. Ainda nos falamos, por isso vamos casar.",
+        "Jouy-en-Josas encontra Córdoba, em terreno neutro, porque é melhor para um casamento.",
       ],
     },
     weekend: {
       eyebrow: "O fim de semana",
       title: "Três momentos, todos bem-vindos",
       description: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique-nos a que eventos vai assistir, selecionando-os no RSVP.",
-      mapLink: "Abrir localização no Maps",
+      mapLink: "Mapa",
+      dinnerIdeasLink: "Ideias para jantar",
+      calendarLink: "Adicionar ao calendário",
+      rsvpLink: "Digam-nos se vêm",
       days: [
         {
           date: "Sexta-feira · 18 de junho de 2027",
@@ -687,7 +698,7 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Sábado · 19 de junho de 2027",
           title: "O casamento",
-          description: "Cerimónia ao ar livre, seguida de cocktails, jantar e dança.",
+          description: "Cerimónia ao ar livre, seguida de cocktails, jantar e pista de dança.",
           location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
           events: [
             { time: "17:30", name: "Cerimónia" },
@@ -698,8 +709,8 @@ export const translations: Record<Language, SiteCopy> = {
         {
           date: "Domingo · 20 de junho de 2027",
           title: "Brunch",
-          description: "Uma despedida tranquila perto do local do casamento.",
-          location: "Perto do local do casamento · local exato por confirmar",
+          description: "Uma despedida tranquila pela zona.",
+          location: "Por confirmar, perto da zona do casamento",
           events: [{ time: "Meio-dia, por confirmar", name: "Brunch" }],
           gallery: "brunch",
         },
@@ -717,10 +728,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Como chegar, onde ficar e o que descobrir",
       description: "Algumas sugestões práticas para a vossa estadia na costa sul de Lisboa.",
       items: [
-        { title: "Como chegar", description: "Voe para o Aeroporto de Lisboa (LIS). A Fonte da Telha fica a sul do Tejo, a cerca de 40–60 minutos de carro. Se alugar um carro, levante-o no aeroporto e reserve cedo para junho; peça à empresa de aluguer um dispositivo eletrónico de portagem para as autoestradas portuguesas. De Córdoba, conte com cerca de seis horas de carro: via Badajoz e Évora em direção a Lisboa, ou via Sevilha e Huelva, seguindo depois pela A22 ao longo do Algarve para norte. Entre os locais, o mais fácil é ir de carro ou táxi; partilharemos mais tarde os detalhes do transporte." },
-        { title: "Onde ficar", description: "Considere Azeitão, perto do local do casamento (Hotel Club d’Azeitão, casas de hóspedes ou quintas); Setúbal (Pousada Castelo de Palmela, apartamentos ou villas); ou Aroeira/Costa da Caparica, perto das bebidas de sexta-feira e da praia. Reserve com antecedência." },
-        { title: "Jantar de sexta-feira (por conta própria)", description: "Na sexta-feira haverá apenas bebidas e petiscos, não jantar, por isso podem sair para jantar depois. Para peixe e marisco, experimentem o Pacífico na Fonte da Telha (reservem com antecedência); para uma ocasião especial, considerem o Casablanca Beach Lounge ou um restaurante em Lisboa." },
-        { title: "O que fazer se ficarem mais tempo", description: "Em Lisboa, explorem Alfama, Belém, a zona ribeirinha, a LX Factory e o Time Out Market; o ferry de Cacilhas é uma forma agradável de atravessar o rio. Em Aroeira e na Costa da Caparica, aproveitem as praias, o passadiço entre pinheiros e as aulas de surf. Em Azeitão e na Arrábida, descubram o parque natural, as praias, as caves, os queijos e doces locais e o Castelo de Palmela." },
+        { title: "Como chegar", description: "Voe para Lisboa (LIS). A Fonte da Telha fica a sul do Tejo, a cerca de 40–60 minutos de carro, mais em hora de ponta; confirme o tempo exato numa aplicação de mapas. Se alugar um carro, levante-o no aeroporto e reserve cedo: junho é muito concorrido. As autoestradas portuguesas usam portagens eletrónicas; peça um dispositivo de portagem à empresa de aluguer. De Córdoba e do sul de Espanha, conte com cerca de seis horas de viagem: via Badajoz e Évora em direção a Lisboa, ou via Sevilha e Huelva, seguindo pela A22 ao longo do Algarve para norte. Confirme ambos os percursos numa aplicação de mapas antes de sair. Entre os locais, o mais fácil é ir de carro ou táxi; partilharemos mais tarde os detalhes do transporte." },
+        { title: "Onde ficar", description: "Sugerimos ficar em Azeitão, na zona de Aroeira ou algures entre as duas; Setúbal e Sesimbra ficam demasiado longe. Em Azeitão, veja o Turim Club d’Azeitão, casas de hóspedes ou quintas da aldeia; a meio caminho, a Pousada Castelo de Palmela ou apartamentos e villas; perto de Aroeira/Fonte da Telha, villas e apartamentos junto às bebidas de sexta-feira e à praia. Reserve com antecedência." },
+        { title: "Jantar de sexta-feira (por conta própria)", description: "Na sexta-feira haverá apenas bebidas e petiscos, por isso ficam livres para jantar fora depois. Para uma refeição de preço médio, experimentem o Piscina na Fonte da Telha (pratos para partilhar) ou o Sotavento, para peixe e marisco. Para algo mais especial, considerem o Casablanca Beach Lounge ou um restaurante em Lisboa. Reservem com antecedência." },
+        { title: "O que fazer se ficarem mais tempo", description: "Em Lisboa, explorem Alfama, Belém, os miradouros, a LX Factory e o Time Out Market; o ferry de Cacilhas é uma forma agradável de atravessar o rio. Em Aroeira e na Costa da Caparica, aproveitem as praias, o passeio marítimo e as aulas de surf. Em Azeitão e na Arrábida, descubram o parque natural e as suas praias, o queijo e os doces de Azeitão, as caves e o Castelo de Palmela." },
       ],
     },
     faq: {
@@ -740,7 +751,7 @@ export const translations: Record<Language, SiteCopy> = {
       days: [
         { title: "Sexta-feira · Praia", description: "Descontraído e confortável." },
         { title: "Sábado · Festivo", description: "Sem branco nem preto. Escolham sapatos adequados à relva e à gravilha." },
-        { title: "Domingo · Como preferirem", description: "Venham como são." },
+        { title: "Domingo · Como preferirem", description: "Venham como quiserem." },
       ],
       swatchesLabel: "Cores sugeridas",
     },
@@ -777,7 +788,7 @@ export const translations: Record<Language, SiteCopy> = {
       sending: "A enviar…",
       error: "Não foi possível enviar a sua resposta. Tente novamente dentro de instantes.",
     },
-    footer: "Clémence & Antonio · Costa de Lisboa · 2027",
+    footer: "Clémence & Antonio · Portugal · 2027",
     galleries: {
       carouselRole: "carrossel",
       previous: "Mostrar fotografia anterior",
