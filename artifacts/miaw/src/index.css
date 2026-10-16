@@ -330,7 +330,7 @@ html, body, #root {
   top: 0;
   left: 0;
   width: 100%;
-  height: 55vh;
+  height: 50vh;
   overflow: hidden;
   pointer-events: none;
   isolation: isolate;
@@ -339,7 +339,7 @@ html, body, #root {
 .wedding-scroll__beach-transition {
   position: absolute;
   z-index: -1;
-  top: 55vh;
+  top: 50vh;
   left: 0;
   right: 0;
   height: 280px;
