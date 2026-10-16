@@ -9,16 +9,7 @@ interface State {
   error: string;
 }
 
-/**
- * Full-screen error fallback.
- *
- * The container carries bg-black/20 so that all text achieves ≥4.5:1 contrast
- * on top of the gradient (same scrim strategy as the conversation layer).
- *   "miaw" title      text-white  on CONV_BG = 5.54:1 ✅
- *   subtitle          text-white/90 on CONV_BG = 4.94:1 ✅
- *   "Try again" btn   text-white  on CONV_BG = 5.54:1 ✅
- * See scripts/src/contrast-audit.ts for the full audit.
- */
+/** Full-screen fallback for errors in the wedding pages. */
 export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -35,15 +26,15 @@ export default class ErrorBoundary extends Component<Props, State> {
         <div className="gradient-canvas bg-black/20 w-screen h-[100dvh] flex flex-col items-center justify-center">
           <p
             className="text-white mb-3"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "28px" }}
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "28px" }}
           >
-            miaw
+            Clémence &amp; Antonio
           </p>
           <p
             className="text-white/90 text-sm mb-6"
             style={{ fontFamily: "Inter, sans-serif", fontWeight: 300 }}
           >
-            Something went wrong. The agent is taking a moment.
+            Something went wrong. Please try again.
           </p>
           <button
             onClick={() => window.location.reload()}

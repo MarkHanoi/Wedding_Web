@@ -5,9 +5,9 @@ import HeroPage from "./components/HeroPage";
 
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
 
-type View = "hero" | "canvas";
+type View = "hero" | "explore";
 
-const canvasVariants = {
+const exploreVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.45, ease: "easeOut" as const } },
   exit: { opacity: 0, transition: { duration: 0.25 } },
@@ -22,8 +22,8 @@ const heroVariants = {
 export default function App() {
   const [view, setView] = useState<View>("hero");
 
-  const goToCanvas = useCallback(() => {
-    setView("canvas");
+  const goToExplore = useCallback(() => {
+    setView("explore");
   }, []);
 
   return (
@@ -40,14 +40,14 @@ export default function App() {
               exit="exit"
               style={{ width: "100%", height: "100%" }}
             >
-              <HeroPage onEnterChat={goToCanvas} />
+              <HeroPage onExplore={goToExplore} />
             </motion.div>
           )}
 
-          {view === "canvas" && (
+          {view === "explore" && (
             <motion.div
-              key="canvas"
-              variants={canvasVariants}
+              key="explore"
+              variants={exploreVariants}
               initial="initial"
               animate="animate"
               exit="exit"

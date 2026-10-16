@@ -4,8 +4,8 @@
   "description": "Wedding website for Clémence and Antonio.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#c4b4ee",
-  "theme_color": "#0a0a0a",
+  "background_color": "#D8BC90",
+  "theme_color": "#D8BC90",
   "lang": "fr",
   "icons": [
     {

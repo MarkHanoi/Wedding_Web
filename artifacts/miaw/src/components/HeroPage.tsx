@@ -9,14 +9,8 @@ const BEACH_PALETTE = {
   base: "#D8BC90",
 };
 
-// ── To add the actual hero photo when ready ────────────────────────────────
-// 1. Copy the couple's photo to artifacts/miaw/public/hero.jpg
-// 2. Replace the gradient-canvas className with an img or CSS background-image
-// 3. Keep the dark overlay div for text legibility
-// ──────────────────────────────────────────────────────────────────────────
-
 interface HeroPageProps {
-  onEnterChat: () => void;
+  onExplore: () => void;
 }
 
 const stagger = {
@@ -34,7 +28,7 @@ const fadeIn = {
   show: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
-export default function HeroPage({ onEnterChat }: HeroPageProps) {
+export default function HeroPage({ onExplore }: HeroPageProps) {
   const palette = BEACH_PALETTE;
   const playerRef = useRef<any>(null);
   const [muted, setMuted] = useState(true);
@@ -318,7 +312,7 @@ export default function HeroPage({ onEnterChat }: HeroPageProps) {
             transition={{ duration: 2.4, ease: "easeInOut", repeat: Infinity }}
           >
             <button
-              onClick={(e) => { e.stopPropagation(); onEnterChat(); }}
+              onClick={(e) => { e.stopPropagation(); onExplore(); }}
               aria-label="Explore the wedding information"
               data-testid="button-explore"
               style={{

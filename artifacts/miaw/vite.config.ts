@@ -56,7 +56,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "vendor-react":  ["react", "react-dom", "wouter"],
+          "vendor-react":  ["react", "react-dom"],
           "vendor-framer": ["framer-motion"],
         },
       },
@@ -76,9 +76,7 @@ export default defineConfig({
       "Expires": "0",
     },
     // ---------------------------------------------------------------------------
-    // API proxy — forwards all /api/* requests from the Vite dev server to the
-    // Express API server running on apiPort. Without this, browser fetches to
-    // /api/chat etc. hit the Vite server and get 404.
+    // API proxy — forwards RSVP and health requests from Vite to Express.
     //
     // changeOrigin: false — keeps the Host header as localhost (Express doesn't
     // use vhost routing, so origin doesn't matter; false avoids any confusion).

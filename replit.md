@@ -1,72 +1,37 @@
 # Clémence & Antonio — Wedding Website
 
-A wedding website for Clémence & Antonio. The video landing page leads into one continuous, scrollable information page with the weekend schedule, location, travel notes, dress code and RSVP form.
+The site has a cinematic wedding landing page and an Explore page with the story, weekend schedule, location, travel, FAQ, dress code and RSVP form.
 
-## Run & Operate
+## Run & operate
 
-- On a fresh import, run `pnpm install --frozen-lockfile` before starting either service.
-- Replit artifact previews use the managed workflows `artifacts/miaw: web` and `artifacts/api-server: API Server`.
-- `pnpm --filter @workspace/api-server run dev` — API server (port 8080)
-- `pnpm --filter @workspace/miaw run dev` — frontend (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
+- On a fresh import, run `pnpm install --frozen-lockfile`.
+- The managed previews are `artifacts/miaw: web` and `artifacts/api-server: API Server`.
+- `pnpm --filter @workspace/miaw run dev` starts the frontend on port 5000.
+- `pnpm --filter @workspace/api-server run dev` starts the RSVP API on port 8080.
+- `pnpm run typecheck` checks the application packages.
+- `pnpm run build:full` builds and typechecks the frontend and API.
 
-## Stack
+## Page structure
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- Frontend: React + Vite (`artifacts/miaw`)
-- API: Express 5 (`artifacts/api-server`)
-- AI: Anthropic Claude via Replit AI Integrations (`claude-sonnet-4-6`)
-- Rate limiting: in-memory fallback + Upstash Redis when configured
+- `artifacts/miaw/src/components/HeroPage.tsx` — main landing page and Explore entry.
+- `artifacts/miaw/src/components/WeddingCanvas.tsx` — the continuous Explore page and RSVP form.
+- `artifacts/miaw/src/lib/dailyPalette.ts` — rotating warm wedding palettes.
+- `artifacts/api-server/src/routes/rsvp.ts` — RSVP submission and count endpoints.
+- `artifacts/api-server/src/routes/health.ts` — API health check.
 
-## Where things live
+## RSVP
 
-- `artifacts/miaw/src/App.tsx` — splash screen → WeddingCanvas
-- `artifacts/miaw/src/components/WeddingCanvas.tsx` — continuous wedding information page and RSVP form
-- `artifacts/miaw/src/components/` — MessageBubble, TypingIndicator, CursorPrompt, FloatingPanel, ErrorBoundary
-- `artifacts/miaw/src/lib/dailyPalette.ts` — 11 rotating pastel palettes (one per day)
-- `artifacts/api-server/src/routes/chat.ts` — Claude streaming endpoint (POST /api/chat) with rate limiting
-- `artifacts/api-server/src/routes/rsvp.ts` — RSVP capture (POST /api/rsvp, GET /api/rsvp/count)
-- `artifacts/api-server/src/routes/health.ts` — health check
-- `artifacts/api-server/src/lib/systemPrompt.ts` — wedding concierge system prompt builder
-- `artifacts/api-server/knowledge/wedding.md` — **all wedding content lives here** — fill in placeholders
-
-## Filling in wedding details
-
-Wedding facts for the API live in **`artifacts/api-server/knowledge/wedding.md`**. Update both that file and the matching visible information in `artifacts/miaw/src/components/WeddingCanvas.tsx` when event details are confirmed. Do not restore the previous Quinta Amala venue.
-
-After editing the knowledge file, restart the API Server workflow for changes to take effect.
-
-## Architecture decisions
-
-- Chat streams raw text from Claude — no JSON chunking, minimum latency.
-- Knowledge base is loaded once at server start from `artifacts/api-server/knowledge/wedding.md`.
-- RSVP data is stored in-memory (survives restarts only while the process is alive). For production, add a database or Airtable connection.
-- Gradient: 4 radial blobs with CSS @property animation — 45s slow flow, daily palette rotation.
-- Rate limiting: 40 messages/hour per IP. In-memory Map always on; Upstash Redis when env vars present.
+RSVP submissions are currently held in API memory and are lost when the API process restarts. Use persistent storage before relying on the form for final guest responses.
 
 ## Design
 
-- Font: DePixelBreit (pixel font) for "C & A" logo — chunky visible pixel blocks
-- Gradient: 4 radial blobs (pastel), 11-palette daily rotation defined in `dailyPalette.ts`; the scroll page keeps the gradient fixed behind its content
-- Body text: Inter weight 300–400
+- The main page and Explore page use the same Cormorant Garamond and Inter typography.
+- A slowly animated warm gradient continues behind the Explore content.
+- The couple’s photo is blended into the gradient on the Explore introduction.
+- The gradient respects `prefers-reduced-motion`.
 
 ## Optional environment variables
 
 | Variable | Purpose |
 |---|---|
-| `VITE_API_URL` | Override API base URL (e.g. for custom domains) |
-| `UPSTASH_REDIS_REST_URL` | Redis-backed rate limiting (survives restarts) |
-| `UPSTASH_REDIS_REST_TOKEN` | Upstash auth token |
-| `ALERT_WEBHOOK_URL` | Slack/Discord webhook for error spike alerts |
-
-## User preferences
-
-- Background gradient: slow-moving, flowing, "alive" — fully pastel palette. Animation: 45s. Daily palette rotation: 11 pastel moods cycling. cuanto más pastel mejor.
-- Font for logo: DePixelBreit (pixel font) at large size (clamp ~48–104px) — chunky visible pixel blocks.
-
-## Gotchas
-
-- Knowledge files must be at `artifacts/api-server/knowledge/` (relative to process.cwd() when the server starts)
-- The chat endpoint streams plain text — the frontend reads `response.body` with a ReadableStream reader
-- CSS @property requires Chrome 85+, Firefox 128+, Safari 16.4+
-- The Anthropic integration uses `AI_INTEGRATIONS_ANTHROPIC_BASE_URL` + `AI_INTEGRATIONS_ANTHROPIC_API_KEY` (auto-provisioned by Replit — never set these manually)
+| `VITE_API_URL` | Override the RSVP API base URL for a separate custom domain |

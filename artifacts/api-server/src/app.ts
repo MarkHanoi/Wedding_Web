@@ -7,9 +7,8 @@ import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
 import router from "./routes";
 import { logger } from "./lib/logger";
-import { recordRequest, recordError, checkAndMaybeAlert } from "./lib/alerting";
 
-// Resolve paths relative to the bundle — see src/lib/systemPrompt.ts for rationale.
+// Resolve paths relative to the built server bundle.
 // After esbuild:  import.meta.url = …/artifacts/api-server/dist/index.mjs
 //   ../..         = …/artifacts/
 //   ../../miaw/dist/public = …/artifacts/miaw/dist/public  (frontend build output)
@@ -87,34 +86,6 @@ app.use(
 
 app.use(express.json({ limit: "64kb" }));
 app.use(express.urlencoded({ extended: true, limit: "64kb" }));
-
-// ---------------------------------------------------------------------------
-// Alerting middleware — runs before routes, hooks into response finish event
-// ---------------------------------------------------------------------------
-app.use((_req, res, next) => {
-  recordRequest();
-
-  res.on("finish", () => {
-    const status = res.statusCode;
-
-    if (status === 429) {
-      recordError("rate_limit");
-    } else if (status >= 500) {
-      recordError("server");
-    } else if (status >= 400) {
-      recordError("client");
-    }
-    // Only run the threshold check for non-2xx/3xx responses to avoid
-    // the check overhead on every successful request. Errors drive alerts.
-    if (status >= 400) {
-      checkAndMaybeAlert(logger).catch((err) => {
-        logger.warn({ err }, "Alert check failed");
-      });
-    }
-  });
-
-  next();
-});
 
 app.use("/api", router);
 
