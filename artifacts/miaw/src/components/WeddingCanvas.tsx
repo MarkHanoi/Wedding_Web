@@ -168,7 +168,7 @@ const sectionHrefs = [
   "#dress-code",
   "#rsvp",
 ];
-const faqTestIds = ["invited", "weather", "gifts"] as const;
+const faqTestIds = ["invited", "weather", "gifts", "contact"] as const;
 
 export default function WeddingCanvas({
   onGoToHero,
