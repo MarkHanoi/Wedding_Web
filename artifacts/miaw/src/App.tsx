@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import HeroPage from "./components/HeroPage";
-import { isLanguage, type Language } from "./lib/i18n";
+import { getBrowserLanguage, isLanguage, type Language } from "./lib/i18n";
 
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
 
@@ -10,12 +10,21 @@ type View = "hero" | "explore";
 const LANGUAGE_STORAGE_KEY = "miaw-language";
 
 function getInitialLanguage(): Language {
+  const browserLanguage = getBrowserLanguage([
+    ...(window.navigator.languages ?? []),
+    window.navigator.language,
+  ]);
+
   try {
     const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    return isLanguage(savedLanguage) ? savedLanguage : "en";
+    if (isLanguage(savedLanguage)) {
+      return savedLanguage;
+    }
   } catch {
-    return "en";
+    return browserLanguage;
   }
+
+  return browserLanguage;
 }
 
 const exploreVariants = {

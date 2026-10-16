@@ -716,3 +716,17 @@ export const translations: Record<Language, SiteCopy> = {
 export function isLanguage(value: string | null): value is Language {
   return languageOptions.some((option) => option.value === value);
 }
+
+export function getBrowserLanguage(
+  preferences: readonly string[],
+  fallback: Language = "en",
+): Language {
+  for (const preference of preferences) {
+    const baseLanguage = preference.trim().split(/[-_]/, 1)[0].toLowerCase();
+    if (isLanguage(baseLanguage)) {
+      return baseLanguage;
+    }
+  }
+
+  return fallback;
+}
