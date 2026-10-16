@@ -353,12 +353,13 @@ html, body, #root {
   width: 30px;
   height: 30px;
   place-items: center;
-  border: 1px solid var(--wedding-line);
+  border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.18);
-  color: var(--wedding-muted);
+  color: #fff;
   cursor: pointer;
   font: 400 0.95rem/1 Inter, sans-serif;
+  text-shadow: 0 1px 6px rgba(20, 42, 47, 0.45);
   transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
 }
 
@@ -386,10 +387,11 @@ html, body, #root {
   flex-shrink: 0;
   padding: 8px 0;
   border-bottom: 1px solid transparent;
-  color: var(--wedding-muted);
+  color: #fff;
   font-size: 0.61rem;
   font-weight: 400;
   letter-spacing: 0.11em;
+  text-shadow: 0 1px 6px rgba(20, 42, 47, 0.52);
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -398,8 +400,8 @@ html, body, #root {
 
 .wedding-scroll__section-links a:hover,
 .wedding-scroll__section-links a:focus-visible {
-  border-bottom-color: var(--wedding-terra);
-  color: var(--wedding-terra);
+  border-bottom-color: #fff;
+  color: #fff;
 }
 
 .wedding-scroll__home {
@@ -408,9 +410,9 @@ html, body, #root {
 
 .wedding-scroll__home:hover,
 .wedding-scroll__home:focus-visible {
-  border-color: var(--wedding-terra);
+  border-color: #fff;
   background: rgba(255, 255, 255, 0.42);
-  color: var(--wedding-terra);
+  color: #fff;
 }
 
 .wedding-scroll__intro {
@@ -472,11 +474,13 @@ html, body, #root {
 
 .wedding-scroll__intro .wedding-scroll__eyebrow {
   margin: 0 0 12px;
+  color: #fff;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(14px, 2vw, 20px);
   font-style: italic;
   font-weight: 300;
   letter-spacing: 0.08em;
+  text-shadow: 0 1px 8px rgba(20, 42, 47, 0.48);
   text-transform: none;
 }
 
@@ -492,10 +496,12 @@ html, body, #root {
 
 .wedding-scroll__intro h1 {
   width: 100%;
+  color: #fff;
   font-size: clamp(40px, 8vw, 100px);
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 0.95;
+  text-shadow: 0 1px 10px rgba(20, 42, 47, 0.42);
 }
 
 .wedding-scroll__lead {
@@ -508,11 +514,13 @@ html, body, #root {
 
 .wedding-scroll__intro .wedding-scroll__lead {
   margin: 4px 0 0;
+  color: #fff;
   font-family: Inter, sans-serif;
   font-size: clamp(11px, 1.4vw, 15px);
   font-style: normal;
   font-weight: 300;
   letter-spacing: 0.28em;
+  text-shadow: 0 1px 8px rgba(20, 42, 47, 0.48);
   text-transform: uppercase;
 }
 

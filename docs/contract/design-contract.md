@@ -32,13 +32,13 @@ Daily palette variations are defined in `dailyPalette.ts`; keep them within the 
 
 ### 2.2 Text and Surface Contrast
 
-The landing page places white type over video, so preserve its legibility overlay. The Explore page uses warm-dark text on a light gradient:
+The landing page places white type over video, so preserve its legibility overlay. On Explore, use white type for the intro and section navigation over the dark sea; retain warm-dark text over the sand and on light controls:
 
 | Usage | Token / rule |
 |-------|--------------|
-| Main text | `--wedding-ink` |
-| Supporting text | `--wedding-muted` |
-| Labels / accents | `--wedding-terra` |
+| Intro title, eyebrow, date and sea-area navigation | `#fff` with a subtle dark text shadow |
+| Sections over the warm sand | `--wedding-ink` and `--wedding-muted` |
+| Text on light controls | `--wedding-ink` |
 
 ### 2.3 Explore Navigation
 
