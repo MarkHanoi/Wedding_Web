@@ -133,11 +133,11 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Our Story",
       paragraphs: [
-        "Clémence, from Jouy-en-Josas, France, and Antonio, from Córdoba, Spain, met in London in 2016. What began there soon became a shared adventure, taking them across countries and continents.",
-        "After two years in London, they moved to Sydney in 2018, then to Brisbane in 2019. In 2022, they took another leap and made Portugal their home, settling just north of Lisbon, where they began building a house together.",
-        "Along the way, they travelled around the world, collecting memories, discovering new places, and making every adventure part of their story.",
-        "Today, they are back on Lisbon’s South Bank, a place they call home and where they are excited to celebrate the next chapter of their journey — surrounded by the people they love most.",
-        "And so, their story continues…",
+        "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out.",
+        "Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down.",
+        "In 2022, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. Somehow, we’re getting married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise.",
+        "Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other.",
+        "Lisbon, we’re ready.",
       ],
     },
     weekend: {
