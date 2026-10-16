@@ -14,6 +14,7 @@ interface DayCopy {
   title: string;
   description: string;
   location: string;
+  wear: string;
   events: { time: string; name: string }[];
   gallery: GalleryKey;
 }
@@ -49,6 +50,8 @@ export interface SiteCopy {
     dinnerIdeasLink: string;
     calendarLink: string;
     rsvpLink: string;
+    whereLabel: string;
+    wearLabel: string;
     days: DayCopy[];
   };
   location: {
@@ -74,7 +77,6 @@ export interface SiteCopy {
     title: string;
     description: string;
     days: { title: string; description: string }[];
-    swatchesLabel: string;
   };
   rsvp: {
     eyebrow: string;
@@ -158,23 +160,27 @@ export const translations: Record<Language, SiteCopy> = {
       dinnerIdeasLink: "Dinner ideas",
       calendarLink: "Add to calendar",
       rsvpLink: "Tell us if you’re coming",
+      whereLabel: "Where",
+      wearLabel: "Wear",
       days: [
         {
           date: "Friday · 18 June 2027",
           title: "Welcome drinks",
           description: "Standing drinks and bites on the beach. Not a dinner, so you’re free to eat out afterwards.",
-          location: "Beach bar, Fonte da Telha · exact spot to be confirmed",
-          events: [{ time: "Evening, time to be confirmed", name: "Welcome drinks and bites" }],
+          location: "Beach bar, Fonte da Telha (exact place to be confirmed)",
+          wear: "Beach casual",
+          events: [{ time: "When", name: "Evening, time to be confirmed" }],
           gallery: "preWedding",
         },
         {
           date: "Saturday · 19 June 2027",
           title: "The wedding",
           description: "An open-air ceremony, then cocktail, dinner and a dance floor.",
-          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão",
+          wear: "Not white, not black.",
           events: [
             { time: "5:30 PM", name: "Ceremony" },
-            { time: "Time to be confirmed", name: "Cocktails, dinner and dancing" },
+            { time: "Then", name: "Cocktail, dinner, dancing (times to be confirmed)" },
           ],
           gallery: "venue",
         },
@@ -183,7 +189,8 @@ export const translations: Record<Language, SiteCopy> = {
           title: "Brunch",
           description: "A slow goodbye, in the area.",
           location: "To be confirmed, near the wedding area",
-          events: [{ time: "Midday, to be confirmed", name: "Brunch" }],
+          wear: "Come as you want.",
+          events: [{ time: "When", name: "Midday, to be confirmed" }],
           gallery: "brunch",
         },
       ],
@@ -221,11 +228,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Just come ready to relax and enjoy!",
       description: "",
       days: [
-        { title: "Friday · Beach", description: "Relaxed and comfortable." },
-        { title: "Saturday · Festive", description: "Not white or black. Choose shoes that work on grass and gravel." },
+        { title: "Friday · Beach", description: "Beach casual." },
+        { title: "Saturday · Wedding", description: "Not white, not black. Choose shoes that work on grass and gravel." },
         { title: "Sunday · As you wish", description: "Come as you want." },
       ],
-      swatchesLabel: "Suggested colours",
     },
     rsvp: {
       eyebrow: "RSVP",
@@ -241,9 +247,9 @@ export const translations: Record<Language, SiteCopy> = {
       decline: "Regretfully declines",
       eventsLegend: "Which events will you join?",
       events: [
-        { id: "friday", label: "Friday drinks" },
-        { id: "saturday", label: "Saturday wedding" },
-        { id: "sunday", label: "Sunday brunch" },
+        { id: "friday", label: "Pre-wedding" },
+        { id: "saturday", label: "Wedding" },
+        { id: "sunday", label: "Brunch" },
       ],
       guestCountLabel: "Number of guests, including yourself",
       arrivalLabel: "Coming from abroad? How do you plan to arrive?",
@@ -334,23 +340,27 @@ export const translations: Record<Language, SiteCopy> = {
       dinnerIdeasLink: "Ideas para cenar",
       calendarLink: "Añadir al calendario",
       rsvpLink: "Dinos si vienes",
+      whereLabel: "Dónde",
+      wearLabel: "Vestimenta",
       days: [
         {
           date: "Viernes · 18 de junio de 2027",
           title: "Cóctel de bienvenida",
           description: "Bebidas y aperitivos de pie en la playa. No es una cena, así que podéis salir a cenar después.",
-          location: "Chiringuito en Fonte da Telha · lugar exacto por confirmar",
-          events: [{ time: "Por la tarde-noche, por confirmar", name: "Bebidas y aperitivos de bienvenida" }],
+          location: "Chiringuito de Fonte da Telha (lugar exacto por confirmar)",
+          wear: "Informal de playa",
+          events: [{ time: "Cuándo", name: "Por la tarde-noche, por confirmar" }],
           gallery: "preWedding",
         },
         {
           date: "Sábado · 19 de junio de 2027",
           title: "La boda",
           description: "Ceremonia al aire libre, después cóctel, cena y pista de baile.",
-          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão",
+          wear: "Ni blanco ni negro.",
           events: [
             { time: "17:30", name: "Ceremonia" },
-            { time: "Horario por confirmar", name: "Cóctel, cena y baile" },
+            { time: "Después", name: "Cóctel, cena y baile (horarios por confirmar)" },
           ],
           gallery: "venue",
         },
@@ -359,7 +369,8 @@ export const translations: Record<Language, SiteCopy> = {
           title: "Brunch",
           description: "Una despedida tranquila por la zona.",
           location: "Por confirmar, cerca de la zona de la boda",
-          events: [{ time: "Mediodía, por confirmar", name: "Brunch" }],
+          wear: "Ven como quieras.",
+          events: [{ time: "Cuándo", name: "Mediodía, por confirmar" }],
           gallery: "brunch",
         },
       ],
@@ -397,11 +408,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "¡Venid con ganas de relajaros y disfrutar!",
       description: "",
       days: [
-        { title: "Viernes · Playa", description: "Informal y cómodo." },
-        { title: "Sábado · Festivo", description: "Nada de blanco ni negro. Elegid zapatos adecuados para el césped y la grava." },
+        { title: "Viernes · Playa", description: "Informal de playa." },
+        { title: "Sábado · Boda", description: "Ni blanco ni negro. Elegid zapatos adecuados para el césped y la grava." },
         { title: "Domingo · A vuestro gusto", description: "Venid como queráis." },
       ],
-      swatchesLabel: "Colores sugeridos",
     },
     rsvp: {
       eyebrow: "Confirmación",
@@ -417,9 +427,9 @@ export const translations: Record<Language, SiteCopy> = {
       decline: "Lamentablemente, no podré asistir",
       eventsLegend: "¿A qué eventos asistirás?",
       events: [
-        { id: "friday", label: "Bebidas del viernes" },
-        { id: "saturday", label: "Boda del sábado" },
-        { id: "sunday", label: "Brunch del domingo" },
+        { id: "friday", label: "Preboda" },
+        { id: "saturday", label: "Boda" },
+        { id: "sunday", label: "Brunch" },
       ],
       guestCountLabel: "Número de invitados, incluyéndote",
       arrivalLabel: "¿Vienes desde fuera? ¿Cómo tienes pensado llegar?",
@@ -510,23 +520,27 @@ export const translations: Record<Language, SiteCopy> = {
       dinnerIdeasLink: "Idées de dîner",
       calendarLink: "Ajouter au calendrier",
       rsvpLink: "Dites-nous si vous venez",
+      whereLabel: "Où",
+      wearLabel: "Tenue",
       days: [
         {
           date: "Vendredi · 18 juin 2027",
           title: "Verre de bienvenue",
           description: "Boissons et bouchées debout sur la plage. Ce n’est pas un dîner, vous êtes donc libres d’aller dîner ensuite.",
-          location: "Bar de plage, Fonte da Telha · lieu exact à confirmer",
-          events: [{ time: "En soirée, à confirmer", name: "Verre et bouchées de bienvenue" }],
+          location: "Bar de plage de Fonte da Telha (lieu exact à confirmer)",
+          wear: "Tenue décontractée de plage",
+          events: [{ time: "Quand", name: "En soirée, horaire à confirmer" }],
           gallery: "preWedding",
         },
         {
           date: "Samedi · 19 juin 2027",
           title: "Le mariage",
           description: "Une cérémonie en plein air, puis un cocktail, un dîner et une piste de danse.",
-          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão",
+          wear: "Ni blanc ni noir.",
           events: [
             { time: "17 h 30", name: "Cérémonie" },
-            { time: "Horaire à confirmer", name: "Cocktail, dîner et danse" },
+            { time: "Ensuite", name: "Cocktail, dîner et danse (horaires à confirmer)" },
           ],
           gallery: "venue",
         },
@@ -535,7 +549,8 @@ export const translations: Record<Language, SiteCopy> = {
           title: "Brunch",
           description: "Un au revoir tout en douceur, dans les environs.",
           location: "À confirmer, près du lieu du mariage",
-          events: [{ time: "Midi, à confirmer", name: "Brunch" }],
+          wear: "Venez comme vous voulez.",
+          events: [{ time: "Quand", name: "À midi, à confirmer" }],
           gallery: "brunch",
         },
       ],
@@ -573,11 +588,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Venez simplement pour vous détendre et profiter !",
       description: "",
       days: [
-        { title: "Vendredi · Plage", description: "Décontracté et confortable." },
-        { title: "Samedi · Festif", description: "Ni blanc ni noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
+        { title: "Vendredi · Plage", description: "Tenue décontractée de plage." },
+        { title: "Samedi · Mariage", description: "Ni blanc ni noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
         { title: "Dimanche · Comme vous voulez", description: "Venez comme vous voulez." },
       ],
-      swatchesLabel: "Couleurs suggérées",
     },
     rsvp: {
       eyebrow: "RSVP",
@@ -593,9 +607,9 @@ export const translations: Record<Language, SiteCopy> = {
       decline: "Décline avec regret",
       eventsLegend: "À quels événements participerez-vous ?",
       events: [
-        { id: "friday", label: "Verre du vendredi" },
-        { id: "saturday", label: "Mariage du samedi" },
-        { id: "sunday", label: "Brunch du dimanche" },
+        { id: "friday", label: "Avant le mariage" },
+        { id: "saturday", label: "Mariage" },
+        { id: "sunday", label: "Brunch" },
       ],
       guestCountLabel: "Nombre d’invités, vous compris",
       arrivalLabel: "Vous venez de l’étranger ? Comment pensez-vous arriver ?",
@@ -686,23 +700,27 @@ export const translations: Record<Language, SiteCopy> = {
       dinnerIdeasLink: "Ideias para jantar",
       calendarLink: "Adicionar ao calendário",
       rsvpLink: "Digam-nos se vêm",
+      whereLabel: "Onde",
+      wearLabel: "O que vestir",
       days: [
         {
           date: "Sexta-feira · 18 de junho de 2027",
           title: "Bebidas de boas-vindas",
           description: "Bebidas e petiscos de pé na praia. Não é um jantar, por isso podem sair para jantar depois.",
-          location: "Bar de praia na Fonte da Telha · local exato por confirmar",
-          events: [{ time: "À noite, por confirmar", name: "Bebidas e petiscos de boas-vindas" }],
+          location: "Bar de praia da Fonte da Telha (local exato por confirmar)",
+          wear: "Informal de praia",
+          events: [{ time: "Quando", name: "À noite, horário por confirmar" }],
           gallery: "preWedding",
         },
         {
           date: "Sábado · 19 de junho de 2027",
           title: "O casamento",
           description: "Cerimónia ao ar livre, seguida de cocktails, jantar e pista de dança.",
-          location: "Casa do Pinheiro Manso · Quinta do Peru · 2925-206 Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão",
+          wear: "Sem branco nem preto.",
           events: [
             { time: "17:30", name: "Cerimónia" },
-            { time: "Horário por confirmar", name: "Cocktails, jantar e dança" },
+            { time: "Depois", name: "Cocktails, jantar e dança (horários por confirmar)" },
           ],
           gallery: "venue",
         },
@@ -711,7 +729,8 @@ export const translations: Record<Language, SiteCopy> = {
           title: "Brunch",
           description: "Uma despedida tranquila pela zona.",
           location: "Por confirmar, perto da zona do casamento",
-          events: [{ time: "Meio-dia, por confirmar", name: "Brunch" }],
+          wear: "Venham como quiserem.",
+          events: [{ time: "Quando", name: "Ao meio-dia, por confirmar" }],
           gallery: "brunch",
         },
       ],
@@ -749,11 +768,10 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Venham prontos para relaxar e aproveitar!",
       description: "",
       days: [
-        { title: "Sexta-feira · Praia", description: "Descontraído e confortável." },
-        { title: "Sábado · Festivo", description: "Sem branco nem preto. Escolham sapatos adequados à relva e à gravilha." },
+        { title: "Sexta-feira · Praia", description: "Informal de praia." },
+        { title: "Sábado · Casamento", description: "Sem branco nem preto. Escolham sapatos adequados à relva e à gravilha." },
         { title: "Domingo · Como preferirem", description: "Venham como quiserem." },
       ],
-      swatchesLabel: "Cores sugeridas",
     },
     rsvp: {
       eyebrow: "Confirmação",
@@ -769,9 +787,9 @@ export const translations: Record<Language, SiteCopy> = {
       decline: "Lamento não poder estar presente",
       eventsLegend: "A que eventos vão assistir?",
       events: [
-        { id: "friday", label: "Bebidas de sexta-feira" },
-        { id: "saturday", label: "Casamento de sábado" },
-        { id: "sunday", label: "Brunch de domingo" },
+        { id: "friday", label: "Pré-casamento" },
+        { id: "saturday", label: "Casamento" },
+        { id: "sunday", label: "Brunch" },
       ],
       guestCountLabel: "Número de convidados, incluindo você",
       arrivalLabel: "Vem do estrangeiro? Como planeia chegar?",

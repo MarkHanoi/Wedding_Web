@@ -745,35 +745,34 @@ html, body, #root {
 
 .weekend-card__events {
   display: grid;
-  gap: 8px;
-  padding-top: 14px;
+  gap: 0;
+  padding-top: 4px;
   border-top: 1px solid var(--wedding-line);
 }
 
 .weekend-card__event {
   display: flex;
+  align-items: baseline;
   gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--wedding-line);
   color: var(--wedding-muted);
   font-size: 0.77rem;
 }
 
 .weekend-card__event span {
-  min-width: 54px;
+  flex: 0 0 76px;
   color: var(--wedding-terra);
   font-variant-numeric: tabular-nums;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .weekend-card__event strong {
+  min-width: 0;
   color: var(--wedding-ink);
   font-weight: 400;
-}
-
-.weekend-card__location {
-  margin: auto 0 0;
-  padding-top: 20px;
-  color: var(--wedding-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
 }
 
 .text-link {
@@ -794,21 +793,6 @@ html, body, #root {
 
 .wedding-section--location {
   max-width: 730px;
-}
-
-.wedding-swatches {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 32px;
-}
-
-.wedding-swatches span {
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(73, 59, 46, 0.13);
-  border-radius: 50%;
-  box-shadow: 0 4px 14px rgba(62, 45, 24, 0.08);
 }
 
 .travel-grid {
@@ -955,7 +939,7 @@ html, body, #root {
   resize: vertical;
 }
 
-.rsvp-field input:focus,
+.rsvp-field input:not([type="checkbox"]):focus,
 .rsvp-field textarea:focus {
   border-color: #e4b397;
   box-shadow: 0 0 0 3px rgba(228, 179, 151, 0.2);
@@ -987,6 +971,52 @@ html, body, #root {
   border-color: #e4b397;
   background: rgba(228, 179, 151, 0.2);
   color: #fffaf1;
+}
+
+.rsvp-event-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.rsvp-event-option {
+  display: flex;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 14px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 250, 241, 0.84);
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.rsvp-event-option:hover,
+.rsvp-event-option.is-selected,
+.rsvp-event-option:focus-within {
+  border-color: #e4b397;
+  background: rgba(228, 179, 151, 0.2);
+  color: #fffaf1;
+}
+
+.rsvp-event-option input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: #e4b397;
+  cursor: pointer;
+}
+
+.rsvp-event-option input[type="checkbox"]:focus-visible {
+  outline: 2px solid #fffaf1;
+  outline-offset: 3px;
 }
 
 .rsvp-guests {
@@ -1606,10 +1636,6 @@ html, body, #root {
     min-height: 0;
   }
 
-  .weekend-card__location {
-    margin-top: 20px;
-  }
-
   .travel-grid {
     gap: 22px;
     margin-top: 36px;
@@ -1634,6 +1660,10 @@ html, body, #root {
   .rsvp-choice-row {
     grid-template-columns: 1fr;
   }
+
+  .rsvp-event-options {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1644,6 +1674,7 @@ html, body, #root {
   .wedding-scroll__down,
   .rsvp-choice,
   .rsvp-guest,
+  .rsvp-event-option,
   .rsvp-submit {
     transition: none;
   }

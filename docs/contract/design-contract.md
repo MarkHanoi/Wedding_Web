@@ -50,9 +50,10 @@ The Explore page keeps its 4-blob CSS mesh gradient as the animated sand layer.
 It cycles through 11 warm beach-toned palettes (one per calendar day) using
 `dailyPalette.ts`. At the opening, copy the BouganVilla sea background treatment:
 its animated 4-blob Mediterranean gradient with grain, followed by the
-`hero-beach.jpg` aerial shoreline image rotated 180° in a 280px transition band
-with the source's mask and dark top blend. The sea and beach strip scroll with
-the intro; the original wedding sand mesh stays fixed behind the full page.
+preloaded, optimized WebP copy of the `hero-beach.jpg` aerial shoreline image,
+rotated 180° in a 280px transition band with the source's mask and dark top
+blend. The sea and beach strip scroll with the intro; the original wedding sand
+mesh stays fixed behind the full page.
 
 Blob roles:
 - **c1** — cream highlight
@@ -122,7 +123,7 @@ the sand mesh and sea mesh.
 | Asset | Usage |
 |-------|-------|
 | `image_1783365684371.png` | Palette reference (not displayed) |
-| `hero-beach.jpg` | BouganVilla aerial sea-to-sand transition image |
+| `hero-beach.jpg` / `hero-beach.webp` | Source and optimized BouganVilla aerial sea-to-sand transition image |
 
 ---
 

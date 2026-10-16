@@ -282,9 +282,12 @@ export default function WeddingCanvas({
       </div>
       <div className="wedding-scroll__beach-transition" aria-hidden="true">
         <img
-          src="/photos/hero-beach.jpg"
+          src="/photos/hero-beach.webp"
           alt=""
           className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           style={{ transform: "rotate(180deg)" }}
         />
         <div
@@ -380,8 +383,15 @@ export default function WeddingCanvas({
                       <strong data-testid={`text-event-name-${index}-${item.time}`}>{item.name}</strong>
                     </div>
                   ))}
+                  <div className="weekend-card__event">
+                    <span>{copy.weekend.whereLabel}</span>
+                    <strong>{day.location}</strong>
+                  </div>
+                  <div className="weekend-card__event">
+                    <span>{copy.weekend.wearLabel}</span>
+                    <strong>{day.wear}</strong>
+                  </div>
                 </div>
-                <p className="weekend-card__location">{day.location}</p>
                 {day.mapUrl && (
                   <a
                     className="text-link"
@@ -506,11 +516,6 @@ export default function WeddingCanvas({
               </article>
             ))}
           </div>
-          <div className="wedding-swatches" aria-label={copy.dressCode.swatchesLabel}>
-            {["#FAF6F0", "#E8D8B8", "#D4A574", "#B8845A"].map((color) => (
-              <span key={color} style={{ backgroundColor: color }} />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -577,25 +582,33 @@ export default function WeddingCanvas({
                 <>
                   <fieldset className="rsvp-field">
                     <legend>{copy.rsvp.eventsLegend}</legend>
-                    <div className="rsvp-choice-row">
-                      {copy.rsvp.events.map((item) => (
-                        <button
-                          key={item.id}
-                          className={`rsvp-choice${selectedEvents.includes(item.id) ? " is-selected" : ""}`}
-                          type="button"
-                          aria-pressed={selectedEvents.includes(item.id)}
-                          onClick={() =>
-                            setSelectedEvents((current) =>
-                              current.includes(item.id)
-                                ? current.filter((eventId) => eventId !== item.id)
-                                : [...current, item.id],
-                            )
-                          }
-                          data-testid={`button-rsvp-event-${item.id}`}
-                        >
-                          {item.label}
-                        </button>
-                      ))}
+                    <div className="rsvp-event-options">
+                      {copy.rsvp.events.map((item) => {
+                        const checked = selectedEvents.includes(item.id);
+                        return (
+                          <label
+                            key={item.id}
+                            className={`rsvp-event-option${checked ? " is-selected" : ""}`}
+                          >
+                            <input
+                              type="checkbox"
+                              name="events"
+                              value={item.id}
+                              checked={checked}
+                              onChange={(event) => {
+                                const isChecked = event.currentTarget.checked;
+                                setSelectedEvents((current) =>
+                                  isChecked
+                                    ? [...current, item.id]
+                                    : current.filter((eventId) => eventId !== item.id),
+                                );
+                              }}
+                              data-testid={`checkbox-rsvp-event-${item.id}`}
+                            />
+                            <span>{item.label}</span>
+                          </label>
+                        );
+                      })}
                     </div>
                   </fieldset>
                   <fieldset className="rsvp-field">
