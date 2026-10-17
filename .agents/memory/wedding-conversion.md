@@ -19,7 +19,7 @@ description: Architecture and content synchronization rules for Clémence & Anto
 
 **Why:** The wedding information should stay easy to navigate without breaking the continuous-page flow. The couple requested a minimal, photo-free intro and removal of the standalone Location / The place section.
 
-**How to apply:** Keep the information-page intro to the marriage announcement, names, and date, without an inset photo. Match the main hero's font, weight, and date styling; preserve white text over the dark sea treatment. Do not add a standalone Location / The place section; keep venue details and map links within the weekend schedule and keep sticky links aligned across languages. Preserve the accessible arrow-only return control. When wedding information changes, keep every language version aligned and confirmed facts consistent across sections. RSVP submissions are currently in-memory and are lost when the API restarts.
+**How to apply:** Keep the information-page intro to the marriage announcement, names, and date, without an inset photo. Match the main hero's font, weight, and date styling; preserve white text over the dark sea treatment. Do not add a standalone Location / The place section; keep venue details and map links within the weekend schedule and keep sticky links aligned across languages. Preserve the accessible arrow-only return control. When wedding information changes, keep every language version aligned and confirmed facts consistent across sections. RSVPs and anonymous visit counts use managed PostgreSQL; apply schema to development before using Publish to sync production.
 
 ## Review-feedback scope
 
