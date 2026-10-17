@@ -793,6 +793,7 @@ html, body, #root {
 
 .weekend-card__location-link {
   color: inherit;
+  text-decoration-line: underline;
   text-decoration-color: rgba(169, 97, 66, 0.38);
   text-underline-offset: 3px;
 }
@@ -814,6 +815,7 @@ html, body, #root {
   color: var(--wedding-terra);
   font-size: 0.73rem;
   letter-spacing: 0.1em;
+  text-decoration-line: underline;
   text-decoration-color: rgba(169, 97, 66, 0.38);
   text-underline-offset: 4px;
 }
