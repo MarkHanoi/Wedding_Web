@@ -221,9 +221,9 @@ html, body, #root {
 .language-switcher::after {
   position: absolute;
   top: 50%;
-  right: 14px;
-  width: 6px;
-  height: 6px;
+  right: 10px;
+  width: 5px;
+  height: 5px;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
   content: "";
@@ -231,18 +231,29 @@ html, body, #root {
   transform: translateY(-70%) rotate(45deg);
 }
 
+.language-switcher__code {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 10px;
+  font: 400 0.68rem/1.2 Inter, sans-serif;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
 .language-switcher select {
   appearance: none;
   -webkit-appearance: none;
-  width: 126px;
+  width: 68px;
   min-width: 0;
-  max-width: 126px;
-  min-height: 34px;
-  padding: 6px 30px 6px 10px;
+  max-width: 68px;
+  min-height: 30px;
+  padding: 5px 24px 5px 10px;
   border: 1px solid rgba(101, 77, 50, 0.25);
   border-radius: 999px;
   background: rgba(255, 252, 246, 0.72);
-  color: #493b2e;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
   font: 400 0.68rem/1.2 Inter, sans-serif;
   cursor: pointer;
 }
@@ -255,6 +266,7 @@ html, body, #root {
 .language-switcher option {
   background: #faf6f0;
   color: #493b2e;
+  -webkit-text-fill-color: #493b2e;
 }
 
 .language-switcher--hero {
@@ -290,6 +302,7 @@ html, body, #root {
 
 /* Continuous wedding information page */
 .wedding-scroll {
+  --wedding-heading-anchor-y: 31vh;
   --wedding-ink: #493b2e;
   --wedding-muted: #786b5d;
   --wedding-terra: #a96142;
@@ -339,7 +352,7 @@ html, body, #root {
 .wedding-scroll__beach-transition {
   position: absolute;
   z-index: -1;
-  top: 50vh;
+  top: 45vh;
   left: 0;
   right: 0;
   height: 280px;
@@ -567,6 +580,13 @@ html, body, #root {
   font-size: 0.94rem;
 }
 
+.weekend-description__rsvp-link {
+  color: var(--wedding-terra);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .wedding-section h2 {
   font-size: clamp(2.15rem, 5vw, 3.7rem);
 }
@@ -702,16 +722,12 @@ html, body, #root {
   min-height: 24px;
   margin-top: 8px;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
   color: var(--wedding-muted);
   font-size: 0.64rem;
   line-height: 1.35;
   text-align: left;
-}
-
-.weekend-gallery__caption > span:first-child {
-  max-width: 82%;
 }
 
 .weekend-gallery__caption > span:last-child {
@@ -795,9 +811,13 @@ html, body, #root {
   max-width: 730px;
 }
 
+.wedding-section#travel {
+  width: min(100% - 48px, 1120px);
+}
+
 .travel-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 28px;
   margin-top: 48px;
   text-align: left;
@@ -843,6 +863,12 @@ html, body, #root {
 @media (max-width: 640px) {
   .travel-gallery .weekend-gallery__frame {
     aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .travel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1619,8 +1645,7 @@ html, body, #root {
     min-height: min(510px, calc(85vh - 58px));
   }
 
-  .weekend-grid,
-  .travel-grid {
+  .weekend-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1645,6 +1670,10 @@ html, body, #root {
 @media (max-width: 440px) {
   .wedding-section {
     width: calc(100% - 36px);
+  }
+
+  .travel-grid {
+    grid-template-columns: 1fr;
   }
 
   .wedding-section--band,

@@ -134,14 +134,15 @@ function PhotoCarousel({
             </>
           )}
         </div>
-        <figcaption
-          className="weekend-gallery__caption"
-          aria-live={photoCount > 1 ? "polite" : undefined}
-          aria-atomic={photoCount > 1 ? "true" : undefined}
-        >
-          <span>{photo.alt}</span>
-          {photoCount > 1 && <span>{currentIndex + 1} / {photoCount}</span>}
-        </figcaption>
+        {photoCount > 1 && (
+          <figcaption
+            className="weekend-gallery__caption"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <span>{currentIndex + 1} / {photoCount}</span>
+          </figcaption>
+        )}
       </figure>
       {photoCount > 1 && (
         <div className="weekend-gallery__indicators" role="group" aria-label={chooseLabel}>
@@ -359,7 +360,13 @@ export default function WeddingCanvas({
         <div className="wedding-section__inner">
           <p className="wedding-section__eyebrow">{copy.weekend.eyebrow}</p>
           <h2>{copy.weekend.title}</h2>
-          <p className="wedding-section__description">{copy.weekend.description}</p>
+          <p className="wedding-section__description">
+            {copy.weekend.description.beforeRsvp}
+            <a className="weekend-description__rsvp-link" href="#rsvp">
+              RSVP
+            </a>
+            {copy.weekend.description.afterRsvp}
+          </p>
           <div className="weekend-grid">
             {weekend.map((day, index) => (
               <article className="weekend-card" key={day.galleryId} data-testid={`card-weekend-${index}`}>

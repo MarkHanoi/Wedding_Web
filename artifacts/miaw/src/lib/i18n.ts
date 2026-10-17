@@ -1,7 +1,7 @@
 export const languageOptions = [
   { value: "en", label: "English" },
-  { value: "es", label: "Español" },
   { value: "fr", label: "Français" },
+  { value: "es", label: "Español" },
   { value: "pt", label: "Português" },
 ] as const;
 
@@ -45,7 +45,10 @@ export interface SiteCopy {
   weekend: {
     eyebrow: string;
     title: string;
-    description: string;
+    description: {
+      beforeRsvp: string;
+      afterRsvp: string;
+    };
     mapLink: string;
     dinnerIdeasLink: string;
     calendarLink: string;
@@ -147,15 +150,16 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "French girl meets Spanish boy",
       paragraphs: [
-        "London, 2016. A nightclub. Terrible lighting, perfect timing.",
-        "Then Sydney, Brisbane and a lot of suitcases. In 2022 we landed in Portugal and started building a house, the ultimate relationship stress test. We’re still talking, so we’re getting married.",
-        "Jouy-en-Josas meets Córdoba, on neutral ground, because that’s good for a marriage.",
+        "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out. Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down. In 2023, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. We are still speaking so let's get married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise. Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other. Lisbon, we’re ready.",
       ],
     },
     weekend: {
       eyebrow: "The weekend",
       title: "Three moments, everyone welcome",
-      description: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Please let us know which events you’ll be attending by selecting them in the RSVP.",
+      description: {
+        beforeRsvp: "Friday 18 to Sunday 20 June 2027, on Lisbon’s south coast. Please let us know which events you’ll be attending by selecting them in the ",
+        afterRsvp: ".",
+      },
       mapLink: "Map",
       dinnerIdeasLink: "Dinner ideas",
       calendarLink: "Add to calendar",
@@ -343,15 +347,20 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Una francesa conoce a un español",
       paragraphs: [
-        "Londres, 2016. Una discoteca. Iluminación terrible, el momento perfecto.",
-        "Después llegaron Sídney, Brisbane y un montón de maletas. En 2022 llegamos a Portugal y empezamos a construir una casa: la prueba definitiva para una relación. Seguimos hablándonos, así que vamos a casarnos.",
-        "Jouy-en-Josas se encuentra con Córdoba, en terreno neutral, porque así es mejor para un matrimonio.",
+        "Una francesa conoce a un español en Londres, en 2016. Nos conocimos en una discoteca, con una iluminación terrible, y de alguna manera, la cosa funcionó.",
+        "Desde entonces, hemos vivido en Sídney, Brisbane y, finalmente, Portugal, acumulando unas cuantas maletas por el camino — ya fuera porque estábamos enamorados o porque se nos daba fatal asentarnos.",
+        "En 2023, empezamos a construir una casa en Portugal y después decidimos tomarnos un año para viajar juntos por el mundo. La prueba definitiva para una pareja: un año de aventuras, compañía constante y ninguna vía de escape. Seguimos hablándonos, así que vamos a casarnos — en Portugal, en algún lugar entre Francia y España, lo que nos pareció un compromiso bastante justo.",
+        "Diez años, incontables países y unas cuantas grandes aventuras después, hemos aprendido que el mejor lugar en el que hemos estado nunca es justo al lado del otro.",
+        "Lisboa, estamos listos.",
       ],
     },
     weekend: {
       eyebrow: "El fin de semana",
       title: "Tres momentos, todos bienvenidos",
-      description: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Dinos a qué eventos asistirás seleccionándolos en el RSVP.",
+      description: {
+        beforeRsvp: "Del viernes 18 al domingo 20 de junio de 2027, en la costa sur de Lisboa. Dinos a qué eventos asistirás seleccionándolos en el ",
+        afterRsvp: ".",
+      },
       mapLink: "Mapa",
       dinnerIdeasLink: "Ideas para cenar",
       calendarLink: "Añadir al calendario",
@@ -539,15 +548,20 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Une Française rencontre un Espagnol",
       paragraphs: [
-        "Londres, 2016. Une boîte de nuit. Un éclairage catastrophique, un timing parfait.",
-        "Puis Sydney, Brisbane et beaucoup de valises. En 2022, on s’est installés au Portugal et on a commencé à construire une maison, le test ultime pour un couple. On se parle toujours, alors on se marie.",
-        "Jouy-en-Josas rencontre Cordoue, en terrain neutre, parce que c’est mieux pour un mariage.",
+        "Une Française rencontre un Espagnol à Londres, en 2016. On s’est rencontrés dans une boîte de nuit, sous un éclairage absolument catastrophique, et contre toute attente, ça a marché.",
+        "Depuis, on a vécu à Sydney, Brisbane, puis finalement au Portugal, en accumulant pas mal de valises au passage — soit parce qu’on était amoureux, soit parce qu’on avait beaucoup de mal à se poser.",
+        "En 2023, on a commencé à construire une maison au Portugal, puis on a décidé de prendre un an pour voyager autour du monde ensemble. Le test ultime pour un couple : un an d’aventures, une présence constante et aucune échappatoire. On se parle toujours, alors autant se marier — au Portugal, quelque part entre la France et l’Espagne, ce qui nous a semblé être un compromis équitable.",
+        "Dix ans, d’innombrables pays et quelques grandes aventures plus tard, on a compris que le meilleur endroit où l’on soit jamais allés, c’est juste à côté l’un de l’autre.",
+        "Lisbonne, on est prêts.",
       ],
     },
     weekend: {
       eyebrow: "Le week-end",
       title: "Trois moments, tout le monde est bienvenu",
-      description: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez-nous les événements auxquels vous participerez en les sélectionnant dans le RSVP.",
+      description: {
+        beforeRsvp: "Du vendredi 18 au dimanche 20 juin 2027, sur la côte sud de Lisbonne. Indiquez-nous les événements auxquels vous participerez en les sélectionnant dans le ",
+        afterRsvp: ".",
+      },
       mapLink: "Carte",
       dinnerIdeasLink: "Idées de dîner",
       calendarLink: "Ajouter au calendrier",
@@ -735,15 +749,20 @@ export const translations: Record<Language, SiteCopy> = {
     story: {
       title: "Uma francesa conhece um espanhol",
       paragraphs: [
-        "Londres, 2016. Uma discoteca. Iluminação péssima, timing perfeito.",
-        "Depois Sydney, Brisbane e muitas malas. Em 2022 chegámos a Portugal e começámos a construir uma casa — o teste definitivo para uma relação. Ainda nos falamos, por isso vamos casar.",
-        "Jouy-en-Josas encontra Córdoba, em terreno neutro, porque é melhor para um casamento.",
+        "Uma francesa conhece um espanhol em Londres, em 2016. Conhecemo-nos numa discoteca, com uma iluminação péssima, e, de alguma forma, a coisa resultou.",
+        "Desde então, vivemos em Sydney, Brisbane e, finalmente, em Portugal, acumulando umas quantas malas pelo caminho — ou porque estávamos apaixonados, ou porque tínhamos muita dificuldade em assentar.",
+        "Em 2023, começámos a construir uma casa em Portugal e depois decidimos tirar um ano para viajar pelo mundo juntos. O teste definitivo para uma relação: um ano de aventuras, companhia constante e sem escapatória. Ainda nos falamos, por isso vamos casar — em Portugal, algures entre França e Espanha, o que nos pareceu um compromisso bastante justo.",
+        "Dez anos, inúmeros países e algumas grandes aventuras depois, aprendemos que o melhor lugar onde alguma vez estivemos é mesmo ao lado um do outro.",
+        "Lisboa, estamos prontos.",
       ],
     },
     weekend: {
       eyebrow: "O fim de semana",
       title: "Três momentos, todos bem-vindos",
-      description: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique-nos a que eventos vai assistir, selecionando-os no RSVP.",
+      description: {
+        beforeRsvp: "De sexta-feira, 18, a domingo, 20 de junho de 2027, na costa sul de Lisboa. Indique-nos a que eventos vai assistir, selecionando-os no ",
+        afterRsvp: ".",
+      },
       mapLink: "Mapa",
       dinnerIdeasLink: "Ideias para jantar",
       calendarLink: "Adicionar ao calendário",
