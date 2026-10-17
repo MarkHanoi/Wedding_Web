@@ -474,7 +474,12 @@ export default function WeddingCanvas({
             <article id={travelItemHrefs[index].slice(1)} key={item.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              {item.description && <p>{item.description}</p>}
+              {item.bulletItems && (
+                <ul>
+                  {item.bulletItems.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                </ul>
+              )}
             </article>
           ))}
         </div>
