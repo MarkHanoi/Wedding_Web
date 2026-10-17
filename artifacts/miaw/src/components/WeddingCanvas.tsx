@@ -11,14 +11,6 @@ import weddingAerial from "../../../../attached_assets/dji_0225_1792142246805.we
 import weddingGarden from "../../../../attached_assets/dsc7086_1792142246824.webp";
 import weddingEntrance from "../../../../attached_assets/dsc7090_1792142246824.webp";
 import brunchTable from "../../../../attached_assets/but-first-brunch-outdoor-brunch-party-ideas-165228_1296x_1792142942629.webp";
-import arrabidaCove from "../../../../attached_assets/@rgcbatista_1792172274875.jpeg";
-import azeitaoVineyard from "../../../../attached_assets/Azeitão_1792172274877.jpeg";
-import riversideTown from "../../../../attached_assets/buildings-7490372_1280-900x600_1792172274877.jpg";
-import lisbonCloudscape from "../../../../attached_assets/caption_1792172274878.jpg";
-import tiledLisbonRestaurant from "../../../../attached_assets/HandLuggageOnly-19-1_1792172274878.jpg";
-import arrabidaCoast from "../../../../attached_assets/image_1792172274879.jpg";
-import arrabidaBeach from "../../../../attached_assets/praias-serra-da-arrabida_1792172274882.jpg";
-import setubalSandbanks from "../../../../attached_assets/visitar-serra-da-arrabida_1792172274883.jpg";
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? import.meta.env.BASE_URL).replace(/\/$/, "");
 
@@ -45,17 +37,6 @@ const weddingVenuePhotoSources = [
   weddingAerial,
   weddingGarden,
   weddingEntrance,
-];
-
-const travelPhotoSources = [
-  arrabidaCove,
-  azeitaoVineyard,
-  riversideTown,
-  lisbonCloudscape,
-  tiledLisbonRestaurant,
-  arrabidaCoast,
-  arrabidaBeach,
-  setubalSandbanks,
 ];
 
 const BEACH_MAP_URL =
@@ -157,10 +138,9 @@ function PhotoCarousel({
 const sectionHrefs = [
   "#our-story",
   "#weekend",
-  "#location",
   "#travel",
-  "#faq",
   "#dress-code",
+  "#faq",
   "#rsvp",
 ];
 const travelItemHrefs = ["#travel-getting-here", "#travel-where-to-stay", "#travel-dinner", "#travel-things-to-do"];
@@ -198,10 +178,6 @@ export default function WeddingCanvas({
     galleryId: day.gallery,
     mapUrl: index === 0 ? BEACH_MAP_URL : index === 1 ? WEDDING_MAP_URL : undefined,
     gallery: galleries[day.gallery],
-  }));
-  const travelPhotos = travelPhotoSources.map((src, index) => ({
-    src,
-    alt: copy.galleries.travelAlts[index],
   }));
   const sectionLinks = sectionHrefs.map((href, index) => ({
     href,
@@ -445,43 +421,20 @@ export default function WeddingCanvas({
         </div>
       </section>
 
-      <section id="location" className="wedding-section wedding-section--location">
-        <p className="wedding-section__eyebrow">{copy.location.eyebrow}</p>
-        <h2>{copy.location.title}</h2>
-        <p>{copy.location.description}</p>
-        <a
-          className="text-link"
-          href={BEACH_MAP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid="link-location-map"
-        >
-          {copy.location.beachMapLink} <span aria-hidden="true">↗</span>
-        </a>
-        <br />
-        <a
-          className="text-link"
-          href={WEDDING_MAP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid="link-wedding-map"
-        >
-          {copy.location.weddingMapLink} <span aria-hidden="true">↗</span>
-        </a>
-      </section>
-
       <section id="travel" className="wedding-section">
         <p className="wedding-section__eyebrow">{copy.travel.eyebrow}</p>
         <h2>{copy.travel.title}</h2>
         <p>{copy.travel.description}</p>
-        <div role="group" aria-label={copy.travel.title}>
+        <div className="travel-shortcuts" role="group" aria-label={copy.travel.title}>
           {copy.travel.items.map((item, index) => (
-            <span key={item.title}>
-              {index > 0 && " · "}
-              <a className="text-link" href={travelItemHrefs[index]}>
-                {item.title}
-              </a>
-            </span>
+            <a
+              className="travel-shortcut"
+              href={travelItemHrefs[index]}
+              key={item.title}
+              data-testid={`link-travel-shortcut-${index}`}
+            >
+              {item.title}
+            </a>
           ))}
         </div>
         <div className="travel-grid">
@@ -498,15 +451,23 @@ export default function WeddingCanvas({
             </article>
           ))}
         </div>
-        <PhotoCarousel
-          className="weekend-gallery travel-gallery"
-          photos={travelPhotos}
-          label={copy.galleries.travelLabel}
-          carouselRole={copy.galleries.carouselRole}
-          previousLabel={copy.galleries.previous}
-          nextLabel={copy.galleries.next}
-          chooseLabel={copy.galleries.choose}
-        />
+      </section>
+
+      <section id="dress-code" className="wedding-section wedding-section--band">
+        <div className="wedding-section__inner">
+          <p className="wedding-section__eyebrow">{copy.dressCode.eyebrow}</p>
+          <h2>{copy.dressCode.title}</h2>
+          {copy.dressCode.description && <p>{copy.dressCode.description}</p>}
+          <div className="dress-code-grid">
+            {copy.dressCode.days.map((day, index) => (
+              <article key={day.title}>
+                <span>{day.day}</span>
+                <h3>{day.title}</h3>
+                <p>{day.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section id="faq" className="wedding-section wedding-section--faq">
@@ -519,23 +480,6 @@ export default function WeddingCanvas({
               <p>{item.answer}</p>
             </details>
           ))}
-        </div>
-      </section>
-
-      <section id="dress-code" className="wedding-section wedding-section--band">
-        <div className="wedding-section__inner wedding-section__inner--narrow">
-          <p className="wedding-section__eyebrow">{copy.dressCode.eyebrow}</p>
-          <h2>{copy.dressCode.title}</h2>
-          {copy.dressCode.description && <p>{copy.dressCode.description}</p>}
-          <div className="travel-grid">
-            {copy.dressCode.days.map((day, index) => (
-              <article key={day.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{day.title}</h3>
-                <p>{day.description}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

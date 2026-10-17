@@ -79,7 +79,7 @@ export interface SiteCopy {
     eyebrow: string;
     title: string;
     description: string;
-    days: { title: string; description: string }[];
+    days: { day: string; title: string; description: string }[];
   };
   rsvp: {
     eyebrow: string;
@@ -122,8 +122,6 @@ export interface SiteCopy {
     preWeddingAlts: string[];
     venueAlts: string[];
     brunchAlt: string;
-    travelLabel: string;
-    travelAlts: string[];
   };
 }
 
@@ -140,7 +138,7 @@ export const translations: Record<Language, SiteCopy> = {
     navigation: {
       mainSections: "Main sections",
       backToIntro: "Back to intro",
-      sections: ["Our story", "The weekend", "Location", "Travel", "Good to know", "Dress code", "RSVP"],
+      sections: ["Our story", "The weekend", "Travel", "Dress code", "Good to know", "RSVP"],
     },
     intro: {
       eyebrow: "We're Getting Married",
@@ -237,20 +235,20 @@ export const translations: Record<Language, SiteCopy> = {
       eyebrow: "Good to know",
       title: "Questions",
       items: [
-        { question: "Who is invited to what?", answer: "Everyone is welcome to all three events. Please let us know in the RSVP which ones you’ll join." },
+        { question: "Who is invited to what?", answer: "Everyone is welcome to all three events. Please let us know in the RSVP which ones you’ll join. Please submit one form per person." },
         { question: "What if it’s windy or rainy?", answer: "We have a covered plan so the day stays beautiful." },
         { question: "Gifts?", answer: "Your presence is the gift. A contribution to our honeymoon is welcome." },
         { question: "Who do I contact?", answer: "We’ll add an email address and WhatsApp number here once confirmed." },
       ],
     },
     dressCode: {
-      eyebrow: "What to wear",
-      title: "Just come ready to relax and enjoy!",
+      eyebrow: "Dress code",
+      title: "What to wear",
       description: "",
       days: [
-        { title: "Friday · Beach", description: "Beach casual." },
-        { title: "Saturday · Wedding", description: "Not white, not black. Choose shoes that work on grass and gravel." },
-        { title: "Sunday · As you wish", description: "Come as you want." },
+        { day: "Friday", title: "Beach", description: "Relaxed." },
+        { day: "Saturday", title: "Festive", description: "Ladies, please skip white and black. Choose shoes that cope with grass and gravel." },
+        { day: "Sunday", title: "As you wish", description: "Come as you want." },
       ],
     },
     rsvp: {
@@ -308,17 +306,6 @@ export const translations: Record<Language, SiteCopy> = {
         "Coral-pink venue entrance framed by cypress trees",
       ],
       brunchAlt: "Outdoor brunch table with fresh fruit, pastries and drinks",
-      travelLabel: "Travel and stay photos",
-      travelAlts: [
-        "Turquoise cove framed by green hills on the Arrábida coast",
-        "Vineyard in Azeitão with the Serra da Arrábida mountains in the distance",
-        "Historic Portuguese rooftops and a church overlooking the water",
-        "Lisbon rooftops and church tower beneath dramatic clouds",
-        "Traditional tiled Lisbon building with a restaurant at street level",
-        "Aerial view of the wooded Arrábida coastline and its small coves",
-        "Cliffs and clear water at a beach in Arrábida",
-        "Aerial view of the sandbanks and calm sea near Setúbal",
-      ],
     },
   },
   es: {
@@ -333,7 +320,7 @@ export const translations: Record<Language, SiteCopy> = {
     navigation: {
       mainSections: "Secciones principales",
       backToIntro: "Volver al inicio",
-      sections: ["Nuestra historia", "El fin de semana", "Lugar", "Viaje", "Información útil", "Vestimenta", "Confirmación"],
+      sections: ["Nuestra historia", "El fin de semana", "Viaje", "Vestimenta", "Información útil", "Confirmación"],
     },
     intro: {
       eyebrow: "Nos casamos",
@@ -434,20 +421,20 @@ export const translations: Record<Language, SiteCopy> = {
       eyebrow: "Información útil",
       title: "Preguntas",
       items: [
-        { question: "¿Quién está invitado a qué?", answer: "Todo el mundo está invitado a los tres eventos. Dinos en el RSVP a cuáles te gustaría asistir." },
+        { question: "¿Quién está invitado a qué?", answer: "Todo el mundo está invitado a los tres eventos. Dinos en el RSVP a cuáles te gustaría asistir. Por favor, enviad un formulario por persona." },
         { question: "¿Y si hace viento o llueve?", answer: "Tenemos un plan cubierto para que el día siga siendo especial." },
         { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Si lo deseáis, podéis contribuir a nuestra luna de miel." },
         { question: "¿A quién puedo contactar?", answer: "Añadiremos aquí un correo electrónico y un número de WhatsApp cuando estén confirmados." },
       ],
     },
     dressCode: {
-      eyebrow: "Qué ponerse",
-      title: "¡Venid con ganas de relajaros y disfrutar!",
+      eyebrow: "Código de vestimenta",
+      title: "Qué ponerse",
       description: "",
       days: [
-        { title: "Viernes · Playa", description: "Informal de playa." },
-        { title: "Sábado · Boda", description: "Ni blanco ni negro. Elegid zapatos adecuados para el césped y la grava." },
-        { title: "Domingo · A vuestro gusto", description: "Venid como queráis." },
+        { day: "Viernes", title: "Playa", description: "Informal." },
+        { day: "Sábado", title: "Festivo", description: "Señoras, por favor, evitad el blanco y el negro. Elegid zapatos adecuados para el césped y la grava." },
+        { day: "Domingo", title: "A vuestro gusto", description: "Venid como queráis." },
       ],
     },
     rsvp: {
@@ -505,17 +492,6 @@ export const translations: Record<Language, SiteCopy> = {
         "Entrada rosa coral enmarcada por cipreses",
       ],
       brunchAlt: "Mesa de brunch al aire libre con fruta fresca, bollería y bebidas",
-      travelLabel: "Fotos de viaje y alojamiento",
-      travelAlts: [
-        "Cala de aguas turquesas rodeada de colinas verdes en la costa de Arrábida",
-        "Viñedo de Azeitão con las montañas de la Serra da Arrábida al fondo",
-        "Tejados históricos y una iglesia junto al agua en una ciudad portuguesa",
-        "Tejados de Lisboa y una torre bajo nubes dramáticas",
-        "Edificio tradicional de azulejos en Lisboa con un restaurante a pie de calle",
-        "Vista aérea de la costa boscosa de Arrábida y sus pequeñas calas",
-        "Acantilados y aguas cristalinas en una playa de Arrábida",
-        "Vista aérea de bancos de arena y aguas tranquilas cerca de Setúbal",
-      ],
     },
   },
   fr: {
@@ -530,7 +506,7 @@ export const translations: Record<Language, SiteCopy> = {
     navigation: {
       mainSections: "Sections principales",
       backToIntro: "Retour à l’introduction",
-      sections: ["Notre histoire", "Le week-end", "Lieu", "Voyage", "À savoir", "Tenue", "RSVP"],
+      sections: ["Notre histoire", "Le week-end", "Voyage", "Tenue", "À savoir", "RSVP"],
     },
     intro: {
       eyebrow: "Nous nous marions",
@@ -631,20 +607,20 @@ export const translations: Record<Language, SiteCopy> = {
       eyebrow: "À savoir",
       title: "Questions",
       items: [
-        { question: "Qui est invité à quoi ?", answer: "Tout le monde est invité aux trois événements. Dites-nous dans le RSVP ceux auxquels vous souhaitez participer." },
+        { question: "Qui est invité à quoi ?", answer: "Tout le monde est invité aux trois événements. Dites-nous dans le RSVP ceux auxquels vous souhaitez participer. Merci de remplir un formulaire par personne." },
         { question: "Et s’il y a du vent ou de la pluie ?", answer: "Nous avons prévu une solution couverte pour que la journée reste belle." },
         { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Une contribution à notre lune de miel est la bienvenue." },
         { question: "Qui dois-je contacter ?", answer: "Nous ajouterons ici une adresse e-mail et un numéro WhatsApp dès qu’ils seront confirmés." },
       ],
     },
     dressCode: {
-      eyebrow: "Comment s’habiller",
-      title: "Venez simplement pour vous détendre et profiter !",
+      eyebrow: "Code vestimentaire",
+      title: "Comment s’habiller",
       description: "",
       days: [
-        { title: "Vendredi · Plage", description: "Tenue décontractée de plage." },
-        { title: "Samedi · Mariage", description: "Ni blanc ni noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
-        { title: "Dimanche · Comme vous voulez", description: "Venez comme vous voulez." },
+        { day: "Vendredi", title: "Plage", description: "Décontracté." },
+        { day: "Samedi", title: "Festif", description: "Mesdames, évitez le blanc et le noir. Choisissez des chaussures adaptées à l’herbe et au gravier." },
+        { day: "Dimanche", title: "Comme vous voulez", description: "Venez comme vous voulez." },
       ],
     },
     rsvp: {
@@ -702,17 +678,6 @@ export const translations: Record<Language, SiteCopy> = {
         "Entrée rose corail encadrée de cyprès",
       ],
       brunchAlt: "Table de brunch en plein air avec fruits frais, viennoiseries et boissons",
-      travelLabel: "Photos de voyage et de séjour",
-      travelAlts: [
-        "Anse aux eaux turquoise bordée de collines verdoyantes sur la côte d’Arrábida",
-        "Vignoble d’Azeitão avec la serra da Arrábida en arrière-plan",
-        "Toits historiques et église au bord de l’eau dans une ville portugaise",
-        "Toits de Lisbonne et clocher sous des nuages spectaculaires",
-        "Immeuble lisboète couvert d’azulejos avec un restaurant au rez-de-chaussée",
-        "Vue aérienne de la côte boisée d’Arrábida et de ses petites criques",
-        "Falaises et eau limpide sur une plage d’Arrábida",
-        "Vue aérienne des bancs de sable et des eaux calmes près de Setúbal",
-      ],
     },
   },
   pt: {
@@ -727,7 +692,7 @@ export const translations: Record<Language, SiteCopy> = {
     navigation: {
       mainSections: "Secções principais",
       backToIntro: "Voltar ao início",
-      sections: ["A nossa história", "O fim de semana", "Local", "Viagem", "Informações", "Traje", "Confirmação"],
+      sections: ["A nossa história", "O fim de semana", "Viagem", "Traje", "Informações", "Confirmação"],
     },
     intro: {
       eyebrow: "Vamos casar",
@@ -828,20 +793,20 @@ export const translations: Record<Language, SiteCopy> = {
       eyebrow: "Informações",
       title: "Perguntas",
       items: [
-        { question: "Quem está convidado para quê?", answer: "Todos são bem-vindos aos três eventos. Digam-nos no RSVP a quais gostariam de assistir." },
+        { question: "Quem está convidado para quê?", answer: "Todos são bem-vindos aos três eventos. Digam-nos no RSVP a quais gostariam de assistir. Por favor, preencham um formulário por pessoa." },
         { question: "E se estiver vento ou chover?", answer: "Temos uma alternativa coberta para que o dia continue a ser especial." },
         { question: "Presentes?", answer: "A vossa presença é o melhor presente. Uma contribuição para a nossa lua de mel é bem-vinda." },
         { question: "Quem devo contactar?", answer: "Adicionaremos aqui um endereço de e-mail e um número de WhatsApp quando estiverem confirmados." },
       ],
     },
     dressCode: {
-      eyebrow: "O que vestir",
-      title: "Venham prontos para relaxar e aproveitar!",
+      eyebrow: "Código de vestuário",
+      title: "O que vestir",
       description: "",
       days: [
-        { title: "Sexta-feira · Praia", description: "Informal de praia." },
-        { title: "Sábado · Casamento", description: "Sem branco nem preto. Escolham sapatos adequados à relva e à gravilha." },
-        { title: "Domingo · Como preferirem", description: "Venham como quiserem." },
+        { day: "Sexta-feira", title: "Praia", description: "Informal." },
+        { day: "Sábado", title: "Festivo", description: "Senhoras, evitem o branco e o preto. Escolham sapatos adequados à relva e à gravilha." },
+        { day: "Domingo", title: "Como preferirem", description: "Venham como quiserem." },
       ],
     },
     rsvp: {
@@ -899,17 +864,6 @@ export const translations: Record<Language, SiteCopy> = {
         "Entrada rosa-coral emoldurada por ciprestes",
       ],
       brunchAlt: "Mesa de brunch ao ar livre com fruta fresca, pastelaria e bebidas",
-      travelLabel: "Fotografias de viagem e estadia",
-      travelAlts: [
-        "Enseada de águas turquesa rodeada pelas colinas verdes da costa da Arrábida",
-        "Vinha em Azeitão com a Serra da Arrábida ao fundo",
-        "Telhados históricos e uma igreja junto à água numa cidade portuguesa",
-        "Telhados de Lisboa e uma torre de igreja sob nuvens dramáticas",
-        "Edifício tradicional de azulejos em Lisboa com um restaurante ao nível da rua",
-        "Vista aérea da costa arborizada da Arrábida e das suas pequenas enseadas",
-        "Falésias e águas límpidas numa praia da Arrábida",
-        "Vista aérea dos bancos de areia e das águas calmas perto de Setúbal",
-      ],
     },
   },
 };

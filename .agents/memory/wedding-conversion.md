@@ -11,15 +11,15 @@ description: Architecture and content synchronization rules for Clémence & Anto
 
 ## Current page flow
 
-- Explore opens a single continuous scroll page in this order: story, weekend schedule, location, travel, FAQ, dress code and RSVP.
+- Explore opens a single continuous scroll page in this order: story, weekend schedule, travel, dress code, FAQ, and RSVP; there is no standalone Location / The place section.
 - The information-page intro shows the marriage announcement, names, and date over the sea background, with no inset photo.
-- Schedule, venue and RSVP are sections on one continuous page, reached by sticky anchor links rather than separate pages or floating panels.
+- Schedule, travel and RSVP are sections on one continuous page, reached by sticky anchor links rather than separate pages or floating panels. Keep event venues and map links in the weekend schedule.
 - The sticky information-page header contains the section links and an arrow-only return control near the right viewport edge; omit the C&A mark and return text.
 - Wedding details are presented in the Explore page; keep confirmed facts consistent across its sections.
 
-**Why:** The wedding information should stay easy to navigate without breaking the continuous-page flow. The couple requested a minimal, photo-free intro.
+**Why:** The wedding information should stay easy to navigate without breaking the continuous-page flow. The couple requested a minimal, photo-free intro and removal of the standalone Location / The place section.
 
-**How to apply:** Keep the information-page intro to the marriage announcement, names, and date, without an inset photo. Match the main hero's font, weight, and date styling; preserve white text over the dark sea treatment. Keep section links in the information-page header and the return control as an accessible arrow-only button. When wedding information changes, keep every language version aligned and confirmed facts consistent across sections. RSVP submissions are currently in-memory and are lost when the API restarts.
+**How to apply:** Keep the information-page intro to the marriage announcement, names, and date, without an inset photo. Match the main hero's font, weight, and date styling; preserve white text over the dark sea treatment. Do not add a standalone Location / The place section; keep venue details and map links within the weekend schedule and keep sticky links aligned across languages. Preserve the accessible arrow-only return control. When wedding information changes, keep every language version aligned and confirmed facts consistent across sections. RSVP submissions are currently in-memory and are lost when the API restarts.
 
 ## Review-feedback scope
 
