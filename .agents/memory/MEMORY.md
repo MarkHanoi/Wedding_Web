@@ -1,2 +1,3 @@
 - [Wedding site flow](wedding-conversion.md) — Explore opens a continuous scroll page with sticky section links; keep confirmed event details consistent across sections.
 - [Beach palette system](beach-palette.md) — keep the warm moving sand mesh; use the copied BouganVilla gradient and shoreline photo for the opening sea.
+- [Publish-time database provisioning](publish-database.md) — keep managed production schema changes in Replit Publish; seed and verify development first.
