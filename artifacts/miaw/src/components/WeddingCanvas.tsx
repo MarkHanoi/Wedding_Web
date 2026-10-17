@@ -477,7 +477,21 @@ export default function WeddingCanvas({
           {copy.faq.items.map((item, index) => (
             <details key={item.question}>
               <summary data-testid={`summary-${faqTestIds[index]}`}>{item.question}</summary>
-              <p>{item.answer}</p>
+              <p>
+                {item.answer}
+                {item.linkText && (
+                  <>
+                    {" "}
+                    <a
+                      className="wedding-section__inline-link"
+                      href="/gifts"
+                      data-testid="link-gifts-details"
+                    >
+                      {item.linkText}
+                    </a>
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

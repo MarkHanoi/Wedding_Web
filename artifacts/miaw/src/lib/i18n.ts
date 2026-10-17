@@ -73,7 +73,17 @@ export interface SiteCopy {
   faq: {
     eyebrow: string;
     title: string;
-    items: { question: string; answer: string }[];
+    items: { question: string; answer: string; linkText?: string }[];
+  };
+  giftsPage: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    bankTitle: string;
+    bankDescription: string;
+    cashTitle: string;
+    cashDescription: string;
+    backLink: string;
   };
   dressCode: {
     eyebrow: string;
@@ -237,9 +247,19 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { question: "Who is invited to what?", answer: "Everyone is welcome to all three events. Please let us know in the RSVP which ones you’ll join. Please submit one form per person." },
         { question: "What if it’s windy or rainy?", answer: "We have a covered plan so the day stays beautiful." },
-        { question: "Gifts?", answer: "Your presence is the gift. A contribution to our honeymoon is welcome." },
+        { question: "Gifts?", answer: "Your presence is the gift. A contribution to our future projects is welcome.", linkText: "Gift options" },
         { question: "Who do I contact?", answer: "We’ll add an email address and WhatsApp number here once confirmed." },
       ],
+    },
+    giftsPage: {
+      eyebrow: "Gifts",
+      title: "For our future projects",
+      description: "If you’d like to contribute, you can choose one of these options.",
+      bankTitle: "Bank transfer",
+      bankDescription: "Please ask us directly for the account details.",
+      cashTitle: "Cash",
+      cashDescription: "Cash gifts are welcome on the day.",
+      backLink: "Back to the wedding website",
     },
     dressCode: {
       eyebrow: "Dress code",
@@ -423,9 +443,19 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { question: "¿Quién está invitado a qué?", answer: "Todo el mundo está invitado a los tres eventos. Dinos en el RSVP a cuáles te gustaría asistir. Por favor, enviad un formulario por persona." },
         { question: "¿Y si hace viento o llueve?", answer: "Tenemos un plan cubierto para que el día siga siendo especial." },
-        { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Si lo deseáis, podéis contribuir a nuestra luna de miel." },
+        { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Una contribución para nuestros proyectos futuros es bienvenida.", linkText: "Opciones de regalo" },
         { question: "¿A quién puedo contactar?", answer: "Añadiremos aquí un correo electrónico y un número de WhatsApp cuando estén confirmados." },
       ],
+    },
+    giftsPage: {
+      eyebrow: "Regalos",
+      title: "Para nuestros proyectos futuros",
+      description: "Si queréis contribuir, podéis elegir una de estas opciones.",
+      bankTitle: "Transferencia bancaria",
+      bankDescription: "Podéis pedirnos directamente los datos de la cuenta.",
+      cashTitle: "Efectivo",
+      cashDescription: "También se aceptan regalos en efectivo el día del evento.",
+      backLink: "Volver a la web de la boda",
     },
     dressCode: {
       eyebrow: "Código de vestimenta",
@@ -609,9 +639,19 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { question: "Qui est invité à quoi ?", answer: "Tout le monde est invité aux trois événements. Dites-nous dans le RSVP ceux auxquels vous souhaitez participer. Merci de remplir un formulaire par personne." },
         { question: "Et s’il y a du vent ou de la pluie ?", answer: "Nous avons prévu une solution couverte pour que la journée reste belle." },
-        { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Une contribution à notre lune de miel est la bienvenue." },
+        { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Une contribution à nos projets futurs est la bienvenue.", linkText: "Options de cadeau" },
         { question: "Qui dois-je contacter ?", answer: "Nous ajouterons ici une adresse e-mail et un numéro WhatsApp dès qu’ils seront confirmés." },
       ],
+    },
+    giftsPage: {
+      eyebrow: "Cadeaux",
+      title: "Pour nos projets futurs",
+      description: "Si vous souhaitez contribuer, vous pouvez choisir l’une de ces options.",
+      bankTitle: "Virement bancaire",
+      bankDescription: "Demandez-nous directement les coordonnées bancaires.",
+      cashTitle: "Espèces",
+      cashDescription: "Les cadeaux en espèces sont les bienvenus le jour du mariage.",
+      backLink: "Retour au site du mariage",
     },
     dressCode: {
       eyebrow: "Code vestimentaire",
@@ -795,9 +835,19 @@ export const translations: Record<Language, SiteCopy> = {
       items: [
         { question: "Quem está convidado para quê?", answer: "Todos são bem-vindos aos três eventos. Digam-nos no RSVP a quais gostariam de assistir. Por favor, preencham um formulário por pessoa." },
         { question: "E se estiver vento ou chover?", answer: "Temos uma alternativa coberta para que o dia continue a ser especial." },
-        { question: "Presentes?", answer: "A vossa presença é o melhor presente. Uma contribuição para a nossa lua de mel é bem-vinda." },
+        { question: "Presentes?", answer: "A vossa presença é o melhor presente. Uma contribuição para os nossos projetos futuros é bem-vinda.", linkText: "Opções de presente" },
         { question: "Quem devo contactar?", answer: "Adicionaremos aqui um endereço de e-mail e um número de WhatsApp quando estiverem confirmados." },
       ],
+    },
+    giftsPage: {
+      eyebrow: "Presentes",
+      title: "Para os nossos projetos futuros",
+      description: "Se quiserem contribuir, podem escolher uma destas opções.",
+      bankTitle: "Transferência bancária",
+      bankDescription: "Peçam-nos diretamente os dados da conta.",
+      cashTitle: "Dinheiro",
+      cashDescription: "As contribuições em dinheiro são bem-vindas no dia do evento.",
+      backLink: "Voltar ao site do casamento",
     },
     dressCode: {
       eyebrow: "Código de vestuário",

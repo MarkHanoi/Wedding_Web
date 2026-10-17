@@ -6,6 +6,7 @@ import { getBrowserLanguage, isLanguage, type Language } from "./lib/i18n";
 
 const WeddingCanvas = lazy(() => import("./components/WeddingCanvas"));
 const AdminPage = lazy(() => import("./components/AdminPage"));
+const GiftsPage = lazy(() => import("./components/GiftsPage"));
 
 type View = "hero" | "explore";
 const LANGUAGE_STORAGE_KEY = "miaw-language";
@@ -44,6 +45,7 @@ export default function App() {
   const [view, setView] = useState<View>("hero");
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const isAdminPage = window.location.pathname.replace(/\/+$/, "") === "/admin";
+  const isGiftsPage = window.location.pathname.replace(/\/+$/, "") === "/gifts";
 
   useEffect(() => {
     document.documentElement.lang = language === "pt" ? "pt-PT" : language;
@@ -77,7 +79,9 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={null}>
-        {isAdminPage ? <AdminPage /> : (
+        {isAdminPage ? <AdminPage /> : isGiftsPage ? (
+          <GiftsPage language={language} onLanguageChange={changeLanguage} />
+        ) : (
         <AnimatePresence mode="wait">
 
           {view === "hero" && (
