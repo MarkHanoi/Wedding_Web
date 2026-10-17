@@ -803,6 +803,18 @@ html, body, #root {
   text-underline-offset: 4px;
 }
 
+.weekend-card__links {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.weekend-card__links .text-link {
+  margin-top: 0;
+}
+
 .text-link:hover {
   text-decoration-color: currentColor;
 }

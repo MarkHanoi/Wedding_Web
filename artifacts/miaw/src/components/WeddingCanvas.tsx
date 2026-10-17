@@ -5,15 +5,11 @@ import { translations, type GalleryKey, type Language, type RSVPEvent } from "..
 import aerialFonteDaTelha from "../../../../attached_assets/Fonte_da_Telha_1_-_Copy_1792139804228.jpg";
 import dunePath from "../../../../attached_assets/92658_-_Copy_1792139804226.jpg";
 import coastalView from "../../../../attached_assets/fonte-da-telha_-_Copy_1792139804229.jpg";
-import beachRestaurant from "../../../../attached_assets/image_1792139804229.webp";
 import atlanticWaves from "../../../../attached_assets/images_1792139804230.jpg";
 import beachLounge from "../../../../attached_assets/Screenshot_2026-10-16_074211_1792139804230.jpg";
 import weddingAerial from "../../../../attached_assets/dji_0225_1792142246805.webp";
 import weddingGarden from "../../../../attached_assets/dsc7086_1792142246824.webp";
 import weddingEntrance from "../../../../attached_assets/dsc7090_1792142246824.webp";
-import weddingCourtyardNight from "../../../../attached_assets/dsc7696_1792142246825.webp";
-import weddingGardenSeating from "../../../../attached_assets/dsc7805_1792142246825.webp";
-import weddingGate from "../../../../attached_assets/vh2-4698_6_176483-176823242177654_1792142246826.webp";
 import brunchTable from "../../../../attached_assets/but-first-brunch-outdoor-brunch-party-ideas-165228_1296x_1792142942629.webp";
 import arrabidaCove from "../../../../attached_assets/@rgcbatista_1792172274875.jpeg";
 import azeitaoVineyard from "../../../../attached_assets/Azeitão_1792172274877.jpeg";
@@ -41,7 +37,6 @@ const preWeddingPhotoSources = [
   aerialFonteDaTelha,
   dunePath,
   coastalView,
-  beachRestaurant,
   atlanticWaves,
   beachLounge,
 ];
@@ -50,9 +45,6 @@ const weddingVenuePhotoSources = [
   weddingAerial,
   weddingGarden,
   weddingEntrance,
-  weddingCourtyardNight,
-  weddingGardenSeating,
-  weddingGate,
 ];
 
 const travelPhotoSources = [
@@ -400,20 +392,22 @@ export default function WeddingCanvas({
                   </div>
                 </div>
                 {day.mapUrl && (
-                  <a
-                    className="text-link"
-                    href={day.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid={`link-weekend-map-${index}`}
-                  >
-                    {copy.weekend.mapLink} <span aria-hidden="true">↗</span>
-                  </a>
-                )}
-                {index === 0 && (
-                  <a className="text-link" href="#travel-dinner" data-testid="link-dinner-ideas">
-                    {copy.weekend.dinnerIdeasLink}
-                  </a>
+                  <div className="weekend-card__links">
+                    <a
+                      className="text-link"
+                      href={day.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid={`link-weekend-map-${index}`}
+                    >
+                      {copy.weekend.mapLink} <span aria-hidden="true">↗</span>
+                    </a>
+                    {index === 0 && (
+                      <a className="text-link" href="#travel-dinner" data-testid="link-dinner-ideas">
+                        {copy.weekend.dinnerIdeasLink}
+                      </a>
+                    )}
+                  </div>
                 )}
                 {index === 1 && (
                   <a
