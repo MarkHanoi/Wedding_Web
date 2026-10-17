@@ -181,7 +181,7 @@ export const translations: Record<Language, SiteCopy> = {
           title: "The wedding",
           description: "An open-air ceremony, then cocktail, dinner and a dance floor.",
           location: "Casa do Pinheiro Manso, Azeitão, Portugal",
-          wear: "Not white, not black.",
+          wear: "For women: not white, not black.",
           events: [
             { time: "5:30 PM", name: "Ceremony" },
             { time: "Then", name: "Cocktail, dinner, dancing (times to be confirmed)" },
@@ -378,7 +378,7 @@ export const translations: Record<Language, SiteCopy> = {
           title: "La boda",
           description: "Ceremonia al aire libre, después cóctel, cena y pista de baile.",
           location: "Casa do Pinheiro Manso, Azeitão, Portugal",
-          wear: "Ni blanco ni negro.",
+          wear: "Para mujeres: ni blanco ni negro.",
           events: [
             { time: "17:30", name: "Ceremonia" },
             { time: "Después", name: "Cóctel, cena y baile (horarios por confirmar)" },
@@ -575,7 +575,7 @@ export const translations: Record<Language, SiteCopy> = {
           title: "Le mariage",
           description: "Une cérémonie en plein air, puis un cocktail, un dîner et une piste de danse.",
           location: "Casa do Pinheiro Manso, Azeitão, Portugal",
-          wear: "Ni blanc ni noir.",
+          wear: "Pour les femmes : ni blanc ni noir.",
           events: [
             { time: "17 h 30", name: "Cérémonie" },
             { time: "Ensuite", name: "Cocktail, dîner et danse (horaires à confirmer)" },
@@ -772,7 +772,7 @@ export const translations: Record<Language, SiteCopy> = {
           title: "O casamento",
           description: "Cerimónia ao ar livre, seguida de cocktails, jantar e pista de dança.",
           location: "Casa do Pinheiro Manso, Azeitão, Portugal",
-          wear: "Sem branco nem preto.",
+          wear: "Para mulheres: sem branco nem preto.",
           events: [
             { time: "17:30", name: "Cerimónia" },
             { time: "Depois", name: "Cocktails, jantar e dança (horários por confirmar)" },

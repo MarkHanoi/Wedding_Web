@@ -421,18 +421,18 @@ export default function WeddingCanvas({
                         {copy.weekend.dinnerIdeasLink}
                       </a>
                     )}
+                    {index === 1 && (
+                      <a
+                        className="text-link"
+                        href={WEDDING_CALENDAR_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="link-add-to-calendar"
+                      >
+                        {copy.weekend.calendarLink}
+                      </a>
+                    )}
                   </div>
-                )}
-                {index === 1 && (
-                  <a
-                    className="text-link"
-                    href={WEDDING_CALENDAR_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid="link-add-to-calendar"
-                  >
-                    {copy.weekend.calendarLink}
-                  </a>
                 )}
                 {index === 2 && (
                   <a className="text-link" href="#rsvp" data-testid="link-sunday-rsvp">
