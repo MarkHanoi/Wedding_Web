@@ -791,6 +791,21 @@ html, body, #root {
   font-weight: 400;
 }
 
+.weekend-card__location-link {
+  color: inherit;
+  text-decoration-color: rgba(169, 97, 66, 0.38);
+  text-underline-offset: 3px;
+}
+
+.weekend-card__location-link:hover {
+  text-decoration-color: currentColor;
+}
+
+.weekend-card__location-link:focus-visible {
+  outline: 2px solid var(--wedding-terra);
+  outline-offset: 3px;
+}
+
 .text-link {
   display: inline-flex;
   gap: 8px;

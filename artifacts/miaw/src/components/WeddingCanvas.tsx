@@ -384,7 +384,21 @@ export default function WeddingCanvas({
                   ))}
                   <div className="weekend-card__event">
                     <span>{copy.weekend.whereLabel}</span>
-                    <strong>{day.location}</strong>
+                    <strong>
+                      {index === 1 ? (
+                        <a
+                          className="weekend-card__location-link"
+                          href={WEDDING_MAP_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid="link-weekend-location"
+                        >
+                          {day.location}
+                        </a>
+                      ) : (
+                        day.location
+                      )}
+                    </strong>
                   </div>
                   <div className="weekend-card__event">
                     <span>{copy.weekend.wearLabel}</span>

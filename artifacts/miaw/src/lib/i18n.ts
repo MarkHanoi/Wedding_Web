@@ -180,7 +180,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Saturday · 19 June",
           title: "The wedding",
           description: "An open-air ceremony, then cocktail, dinner and a dance floor.",
-          location: "Casa do Pinheiro Manso, Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão, Portugal",
           wear: "Not white, not black.",
           events: [
             { time: "5:30 PM", name: "Ceremony" },
@@ -377,7 +377,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Sábado · 19 de junio",
           title: "La boda",
           description: "Ceremonia al aire libre, después cóctel, cena y pista de baile.",
-          location: "Casa do Pinheiro Manso, Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão, Portugal",
           wear: "Ni blanco ni negro.",
           events: [
             { time: "17:30", name: "Ceremonia" },
@@ -574,7 +574,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Samedi · 19 juin",
           title: "Le mariage",
           description: "Une cérémonie en plein air, puis un cocktail, un dîner et une piste de danse.",
-          location: "Casa do Pinheiro Manso, Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão, Portugal",
           wear: "Ni blanc ni noir.",
           events: [
             { time: "17 h 30", name: "Cérémonie" },
@@ -771,7 +771,7 @@ export const translations: Record<Language, SiteCopy> = {
           date: "Sábado · 19 de junho",
           title: "O casamento",
           description: "Cerimónia ao ar livre, seguida de cocktails, jantar e pista de dança.",
-          location: "Casa do Pinheiro Manso, Azeitão",
+          location: "Casa do Pinheiro Manso, Azeitão, Portugal",
           wear: "Sem branco nem preto.",
           events: [
             { time: "17:30", name: "Cerimónia" },
