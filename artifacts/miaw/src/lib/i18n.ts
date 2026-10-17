@@ -73,7 +73,18 @@ export interface SiteCopy {
   faq: {
     eyebrow: string;
     title: string;
-    items: { question: string; answer: string; linkText?: string }[];
+    contactLabels: { email: string; whatsapp: string; call: string };
+    items: {
+      question: string;
+      answer: string;
+      linkText?: string;
+      contacts?: {
+        name: string;
+        email: string;
+        whatsapp?: string;
+        phone?: string;
+      }[];
+    }[];
   };
   giftsPage: {
     eyebrow: string;
@@ -244,11 +255,28 @@ export const translations: Record<Language, SiteCopy> = {
     faq: {
       eyebrow: "Good to know",
       title: "Questions",
+      contactLabels: { email: "Email", whatsapp: "WhatsApp", call: "Call" },
       items: [
         { question: "Who is invited to what?", answer: "Everyone is welcome to all three events. Please let us know in the RSVP which ones you’ll join. Please submit one form per person." },
         { question: "What if it’s windy or rainy?", answer: "We have a covered plan so the day stays beautiful." },
-        { question: "Gifts?", answer: "Your presence is the gift. A contribution to our future projects is welcome.", linkText: "Gift options" },
-        { question: "Who do I contact?", answer: "We’ll add an email address and WhatsApp number here once confirmed." },
+        { question: "Gifts?", answer: "Your presence is the gift. If you wish to give us a gift, you can contribute towards our next adventure together.", linkText: "Gift options" },
+        {
+          question: "Who do I contact?",
+          answer: "You can contact us directly:",
+          contacts: [
+            {
+              name: "Antonio",
+              email: "Antoniocanerosan@gmail.com",
+              whatsapp: "+351938452064",
+              phone: "+351 939039709",
+            },
+            {
+              name: "Clémence",
+              email: "clemfily@live.fr",
+              phone: "+33 6 20 45 36 21",
+            },
+          ],
+        },
       ],
     },
     giftsPage: {
@@ -440,11 +468,28 @@ export const translations: Record<Language, SiteCopy> = {
     faq: {
       eyebrow: "Información útil",
       title: "Preguntas",
+      contactLabels: { email: "Correo electrónico", whatsapp: "WhatsApp", call: "Llamar" },
       items: [
         { question: "¿Quién está invitado a qué?", answer: "Todo el mundo está invitado a los tres eventos. Dinos en el RSVP a cuáles te gustaría asistir. Por favor, enviad un formulario por persona." },
         { question: "¿Y si hace viento o llueve?", answer: "Tenemos un plan cubierto para que el día siga siendo especial." },
-        { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Una contribución para nuestros proyectos futuros es bienvenida.", linkText: "Opciones de regalo" },
-        { question: "¿A quién puedo contactar?", answer: "Añadiremos aquí un correo electrónico y un número de WhatsApp cuando estén confirmados." },
+        { question: "¿Regalos?", answer: "Vuestra presencia es el mejor regalo. Si queréis hacernos un regalo, podéis contribuir a nuestra próxima aventura juntos.", linkText: "Opciones de regalo" },
+        {
+          question: "¿A quién puedo contactar?",
+          answer: "Podéis contactar con nosotros directamente:",
+          contacts: [
+            {
+              name: "Antonio",
+              email: "Antoniocanerosan@gmail.com",
+              whatsapp: "+351938452064",
+              phone: "+351 939039709",
+            },
+            {
+              name: "Clémence",
+              email: "clemfily@live.fr",
+              phone: "+33 6 20 45 36 21",
+            },
+          ],
+        },
       ],
     },
     giftsPage: {
@@ -636,11 +681,28 @@ export const translations: Record<Language, SiteCopy> = {
     faq: {
       eyebrow: "À savoir",
       title: "Questions",
+      contactLabels: { email: "E-mail", whatsapp: "WhatsApp", call: "Téléphone" },
       items: [
         { question: "Qui est invité à quoi ?", answer: "Tout le monde est invité aux trois événements. Dites-nous dans le RSVP ceux auxquels vous souhaitez participer. Merci de remplir un formulaire par personne." },
         { question: "Et s’il y a du vent ou de la pluie ?", answer: "Nous avons prévu une solution couverte pour que la journée reste belle." },
-        { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Une contribution à nos projets futurs est la bienvenue.", linkText: "Options de cadeau" },
-        { question: "Qui dois-je contacter ?", answer: "Nous ajouterons ici une adresse e-mail et un numéro WhatsApp dès qu’ils seront confirmés." },
+        { question: "Des cadeaux ?", answer: "Votre présence est le plus beau des cadeaux. Si vous souhaitez nous offrir un cadeau, vous pouvez contribuer à notre prochaine aventure ensemble.", linkText: "Options de cadeau" },
+        {
+          question: "Qui dois-je contacter ?",
+          answer: "Vous pouvez nous contacter directement :",
+          contacts: [
+            {
+              name: "Antonio",
+              email: "Antoniocanerosan@gmail.com",
+              whatsapp: "+351938452064",
+              phone: "+351 939039709",
+            },
+            {
+              name: "Clémence",
+              email: "clemfily@live.fr",
+              phone: "+33 6 20 45 36 21",
+            },
+          ],
+        },
       ],
     },
     giftsPage: {
@@ -832,11 +894,28 @@ export const translations: Record<Language, SiteCopy> = {
     faq: {
       eyebrow: "Informações",
       title: "Perguntas",
+      contactLabels: { email: "E-mail", whatsapp: "WhatsApp", call: "Telefone" },
       items: [
         { question: "Quem está convidado para quê?", answer: "Todos são bem-vindos aos três eventos. Digam-nos no RSVP a quais gostariam de assistir. Por favor, preencham um formulário por pessoa." },
         { question: "E se estiver vento ou chover?", answer: "Temos uma alternativa coberta para que o dia continue a ser especial." },
-        { question: "Presentes?", answer: "A vossa presença é o melhor presente. Uma contribuição para os nossos projetos futuros é bem-vinda.", linkText: "Opções de presente" },
-        { question: "Quem devo contactar?", answer: "Adicionaremos aqui um endereço de e-mail e um número de WhatsApp quando estiverem confirmados." },
+        { question: "Presentes?", answer: "A vossa presença é o melhor presente. Se quiserem oferecer-nos um presente, podem contribuir para a nossa próxima aventura juntos.", linkText: "Opções de presente" },
+        {
+          question: "Quem devo contactar?",
+          answer: "Podem contactar-nos diretamente:",
+          contacts: [
+            {
+              name: "Antonio",
+              email: "Antoniocanerosan@gmail.com",
+              whatsapp: "+351938452064",
+              phone: "+351 939039709",
+            },
+            {
+              name: "Clémence",
+              email: "clemfily@live.fr",
+              phone: "+33 6 20 45 36 21",
+            },
+          ],
+        },
       ],
     },
     giftsPage: {

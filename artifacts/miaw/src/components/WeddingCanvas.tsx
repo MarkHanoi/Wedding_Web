@@ -492,6 +492,48 @@ export default function WeddingCanvas({
                   </>
                 )}
               </p>
+              {item.contacts?.map((contact) => (
+                <p key={contact.name}>
+                  <strong>{contact.name}</strong>
+                  <br />
+                  {copy.faq.contactLabels.email}:{" "}
+                  <a
+                    className="wedding-section__inline-link"
+                    href={`mailto:${contact.email}`}
+                    aria-label={`${contact.name} — ${copy.faq.contactLabels.email}`}
+                  >
+                    {contact.email}
+                  </a>
+                  {contact.whatsapp && (
+                    <>
+                      {" · "}
+                      {copy.faq.contactLabels.whatsapp}:{" "}
+                      <a
+                        className="wedding-section__inline-link"
+                        href={`https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${contact.name} — ${copy.faq.contactLabels.whatsapp}`}
+                      >
+                        {contact.whatsapp}
+                      </a>
+                    </>
+                  )}
+                  {contact.phone && (
+                    <>
+                      {" · "}
+                      {copy.faq.contactLabels.call}:{" "}
+                      <a
+                        className="wedding-section__inline-link"
+                        href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}
+                        aria-label={`${contact.name} — ${copy.faq.contactLabels.call}`}
+                      >
+                        {contact.phone}
+                      </a>
+                    </>
+                  )}
+                </p>
+              ))}
             </details>
           ))}
         </div>
