@@ -1026,9 +1026,10 @@ html, body, #root {
 
 .travel-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
-  margin-top: 48px;
+  max-width: 760px;
+  margin: 48px auto 0;
   text-align: left;
 }
 
@@ -1056,10 +1057,6 @@ html, body, #root {
 }
 
 @media (max-width: 900px) {
-  .travel-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .dress-code-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1863,10 +1860,6 @@ html, body, #root {
 @media (max-width: 440px) {
   .wedding-section {
     width: calc(100% - 36px);
-  }
-
-  .travel-grid {
-    grid-template-columns: 1fr;
   }
 
   .dress-code-grid {
