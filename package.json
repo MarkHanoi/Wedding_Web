@@ -7,6 +7,7 @@
     "preinstall": "sh -c 'rm -f package-lock.json yarn.lock'",
     "build": "pnpm --filter @workspace/miaw run build",
     "build:api": "pnpm --filter @workspace/api-server run build",
+    "build:cloudflare": "pnpm --filter @workspace/miaw run build && pnpm --filter @workspace/cloudflare-worker run deploy",
     "build:full": "pnpm run typecheck && pnpm run build && pnpm run build:api",
     "typecheck": "pnpm -r --filter \"./artifacts/**\" --if-present run typecheck"
   },

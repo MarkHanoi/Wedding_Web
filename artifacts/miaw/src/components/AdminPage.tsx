@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 
 type Dashboard = {
   emailAlerts: "ready" | "check_failed" | "not_configured";
+  emailProvider?: "cloudflare";
   summary: {
     total: number;
     attending: number;
@@ -240,8 +241,12 @@ export default function AdminPage() {
                   </strong>
                   <span>
                     {dashboard.emailAlerts === "not_configured"
-                      ? "Add the GMAIL_APP_PASSWORD secret to send RSVP notifications to lookwithinjourney@gmail.com."
-                      : "Gmail could not verify the app password. Check the GMAIL_APP_PASSWORD secret and try refreshing."}
+                      ? dashboard.emailProvider === "cloudflare"
+                        ? "Enable Cloudflare Email Sending and set a verified sender address to send RSVP notifications."
+                        : "Add the GMAIL_APP_PASSWORD secret to send RSVP notifications to lookwithinjourney@gmail.com."
+                      : dashboard.emailProvider === "cloudflare"
+                        ? "Cloudflare email sending could not deliver a test message. Check the Email Service setup."
+                        : "Gmail could not verify the app password. Check the GMAIL_APP_PASSWORD secret and try refreshing."}
                   </span>
                 </div>
               )}

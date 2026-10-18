@@ -44,3 +44,12 @@ Keep this repository focused on the wedding landing page, Explore page and the R
 | Variable | Purpose |
 |---|---|
 | `VITE_API_URL` | Override the RSVP API base URL for a separate custom domain |
+
+## Cloudflare deployment path
+
+The project now includes an optional Cloudflare Workers + D1 deployment in
+`artifacts/cloudflare-worker`. It serves the Vite static site, RSVP API, admin
+dashboard API, analytics endpoint, and D1 data from one origin. See that
+directory's README for account setup, secret entry, data migration, testing,
+and DNS cutover. The Replit preview/runtime remains unchanged until the
+Cloudflare deployment and data migration have been verified.
