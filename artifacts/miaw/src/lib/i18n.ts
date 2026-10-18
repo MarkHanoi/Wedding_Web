@@ -167,7 +167,7 @@ export const translations: Record<Language, SiteCopy> = {
       scrollToStory: "Scroll to our story",
     },
     story: {
-      title: "French girl meets Spanish boy",
+      title: "OUR STORY",
       paragraphs: [
         "A French girl meets a Spanish boy in London in 2016. We met in a nightclub, under terrible lighting, and somehow things worked out. Since then, we’ve lived in Sydney, Brisbane and eventually Portugal, collecting a fair number of suitcases along the way — either because we were in love or very bad at settling down. In 2023, we started building a house in Portugal, then decided to take a year off to travel the world together. The ultimate relationship stress test: a year of adventures, constant company and no escape. We are still speaking so let's get married — in Portugal, somewhere between France and Spain, which seemed like a fair compromise. Ten years, countless countries and a few big adventures later, we have learned that the best place we have ever been is right next to each other. Lisbon, we’re ready.",
       ],
@@ -376,7 +376,7 @@ export const translations: Record<Language, SiteCopy> = {
       scrollToStory: "Desplazarse a nuestra historia",
     },
     story: {
-      title: "Una francesa conoce a un español",
+      title: "NUESTRA HISTORIA",
       paragraphs: [
         "Una francesa conoce a un español en Londres, en 2016. Nos conocimos en una discoteca, con una iluminación terrible, y de alguna manera, la cosa funcionó.",
         "Desde entonces, hemos vivido en Sídney, Brisbane y, finalmente, Portugal, acumulando unas cuantas maletas por el camino — ya fuera porque estábamos enamorados o porque se nos daba fatal asentarnos.",
@@ -589,7 +589,7 @@ export const translations: Record<Language, SiteCopy> = {
       rsvpLink: "Répondre à l’invitation",
     },
     story: {
-      title: "Une Française rencontre un Espagnol",
+      title: "NOTRE HISTOIRE",
       paragraphs: [
         "Une Française rencontre un Espagnol à Londres, en 2016. On s’est rencontrés dans une boîte de nuit, sous un éclairage absolument catastrophique, et contre toute attente, ça a marché.",
         "Depuis, on a vécu à Sydney, Brisbane, puis finalement au Portugal, en accumulant pas mal de valises au passage — soit parce qu’on était amoureux, soit parce qu’on avait beaucoup de mal à se poser.",
