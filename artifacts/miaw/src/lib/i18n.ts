@@ -200,10 +200,10 @@ export const translations: Record<Language, SiteCopy> = {
           title: "The wedding",
           description: "An open-air ceremony, then cocktail, dinner and a dance floor.",
           location: "Casa do Pinheiro Manso, Azeitão, Portugal",
-          wear: "For women: not white, not black.",
+          wear: "For women: not white, nor black.",
           events: [
             { time: "5:30 PM", name: "Ceremony" },
-            { time: "Then", name: "Cocktail, dinner, dancing (times to be confirmed)" },
+            { time: "Then", name: "Cocktail, dinner, dancing" },
           ],
           gallery: "venue",
         },
@@ -416,7 +416,7 @@ export const translations: Record<Language, SiteCopy> = {
           wear: "Para mujeres: ni blanco ni negro.",
           events: [
             { time: "17:30", name: "Ceremonia" },
-            { time: "Después", name: "Cóctel, cena y baile (horarios por confirmar)" },
+            { time: "Después", name: "Cóctel, cena y baile" },
           ],
           gallery: "venue",
         },
@@ -629,7 +629,7 @@ export const translations: Record<Language, SiteCopy> = {
           wear: "Pour les femmes : ni blanc ni noir.",
           events: [
             { time: "17 h 30", name: "Cérémonie" },
-            { time: "Ensuite", name: "Cocktail, dîner et danse (horaires à confirmer)" },
+            { time: "Ensuite", name: "Cocktail, dîner et danse" },
           ],
           gallery: "venue",
         },
