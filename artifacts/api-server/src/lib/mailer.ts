@@ -38,7 +38,8 @@ export async function sendRsvpNotification(entry: RSVP): Promise<"sent" | "not_c
         ? [
             `Events: ${entry.events.join(", ") || "None selected"}`,
             `Additional guests: ${entry.guests}`,
-            `Shuttle: ${entry.shuttle ? "Yes" : "No"}`,
+            `Transport help: ${entry.shuttle ? "Yes" : "No"}`,
+            ...(entry.shuttle ? [`Transport contact email: ${entry.transportEmail}`] : []),
           ]
         : []),
       `Arrival: ${entry.arrival || "None provided"}`,

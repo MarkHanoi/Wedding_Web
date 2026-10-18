@@ -413,6 +413,95 @@ html, body, #root {
   background: rgba(255, 252, 246, 0.5);
 }
 
+.gifts-page__option--bank {
+  padding: 0;
+}
+
+.gifts-page__bank-summary {
+  display: flex;
+  min-height: 160px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.gifts-page__bank-summary::-webkit-details-marker {
+  display: none;
+}
+
+.gifts-page__bank-summary::marker {
+  content: "";
+}
+
+.gifts-page__bank-summary:focus-visible {
+  border-radius: 17px;
+  outline: 2px solid var(--wedding-terra);
+  outline-offset: -3px;
+}
+
+.gifts-page__bank-summary-copy {
+  display: grid;
+  gap: 12px;
+}
+
+.gifts-page__bank-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.55rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.gifts-page__bank-description {
+  color: var(--wedding-muted);
+  font-size: 0.86rem;
+}
+
+.gifts-page__bank-chevron {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  margin: -5px 4px 0 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 160ms ease, margin 160ms ease;
+}
+
+.gifts-page__option--bank[open] .gifts-page__bank-chevron {
+  margin-top: 5px;
+  transform: rotate(225deg);
+}
+
+.gifts-page__bank-details {
+  padding: 18px 26px 24px;
+  border-top: 1px solid rgba(121, 97, 72, 0.22);
+}
+
+.gifts-page__bank-details p {
+  margin: 0;
+  color: var(--wedding-muted);
+  font-size: 0.86rem;
+}
+
+.gifts-page__bank-details p + p {
+  margin-top: 8px;
+}
+
+.gifts-page__bank-details strong {
+  color: var(--wedding-ink);
+  font-weight: 500;
+}
+
+.gifts-page__iban {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
 .gifts-page__option h2 {
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1139,6 +1228,7 @@ html, body, #root {
 }
 
 .rsvp-field input,
+.rsvp-field select,
 .rsvp-field textarea {
   width: 100%;
   padding: 12px 14px;
@@ -1156,6 +1246,7 @@ html, body, #root {
 }
 
 .rsvp-field input:not([type="checkbox"]):focus,
+.rsvp-field select:focus,
 .rsvp-field textarea:focus {
   border-color: #e4b397;
   box-shadow: 0 0 0 3px rgba(228, 179, 151, 0.2);
@@ -1168,8 +1259,7 @@ html, body, #root {
   margin-top: 8px;
 }
 
-.rsvp-choice,
-.rsvp-guest {
+.rsvp-choice {
   min-height: 46px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 2px;
@@ -1181,9 +1271,7 @@ html, body, #root {
 }
 
 .rsvp-choice:hover,
-.rsvp-guest:hover,
-.rsvp-choice.is-selected,
-.rsvp-guest.is-selected {
+.rsvp-choice.is-selected {
   border-color: #e4b397;
   background: rgba(228, 179, 151, 0.2);
   color: #fffaf1;
@@ -1233,17 +1321,6 @@ html, body, #root {
 .rsvp-event-option input[type="checkbox"]:focus-visible {
   outline: 2px solid #fffaf1;
   outline-offset: 3px;
-}
-
-.rsvp-guests {
-  display: flex;
-  gap: 9px;
-  margin-top: 8px;
-}
-
-.rsvp-guest {
-  width: 44px;
-  min-height: 42px;
 }
 
 .rsvp-submit {
@@ -1906,7 +1983,6 @@ html, body, #root {
 
   .wedding-scroll__down,
   .rsvp-choice,
-  .rsvp-guest,
   .rsvp-event-option,
   .rsvp-submit {
     transition: none;

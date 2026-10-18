@@ -6,6 +6,7 @@ CREATE TABLE rsvps (
   shuttle BOOLEAN NOT NULL DEFAULT FALSE,
   events TEXT[] NOT NULL DEFAULT '{}'::TEXT[],
   arrival TEXT NOT NULL DEFAULT '',
+  transport_email TEXT NOT NULL DEFAULT '',
   dietary TEXT NOT NULL DEFAULT '',
   message TEXT NOT NULL DEFAULT '',
   received_at TIMESTAMPTZ NOT NULL DEFAULT NOW()

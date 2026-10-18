@@ -14,6 +14,14 @@ const RSVPSchema = z
     shuttle: z.boolean().optional().default(false),
     events: z.array(RSVPEventSchema).max(3).optional().default([]),
     arrival: z.string().max(500).optional().default(""),
+    transportEmail: z
+      .string()
+      .trim()
+      .email()
+      .max(254)
+      .or(z.literal(""))
+      .optional()
+      .default(""),
     dietary: z.string().max(500).optional().default(""),
     message: z.string().max(1000).optional().default(""),
   })
@@ -23,6 +31,13 @@ const RSVPSchema = z
         code: z.ZodIssueCode.custom,
         path: ["events"],
         message: "Choose at least one event.",
+      });
+    }
+    if (entry.attending === "yes" && entry.shuttle && !entry.transportEmail) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["transportEmail"],
+        message: "Enter an email address so the couple can contact you about transport.",
       });
     }
     if (new Set(entry.events).size !== entry.events.length) {
@@ -44,7 +59,17 @@ router.post("/rsvp", async (req, res, next) => {
   }
 
   try {
-    const { name, attending, guests, shuttle, events, arrival, dietary, message } = parsed.data;
+    const {
+      name,
+      attending,
+      guests,
+      shuttle,
+      events,
+      arrival,
+      transportEmail,
+      dietary,
+      message,
+    } = parsed.data;
     const result = await pool.query<{
       id: string;
       name: string;
@@ -53,13 +78,14 @@ router.post("/rsvp", async (req, res, next) => {
       shuttle: boolean;
       events: string[];
       arrival: string;
+      transport_email: string;
       dietary: string;
       message: string;
       received_at: Date;
     }>(
-      `INSERT INTO rsvps (name, attending, guests, shuttle, events, arrival, dietary, message)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-       RETURNING id, name, attending, guests, shuttle, events, arrival, dietary, message, received_at`,
+      `INSERT INTO rsvps (name, attending, guests, shuttle, events, arrival, transport_email, dietary, message)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+       RETURNING id, name, attending, guests, shuttle, events, arrival, transport_email, dietary, message, received_at`,
       [
         name,
         attending,
@@ -67,6 +93,7 @@ router.post("/rsvp", async (req, res, next) => {
         attending === "yes" ? shuttle : false,
         attending === "yes" ? events : [],
         arrival,
+        attending === "yes" && shuttle ? transportEmail : "",
         dietary,
         message,
       ],
@@ -79,6 +106,7 @@ router.post("/rsvp", async (req, res, next) => {
       shuttle: row.shuttle,
       events: row.events as RSVP["events"],
       arrival: row.arrival,
+      transportEmail: row.transport_email,
       dietary: row.dietary,
       message: row.message,
       receivedAt: row.received_at.toISOString(),

@@ -30,10 +30,26 @@ export default function GiftsPage({ language, onLanguageChange }: GiftsPageProps
         <p className="gifts-page__intro">{copy.description}</p>
 
         <div className="gifts-page__options">
-          <article className="gifts-page__option">
-            <h2>{copy.bankTitle}</h2>
-            <p>{copy.bankDescription}</p>
-          </article>
+          <details className="gifts-page__option gifts-page__option--bank">
+            <summary className="gifts-page__bank-summary">
+              <span className="gifts-page__bank-summary-copy">
+                <span className="gifts-page__bank-title" role="heading" aria-level={2}>
+                  {copy.bankTitle}
+                </span>
+                <span className="gifts-page__bank-description">{copy.bankDescription}</span>
+              </span>
+              <span className="gifts-page__bank-chevron" aria-hidden="true" />
+            </summary>
+            <div className="gifts-page__bank-details">
+              <p>
+                <strong>{copy.accountNameLabel}:</strong> ANTONIO CANERO
+              </p>
+              <p>
+                <strong>{copy.ibanLabel}:</strong>{" "}
+                <span className="gifts-page__iban">PT50 0033 0000 4567 8571 9620 5</span>
+              </p>
+            </div>
+          </details>
           <article className="gifts-page__option">
             <h2>{copy.cashTitle}</h2>
             <p>{copy.cashDescription}</p>

@@ -92,6 +92,8 @@ export interface SiteCopy {
     description: string;
     bankTitle: string;
     bankDescription: string;
+    accountNameLabel: string;
+    ibanLabel: string;
     cashTitle: string;
     cashDescription: string;
     backLink: string;
@@ -116,14 +118,18 @@ export interface SiteCopy {
     decline: string;
     eventsLegend: string;
     events: { id: RSVPEvent; label: string }[];
-    guestCountLabel: string;
     arrivalLabel: string;
     arrivalPlaceholder: string;
     shuttleLegend: string;
     shuttleYes: string;
     shuttleNo: string;
+    transportEmailLabel: string;
+    transportEmailPlaceholder: string;
     dietaryLabel: string;
     dietaryPlaceholder: string;
+    dietaryOptions: { value: string; label: string }[];
+    dietaryOtherLabel: string;
+    dietaryOtherPlaceholder: string;
     noteLabel: string;
     optional: string;
     notePlaceholder: string;
@@ -284,7 +290,9 @@ export const translations: Record<Language, SiteCopy> = {
       title: "For our future projects",
       description: "If you’d like to contribute, you can choose one of these options.",
       bankTitle: "Bank transfer",
-      bankDescription: "Please ask us directly for the account details.",
+      bankDescription: "Open to view the account details.",
+      accountNameLabel: "Name",
+      ibanLabel: "IBAN",
       cashTitle: "Cash",
       cashDescription: "Cash gifts are welcome on the day.",
       backLink: "Back to the wedding website",
@@ -302,7 +310,7 @@ export const translations: Record<Language, SiteCopy> = {
     rsvp: {
       eyebrow: "RSVP",
       title: "Will you join us?",
-      description: "Please reply for the weekend and select every event you plan to attend.",
+      description: "Please reply for the weekend and select every event you plan to attend. Please submit one form per person.",
       thankYou: "Thank you, {name}.",
       accepted: "We can’t wait to celebrate with you.",
       declined: "We’ll miss you, but thank you for letting us know.",
@@ -317,14 +325,25 @@ export const translations: Record<Language, SiteCopy> = {
         { id: "saturday", label: "Wedding" },
         { id: "sunday", label: "Brunch" },
       ],
-      guestCountLabel: "Number of guests, including yourself",
       arrivalLabel: "Coming from abroad? How do you plan to arrive?",
       arrivalPlaceholder: "Flight, car, travelling from Córdoba…",
-      shuttleLegend: "Will you need a shuttle?",
+      shuttleLegend: "Do you need help with transport?",
       shuttleYes: "Yes, please",
       shuttleNo: "No, thank you",
+      transportEmailLabel: "Your email address",
+      transportEmailPlaceholder: "you@example.com",
       dietaryLabel: "Dietary requirements",
-      dietaryPlaceholder: "Allergies or preferences",
+      dietaryPlaceholder: "Select an option",
+      dietaryOptions: [
+        { value: "none", label: "No dietary requirements" },
+        { value: "vegetarian", label: "Vegetarian" },
+        { value: "vegan", label: "Vegan" },
+        { value: "gluten-free", label: "Gluten-free" },
+        { value: "dairy-free", label: "Dairy-free" },
+        { value: "other", label: "Allergies or multiple requirements" },
+      ],
+      dietaryOtherLabel: "Please tell us more",
+      dietaryOtherPlaceholder: "List allergies or multiple requirements",
       noteLabel: "A note for the couple",
       optional: "(optional)",
       notePlaceholder: "Write a little note…",
@@ -497,7 +516,9 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Para nuestros proyectos futuros",
       description: "Si queréis contribuir, podéis elegir una de estas opciones.",
       bankTitle: "Transferencia bancaria",
-      bankDescription: "Podéis pedirnos directamente los datos de la cuenta.",
+      bankDescription: "Pulsa para ver los datos bancarios.",
+      accountNameLabel: "Nombre",
+      ibanLabel: "IBAN",
       cashTitle: "Efectivo",
       cashDescription: "También se aceptan regalos en efectivo el día del evento.",
       backLink: "Volver a la web de la boda",
@@ -515,7 +536,7 @@ export const translations: Record<Language, SiteCopy> = {
     rsvp: {
       eyebrow: "Confirmación",
       title: "¿Nos acompañas?",
-      description: "Confirma si asistirás y selecciona todos los eventos a los que vendrás.",
+      description: "Confirma si asistirás y selecciona todos los eventos a los que vendrás. Por favor, envía un formulario por persona.",
       thankYou: "Gracias, {name}.",
       accepted: "Estamos deseando celebrarlo contigo.",
       declined: "Te echaremos de menos. Gracias por avisarnos.",
@@ -530,14 +551,25 @@ export const translations: Record<Language, SiteCopy> = {
         { id: "saturday", label: "Boda" },
         { id: "sunday", label: "Brunch" },
       ],
-      guestCountLabel: "Número de invitados, incluyéndote",
       arrivalLabel: "¿Vienes desde fuera? ¿Cómo tienes pensado llegar?",
       arrivalPlaceholder: "Avión, coche, desde Córdoba…",
-      shuttleLegend: "¿Necesitarás transporte?",
+      shuttleLegend: "¿Necesitas ayuda con el transporte?",
       shuttleYes: "Sí, por favor",
       shuttleNo: "No, gracias",
+      transportEmailLabel: "Tu correo electrónico",
+      transportEmailPlaceholder: "tu@ejemplo.com",
       dietaryLabel: "Requisitos alimentarios",
-      dietaryPlaceholder: "Alergias o preferencias",
+      dietaryPlaceholder: "Selecciona una opción",
+      dietaryOptions: [
+        { value: "none", label: "Sin restricciones alimentarias" },
+        { value: "vegetarian", label: "Vegetariano/a" },
+        { value: "vegan", label: "Vegano/a" },
+        { value: "gluten-free", label: "Sin gluten" },
+        { value: "dairy-free", label: "Sin lácteos" },
+        { value: "other", label: "Alergias o varias necesidades" },
+      ],
+      dietaryOtherLabel: "Cuéntanos más",
+      dietaryOtherPlaceholder: "Indica las alergias o necesidades",
       noteLabel: "Una nota para la pareja",
       optional: "(opcional)",
       notePlaceholder: "Escribe una nota…",
@@ -710,7 +742,9 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Pour nos projets futurs",
       description: "Si vous souhaitez contribuer, vous pouvez choisir l’une de ces options.",
       bankTitle: "Virement bancaire",
-      bankDescription: "Demandez-nous directement les coordonnées bancaires.",
+      bankDescription: "Ouvrez cette rubrique pour voir les coordonnées bancaires.",
+      accountNameLabel: "Nom",
+      ibanLabel: "IBAN",
       cashTitle: "Espèces",
       cashDescription: "Les cadeaux en espèces sont les bienvenus le jour du mariage.",
       backLink: "Retour au site du mariage",
@@ -728,7 +762,7 @@ export const translations: Record<Language, SiteCopy> = {
     rsvp: {
       eyebrow: "RSVP",
       title: "Serez-vous des nôtres ?",
-      description: "Merci de répondre et de sélectionner tous les événements auxquels vous participerez.",
+      description: "Merci de répondre et de sélectionner tous les événements auxquels vous participerez. Merci de remplir un formulaire par personne.",
       thankYou: "Merci, {name}.",
       accepted: "Nous avons hâte de fêter cela avec vous.",
       declined: "Vous nous manquerez. Merci de nous avoir prévenus.",
@@ -743,14 +777,25 @@ export const translations: Record<Language, SiteCopy> = {
         { id: "saturday", label: "Mariage" },
         { id: "sunday", label: "Brunch" },
       ],
-      guestCountLabel: "Nombre d’invités, vous compris",
       arrivalLabel: "Vous venez de l’étranger ? Comment pensez-vous arriver ?",
       arrivalPlaceholder: "Avion, voiture, depuis Cordoue…",
-      shuttleLegend: "Aurez-vous besoin d’une navette ?",
+      shuttleLegend: "Avez-vous besoin d’aide pour le transport ?",
       shuttleYes: "Oui, s’il vous plaît",
       shuttleNo: "Non, merci",
+      transportEmailLabel: "Votre adresse e-mail",
+      transportEmailPlaceholder: "vous@exemple.fr",
       dietaryLabel: "Régime alimentaire",
-      dietaryPlaceholder: "Allergies ou préférences",
+      dietaryPlaceholder: "Sélectionnez une option",
+      dietaryOptions: [
+        { value: "none", label: "Aucune restriction alimentaire" },
+        { value: "vegetarian", label: "Végétarien(ne)" },
+        { value: "vegan", label: "Végétalien(ne)" },
+        { value: "gluten-free", label: "Sans gluten" },
+        { value: "dairy-free", label: "Sans produits laitiers" },
+        { value: "other", label: "Allergies ou plusieurs besoins" },
+      ],
+      dietaryOtherLabel: "Précisez vos besoins",
+      dietaryOtherPlaceholder: "Indiquez vos allergies ou besoins",
       noteLabel: "Un mot pour les mariés",
       optional: "(facultatif)",
       notePlaceholder: "Écrivez un petit mot…",
@@ -923,7 +968,9 @@ export const translations: Record<Language, SiteCopy> = {
       title: "Para os nossos projetos futuros",
       description: "Se quiserem contribuir, podem escolher uma destas opções.",
       bankTitle: "Transferência bancária",
-      bankDescription: "Peçam-nos diretamente os dados da conta.",
+      bankDescription: "Abra esta secção para ver os dados bancários.",
+      accountNameLabel: "Nome",
+      ibanLabel: "IBAN",
       cashTitle: "Dinheiro",
       cashDescription: "As contribuições em dinheiro são bem-vindas no dia do evento.",
       backLink: "Voltar ao site do casamento",
@@ -941,7 +988,7 @@ export const translations: Record<Language, SiteCopy> = {
     rsvp: {
       eyebrow: "Confirmação",
       title: "Vão celebrar connosco?",
-      description: "Por favor, confirmem a presença e selecionem todos os eventos a que vão assistir.",
+      description: "Por favor, confirmem a presença e selecionem todos os eventos a que vão assistir. Preencham um formulário por pessoa.",
       thankYou: "Obrigado, {name}.",
       accepted: "Estamos ansiosos por celebrar convosco.",
       declined: "Vamos sentir a vossa falta. Obrigado por nos avisarem.",
@@ -956,14 +1003,25 @@ export const translations: Record<Language, SiteCopy> = {
         { id: "saturday", label: "Casamento" },
         { id: "sunday", label: "Brunch" },
       ],
-      guestCountLabel: "Número de convidados, incluindo você",
       arrivalLabel: "Vem do estrangeiro? Como planeia chegar?",
       arrivalPlaceholder: "Avião, carro, de Córdoba…",
-      shuttleLegend: "Vai precisar de transporte?",
+      shuttleLegend: "Precisa de ajuda com o transporte?",
       shuttleYes: "Sim, por favor",
       shuttleNo: "Não, obrigado",
+      transportEmailLabel: "O seu endereço de email",
+      transportEmailPlaceholder: "nome@exemplo.pt",
       dietaryLabel: "Restrições alimentares",
-      dietaryPlaceholder: "Alergias ou preferências",
+      dietaryPlaceholder: "Selecione uma opção",
+      dietaryOptions: [
+        { value: "none", label: "Sem restrições alimentares" },
+        { value: "vegetarian", label: "Vegetariano/a" },
+        { value: "vegan", label: "Vegano/a" },
+        { value: "gluten-free", label: "Sem glúten" },
+        { value: "dairy-free", label: "Sem laticínios" },
+        { value: "other", label: "Alergias ou várias necessidades" },
+      ],
+      dietaryOtherLabel: "Dê mais detalhes",
+      dietaryOtherPlaceholder: "Indique alergias ou outras necessidades",
       noteLabel: "Uma mensagem para os noivos",
       optional: "(opcional)",
       notePlaceholder: "Escreva uma mensagem…",

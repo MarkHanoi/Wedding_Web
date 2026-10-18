@@ -186,10 +186,11 @@ export default function WeddingCanvas({
   const [name, setName] = useState("");
   const [attending, setAttending] = useState<"yes" | "no" | "">("");
   const [needsShuttle, setNeedsShuttle] = useState<"yes" | "no" | "">("");
-  const [partySize, setPartySize] = useState(1);
   const [selectedEvents, setSelectedEvents] = useState<RSVPEvent[]>([]);
   const [arrival, setArrival] = useState("");
+  const [transportEmail, setTransportEmail] = useState("");
   const [dietary, setDietary] = useState("");
+  const [dietaryDetails, setDietaryDetails] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -200,8 +201,21 @@ export default function WeddingCanvas({
     if (
       !name.trim() ||
       !attending ||
-      (attending === "yes" && (!needsShuttle || selectedEvents.length === 0))
+      (attending === "yes" &&
+        (!needsShuttle ||
+          selectedEvents.length === 0 ||
+          (needsShuttle === "yes" && !transportEmail.trim()) ||
+          (dietary === "other" && !dietaryDetails.trim())))
     ) return;
+
+    const selectedDietaryOption = copy.rsvp.dietaryOptions.find(
+      (option) => option.value === dietary,
+    );
+    const dietaryAnswer = selectedDietaryOption
+      ? selectedDietaryOption.value === "other"
+        ? `${selectedDietaryOption.label}: ${dietaryDetails.trim()}`
+        : selectedDietaryOption.label
+      : "";
 
     setSubmitting(true);
     setError("");
@@ -212,11 +226,13 @@ export default function WeddingCanvas({
         body: JSON.stringify({
           name: name.trim(),
           attending,
-          guests: attending === "yes" ? partySize - 1 : 0,
+          guests: 0,
           shuttle: attending === "yes" && needsShuttle === "yes",
           events: attending === "yes" ? selectedEvents : [],
-          arrival: arrival.trim(),
-          dietary: dietary.trim(),
+          arrival: attending === "yes" ? arrival.trim() : "",
+          transportEmail:
+            attending === "yes" && needsShuttle === "yes" ? transportEmail.trim() : "",
+          dietary: attending === "yes" ? dietaryAnswer : "",
           message: message.trim(),
         }),
       });
@@ -578,7 +594,12 @@ export default function WeddingCanvas({
                     className={`rsvp-choice${attending === "yes" ? " is-selected" : ""}`}
                     type="button"
                     aria-pressed={attending === "yes"}
-                    onClick={() => setAttending("yes")}
+                    onClick={() => {
+                      setAttending("yes");
+                      setSelectedEvents((current) =>
+                        current.includes("saturday") ? current : [...current, "saturday"],
+                      );
+                    }}
                     data-testid="button-rsvp-attending"
                   >
                     {copy.rsvp.accept}
@@ -632,23 +653,6 @@ export default function WeddingCanvas({
                     </div>
                   </fieldset>
                   <fieldset className="rsvp-field">
-                    <legend>{copy.rsvp.guestCountLabel}</legend>
-                    <div className="rsvp-guests">
-                      {[1, 2, 3, 4].map((count) => (
-                        <button
-                          key={count}
-                          className={`rsvp-guest${partySize === count ? " is-selected" : ""}`}
-                          type="button"
-                          aria-pressed={partySize === count}
-                          onClick={() => setPartySize(count)}
-                          data-testid={`button-rsvp-guests-${count}`}
-                        >
-                          {count}
-                        </button>
-                      ))}
-                    </div>
-                  </fieldset>
-                  <fieldset className="rsvp-field">
                     <legend>{copy.rsvp.shuttleLegend}</legend>
                     <div className="rsvp-choice-row">
                       {(["yes", "no"] as const).map((answer) => (
@@ -665,32 +669,68 @@ export default function WeddingCanvas({
                       ))}
                     </div>
                   </fieldset>
+                  {needsShuttle === "yes" && (
+                    <label className="rsvp-field">
+                      <span>{copy.rsvp.transportEmailLabel}</span>
+                      <input
+                        type="email"
+                        name="transportEmail"
+                        autoComplete="email"
+                        placeholder={copy.rsvp.transportEmailPlaceholder}
+                        value={transportEmail}
+                        onChange={(event) => setTransportEmail(event.target.value)}
+                        required
+                        data-testid="input-rsvp-transport-email"
+                      />
+                    </label>
+                  )}
+
+                  <label className="rsvp-field">
+                    <span>{copy.rsvp.arrivalLabel} <em>{copy.rsvp.optional}</em></span>
+                    <input
+                      type="text"
+                      name="arrival"
+                      placeholder={copy.rsvp.arrivalPlaceholder}
+                      value={arrival}
+                      onChange={(event) => setArrival(event.target.value)}
+                      data-testid="input-rsvp-arrival"
+                    />
+                  </label>
+
+                  <label className="rsvp-field">
+                    <span>{copy.rsvp.dietaryLabel}</span>
+                    <select
+                      name="dietary"
+                      value={dietary}
+                      onChange={(event) => setDietary(event.target.value)}
+                      data-testid="input-rsvp-dietary"
+                    >
+                      <option value="">{copy.rsvp.dietaryPlaceholder}</option>
+                      {copy.rsvp.dietaryOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  {dietary === "other" && (
+                    <label className="rsvp-field">
+                      <span>{copy.rsvp.dietaryOtherLabel}</span>
+                      <input
+                        type="text"
+                        name="dietaryOther"
+                        placeholder={copy.rsvp.dietaryOtherPlaceholder}
+                        value={dietaryDetails}
+                        onChange={(event) => setDietaryDetails(event.target.value)}
+                        maxLength={400}
+                        required
+                        data-testid="input-rsvp-dietary-other"
+                      />
+                    </label>
+                  )}
                 </>
               )}
-
-              <label className="rsvp-field">
-                <span>{copy.rsvp.arrivalLabel} <em>{copy.rsvp.optional}</em></span>
-                <input
-                  type="text"
-                  name="arrival"
-                  placeholder={copy.rsvp.arrivalPlaceholder}
-                  value={arrival}
-                  onChange={(event) => setArrival(event.target.value)}
-                  data-testid="input-rsvp-arrival"
-                />
-              </label>
-
-              <label className="rsvp-field">
-                <span>{copy.rsvp.dietaryLabel}</span>
-                <input
-                  type="text"
-                  name="dietary"
-                  placeholder={copy.rsvp.dietaryPlaceholder}
-                  value={dietary}
-                  onChange={(event) => setDietary(event.target.value)}
-                  data-testid="input-rsvp-dietary"
-                />
-              </label>
 
               <label className="rsvp-field">
                 <span>
@@ -713,7 +753,11 @@ export default function WeddingCanvas({
                 disabled={
                   !name.trim() ||
                   !attending ||
-                  (attending === "yes" && (!needsShuttle || selectedEvents.length === 0)) ||
+                  (attending === "yes" &&
+                    (!needsShuttle ||
+                      selectedEvents.length === 0 ||
+                      (needsShuttle === "yes" && !transportEmail.trim()) ||
+                      (dietary === "other" && !dietaryDetails.trim()))) ||
                   submitting
                 }
                 data-testid="button-submit-rsvp"
