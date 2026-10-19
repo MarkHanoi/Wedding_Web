@@ -14,3 +14,9 @@ For the local preview, Wrangler requires Node.js 22 even though the Replit works
 **Why:** this Replit workflow runner did not register Wrangler's port probe reliably.
 
 **How to apply:** keep the local Wrangler preview as a console workflow without `waitForPort`, and resolve Node.js 22 from the Nix store rather than changing the existing Replit runtime.
+
+Do not treat `wrangler whoami` exiting successfully in the Replit shell as proof that remote Cloudflare operations are authorized. In this non-interactive environment, `wrangler d1 list` and `wrangler deployments list` reported that `CLOUDFLARE_API_TOKEN` is required.
+
+**Why:** authentication checks and remote resource operations behaved differently in the Replit shell.
+
+**How to apply:** verify access with a harmless remote listing command before creating or deploying Cloudflare resources.
