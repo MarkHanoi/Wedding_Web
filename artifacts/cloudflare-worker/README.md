@@ -47,6 +47,14 @@ Run `pnpm run build:cloudflare` from the repository root. This builds the site
 and deploys the Worker plus its static assets. The frontend uses same-origin
 `/api` requests, so no public API URL or CORS configuration is needed.
 
+## Local development preview
+
+The Replit preview serves the Vite frontend on port 5000 and proxies `/api/*`
+to the local Wrangler Worker on port 8008. Wrangler uses local D1 storage, so
+this preview does not need Cloudflare account access or Replit PostgreSQL.
+The `Cloudflare Local API` workflow starts that Worker through
+`scripts/run-cloudflare-local.sh`; Node.js 22 or newer is required.
+
 Before switching DNS, test the `workers.dev` deployment, submit test RSVPs, verify
 the admin dashboard and notification delivery, and compare the new D1 records
 with the source database. Do not delete or disable the Replit deployment until

@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "python-3.12"]
+modules = ["nodejs-20", "web", "python-3.12", "postgresql-16"]
 
 [deployment]
 router = "application"
@@ -38,6 +38,31 @@ packages = ["freetype", "gumbo", "harfbuzz", "jbig2dec", "libjpeg_turbo", "mupdf
 
 [userenv.shared]
 BASE_PATH = "/"
-API_PORT = "8080"
+API_PORT = "8008"
 
 [workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Cloudflare Local API"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "artifacts/miaw: web"
+
+[[workflows.workflow]]
+name = "Cloudflare Local API"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run-cloudflare-local.sh"
