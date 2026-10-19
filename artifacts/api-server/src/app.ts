@@ -5,7 +5,7 @@ import pinoHttp from "pino-http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
-import router from "./routes";
+import { createCloudflareApiProxy } from "./lib/cloudflareApiProxy";
 import { logger } from "./lib/logger";
 
 // Resolve paths relative to the built server bundle.
@@ -86,7 +86,19 @@ app.use(
 app.use(express.json({ limit: "64kb" }));
 app.use(express.urlencoded({ extended: true, limit: "64kb" }));
 
-app.use("/api", router);
+const cloudflareApiOrigin = process.env.CLOUDFLARE_API_ORIGIN?.trim();
+if (cloudflareApiOrigin) {
+  // During migration, both hosts can use Cloudflare as the single source of
+  // truth. This branch deliberately avoids importing the PostgreSQL routes.
+  app.use("/api", createCloudflareApiProxy(cloudflareApiOrigin));
+} else {
+  // Load the PostgreSQL-backed routes only when the Cloudflare proxy is not
+  // configured. This lets a Replit-hosted copy run without a Replit database.
+  const localRouter = import("./routes").then((module) => module.default);
+  app.use("/api", (req, res, next) => {
+    void localRouter.then((router) => router(req, res, next)).catch(next);
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Static file serving — production only.

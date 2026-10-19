@@ -55,6 +55,17 @@ this preview does not need Cloudflare account access or Replit PostgreSQL.
 The `Cloudflare Local API` workflow starts that Worker through
 `scripts/run-cloudflare-local.sh`; Node.js 22 or newer is required.
 
+## Keeping a Replit copy available during migration
+
+The Express API can proxy all `/api/*` requests to this Worker so the Replit
+copy and Cloudflare site use the same D1 data. Set the non-secret
+`CLOUDFLARE_API_ORIGIN` runtime variable to the Worker origin (for example,
+`https://<worker-subdomain>.workers.dev`) in the Replit API service configuration
+only after the Worker is deployed and tested. Do not point a production Replit
+service at the local preview address. With this variable set, the Express API
+does not load its PostgreSQL routes, and its `/api` health check is forwarded to
+the Worker.
+
 Before switching DNS, test the `workers.dev` deployment, submit test RSVPs, verify
 the admin dashboard and notification delivery, and compare the new D1 records
 with the source database. Do not delete or disable the Replit deployment until

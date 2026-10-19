@@ -10,7 +10,7 @@ name = "API Server"
 paths = ["/api"]
 
 [services.development]
-run = "pnpm --filter @workspace/api-server run dev"
+run = "CLOUDFLARE_API_ORIGIN=http://127.0.0.1:8008 pnpm --filter @workspace/api-server run dev"
 
 [services.production]
 
